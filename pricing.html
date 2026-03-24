@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing & Features — Growth Automation</title>
-<meta name="description" content="Transparent pricing for AI-powered outbound. From Solo to Enterprise — guaranteed qualified leads, fully managed campaigns, and dedicated infrastructure.">
+<title>Pricing & Plan Builder — Growth Automation</title>
+<meta name="description" content="Transparent pricing for AI-powered outbound. From Solo to Enterprise — guaranteed qualified leads, fully managed campaigns, and dedicated infrastructure. Customize your plan with add-ons.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -38,6 +38,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 90px;
 }
 body::after {
   content: '';
@@ -330,7 +331,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 .pricing-card:hover {
   transform: translateY(-4px);
@@ -340,6 +342,23 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   border-color: var(--violet);
   background: linear-gradient(180deg, rgba(139,127,199,0.08) 0%, var(--card) 100%);
   box-shadow: 0 0 40px rgba(139,127,199,0.08);
+}
+.pricing-card.selected {
+  border-color: var(--violet);
+  box-shadow: 0 0 30px rgba(139,127,199,0.2), 0 0 60px rgba(139,127,199,0.06);
+}
+.pricing-card.selected::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--r2) + 2px);
+  border: 2px solid var(--violet);
+  pointer-events: none;
+  animation: selected-pulse 2s ease-in-out infinite;
+}
+@keyframes selected-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(139,127,199,0.2); }
+  50% { box-shadow: 0 0 24px rgba(139,127,199,0.35); }
 }
 .card-badge {
   position: absolute;
@@ -463,6 +482,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   transform: translateY(-1px);
   box-shadow: 0 0 40px rgba(232,160,35,0.35);
 }
+.pricing-card.selected .card-cta-ghost {
+  background: var(--violet);
+  border-color: var(--violet);
+  color: #fff;
+}
 .card-setup {
   text-align: center;
   font-size: 11px;
@@ -550,49 +574,406 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   font-weight: 600;
 }
 
-/* ============ ADD-ONS ============ */
-.addons-section {
-  padding: 80px 24px 100px;
-  background: var(--bg2);
+/* ============ CUSTOMIZE YOUR PLAN SECTION ============ */
+.customize-section {
+  padding: 80px 24px 40px;
 }
-.addons-grid {
+
+/* Order summary card */
+.order-summary {
+  max-width: 900px;
+  margin: 0 auto 48px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.order-summary-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.order-summary-plan {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.order-summary-plan .plan-name-text {
+  color: var(--violet-l);
+}
+.order-summary-breakdown {
+  font-size: 14px;
+  color: var(--muted);
+}
+.order-summary-breakdown strong {
+  color: var(--cream);
+  font-weight: 700;
+}
+.order-summary-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.order-summary-total {
+  text-align: right;
+}
+.order-summary-total-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.order-summary-total-price {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.order-summary-total-price span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.order-summary-cta {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.3);
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+.order-summary-cta:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.45);
+}
+
+/* Add-on toggle cards */
+.addon-toggles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto 48px;
 }
-.addon-card {
+.toggle-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 24px;
-  transition: border-color 0.3s;
+  padding: 28px 24px;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+  user-select: none;
 }
-.addon-card:hover {
+.toggle-card:hover {
   border-color: var(--border2);
+  transform: translateY(-2px);
 }
-.addon-name {
+.toggle-card.active {
+  border-color: var(--violet);
+  box-shadow: 0 0 24px rgba(139,127,199,0.15);
+}
+.toggle-card.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.toggle-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+.toggle-card-name {
   font-size: 16px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 6px;
+  line-height: 1.3;
 }
-.addon-price {
-  font-size: 20px;
+.toggle-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 100px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.25s, background 0.25s;
+}
+.toggle-card.active .toggle-switch {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+.toggle-card.active .toggle-switch::after {
+  transform: translateX(20px);
+  background: #fff;
+}
+.toggle-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.toggle-card-price {
+  font-size: 22px;
   font-weight: 800;
   color: var(--amber);
-  margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
-.addon-price span {
+.toggle-card-price span {
   font-size: 13px;
   font-weight: 500;
   color: var(--muted);
 }
-.addon-desc {
+.toggle-card-note {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.7;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* LinkedIn add-on card (spans full width) */
+.linkedin-addon-card {
+  grid-column: 1 / -1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 32px 28px;
+  transition: border-color 0.3s;
+}
+.linkedin-addon-card:hover {
+  border-color: var(--border2);
+}
+.linkedin-addon-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.linkedin-addon-desc {
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.5;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.linkedin-controls {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.linkedin-slider-wrap {
+  flex: 1;
+  min-width: 260px;
+}
+.linkedin-slider-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.linkedin-slider-label strong {
+  font-size: 28px;
+  color: var(--amber);
+  font-weight: 800;
+}
+.linkedin-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 100px;
+  background: var(--bg3);
+  outline: none;
+  cursor: pointer;
+}
+.linkedin-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--violet);
+  border: 2px solid #fff;
+  cursor: grab;
+  box-shadow: 0 0 12px rgba(139,127,199,0.4);
+}
+.linkedin-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--violet);
+  border: 2px solid #fff;
+  cursor: grab;
+}
+.linkedin-output {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.linkedin-output strong { color: var(--cream); font-weight: 600; }
+.linkedin-cost {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--amber);
+}
+.linkedin-type-toggle {
+  display: flex;
+  gap: 0;
+  border-radius: 100px;
+  border: 1px solid var(--border2);
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: 24px;
+}
+.linkedin-type-btn {
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.linkedin-type-btn.active {
+  background: var(--violet);
+  color: #fff;
+}
+.linkedin-type-btn:hover:not(.active) {
+  background: rgba(139,127,199,0.1);
+  color: var(--cream);
+}
+.linkedin-included-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* ============ STICKY PRICE BAR ============ */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(11,11,15,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--border2);
+  padding: 14px 24px;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.sticky-bar.visible {
+  transform: translateY(0);
+}
+.sticky-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.sticky-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.sticky-plan {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+.sticky-plan .sticky-plan-name {
+  color: var(--violet-l);
+}
+.sticky-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border2);
+}
+.sticky-item {
+  font-size: 14px;
+  color: var(--muted);
+}
+.sticky-item strong {
+  color: var(--cream);
+  font-weight: 700;
+}
+.sticky-total {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+.sticky-total span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.sticky-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sticky-cta {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.3);
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+.sticky-cta:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.45);
 }
 
 /* ============ FINAL CTA ============ */
@@ -694,6 +1075,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 @media (max-width: 1024px) {
   .pricing-cards { grid-template-columns: repeat(3, 1fr); min-width: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .addon-toggles-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -702,9 +1084,16 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   .section { padding: 64px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .btn-ghost.hide-mobile { display: none; }
-  .addons-grid { grid-template-columns: 1fr; }
   .pricing-hero { padding: 60px 24px 30px; }
   .final-cta { padding: 80px 24px; }
+  .order-summary { flex-direction: column; text-align: center; padding: 24px 20px; }
+  .order-summary-right { flex-direction: column; gap: 12px; }
+  .order-summary-total { text-align: center; }
+  .linkedin-controls { flex-direction: column; gap: 20px; }
+  .sticky-left { gap: 12px; }
+  .sticky-divider { display: none; }
+  .sticky-bar-inner { flex-direction: column; text-align: center; gap: 8px; }
+  .sticky-right { width: 100%; justify-content: center; }
 }
 @media (max-width: 480px) {
   .pricing-cards { grid-template-columns: 1fr; min-width: 0; }
@@ -728,13 +1117,13 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     </ul>
     <div class="nav-actions">
       <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
-      <button class="btn-amber" onclick="window.location.href='contact.html'">Book a Strategy Call &rarr;</button>
+      <a href="contact.html" class="btn-amber">Book a Strategy Call &rarr;</a>
     </div>
     <button class="nav-hamburger" id="navHamburger">&#9776;</button>
   </div>
 </nav>
 
-<!-- ============ PRICING HERO ============ -->
+<!-- ============ SECTION 1: PRICING HERO ============ -->
 <section class="pricing-hero">
   <div class="pricing-hero-glow"></div>
   <h1 class="reveal">Transparent Pricing,<br><span class="accent">Guaranteed Results</span></h1>
@@ -749,15 +1138,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ PRICING CARDS ============ -->
+<!-- ============ SECTION 1: PRICING CARDS ============ -->
 <div class="pricing-cards-wrap reveal">
   <div class="pricing-cards" id="pricingCards">
 
     <!-- SOLO -->
-    <div class="pricing-card">
+    <div class="pricing-card" data-plan-index="0">
       <div class="card-plan-name">Solo</div>
       <div class="card-price" data-monthly="490" data-annual="440">$490<span>/mo</span></div>
-      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"></div>
       <div class="card-divider"></div>
       <ul class="card-metrics">
         <li><span class="metric-icon">&#9672;</span> <span class="metric-val">600</span>&nbsp;contacts/mo</li>
@@ -766,15 +1155,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <li class="na"><span class="metric-icon">&mdash;</span> No guaranteed leads</li>
         <li class="na"><span class="metric-icon">&mdash;</span> No LinkedIn outreach</li>
       </ul>
-      <button class="card-cta card-cta-ghost">Get Started &rarr;</button>
+      <button class="card-cta card-cta-ghost" onclick="selectPlan(0)">Select Plan &rarr;</button>
       <div class="card-setup">$150 one-time setup</div>
     </div>
 
     <!-- STARTER -->
-    <div class="pricing-card">
+    <div class="pricing-card" data-plan-index="1">
       <div class="card-plan-name">Starter</div>
       <div class="card-price" data-monthly="980" data-annual="880">$980<span>/mo</span></div>
-      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"></div>
       <div class="card-divider"></div>
       <ul class="card-metrics">
         <li><span class="metric-icon">&#9672;</span> <span class="metric-val">3,250</span>&nbsp;contacts/mo</li>
@@ -783,16 +1172,16 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <li class="na"><span class="metric-icon">&mdash;</span> No guaranteed leads</li>
         <li><span class="metric-icon">&#9672;</span> 1 LinkedIn profile &middot; 800 conn/mo</li>
       </ul>
-      <button class="card-cta card-cta-ghost">Get Started &rarr;</button>
+      <button class="card-cta card-cta-ghost" onclick="selectPlan(1)">Select Plan &rarr;</button>
       <div class="card-setup">$250 one-time setup</div>
     </div>
 
     <!-- GROWTH (RECOMMENDED) -->
-    <div class="pricing-card recommended">
+    <div class="pricing-card recommended" data-plan-index="2">
       <div class="card-badge">Recommended</div>
       <div class="card-plan-name">Growth</div>
       <div class="card-price" data-monthly="1890" data-annual="1700">$1,890<span>/mo</span></div>
-      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"></div>
       <div class="card-divider"></div>
       <ul class="card-metrics">
         <li><span class="metric-icon">&#9672;</span> <span class="metric-val">10,000</span>&nbsp;contacts/mo</li>
@@ -801,15 +1190,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <li class="highlight"><span class="metric-icon">&#10003;</span> <span class="metric-val">10&ndash;20</span>&nbsp;guaranteed leads</li>
         <li><span class="metric-icon">&#9672;</span> 2 LinkedIn profiles &middot; 1,600 conn/mo</li>
       </ul>
-      <button class="card-cta card-cta-amber">Get Started &rarr;</button>
+      <button class="card-cta card-cta-amber" onclick="selectPlan(2)">Select Plan &rarr;</button>
       <div class="card-setup">$500 one-time setup</div>
     </div>
 
     <!-- PRO -->
-    <div class="pricing-card">
+    <div class="pricing-card" data-plan-index="3">
       <div class="card-plan-name">Pro</div>
       <div class="card-price" data-monthly="2890" data-annual="2600">$2,890<span>/mo</span></div>
-      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"></div>
       <div class="card-divider"></div>
       <ul class="card-metrics">
         <li><span class="metric-icon">&#9672;</span> <span class="metric-val">20,000</span>&nbsp;contacts/mo</li>
@@ -818,15 +1207,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <li class="highlight"><span class="metric-icon">&#10003;</span> <span class="metric-val">20&ndash;40</span>&nbsp;guaranteed leads</li>
         <li><span class="metric-icon">&#9672;</span> 4 LinkedIn profiles &middot; 3,200 conn/mo</li>
       </ul>
-      <button class="card-cta card-cta-ghost">Get Started &rarr;</button>
+      <button class="card-cta card-cta-ghost" onclick="selectPlan(3)">Select Plan &rarr;</button>
       <div class="card-setup">$800 one-time setup</div>
     </div>
 
     <!-- ENTERPRISE -->
-    <div class="pricing-card">
+    <div class="pricing-card" data-plan-index="4">
       <div class="card-plan-name">Enterprise</div>
       <div class="card-price" data-monthly="4790" data-annual="4310">$4,790<span>/mo</span></div>
-      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"></div>
       <div class="card-divider"></div>
       <ul class="card-metrics">
         <li><span class="metric-icon">&#9672;</span> <span class="metric-val">40,000</span>&nbsp;contacts/mo</li>
@@ -835,14 +1224,14 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <li class="highlight"><span class="metric-icon">&#10003;</span> <span class="metric-val">40&ndash;80</span>&nbsp;guaranteed leads</li>
         <li><span class="metric-icon">&#9672;</span> 8 LinkedIn profiles &middot; 6,400 conn/mo</li>
       </ul>
-      <button class="card-cta card-cta-ghost">Contact Sales &rarr;</button>
+      <button class="card-cta card-cta-ghost" onclick="selectPlan(4)">Select Plan &rarr;</button>
       <div class="card-setup">$1,400 one-time setup</div>
     </div>
 
   </div>
 </div>
 
-<!-- ============ FEATURE COMPARISON TABLE ============ -->
+<!-- ============ SECTION 2: FEATURE COMPARISON TABLE ============ -->
 <section class="feature-table-section section-alt">
   <div class="section-header reveal">
     <div class="section-label" style="justify-content:center;"><span class="section-label-line"></span>DETAILED COMPARISON<span class="section-label-line"></span></div>
@@ -864,325 +1253,160 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       </thead>
       <tbody>
         <!-- LEAD GENERATION -->
-        <tr class="category-row">
-          <td colspan="6">Lead Generation</td>
-        </tr>
-        <tr>
-          <td>3-Step Lead Qualification</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Warm Lead Data + Phone Numbers</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Lead Nurturing Sequences</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Guaranteed Leads</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="value">10&ndash;20</span></td>
-          <td><span class="value">20&ndash;40</span></td>
-          <td><span class="value">40&ndash;80</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Lead Generation</td></tr>
+        <tr><td>3-Step Lead Qualification</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Warm Lead Data + Phone Numbers</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Lead Nurturing Sequences</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Guaranteed Leads</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="value">10&ndash;20</span></td><td><span class="value">20&ndash;40</span></td><td><span class="value">40&ndash;80</span></td></tr>
 
         <!-- LINKEDIN OUTREACH -->
-        <tr class="category-row">
-          <td colspan="6">LinkedIn Outreach</td>
-        </tr>
-        <tr>
-          <td>LinkedIn Outreach</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>LinkedIn Profiles</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="value">1</span></td>
-          <td class="highlight-col"><span class="value">2</span></td>
-          <td><span class="value">4</span></td>
-          <td><span class="value">8</span></td>
-        </tr>
-        <tr>
-          <td>LinkedIn Connections/mo</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="value">800</span></td>
-          <td class="highlight-col"><span class="value">1,600</span></td>
-          <td><span class="value">3,200</span></td>
-          <td><span class="value">6,400</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">LinkedIn Outreach</td></tr>
+        <tr><td>LinkedIn Outreach</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>LinkedIn Profiles</td><td><span class="dash">&mdash;</span></td><td><span class="value">1</span></td><td class="highlight-col"><span class="value">2</span></td><td><span class="value">4</span></td><td><span class="value">8</span></td></tr>
+        <tr><td>LinkedIn Connections/mo</td><td><span class="dash">&mdash;</span></td><td><span class="value">800</span></td><td class="highlight-col"><span class="value">1,600</span></td><td><span class="value">3,200</span></td><td><span class="value">6,400</span></td></tr>
 
         <!-- INFRASTRUCTURE -->
-        <tr class="category-row">
-          <td colspan="6">Infrastructure</td>
-        </tr>
-        <tr>
-          <td>Proprietary Outreach Infrastructure</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Azure &amp; Google IPs</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Domain &amp; Mailbox Warm-up</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Real-time Monitoring</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Deliverability Testing</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>DKIM / SPF / DMARC Setup</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Infrastructure</td></tr>
+        <tr><td>Proprietary Outreach Infrastructure</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Azure &amp; Google IPs</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Domain &amp; Mailbox Warm-up</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Real-time Monitoring</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Deliverability Testing</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>DKIM / SPF / DMARC Setup</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
 
         <!-- CAMPAIGN MANAGEMENT -->
-        <tr class="category-row">
-          <td colspan="6">Campaign Management</td>
-        </tr>
-        <tr>
-          <td>100% Done-For-You</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Account Manager</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Dedicated Program Manager</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Monthly Strategy Consulting</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Custom Workflows</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Campaign Management</td></tr>
+        <tr><td>100% Done-For-You</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Account Manager</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Dedicated Program Manager</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Monthly Strategy Consulting</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Custom Workflows</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
 
         <!-- TARGETING -->
-        <tr class="category-row">
-          <td colspan="6">Targeting</td>
-        </tr>
-        <tr>
-          <td>AI-Driven Audience Targeting</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Firmographic / Buying Intent / Technographic</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Clay Enrichment</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>2B+ Contacts Database</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Targeting</td></tr>
+        <tr><td>AI-Driven Audience Targeting</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Firmographic / Buying Intent / Technographic</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Clay Enrichment</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>2B+ Contacts Database</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
 
         <!-- CONTENT -->
-        <tr class="category-row">
-          <td colspan="6">Content</td>
-        </tr>
-        <tr>
-          <td>AI + Human-Written Copies</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>A/B Testing</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Multilingual Copies</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Unlimited Iterations</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Content</td></tr>
+        <tr><td>AI + Human-Written Copies</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>A/B Testing</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Multilingual Copies</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Unlimited Iterations</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
 
         <!-- REPORTING -->
-        <tr class="category-row">
-          <td colspan="6">Reporting</td>
-        </tr>
-        <tr>
-          <td>Basic Monthly Reporting</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>Advanced Reporting + Industry Data</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Reporting</td></tr>
+        <tr><td>Basic Monthly Reporting</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Advanced Reporting + Industry Data</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
 
         <!-- SUPPORT -->
-        <tr class="category-row">
-          <td colspan="6">Support</td>
-        </tr>
-        <tr>
-          <td>Email / Chat / Slack Support</td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td class="highlight-col"><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td>On Demand C-suite Support</td>
-          <td><span class="dash">&mdash;</span></td>
-          <td><span class="dash">&mdash;</span></td>
-          <td class="highlight-col"><span class="dash">&mdash;</span></td>
-          <td><span class="check">&#10003;</span></td>
-          <td><span class="check">&#10003;</span></td>
-        </tr>
+        <tr class="category-row"><td colspan="6">Support</td></tr>
+        <tr><td>Email / Chat / Slack Support</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>On Demand C-suite Support</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- ============ ADD-ONS ============ -->
-<section class="addons-section">
+<!-- ============ SECTION 3: CUSTOMIZE YOUR PLAN ============ -->
+<section class="customize-section" id="customize">
   <div class="section-header reveal">
-    <div class="section-label" style="justify-content:center;"><span class="section-label-line"></span>OPTIONAL ADD-ONS<span class="section-label-line"></span></div>
-    <h2 class="section-heading">Power Up Your Plan</h2>
-    <p class="section-sub">Extend any plan with additional channels, automation, and support.</p>
+    <div class="section-label" style="justify-content:center;"><span class="section-label-line"></span>CUSTOMIZE YOUR PLAN<span class="section-label-line"></span></div>
+    <h2 class="section-heading">Add-ons &amp; Extras</h2>
+    <p class="section-sub">Toggle add-ons on or off to tailor your plan, then proceed to billing.</p>
   </div>
 
-  <div class="addons-grid reveal">
-    <div class="addon-card">
-      <div class="addon-name">LinkedIn Added Account (BYO)</div>
-      <div class="addon-price">$360<span>/mo</span></div>
-      <div class="addon-desc">Bring your own LinkedIn account. We manage outreach, connections, and follow-ups on your behalf.</div>
+  <!-- Order Summary -->
+  <div class="order-summary reveal" id="orderSummary">
+    <div class="order-summary-left">
+      <div class="order-summary-plan">Selected: <span class="plan-name-text" id="summaryPlanName">Growth</span></div>
+      <div class="order-summary-breakdown">
+        Base: <strong id="summaryBase">$1,890/mo</strong> &nbsp;|&nbsp; Add-ons: <strong id="summaryAddons">+$0/mo</strong>
+      </div>
     </div>
-    <div class="addon-card">
-      <div class="addon-name">LinkedIn Account (GA Managed)</div>
-      <div class="addon-price">$540<span>/mo</span></div>
-      <div class="addon-desc">We provide and fully manage a dedicated LinkedIn profile for your outreach campaigns.</div>
-    </div>
-    <div class="addon-card">
-      <div class="addon-name">AI Auto-Responder</div>
-      <div class="addon-price">$50&ndash;$500<span>/mo</span></div>
-      <div class="addon-desc">AI-powered replies to inbound leads. Pricing scales with your plan volume.</div>
-    </div>
-    <div class="addon-card">
-      <div class="addon-name">GA Managed Meeting Booking</div>
-      <div class="addon-price">$200&ndash;$2,400<span>/mo</span></div>
-      <div class="addon-desc">Our team qualifies and books meetings directly onto your calendar. Pricing varies by plan.</div>
-    </div>
-    <div class="addon-card">
-      <div class="addon-name">Content Generator</div>
-      <div class="addon-price">$50&ndash;$500<span>/mo</span></div>
-      <div class="addon-desc">AI-generated outreach sequences, landing page copy, and nurture emails tailored to your ICP.</div>
+    <div class="order-summary-right">
+      <div class="order-summary-total">
+        <div class="order-summary-total-label">Total / Month</div>
+        <div class="order-summary-total-price" id="summaryTotal">$1,890<span>/mo</span></div>
+      </div>
+      <a href="#" class="order-summary-cta" id="summaryCtaBtn">Proceed to Billing &rarr;</a>
     </div>
   </div>
+
+  <!-- Add-on Toggle Cards -->
+  <div class="addon-toggles-grid reveal">
+
+    <!-- AI Auto-Responder -->
+    <div class="toggle-card" id="addonResponder" data-addon="responder">
+      <div class="toggle-card-header">
+        <div class="toggle-card-name">AI Auto-Responder</div>
+        <div class="toggle-switch"></div>
+      </div>
+      <div class="toggle-card-desc">AI replies to warm leads within 5 minutes, trained on your data.</div>
+      <div class="toggle-card-price" id="responderPrice">$150<span>/mo</span></div>
+    </div>
+
+    <!-- GA Managed Meeting Booking -->
+    <div class="toggle-card" id="addonBooking" data-addon="booking">
+      <div class="toggle-card-header">
+        <div class="toggle-card-name">GA Managed Meeting Booking</div>
+        <div class="toggle-switch"></div>
+      </div>
+      <div class="toggle-card-desc">We book qualified meetings directly into your calendar.</div>
+      <div class="toggle-card-price" id="bookingPrice">$500<span>/mo</span></div>
+    </div>
+
+    <!-- Content Generator -->
+    <div class="toggle-card" id="addonContent" data-addon="content">
+      <div class="toggle-card-header">
+        <div class="toggle-card-name">Content Generator</div>
+        <div class="toggle-switch"></div>
+      </div>
+      <div class="toggle-card-desc">AI-powered content generation for your campaigns.</div>
+      <div class="toggle-card-price" id="contentPrice">$150<span>/mo</span></div>
+    </div>
+
+    <!-- LinkedIn Outreach Add-on (full-width) -->
+    <div class="linkedin-addon-card">
+      <div class="linkedin-addon-title">LinkedIn Outreach (Add-on)</div>
+      <div class="linkedin-addon-desc">Scale your LinkedIn outreach beyond what's included in your plan.</div>
+      <div class="linkedin-controls">
+        <div class="linkedin-slider-wrap">
+          <div class="linkedin-slider-label">Additional accounts: <strong id="liCount">0</strong></div>
+          <input type="range" min="0" max="10" step="1" value="0" class="linkedin-range" id="linkedinSlider">
+          <div class="linkedin-output" id="liOutput">0 additional connections/mo</div>
+          <div class="linkedin-cost" id="liCost">+$0/mo</div>
+          <div class="linkedin-included-note" id="liNote">Your Growth plan already includes 2 LinkedIn profiles (1,600 connections/mo)</div>
+        </div>
+        <div>
+          <div class="linkedin-type-toggle">
+            <button class="linkedin-type-btn active" id="liByo" data-type="byo">Bring Your Own &mdash; $360/mo</button>
+            <button class="linkedin-type-btn" id="liManaged" data-type="managed">GA Managed &mdash; $540/mo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
+
+<!-- ============ STICKY PRICE BAR ============ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-inner">
+    <div class="sticky-left">
+      <div class="sticky-plan">Selected: <span class="sticky-plan-name" id="stickyPlanName">Growth</span> &mdash; <span id="stickyBasePrice">$1,890</span>/mo</div>
+      <div class="sticky-divider"></div>
+      <div class="sticky-item">Add-ons: <strong id="stickyAddons">+$0/mo</strong></div>
+      <div class="sticky-divider"></div>
+      <div class="sticky-total" id="stickyTotal">$1,890<span>/mo</span></div>
+    </div>
+    <div class="sticky-right">
+      <a href="#" class="sticky-cta" id="stickyCtaBtn">Proceed to Billing &rarr;</a>
+    </div>
+  </div>
+</div>
 
 <!-- ============ FINAL CTA ============ -->
 <section class="final-cta" id="contact">
@@ -1190,8 +1414,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   <h2 class="section-heading reveal">Ready to Fill Your Pipeline?</h2>
   <p class="section-sub reveal">Book a free strategy call. We'll map your ICP, estimate lead volume, and build a custom plan&mdash;no commitment required.</p>
   <div class="final-cta-actions reveal">
-    <a href="#" class="btn-amber btn-amber-lg">Book a Strategy Call &rarr;</a>
-    <a href="ga-platform-landing-v5.html#how-it-works" class="btn-ghost">See How It Works</a>
+    <a href="contact.html" class="btn-amber btn-amber-lg">Book a Strategy Call &rarr;</a>
+    <a href="index.html#how-it-works" class="btn-ghost">See How It Works</a>
   </div>
 </section>
 
@@ -1217,7 +1441,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <ul>
         <li><a href="index.html#how-it-works">How It Works</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="plan-builder.html">Plan Builder</a></li>
         <li><a href="case-studies.html">Case Studies</a></li>
         <li><a href="comparisons.html">Comparisons</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -1238,6 +1461,252 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 <script>
 /* ============ SCROLL RESTORATION ============ */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* ============ PLAN DATA ============ */
+const PLANS = [
+  { key: 'solo',       name: 'Solo',       price: 490,  setup: 150,  contacts: 600,    liProfiles: 0, liContacts: 0,    responder: 50,   booking: null, content: null },
+  { key: 'starter',    name: 'Starter',    price: 980,  setup: 250,  contacts: 3250,   liProfiles: 1, liContacts: 800,  responder: 50,   booking: 200,  content: 50 },
+  { key: 'growth',     name: 'Growth',     price: 1890, setup: 500,  contacts: 10000,  liProfiles: 2, liContacts: 1600, responder: 150,  booking: 500,  content: 150 },
+  { key: 'pro',        name: 'Pro',        price: 2890, setup: 800,  contacts: 20000,  liProfiles: 4, liContacts: 3200, responder: 250,  booking: 1200, content: 250 },
+  { key: 'enterprise', name: 'Enterprise', price: 4790, setup: 1400, contacts: 40000,  liProfiles: 8, liContacts: 6400, responder: 500,  booking: 2400, content: 500 }
+];
+
+const LI_BYO_PRICE = 360;
+const LI_MANAGED_PRICE = 540;
+const CONNECTIONS_PER_ACCOUNT = 800;
+
+/* ============ STATE ============ */
+let currentPlanIndex = 2; // Growth pre-selected
+let linkedinType = 'byo';
+let linkedinExtra = 0;
+let addons = { responder: false, booking: false, content: false };
+
+/* ============ DOM REFS ============ */
+const pricingCards = document.querySelectorAll('.pricing-card');
+const linkedinSlider = document.getElementById('linkedinSlider');
+const liCountEl = document.getElementById('liCount');
+const liOutputEl = document.getElementById('liOutput');
+const liCostEl = document.getElementById('liCost');
+const liNoteEl = document.getElementById('liNote');
+const liByo = document.getElementById('liByo');
+const liManaged = document.getElementById('liManaged');
+const stickyBar = document.getElementById('stickyBar');
+const stickyPlanName = document.getElementById('stickyPlanName');
+const stickyBasePrice = document.getElementById('stickyBasePrice');
+const stickyAddons = document.getElementById('stickyAddons');
+const stickyTotal = document.getElementById('stickyTotal');
+const summaryPlanName = document.getElementById('summaryPlanName');
+const summaryBase = document.getElementById('summaryBase');
+const summaryAddonsEl = document.getElementById('summaryAddons');
+const summaryTotal = document.getElementById('summaryTotal');
+const summaryCtaBtn = document.getElementById('summaryCtaBtn');
+const stickyCtaBtn = document.getElementById('stickyCtaBtn');
+const addonResponder = document.getElementById('addonResponder');
+const addonBooking = document.getElementById('addonBooking');
+const addonContent = document.getElementById('addonContent');
+const responderPriceEl = document.getElementById('responderPrice');
+const bookingPriceEl = document.getElementById('bookingPrice');
+const contentPriceEl = document.getElementById('contentPrice');
+
+/* ============ FORMAT ============ */
+function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+function fmtNum(n) { return n.toLocaleString('en-US'); }
+
+/* ============ SELECT PLAN ============ */
+function selectPlan(index) {
+  currentPlanIndex = index;
+
+  // Highlight card
+  pricingCards.forEach((card, i) => {
+    card.classList.toggle('selected', i === index);
+  });
+
+  // Update add-on prices & availability
+  updateAddonPrices();
+
+  // Reset add-ons when switching plans
+  addons = { responder: false, booking: false, content: false };
+  addonResponder.classList.remove('active');
+  addonBooking.classList.remove('active');
+  addonContent.classList.remove('active');
+
+  // Update LinkedIn note
+  updateLinkedinNote();
+
+  // Update totals
+  updateTotals();
+
+  // Smooth scroll to customize section
+  setTimeout(() => {
+    document.getElementById('customize').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+/* ============ UPDATE ADD-ON PRICES ============ */
+function updateAddonPrices() {
+  const plan = PLANS[currentPlanIndex];
+
+  // Responder (available for all plans)
+  responderPriceEl.innerHTML = fmt(plan.responder) + '<span>/mo</span>';
+  addonResponder.classList.remove('disabled');
+
+  // Booking (not available for Solo)
+  if (plan.booking !== null) {
+    bookingPriceEl.innerHTML = fmt(plan.booking) + '<span>/mo</span>';
+    addonBooking.classList.remove('disabled');
+  } else {
+    bookingPriceEl.innerHTML = 'Not available';
+    addonBooking.classList.add('disabled');
+    addons.booking = false;
+    addonBooking.classList.remove('active');
+  }
+
+  // Content (not available for Solo)
+  if (plan.content !== null) {
+    contentPriceEl.innerHTML = fmt(plan.content) + '<span>/mo</span>';
+    addonContent.classList.remove('disabled');
+  } else {
+    contentPriceEl.innerHTML = 'Not available';
+    addonContent.classList.add('disabled');
+    addons.content = false;
+    addonContent.classList.remove('active');
+  }
+}
+
+/* ============ UPDATE LINKEDIN ============ */
+function updateLinkedin() {
+  linkedinExtra = parseInt(linkedinSlider.value);
+  const pricePerAccount = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
+  const totalConnections = linkedinExtra * CONNECTIONS_PER_ACCOUNT;
+  const totalCost = linkedinExtra * pricePerAccount;
+
+  liCountEl.textContent = linkedinExtra;
+  liOutputEl.innerHTML = '<strong>' + fmtNum(totalConnections) + '</strong> additional connections/mo';
+  liCostEl.textContent = '+' + fmt(totalCost) + '/mo';
+
+  updateLinkedinNote();
+  updateTotals();
+}
+
+function updateLinkedinNote() {
+  const plan = PLANS[currentPlanIndex];
+  if (plan.liProfiles > 0) {
+    liNoteEl.textContent = 'Your ' + plan.name + ' plan already includes ' + plan.liProfiles + ' LinkedIn profile' + (plan.liProfiles > 1 ? 's' : '') + ' (' + fmtNum(plan.liContacts) + ' connections/mo)';
+  } else {
+    liNoteEl.textContent = 'Your ' + plan.name + ' plan does not include LinkedIn outreach.';
+  }
+}
+
+/* ============ BUILD BILLING URL ============ */
+function buildBillingUrl() {
+  const plan = PLANS[currentPlanIndex];
+  const params = new URLSearchParams();
+  params.set('plan', plan.key);
+
+  const activeAddons = [];
+  if (addons.responder) activeAddons.push('autoresponder');
+  if (addons.booking) activeAddons.push('meeting-booking');
+  if (addons.content) activeAddons.push('content-generator');
+  if (activeAddons.length > 0) params.set('addons', activeAddons.join(','));
+
+  if (linkedinExtra > 0) {
+    params.set('linkedin', linkedinExtra);
+    params.set('type', linkedinType);
+  }
+
+  const total = calcTotal();
+  params.set('total', total);
+
+  return 'billing.html?' + params.toString();
+}
+
+/* ============ CALCULATE TOTAL ============ */
+function calcTotal() {
+  const plan = PLANS[currentPlanIndex];
+  let addonTotal = 0;
+
+  if (addons.responder) addonTotal += plan.responder;
+  if (addons.booking && plan.booking !== null) addonTotal += plan.booking;
+  if (addons.content && plan.content !== null) addonTotal += plan.content;
+
+  const liPrice = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
+  addonTotal += linkedinExtra * liPrice;
+
+  return plan.price + addonTotal;
+}
+
+/* ============ UPDATE TOTALS ============ */
+function updateTotals() {
+  const plan = PLANS[currentPlanIndex];
+  let addonTotal = 0;
+
+  if (addons.responder) addonTotal += plan.responder;
+  if (addons.booking && plan.booking !== null) addonTotal += plan.booking;
+  if (addons.content && plan.content !== null) addonTotal += plan.content;
+
+  const liPrice = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
+  addonTotal += linkedinExtra * liPrice;
+
+  const total = plan.price + addonTotal;
+
+  // Order Summary
+  summaryPlanName.textContent = plan.name;
+  summaryBase.textContent = fmt(plan.price) + '/mo';
+  summaryAddonsEl.textContent = '+' + fmt(addonTotal) + '/mo';
+  summaryTotal.innerHTML = fmt(total) + '<span>/mo</span>';
+
+  // Sticky bar
+  stickyPlanName.textContent = plan.name;
+  stickyBasePrice.textContent = fmt(plan.price);
+  stickyAddons.textContent = '+' + fmt(addonTotal) + '/mo';
+  stickyTotal.innerHTML = fmt(total) + '<span>/mo</span>';
+
+  // Update CTA links
+  const billingUrl = buildBillingUrl();
+  summaryCtaBtn.href = billingUrl;
+  stickyCtaBtn.href = billingUrl;
+}
+
+/* ============ EVENT LISTENERS ============ */
+
+// LinkedIn slider
+linkedinSlider.addEventListener('input', updateLinkedin);
+
+// LinkedIn type toggle
+liByo.addEventListener('click', function() {
+  linkedinType = 'byo';
+  liByo.classList.add('active');
+  liManaged.classList.remove('active');
+  updateLinkedin();
+});
+liManaged.addEventListener('click', function() {
+  linkedinType = 'managed';
+  liManaged.classList.add('active');
+  liByo.classList.remove('active');
+  updateLinkedin();
+});
+
+// Toggle add-on cards
+function setupToggle(card, key) {
+  card.addEventListener('click', function() {
+    if (card.classList.contains('disabled')) return;
+    addons[key] = !addons[key];
+    card.classList.toggle('active', addons[key]);
+    updateTotals();
+  });
+}
+setupToggle(addonResponder, 'responder');
+setupToggle(addonBooking, 'booking');
+setupToggle(addonContent, 'content');
+
+/* ============ STICKY BAR SHOW/HIDE ============ */
+const customizeSection = document.getElementById('customize');
+const stickyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    stickyBar.classList.toggle('visible', entry.isIntersecting);
+  });
+}, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+stickyObserver.observe(customizeSection);
 
 /* ============ NAV SCROLL ============ */
 const nav = document.getElementById('mainNav');
@@ -1294,6 +1763,11 @@ labelAnnual.addEventListener('click', () => {
   isAnnual = true;
   updatePrices();
 });
+
+/* ============ INIT ============ */
+selectPlan(2); // Pre-select Growth
+updateLinkedin();
 </script>
+
 </body>
 </html>

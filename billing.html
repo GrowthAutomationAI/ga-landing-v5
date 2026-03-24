@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billing — Growth Automation</title>
+<meta name="description" content="Complete your Growth Automation subscription. Review your plan, add-ons, and billing details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0B0B0F;
+  --bg2: #121218;
+  --bg3: #1A1A24;
+  --card: #13131D;
+  --card2: #1C1C2A;
+  --amber: #E8A023;
+  --amber-l: #F4B94D;
+  --amber-d: #C4841A;
+  --violet: #8B7FC7;
+  --violet-l: #A99FDB;
+  --violet-d: #6B5FAA;
+  --cream: #EDE9DF;
+  --muted: rgba(237,233,223,0.5);
+  --border: rgba(139,127,199,0.12);
+  --border2: rgba(139,127,199,0.25);
+  --r: 14px;
+  --r2: 20px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+h1, h2, h3, h4, h5, h6, .nav-logo, .btn-amber, .btn-ghost,
+.section-label, .footer-col h4, .footer-bottom-links a, .footer-bottom {
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(11,11,15,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a.active { color: var(--cream); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost {
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--cream);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--violet); background: rgba(139,127,199,0.08); }
+.btn-amber {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+.btn-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ============ SECTION ============ */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--violet);
+}
+.accent { color: var(--amber); }
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ BILLING HERO ============ */
+.billing-hero {
+  position: relative;
+  padding: 80px 24px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.billing-hero-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.billing-hero h1 {
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: #fff;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+.billing-hero p {
+  font-size: 17px;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ BILLING LAYOUT ============ */
+.billing-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ============ ORDER SUMMARY PANEL ============ */
+.order-panel {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  padding: 36px 32px;
+}
+.order-panel-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.order-line:last-child {
+  border-bottom: none;
+}
+.order-line-label {
+  font-size: 14px;
+  color: var(--cream);
+  font-weight: 500;
+}
+.order-line-label small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+  font-style: italic;
+  margin-top: 2px;
+}
+.order-line-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cream);
+  white-space: nowrap;
+}
+.order-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--violet-l);
+  padding: 20px 0 8px;
+  border-bottom: 1px solid var(--border);
+}
+.order-divider {
+  height: 2px;
+  background: var(--border2);
+  margin: 8px 0;
+}
+.order-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 0;
+}
+.order-total-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.order-total-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+}
+.order-total-price span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.order-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--violet-l);
+  margin-top: 20px;
+  transition: color 0.2s;
+  font-weight: 600;
+}
+.order-back:hover { color: var(--cream); }
+
+/* ============ BILLING FORM PANEL ============ */
+.form-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 36px 32px;
+}
+.form-panel-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  background: var(--bg3);
+  color: var(--cream);
+  font-size: 14px;
+  font-family: 'Inter Tight', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-input:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(139,127,199,0.15);
+}
+.form-input::placeholder {
+  color: rgba(237,233,223,0.25);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  background: var(--bg3);
+  color: var(--cream);
+  font-size: 14px;
+  font-family: 'Inter Tight', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23A99FDB' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-select:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(139,127,199,0.15);
+}
+
+/* Payment placeholder */
+.payment-placeholder {
+  background: var(--bg3);
+  border: 1px dashed var(--border2);
+  border-radius: var(--r);
+  padding: 32px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.payment-placeholder-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+.payment-placeholder-text {
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Submit button */
+.form-submit {
+  width: 100%;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: rgba(11,11,15,0.5);
+  background: rgba(232,160,35,0.3);
+  cursor: not-allowed;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.form-submit-wrapper {
+  position: relative;
+}
+.form-submit-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.form-submit-wrapper:hover .form-submit-tooltip {
+  opacity: 1;
+}
+.form-fine-print {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 16px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.footer-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 320px;
+  font-style: italic;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-links { display: flex; gap: 16px; }
+.footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
+.footer-bottom-links a:hover { color: var(--cream); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .billing-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .btn-ghost.hide-mobile { display: none; }
+  .billing-hero { padding: 60px 24px 30px; }
+  .form-row { grid-template-columns: 1fr; }
+  .order-panel, .form-panel { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Growth Automation</a>
+    <ul class="nav-links">
+      <li><a href="index.html#platform">Platform</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="comparisons.html">Comparisons</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
+      <a href="contact.html" class="btn-amber">Book a Strategy Call &rarr;</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ============ BILLING HERO ============ -->
+<section class="billing-hero reveal">
+  <div class="billing-hero-glow"></div>
+  <div class="section-label" style="justify-content:center;"><span class="section-label-line"></span>CHECKOUT<span class="section-label-line"></span></div>
+  <h1>Complete Your <span class="accent">Order</span></h1>
+  <p>Review your selection and fill in your details to get started.</p>
+</section>
+
+<!-- ============ BILLING LAYOUT ============ -->
+<div class="billing-layout">
+
+  <!-- LEFT: Order Summary -->
+  <div class="order-panel reveal" id="orderPanel">
+    <div class="order-panel-title">Order Summary</div>
+
+    <!-- Plan -->
+    <div class="order-section-label">Plan</div>
+    <div class="order-line">
+      <div class="order-line-label" id="orderPlanName">Growth Plan</div>
+      <div class="order-line-price" id="orderPlanPrice">$1,890/mo</div>
+    </div>
+
+    <!-- Add-ons (dynamically populated) -->
+    <div id="addonsContainer" style="display:none;">
+      <div class="order-section-label">Add-ons</div>
+      <div id="addonLines"></div>
+    </div>
+
+    <!-- LinkedIn (dynamically populated) -->
+    <div id="linkedinContainer" style="display:none;">
+      <div class="order-section-label">LinkedIn Outreach</div>
+      <div class="order-line" id="linkedinLine">
+        <div class="order-line-label" id="linkedinLabel">LinkedIn Accounts</div>
+        <div class="order-line-price" id="linkedinPrice">$0/mo</div>
+      </div>
+    </div>
+
+    <!-- Totals -->
+    <div class="order-divider"></div>
+    <div class="order-line">
+      <div class="order-line-label">Subtotal (monthly)</div>
+      <div class="order-line-price" id="orderSubtotal">$1,890/mo</div>
+    </div>
+    <div class="order-line">
+      <div class="order-line-label">One-time Setup Fee</div>
+      <div class="order-line-price" id="orderSetup">$500</div>
+    </div>
+    <div class="order-divider"></div>
+    <div class="order-total-row">
+      <div class="order-total-label">Total Due Today</div>
+      <div class="order-total-price" id="orderTotal">$2,390<span> (first month + setup)</span></div>
+    </div>
+
+    <a href="pricing.html" class="order-back">&larr; Back to Pricing</a>
+  </div>
+
+  <!-- RIGHT: Billing Form -->
+  <div class="form-panel reveal">
+    <div class="form-panel-title">Billing Details</div>
+
+    <div class="form-group">
+      <label class="form-label">Company Name</label>
+      <input type="text" class="form-input" placeholder="Acme Inc.">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-input" placeholder="John Smith">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="john@acme.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-input" placeholder="+1 (555) 000-0000">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Street Address</label>
+      <input type="text" class="form-input" placeholder="123 Main Street, Suite 200">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">City</label>
+        <input type="text" class="form-input" placeholder="San Francisco">
+      </div>
+      <div class="form-group">
+        <label class="form-label">State / Province</label>
+        <input type="text" class="form-input" placeholder="CA">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Zip / Postal Code</label>
+        <input type="text" class="form-input" placeholder="94105">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Country</label>
+        <select class="form-select">
+          <option value="">Select country...</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="GB">United Kingdom</option>
+          <option value="AU">Australia</option>
+          <option value="DE">Germany</option>
+          <option value="FR">France</option>
+          <option value="NL">Netherlands</option>
+          <option value="SE">Sweden</option>
+          <option value="NO">Norway</option>
+          <option value="DK">Denmark</option>
+          <option value="FI">Finland</option>
+          <option value="CH">Switzerland</option>
+          <option value="AT">Austria</option>
+          <option value="BE">Belgium</option>
+          <option value="IE">Ireland</option>
+          <option value="NZ">New Zealand</option>
+          <option value="SG">Singapore</option>
+          <option value="AE">United Arab Emirates</option>
+          <option value="IL">Israel</option>
+          <option value="JP">Japan</option>
+          <option value="KR">South Korea</option>
+          <option value="IN">India</option>
+          <option value="BR">Brazil</option>
+          <option value="MX">Mexico</option>
+          <option value="ZA">South Africa</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Payment placeholder -->
+    <div class="payment-placeholder">
+      <div class="payment-placeholder-icon">&#128179;</div>
+      <div class="payment-placeholder-text">Payment details will be added soon</div>
+    </div>
+
+    <!-- Submit -->
+    <div class="form-submit-wrapper">
+      <div class="form-submit-tooltip">Coming Soon &mdash; Our team will contact you to finalize.</div>
+      <button class="form-submit" disabled>Complete Order</button>
+    </div>
+
+    <p class="form-fine-print">You'll be contacted by our team to finalize your subscription.</p>
+  </div>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Growth Automation</div>
+      <p class="footer-desc">AI-powered GTM campaigns that fill your pipeline &mdash; verified contacts, warm infrastructure, and Dex AI built in.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="index.html">Campaign Builder</a></li>
+        <li><a href="index.html#dex">Dex AI</a></li>
+        <li><a href="index.html">Audience Search</a></li>
+        <li><a href="index.html">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="comparisons.html">Comparisons</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="comparisons.html#belkins">GA vs Belkins</a>
+      <a href="comparisons.html#apollo">GA vs Apollo</a>
+      <a href="comparisons.html#instantly">GA vs Instantly</a>
+      <a href="comparisons.html#cleverly">GA vs Cleverly</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ PLAN DATA ============ */
+const PLANS = {
+  solo:       { name: 'Solo',       price: 490,  setup: 150,  responder: 50,   booking: null, content: null },
+  starter:    { name: 'Starter',    price: 980,  setup: 250,  responder: 50,   booking: 200,  content: 50 },
+  growth:     { name: 'Growth',     price: 1890, setup: 500,  responder: 150,  booking: 500,  content: 150 },
+  pro:        { name: 'Pro',        price: 2890, setup: 800,  responder: 250,  booking: 1200, content: 250 },
+  enterprise: { name: 'Enterprise', price: 4790, setup: 1400, responder: 500,  booking: 2400, content: 500 }
+};
+
+const ADDON_LABELS = {
+  'autoresponder': { name: 'AI Auto-Responder', key: 'responder' },
+  'meeting-booking': { name: 'GA Managed Meeting Booking', key: 'booking' },
+  'content-generator': { name: 'Content Generator', key: 'content' }
+};
+
+const LI_BYO_PRICE = 360;
+const LI_MANAGED_PRICE = 540;
+const CONNECTIONS_PER_ACCOUNT = 800;
+
+function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+
+/* ============ READ URL PARAMS ============ */
+const params = new URLSearchParams(window.location.search);
+const planKey = params.get('plan') || 'growth';
+const addonsParam = params.get('addons') || '';
+const linkedinCount = parseInt(params.get('linkedin') || '0');
+const linkedinType = params.get('type') || 'byo';
+
+const plan = PLANS[planKey] || PLANS.growth;
+const selectedAddons = addonsParam ? addonsParam.split(',').filter(a => a) : [];
+
+/* ============ POPULATE ORDER SUMMARY ============ */
+function populateOrder() {
+  // Plan
+  document.getElementById('orderPlanName').textContent = plan.name + ' Plan';
+  document.getElementById('orderPlanPrice').textContent = fmt(plan.price) + '/mo';
+
+  let subtotal = plan.price;
+
+  // Add-ons
+  if (selectedAddons.length > 0) {
+    document.getElementById('addonsContainer').style.display = 'block';
+    const addonLines = document.getElementById('addonLines');
+    addonLines.innerHTML = '';
+
+    selectedAddons.forEach(addonKey => {
+      const addon = ADDON_LABELS[addonKey];
+      if (!addon) return;
+      const price = plan[addon.key];
+      if (price === null || price === undefined) return;
+
+      subtotal += price;
+
+      const line = document.createElement('div');
+      line.className = 'order-line';
+      line.innerHTML = '<div class="order-line-label">' + addon.name + '</div><div class="order-line-price">' + fmt(price) + '/mo</div>';
+      addonLines.appendChild(line);
+    });
+  }
+
+  // LinkedIn
+  if (linkedinCount > 0) {
+    document.getElementById('linkedinContainer').style.display = 'block';
+    const liPrice = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
+    const totalLiCost = linkedinCount * liPrice;
+    const typeLabel = linkedinType === 'byo' ? 'Bring Your Own' : 'GA Managed';
+    const connections = linkedinCount * CONNECTIONS_PER_ACCOUNT;
+
+    subtotal += totalLiCost;
+
+    document.getElementById('linkedinLabel').innerHTML = linkedinCount + ' LinkedIn Account' + (linkedinCount > 1 ? 's' : '') + ' (' + typeLabel + ')<small>' + connections.toLocaleString() + ' additional connections/mo</small>';
+    document.getElementById('linkedinPrice').textContent = fmt(totalLiCost) + '/mo';
+  }
+
+  // Totals
+  document.getElementById('orderSubtotal').textContent = fmt(subtotal) + '/mo';
+  document.getElementById('orderSetup').textContent = fmt(plan.setup);
+
+  const totalDueToday = subtotal + plan.setup;
+  document.getElementById('orderTotal').innerHTML = fmt(totalDueToday) + '<span> (first month + setup)</span>';
+}
+
+populateOrder();
+
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============ REVEAL ANIMATIONS ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
