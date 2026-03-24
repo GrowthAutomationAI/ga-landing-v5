@@ -758,11 +758,11 @@ h1, h2, h3, h4, h5, h6, .nav-logo, .btn-amber, .btn-ghost,
 <script>
 /* ============ PLAN DATA ============ */
 const PLANS = {
-  solo:       { name: 'Solo',       price: 490,  setup: 150,  responder: 50,   booking: null, content: null },
-  starter:    { name: 'Starter',    price: 980,  setup: 250,  responder: 50,   booking: 200,  content: 50 },
-  growth:     { name: 'Growth',     price: 1890, setup: 500,  responder: 150,  booking: 500,  content: 150 },
-  pro:        { name: 'Pro',        price: 2890, setup: 800,  responder: 250,  booking: 1200, content: 250 },
-  enterprise: { name: 'Enterprise', price: 4790, setup: 1400, responder: 500,  booking: 2400, content: 500 }
+  solo:       { name: 'Solo',       price: 490,  price3: 440,  setup: 150,  responder: 50,   booking: null, content: null },
+  starter:    { name: 'Starter',    price: 980,  price3: 880,  setup: 250,  responder: 50,   booking: 200,  content: 50 },
+  growth:     { name: 'Growth',     price: 1890, price3: 1700, setup: 500,  responder: 150,  booking: 500,  content: 150 },
+  pro:        { name: 'Pro',        price: 2890, price3: 2600, setup: 800,  responder: 250,  booking: 1200, content: 250 },
+  enterprise: { name: 'Enterprise', price: 4790, price3: 4310, setup: 1400, responder: 500,  booking: 2400, content: 500 }
 };
 
 const ADDON_LABELS = {
@@ -780,20 +780,24 @@ function fmt(n) { return '$' + n.toLocaleString('en-US'); }
 /* ============ READ URL PARAMS ============ */
 const params = new URLSearchParams(window.location.search);
 const planKey = params.get('plan') || 'growth';
+const billingPeriod = params.get('billing') || 'monthly';
 const addonsParam = params.get('addons') || '';
 const linkedinCount = parseInt(params.get('linkedin') || '0');
 const linkedinType = params.get('type') || 'byo';
 
 const plan = PLANS[planKey] || PLANS.growth;
+const isThreeMonth = billingPeriod === '3month';
+const basePrice = isThreeMonth ? plan.price3 : plan.price;
 const selectedAddons = addonsParam ? addonsParam.split(',').filter(a => a) : [];
 
 /* ============ POPULATE ORDER SUMMARY ============ */
 function populateOrder() {
   // Plan
-  document.getElementById('orderPlanName').textContent = plan.name + ' Plan';
-  document.getElementById('orderPlanPrice').textContent = fmt(plan.price) + '/mo';
+  const billingLabel = isThreeMonth ? ' (3-Month)' : '';
+  document.getElementById('orderPlanName').textContent = plan.name + ' Plan' + billingLabel;
+  document.getElementById('orderPlanPrice').textContent = fmt(basePrice) + '/mo';
 
-  let subtotal = plan.price;
+  let subtotal = basePrice;
 
   // Add-ons
   if (selectedAddons.length > 0) {

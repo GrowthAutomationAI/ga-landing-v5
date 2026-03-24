@@ -1464,11 +1464,11 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
 /* ============ PLAN DATA ============ */
 const PLANS = [
-  { key: 'solo',       name: 'Solo',       price: 490,  setup: 150,  contacts: 600,    liProfiles: 0, liContacts: 0,    responder: 50,   booking: null, content: null },
-  { key: 'starter',    name: 'Starter',    price: 980,  setup: 250,  contacts: 3250,   liProfiles: 1, liContacts: 800,  responder: 50,   booking: 200,  content: 50 },
-  { key: 'growth',     name: 'Growth',     price: 1890, setup: 500,  contacts: 10000,  liProfiles: 2, liContacts: 1600, responder: 150,  booking: 500,  content: 150 },
-  { key: 'pro',        name: 'Pro',        price: 2890, setup: 800,  contacts: 20000,  liProfiles: 4, liContacts: 3200, responder: 250,  booking: 1200, content: 250 },
-  { key: 'enterprise', name: 'Enterprise', price: 4790, setup: 1400, contacts: 40000,  liProfiles: 8, liContacts: 6400, responder: 500,  booking: 2400, content: 500 }
+  { key: 'solo',       name: 'Solo',       price: 490,  price3: 440,  setup: 150,  contacts: 600,    liProfiles: 0, liContacts: 0,    responder: 50,   booking: null, content: null },
+  { key: 'starter',    name: 'Starter',    price: 980,  price3: 880,  setup: 250,  contacts: 3250,   liProfiles: 1, liContacts: 800,  responder: 50,   booking: 200,  content: 50 },
+  { key: 'growth',     name: 'Growth',     price: 1890, price3: 1700, setup: 500,  contacts: 10000,  liProfiles: 2, liContacts: 1600, responder: 150,  booking: 500,  content: 150 },
+  { key: 'pro',        name: 'Pro',        price: 2890, price3: 2600, setup: 800,  contacts: 20000,  liProfiles: 4, liContacts: 3200, responder: 250,  booking: 1200, content: 250 },
+  { key: 'enterprise', name: 'Enterprise', price: 4790, price3: 4310, setup: 1400, contacts: 40000,  liProfiles: 8, liContacts: 6400, responder: 500,  booking: 2400, content: 500 }
 ];
 
 const LI_BYO_PRICE = 360;
@@ -1511,6 +1511,7 @@ const contentPriceEl = document.getElementById('contentPrice');
 /* ============ FORMAT ============ */
 function fmt(n) { return '$' + n.toLocaleString('en-US'); }
 function fmtNum(n) { return n.toLocaleString('en-US'); }
+function getPlanPrice(plan) { return isAnnual ? plan.price3 : plan.price; }
 
 /* ============ SELECT PLAN ============ */
 function selectPlan(index) {
@@ -1602,6 +1603,7 @@ function buildBillingUrl() {
   const plan = PLANS[currentPlanIndex];
   const params = new URLSearchParams();
   params.set('plan', plan.key);
+  if (isAnnual) params.set('billing', '3month');
 
   const activeAddons = [];
   if (addons.responder) activeAddons.push('autoresponder');
@@ -1632,12 +1634,13 @@ function calcTotal() {
   const liPrice = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
   addonTotal += linkedinExtra * liPrice;
 
-  return plan.price + addonTotal;
+  return getPlanPrice(plan) + addonTotal;
 }
 
 /* ============ UPDATE TOTALS ============ */
 function updateTotals() {
   const plan = PLANS[currentPlanIndex];
+  const basePrice = getPlanPrice(plan);
   let addonTotal = 0;
 
   if (addons.responder) addonTotal += plan.responder;
@@ -1647,17 +1650,18 @@ function updateTotals() {
   const liPrice = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
   addonTotal += linkedinExtra * liPrice;
 
-  const total = plan.price + addonTotal;
+  const total = basePrice + addonTotal;
+  const billingLabel = isAnnual ? ' (3-mo)' : '';
 
   // Order Summary
-  summaryPlanName.textContent = plan.name;
-  summaryBase.textContent = fmt(plan.price) + '/mo';
+  summaryPlanName.textContent = plan.name + billingLabel;
+  summaryBase.textContent = fmt(basePrice) + '/mo';
   summaryAddonsEl.textContent = '+' + fmt(addonTotal) + '/mo';
   summaryTotal.innerHTML = fmt(total) + '<span>/mo</span>';
 
   // Sticky bar
-  stickyPlanName.textContent = plan.name;
-  stickyBasePrice.textContent = fmt(plan.price);
+  stickyPlanName.textContent = plan.name + billingLabel;
+  stickyBasePrice.textContent = fmt(basePrice);
   stickyAddons.textContent = '+' + fmt(addonTotal) + '/mo';
   stickyTotal.innerHTML = fmt(total) + '<span>/mo</span>';
 
@@ -1754,14 +1758,17 @@ function updatePrices() {
 billingSwitch.addEventListener('click', () => {
   isAnnual = !isAnnual;
   updatePrices();
+  updateTotals();
 });
 labelMonthly.addEventListener('click', () => {
   isAnnual = false;
   updatePrices();
+  updateTotals();
 });
 labelAnnual.addEventListener('click', () => {
   isAnnual = true;
   updatePrices();
+  updateTotals();
 });
 
 /* ============ INIT ============ */
