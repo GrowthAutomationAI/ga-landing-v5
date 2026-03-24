@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Automation vs Competitors — See How We Compare</title>
+<meta name="description" content="See how Growth Automation compares to Belkins, Apollo, Instantly, and Cleverly. Fully managed AI outbound with guaranteed leads vs DIY tools and generic agencies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0B0B0F;
+  --bg2: #121218;
+  --bg3: #1A1A24;
+  --card: #13131D;
+  --card2: #1C1C2A;
+  --amber: #E8A023;
+  --amber-l: #F4B94D;
+  --amber-d: #C4841A;
+  --violet: #8B7FC7;
+  --violet-l: #A99FDB;
+  --violet-d: #6B5FAA;
+  --cream: #EDE9DF;
+  --muted: rgba(237,233,223,0.5);
+  --border: rgba(139,127,199,0.12);
+  --border2: rgba(139,127,199,0.25);
+  --r: 14px;
+  --r2: 20px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ============ ANNOUNCEMENT BAR ============ */
+.announce-bar {
+  background: linear-gradient(90deg, var(--violet-d), var(--violet), var(--violet-d));
+  padding: 11px 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1001;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+}
+.announce-bar a {
+  color: var(--violet-l);
+  font-weight: 700;
+  margin-left: 10px;
+  transition: color 0.2s;
+}
+.announce-bar a:hover { color: #fff; }
+.announce-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(237,233,223,0.4);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.announce-close:hover { color: var(--cream); }
+.announce-bar.hidden { display: none; }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(11,11,15,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--cream); }
+.nav-links a.active::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost {
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--cream);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--violet); background: rgba(139,127,199,0.08); }
+.btn-amber {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+.btn-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.btn-amber-lg {
+  padding: 16px 36px;
+  font-size: 16px;
+  box-shadow: 0 0 32px rgba(232,160,35,0.25);
+}
+.btn-amber-lg:hover { box-shadow: 0 0 48px rgba(232,160,35,0.45); }
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ============ SECTIONS ============ */
+.section { padding: 100px 24px; }
+.section-sm { padding: 60px 24px; }
+.section-heading {
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.section-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+  font-style: italic;
+}
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-header .section-sub { margin: 0 auto; }
+.section-alt { background: var(--bg2); }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--violet);
+}
+.accent { color: var(--amber); }
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ DIAMOND SEPARATOR ============ */
+.diamond-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+.diamond-sep::before, .diamond-sep::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(139,127,199,0.4), transparent);
+}
+.diamond-sep span {
+  width: 8px;
+  height: 8px;
+  background: var(--violet);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* ============ HERO ============ */
+.comp-hero {
+  position: relative;
+  padding: 100px 24px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+.comp-hero-glow {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.comp-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.comp-hero-content > * {
+  opacity: 0;
+  animation: hero-in 0.7s ease-out forwards;
+}
+.comp-hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.comp-hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+.comp-hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+.comp-hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(139,127,199,0.3);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.08);
+  margin-bottom: 28px;
+}
+
+/* ============ COMPETITOR TABS ============ */
+.comp-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+.comp-tab {
+  padding: 12px 28px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.02em;
+}
+.comp-tab:hover {
+  border-color: var(--violet);
+  color: var(--cream);
+  background: rgba(139,127,199,0.08);
+}
+.comp-tab.active {
+  border-color: var(--violet);
+  color: #fff;
+  background: rgba(139,127,199,0.15);
+  box-shadow: 0 0 24px rgba(139,127,199,0.12);
+}
+
+/* ============ COMPARISON SECTIONS ============ */
+.comp-section {
+  padding: 0 24px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.comp-vs-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.comp-vs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.06);
+  text-transform: uppercase;
+}
+.comp-vs-badge .vs-text {
+  color: var(--amber);
+  font-weight: 800;
+}
+.comp-vs-title {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1.1;
+}
+.comp-vs-subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 8px;
+  max-width: 700px;
+}
+
+/* ============ DIFFERENTIATORS GRID ============ */
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 56px;
+}
+.diff-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 32px 28px;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.diff-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border2);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+}
+.diff-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(139,127,199,0.1);
+  border: 1px solid rgba(139,127,199,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+.diff-card-icon.amber {
+  background: rgba(232,160,35,0.1);
+  border-color: rgba(232,160,35,0.2);
+}
+.diff-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.diff-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.diff-card .ga-highlight {
+  color: var(--violet-l);
+  font-weight: 600;
+}
+.diff-card .comp-highlight {
+  color: rgba(237,233,223,0.35);
+  font-weight: 500;
+}
+
+/* ============ COMPARISON TABLE ============ */
+.comp-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  background: var(--card);
+  margin-bottom: 24px;
+}
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.comp-table thead th {
+  padding: 20px 24px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.comp-table thead th:first-child {
+  color: var(--muted);
+  width: 240px;
+}
+.comp-table thead th.ga-col {
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.06);
+  border-left: 2px solid var(--violet);
+}
+.comp-table thead th.comp-col {
+  color: var(--muted);
+}
+.comp-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.comp-table tbody tr:last-child { border-bottom: none; }
+.comp-table tbody tr:hover { background: rgba(139,127,199,0.03); }
+.comp-table td {
+  padding: 18px 24px;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+.comp-table td:first-child {
+  font-weight: 600;
+  color: var(--cream);
+  font-size: 13px;
+}
+.comp-table td.ga-col {
+  color: var(--cream);
+  border-left: 2px solid rgba(139,127,199,0.25);
+  background: rgba(139,127,199,0.03);
+}
+.comp-table td.comp-col {
+  color: var(--muted);
+}
+.check { color: #28CA41; font-weight: 700; font-size: 16px; }
+.cross-icon { color: #FF5F57; font-weight: 700; font-size: 16px; }
+.partial { color: var(--amber); font-size: 14px; }
+.pricing-ga { color: var(--amber); font-weight: 700; }
+.pricing-comp { color: var(--muted); }
+
+/* ============ SECTION DIVIDER ============ */
+.comp-divider {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+}
+.comp-divider-inner {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2), transparent);
+}
+
+/* ============ FINAL CTA ============ */
+.final-cta {
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(91,79,167,0.08) 40%, rgba(91,79,167,0.15) 70%, var(--bg) 100%);
+}
+.final-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.15) 0%, rgba(139,127,199,0.05) 40%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139,127,199,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.final-cta .section-heading { position: relative; z-index: 1; }
+.final-cta .section-sub {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+  margin: 0 auto 36px;
+}
+.final-cta .btn-amber { position: relative; z-index: 1; }
+.final-secondary {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.final-secondary:hover { color: var(--cream); }
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.footer-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 320px;
+  font-style: italic;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-links { display: flex; gap: 16px; }
+.footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
+.footer-bottom-links a:hover { color: var(--cream); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .comp-table td:first-child { width: 180px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .section { padding: 64px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .btn-ghost.hide-mobile { display: none; }
+  .comp-hero { padding: 60px 24px 40px; }
+  .diff-grid { grid-template-columns: 1fr; }
+  .comp-table-wrap { overflow-x: auto; }
+  .comp-table { min-width: 600px; }
+  .comp-tabs { gap: 6px; }
+  .comp-tab { padding: 10px 20px; font-size: 13px; }
+  .comp-vs-header { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .comp-tab { padding: 8px 16px; font-size: 12px; }
+  .comp-hero { padding: 48px 24px 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="announce-bar" id="announceBar">
+  Now accepting new clients for Q2 2026<a href="ga-platform-landing-v5.html#book">Book a strategy call &rarr;</a>
+  <button class="announce-close" onclick="document.getElementById('announceBar').classList.add('hidden')">&times;</button>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="ga-platform-landing-v5.html" class="nav-logo">Growth Automation</a>
+    <ul class="nav-links">
+      <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+      <li><a href="ga-platform-landing-v5.html#pricing">Pricing</a></li>
+      <li><a href="ga-platform-landing-v5.html#case-studies">Case Studies</a></li>
+      <li><a href="comparisons.html" class="active">Comparisons</a></li>
+      <li><a href="ga-platform-landing-v5.html#book">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
+      <button class="btn-amber" onclick="window.location.href='ga-platform-landing-v5.html#book'">Book a Strategy Call &rarr;</button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="comp-hero">
+  <div class="comp-hero-glow"></div>
+  <div class="comp-hero-content">
+    <div class="hero-badge">&#10022; COMPETITOR COMPARISONS</div>
+    <h1 class="section-heading">How Growth Automation <span class="accent">Compares</span></h1>
+    <p class="section-sub" style="margin: 0 auto 48px;">See why companies switch from DIY tools and generic agencies to our fully-managed, AI-powered outbound platform.</p>
+    <div class="comp-tabs" id="compTabs">
+      <button class="comp-tab active" data-target="belkins">vs Belkins</button>
+      <button class="comp-tab" data-target="apollo">vs Apollo</button>
+      <button class="comp-tab" data-target="instantly">vs Instantly</button>
+      <button class="comp-tab" data-target="cleverly">vs Cleverly</button>
+    </div>
+  </div>
+</section>
+
+<div class="diamond-sep reveal"><span></span></div>
+
+<!-- ============ VS BELKINS ============ -->
+<section class="comp-section" id="belkins">
+  <div class="comp-vs-header reveal">
+    <div class="comp-vs-badge">Growth Automation <span class="vs-text">VS</span> Belkins</div>
+  </div>
+  <div class="reveal">
+    <h3 class="comp-vs-title">Proprietary AI Platform vs.<br>Traditional Lead Gen Agency</h3>
+    <p class="comp-vs-subtitle">Belkins is a legacy lead generation agency that relies on third-party tools and manual processes. Growth Automation delivers superior results at a fraction of the cost with proprietary infrastructure and AI.</p>
+  </div>
+  <br><br>
+
+  <div class="diff-grid">
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#128176;</div>
+      <h4>Fraction of the Cost</h4>
+      <p><span class="ga-highlight">GA starts at $490/mo</span> with transparent pricing. <span class="comp-highlight">Belkins charges $8,000&ndash;$15,000/mo</span> with lengthy contracts and hidden fees.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#9881;</div>
+      <h4>Proprietary Infrastructure</h4>
+      <p><span class="ga-highlight">GA owns the entire tech stack</span> &mdash; 260+ dedicated inboxes, warming infrastructure, and AI. <span class="comp-highlight">Belkins relies on 3rd party tools</span> they don't control.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#9889;</div>
+      <h4>Faster Onboarding</h4>
+      <p><span class="ga-highlight">GA: 14-day setup</span> to first campaign launch. <span class="comp-highlight">Belkins takes 30+ days</span> to onboard new clients before any outreach begins.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#10003;</div>
+      <h4>Guaranteed Leads</h4>
+      <p><span class="ga-highlight">GA offers guaranteed qualified leads</span> on the Growth+ plan. <span class="comp-highlight">Belkins provides no lead guarantees</span> &mdash; you pay regardless of results.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#129302;</div>
+      <h4>AI-Driven Personalization</h4>
+      <p><span class="ga-highlight">Dex AI personalizes every touchpoint</span> with context-aware messaging. <span class="comp-highlight">Belkins uses generic, template-based outreach</span> with limited personalization.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128202;</div>
+      <h4>Massive Data Access</h4>
+      <p><span class="ga-highlight">GA provides access to 2B+ contacts</span> with 5-step validation. <span class="comp-highlight">Belkins relies on client-provided lists</span> or limited third-party data.</p>
+    </div>
+  </div>
+
+  <div class="comp-table-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="ga-col">Growth Automation</th>
+          <th class="comp-col">Belkins</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Setup Time</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 14 days</td>
+          <td class="comp-col">30+ days</td>
+        </tr>
+        <tr>
+          <td>Infrastructure</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Proprietary (260+ inboxes)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> Third-party tools</td>
+        </tr>
+        <tr>
+          <td>Lead Qualification</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 3-step human verification</td>
+          <td class="comp-col"><span class="partial">~</span> Basic qualification</td>
+        </tr>
+        <tr>
+          <td>AI Technology</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Dex AI auto-responder</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No proprietary AI</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Outreach</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Multichannel (email + LinkedIn)</td>
+          <td class="comp-col"><span class="partial">~</span> Limited LinkedIn</td>
+        </tr>
+        <tr>
+          <td>Guaranteed Leads</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Yes (Growth+ plan)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No guarantees</td>
+        </tr>
+        <tr>
+          <td>Done-For-You Management</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Fully managed + PM</td>
+          <td class="comp-col"><span class="check">&#10003;</span> Managed service</td>
+        </tr>
+        <tr>
+          <td>Data Sources</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 2B+ contact database</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> Client-provided lists</td>
+        </tr>
+        <tr>
+          <td>Pricing Range</td>
+          <td class="ga-col"><span class="pricing-ga">From $490/mo</span></td>
+          <td class="comp-col"><span class="pricing-comp">$8,000&ndash;$15,000/mo</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="comp-divider"><div class="comp-divider-inner"></div></div>
+
+<!-- ============ VS APOLLO ============ -->
+<section class="comp-section" id="apollo">
+  <div class="comp-vs-header reveal">
+    <div class="comp-vs-badge">Growth Automation <span class="vs-text">VS</span> Apollo</div>
+  </div>
+  <div class="reveal">
+    <h3 class="comp-vs-title">100% Done-For-You vs.<br>DIY Outbound Tool</h3>
+    <p class="comp-vs-subtitle">Apollo is a self-service outbound tool that requires you to manage everything. Growth Automation handles your entire outbound operation with dedicated infrastructure and expert management.</p>
+  </div>
+  <br><br>
+
+  <div class="diff-grid">
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#128588;</div>
+      <h4>Fully Managed Service</h4>
+      <p><span class="ga-highlight">GA is 100% done-for-you</span> with dedicated program managers. <span class="comp-highlight">Apollo is entirely DIY</span> &mdash; you manage targeting, copy, sending, and optimization yourself.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128231;</div>
+      <h4>Dedicated Deliverability</h4>
+      <p><span class="ga-highlight">GA uses dedicated infrastructure</span> with warmed sending domains. <span class="comp-highlight">Apollo has deliverability issues</span> with shared IPs that hurt inbox placement.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#128270;</div>
+      <h4>Human-Verified Leads</h4>
+      <p><span class="ga-highlight">GA has 3-step lead qualification</span> with human verification. <span class="comp-highlight">Apollo lacks human verification</span> &mdash; data quality is inconsistent and unverified.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128200;</div>
+      <h4>Expert Strategy</h4>
+      <p><span class="ga-highlight">GA provides dedicated program managers</span> who optimize every campaign. <span class="comp-highlight">Apollo has no account management</span> &mdash; you figure everything out alone.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#128101;</div>
+      <h4>Multichannel Outreach</h4>
+      <p><span class="ga-highlight">GA includes LinkedIn outreach</span> alongside email for multichannel sequences. <span class="comp-highlight">Apollo is email-only</span> with no native LinkedIn integration.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#129302;</div>
+      <h4>AI Auto-Responder</h4>
+      <p><span class="ga-highlight">Dex AI handles replies intelligently</span> with context-aware responses. <span class="comp-highlight">Apollo offers only basic automation</span> with no AI-powered reply handling.</p>
+    </div>
+  </div>
+
+  <div class="comp-table-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="ga-col">Growth Automation</th>
+          <th class="comp-col">Apollo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Setup Time</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 14 days (managed)</td>
+          <td class="comp-col"><span class="partial">~</span> Self-service (weeks to learn)</td>
+        </tr>
+        <tr>
+          <td>Infrastructure</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Dedicated IPs &amp; domains</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> Shared IPs</td>
+        </tr>
+        <tr>
+          <td>Lead Qualification</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 3-step human verification</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No verification</td>
+        </tr>
+        <tr>
+          <td>AI Technology</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Dex AI auto-responder</td>
+          <td class="comp-col"><span class="partial">~</span> Basic automation</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Outreach</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Included (multichannel)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> Email only</td>
+        </tr>
+        <tr>
+          <td>Guaranteed Leads</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Yes (Growth+ plan)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No guarantees</td>
+        </tr>
+        <tr>
+          <td>Done-For-You Management</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Fully managed + PM</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> 100% DIY</td>
+        </tr>
+        <tr>
+          <td>Data Sources</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 5-step validation + enrichment</td>
+          <td class="comp-col"><span class="partial">~</span> Inconsistent data quality</td>
+        </tr>
+        <tr>
+          <td>Pricing Range</td>
+          <td class="ga-col"><span class="pricing-ga">From $490/mo</span></td>
+          <td class="comp-col"><span class="pricing-comp">$49&ndash;$119/mo (DIY)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="comp-divider"><div class="comp-divider-inner"></div></div>
+
+<!-- ============ VS INSTANTLY ============ -->
+<section class="comp-section" id="instantly">
+  <div class="comp-vs-header reveal">
+    <div class="comp-vs-badge">Growth Automation <span class="vs-text">VS</span> Instantly</div>
+  </div>
+  <div class="reveal">
+    <h3 class="comp-vs-title">Full Outbound Engine vs.<br>Cold Email Sending Tool</h3>
+    <p class="comp-vs-subtitle">Instantly is a cold email tool that handles only the sending piece. Growth Automation is a complete outbound engine with strategy, data, copy, infrastructure, and management built in.</p>
+  </div>
+  <br><br>
+
+  <div class="diff-grid">
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#127919;</div>
+      <h4>Complete Solution</h4>
+      <p><span class="ga-highlight">GA is fully managed</span> &mdash; strategy, data, copy, infrastructure, and optimization. <span class="comp-highlight">Instantly is just email sending</span> &mdash; everything else is on you.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128231;</div>
+      <h4>Deliverability You Can Trust</h4>
+      <p><span class="ga-highlight">GA has dedicated sending infrastructure</span> with warmed domains. <span class="comp-highlight">Instantly uses shared infrastructure</span> that can hurt your sender reputation.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#10003;</div>
+      <h4>Verified Lead Quality</h4>
+      <p><span class="ga-highlight">GA has 3-step lead verification</span> before any outreach begins. <span class="comp-highlight">Instantly has no lead qualification</span> &mdash; you send to unverified lists.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#9997;</div>
+      <h4>Strategy &amp; Copywriting Included</h4>
+      <p><span class="ga-highlight">GA includes expert strategy and copywriting</span> for every campaign. <span class="comp-highlight">Instantly provides no strategy or copy</span> &mdash; you write everything yourself.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#128202;</div>
+      <h4>Data Sourcing Handled</h4>
+      <p><span class="ga-highlight">GA handles all data sourcing</span> from a 2B+ contact database. <span class="comp-highlight">Instantly requires you to source your own data</span> from external providers.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128101;</div>
+      <h4>Multichannel Reach</h4>
+      <p><span class="ga-highlight">GA includes LinkedIn outreach</span> for multichannel sequences. <span class="comp-highlight">Instantly is email-only</span> with no LinkedIn capability.</p>
+    </div>
+  </div>
+
+  <div class="comp-table-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="ga-col">Growth Automation</th>
+          <th class="comp-col">Instantly</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Setup Time</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 14 days (managed)</td>
+          <td class="comp-col"><span class="partial">~</span> Self-setup required</td>
+        </tr>
+        <tr>
+          <td>Infrastructure</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Dedicated &amp; warmed</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> Shared infrastructure</td>
+        </tr>
+        <tr>
+          <td>Lead Qualification</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 3-step verification</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No qualification</td>
+        </tr>
+        <tr>
+          <td>AI Technology</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Dex AI auto-responder</td>
+          <td class="comp-col"><span class="partial">~</span> Basic sequences</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Outreach</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Included (multichannel)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> Email only</td>
+        </tr>
+        <tr>
+          <td>Guaranteed Leads</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Yes (Growth+ plan)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No guarantees</td>
+        </tr>
+        <tr>
+          <td>Done-For-You Management</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Fully managed + PM</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> 100% DIY</td>
+        </tr>
+        <tr>
+          <td>Data Sources</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 2B+ database included</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> BYO data</td>
+        </tr>
+        <tr>
+          <td>Pricing Range</td>
+          <td class="ga-col"><span class="pricing-ga">From $490/mo</span></td>
+          <td class="comp-col"><span class="pricing-comp">$30&ndash;$77/mo (DIY)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="comp-divider"><div class="comp-divider-inner"></div></div>
+
+<!-- ============ VS CLEVERLY ============ -->
+<section class="comp-section" id="cleverly">
+  <div class="comp-vs-header reveal">
+    <div class="comp-vs-badge">Growth Automation <span class="vs-text">VS</span> Cleverly</div>
+  </div>
+  <div class="reveal">
+    <h3 class="comp-vs-title">Full Multichannel Platform vs.<br>LinkedIn-Only Agency</h3>
+    <p class="comp-vs-subtitle">Cleverly is a LinkedIn-only outreach agency with limited scale. Growth Automation delivers multichannel outbound across email and LinkedIn with enterprise-grade infrastructure and AI.</p>
+  </div>
+  <br><br>
+
+  <div class="diff-grid">
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#128640;</div>
+      <h4>True Multichannel</h4>
+      <p><span class="ga-highlight">GA offers email + LinkedIn multichannel</span> sequences that work together. <span class="comp-highlight">Cleverly is LinkedIn-only</span> &mdash; you miss the entire email channel.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128200;</div>
+      <h4>Massive Scale</h4>
+      <p><span class="ga-highlight">GA scales to 420 inboxes + 8 LinkedIn profiles</span> for maximum reach. <span class="comp-highlight">Cleverly is limited to 1 LinkedIn profile</span> with no email infrastructure.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#9881;</div>
+      <h4>Enterprise Infrastructure</h4>
+      <p><span class="ga-highlight">GA has enterprise-grade email infrastructure</span> with 260+ dedicated inboxes. <span class="comp-highlight">Cleverly offers no email infrastructure</span> at all.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#128202;</div>
+      <h4>Advanced Analytics</h4>
+      <p><span class="ga-highlight">GA offers advanced, real-time analytics</span> across all channels. <span class="comp-highlight">Cleverly provides basic reporting</span> with limited insight into campaign performance.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon amber">&#129302;</div>
+      <h4>AI Auto-Responder</h4>
+      <p><span class="ga-highlight">Dex AI handles replies across channels</span> with intelligent responses. <span class="comp-highlight">Cleverly has no AI auto-responder</span> &mdash; all replies handled manually.</p>
+    </div>
+    <div class="diff-card reveal">
+      <div class="diff-card-icon">&#127919;</div>
+      <h4>AI-Powered Targeting</h4>
+      <p><span class="ga-highlight">GA handles all audience targeting with AI</span> and a 2B+ contact database. <span class="comp-highlight">Cleverly relies on basic LinkedIn search</span> with limited targeting options.</p>
+    </div>
+  </div>
+
+  <div class="comp-table-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="ga-col">Growth Automation</th>
+          <th class="comp-col">Cleverly</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Setup Time</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 14 days</td>
+          <td class="comp-col"><span class="partial">~</span> 1&ndash;2 weeks</td>
+        </tr>
+        <tr>
+          <td>Infrastructure</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Email + LinkedIn at scale</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> LinkedIn only (1 profile)</td>
+        </tr>
+        <tr>
+          <td>Lead Qualification</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 3-step verification</td>
+          <td class="comp-col"><span class="partial">~</span> Basic LinkedIn filtering</td>
+        </tr>
+        <tr>
+          <td>AI Technology</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Dex AI auto-responder</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No AI</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Outreach</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Up to 8 profiles</td>
+          <td class="comp-col"><span class="partial">~</span> 1 profile only</td>
+        </tr>
+        <tr>
+          <td>Guaranteed Leads</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Yes (Growth+ plan)</td>
+          <td class="comp-col"><span class="cross-icon">&#10007;</span> No guarantees</td>
+        </tr>
+        <tr>
+          <td>Done-For-You Management</td>
+          <td class="ga-col"><span class="check">&#10003;</span> Fully managed + PM</td>
+          <td class="comp-col"><span class="check">&#10003;</span> Managed LinkedIn only</td>
+        </tr>
+        <tr>
+          <td>Data Sources</td>
+          <td class="ga-col"><span class="check">&#10003;</span> 2B+ database + AI targeting</td>
+          <td class="comp-col"><span class="partial">~</span> LinkedIn search only</td>
+        </tr>
+        <tr>
+          <td>Pricing Range</td>
+          <td class="ga-col"><span class="pricing-ga">From $490/mo</span></td>
+          <td class="comp-col"><span class="pricing-comp">$397&ndash;$997/mo</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="final-cta-glow"></div>
+  <div class="final-cta-dots"></div>
+  <div class="section-label reveal" style="justify-content: center;">
+    <span class="section-label-line"></span>READY TO SWITCH?<span class="section-label-line"></span>
+  </div>
+  <h2 class="section-heading reveal">Ready to Upgrade Your <span class="accent">Outbound</span>?</h2>
+  <p class="section-sub reveal">Stop overpaying for underwhelming results. See how Growth Automation can transform your pipeline with guaranteed qualified leads.</p>
+  <a href="ga-platform-landing-v5.html#book" class="btn-amber btn-amber-lg reveal">Book a Strategy Call &rarr;</a>
+  <br>
+  <a href="ga-platform-landing-v5.html#pricing" class="final-secondary reveal">Or explore pricing &rarr;</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Growth Automation</div>
+      <p class="footer-desc">AI-powered GTM campaigns that fill your pipeline &mdash; verified contacts, warm infrastructure, and Dex AI built in.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <ul>
+        <li><a href="ga-platform-landing-v5.html#platform">Dashboard</a></li>
+        <li><a href="ga-platform-landing-v5.html#platform">Campaign Builder</a></li>
+        <li><a href="ga-platform-landing-v5.html#dex">Dex AI</a></li>
+        <li><a href="ga-platform-landing-v5.html#platform">Audience Search</a></li>
+        <li><a href="ga-platform-landing-v5.html#platform">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="ga-platform-landing-v5.html">About</a></li>
+        <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+        <li><a href="ga-platform-landing-v5.html#case-studies">Case Studies</a></li>
+        <li><a href="ga-platform-landing-v5.html#pricing">Pricing</a></li>
+        <li><a href="comparisons.html">Comparisons</a></li>
+        <li><a href="ga-platform-landing-v5.html#book">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#belkins">GA vs Belkins</a>
+      <a href="#apollo">GA vs Apollo</a>
+      <a href="#instantly">GA vs Instantly</a>
+      <a href="#cleverly">GA vs Cleverly</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ SCROLL RESTORATION ============ */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============ INTERSECTION OBSERVER — REVEAL ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ============ COMPETITOR TABS ============ */
+const tabs = document.querySelectorAll('.comp-tab');
+const sections = {
+  belkins: document.getElementById('belkins'),
+  apollo: document.getElementById('apollo'),
+  instantly: document.getElementById('instantly'),
+  cleverly: document.getElementById('cleverly')
+};
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.target;
+    if (sections[target]) {
+      const navHeight = nav.offsetHeight + 20;
+      const targetTop = sections[target].getBoundingClientRect().top + window.pageYOffset - navHeight;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }
+  });
+});
+
+/* ============ UPDATE ACTIVE TAB ON SCROLL ============ */
+const sectionIds = ['belkins', 'apollo', 'instantly', 'cleverly'];
+const sectionEls = sectionIds.map(id => document.getElementById(id));
+
+function updateActiveTab() {
+  const scrollPos = window.scrollY + nav.offsetHeight + 100;
+  let activeId = sectionIds[0];
+
+  sectionEls.forEach((section, i) => {
+    if (section && section.offsetTop <= scrollPos) {
+      activeId = sectionIds[i];
+    }
+  });
+
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.target === activeId);
+  });
+}
+
+window.addEventListener('scroll', updateActiveTab, { passive: true });
+
+/* ============ MOBILE NAV ============ */
+const hamburger = document.getElementById('navHamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  const isVisible = navLinks.style.display === 'flex';
+  if (isVisible) {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.display = 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '64px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'rgba(11,11,15,0.96)';
+    navLinks.style.backdropFilter = 'blur(24px)';
+    navLinks.style.padding = '24px';
+    navLinks.style.gap = '20px';
+    navLinks.style.borderBottom = '1px solid var(--border)';
+  }
+});
+</script>
+</body>
+</html>

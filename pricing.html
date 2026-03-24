@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing & Features — Growth Automation</title>
+<meta name="description" content="Transparent pricing for AI-powered outbound. From Solo to Enterprise — guaranteed qualified leads, fully managed campaigns, and dedicated infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0B0B0F;
+  --bg2: #121218;
+  --bg3: #1A1A24;
+  --card: #13131D;
+  --card2: #1C1C2A;
+  --amber: #E8A023;
+  --amber-l: #F4B94D;
+  --amber-d: #C4841A;
+  --violet: #8B7FC7;
+  --violet-l: #A99FDB;
+  --violet-d: #6B5FAA;
+  --cream: #EDE9DF;
+  --muted: rgba(237,233,223,0.5);
+  --border: rgba(139,127,199,0.12);
+  --border2: rgba(139,127,199,0.25);
+  --r: 14px;
+  --r2: 20px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container-lg { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
+.section-label, .footer-col h4, .footer-bottom-links a, .footer-bottom {
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(11,11,15,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a.active { color: var(--cream); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost {
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--cream);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--violet); background: rgba(139,127,199,0.08); }
+.btn-amber {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+.btn-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.btn-amber-lg {
+  padding: 16px 36px;
+  font-size: 16px;
+  box-shadow: 0 0 32px rgba(232,160,35,0.25);
+}
+.btn-amber-lg:hover { box-shadow: 0 0 48px rgba(232,160,35,0.45); }
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ============ SECTION ============ */
+.section { padding: 100px 24px; }
+.section-sm { padding: 60px 24px; }
+.section-heading {
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.section-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+  font-style: italic;
+}
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-header .section-sub { margin: 0 auto; }
+.section-alt { background: var(--bg2); }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--violet);
+}
+.accent { color: var(--amber); }
+.gold { color: var(--amber); }
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ HERO (PRICING PAGE) ============ */
+.pricing-hero {
+  position: relative;
+  padding: 80px 24px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.pricing-hero-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+.pricing-hero h1 {
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.pricing-hero .section-sub {
+  margin: 0 auto 40px;
+  max-width: 580px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ BILLING TOGGLE ============ */
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 56px;
+  position: relative;
+  z-index: 1;
+}
+.billing-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.billing-label.active { color: var(--cream); }
+.billing-switch {
+  width: 52px;
+  height: 28px;
+  border-radius: 100px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.billing-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--violet);
+  transition: transform 0.3s;
+}
+.billing-switch.annual::after {
+  transform: translateX(24px);
+}
+.billing-save {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--amber);
+  background: rgba(232,160,35,0.12);
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+
+/* ============ PRICING CARDS ============ */
+.pricing-cards-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.pricing-cards-wrap::-webkit-scrollbar { display: none; }
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  min-width: 1100px;
+}
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border2);
+}
+.pricing-card.recommended {
+  border-color: var(--violet);
+  background: linear-gradient(180deg, rgba(139,127,199,0.08) 0%, var(--card) 100%);
+  box-shadow: 0 0 40px rgba(139,127,199,0.08);
+}
+.card-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--violet);
+  color: #0B0B0F;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 5px 14px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.card-plan-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--violet-l);
+  margin-bottom: 8px;
+}
+.card-price {
+  font-size: 40px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+.card-price span {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.card-price-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  min-height: 18px;
+}
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 20px;
+}
+.card-metrics {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.card-metrics li {
+  font-size: 13px;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+.card-metrics li .metric-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(139,127,199,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--violet-l);
+}
+.card-metrics li .metric-val {
+  font-weight: 700;
+  color: var(--amber);
+}
+.card-metrics li.highlight {
+  background: rgba(232,160,35,0.06);
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(232,160,35,0.12);
+}
+.card-metrics li.na {
+  color: var(--muted);
+  font-style: italic;
+}
+.card-cta {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  text-align: center;
+  display: block;
+}
+.card-cta-ghost {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--cream);
+}
+.card-cta-ghost:hover {
+  border-color: var(--violet);
+  background: rgba(139,127,199,0.08);
+  transform: translateY(-1px);
+}
+.card-cta-amber {
+  background: var(--amber);
+  border: none;
+  color: #0B0B0F;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+}
+.card-cta-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.card-setup {
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* ============ FEATURE TABLE ============ */
+.feature-table-section {
+  padding: 80px 24px 100px;
+}
+.feature-table-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg3) transparent;
+}
+.feature-table-wrap::-webkit-scrollbar { height: 6px; }
+.feature-table-wrap::-webkit-scrollbar-track { background: transparent; }
+.feature-table-wrap::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+.feature-table th,
+.feature-table td {
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.feature-table th {
+  font-weight: 700;
+  color: var(--cream);
+  background: var(--bg2);
+  position: sticky;
+  top: 64px;
+  z-index: 10;
+}
+.feature-table th:first-child {
+  text-align: left;
+  min-width: 260px;
+}
+.feature-table th.highlight-col {
+  background: rgba(139,127,199,0.08);
+  border-left: 1px solid rgba(139,127,199,0.15);
+  border-right: 1px solid rgba(139,127,199,0.15);
+}
+.feature-table td:first-child {
+  text-align: left;
+  color: var(--cream);
+  font-weight: 500;
+}
+.feature-table td {
+  color: var(--muted);
+}
+.feature-table td.highlight-col {
+  background: rgba(139,127,199,0.04);
+  border-left: 1px solid rgba(139,127,199,0.08);
+  border-right: 1px solid rgba(139,127,199,0.08);
+}
+.feature-table .category-row td {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--violet-l);
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border2);
+  padding: 12px 16px;
+}
+.feature-table .check {
+  color: var(--violet-l);
+  font-size: 16px;
+}
+.feature-table .dash {
+  color: rgba(237,233,223,0.2);
+  font-size: 14px;
+}
+.feature-table .value {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+/* ============ ADD-ONS ============ */
+.addons-section {
+  padding: 80px 24px 100px;
+  background: var(--bg2);
+}
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.addon-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px;
+  transition: border-color 0.3s;
+}
+.addon-card:hover {
+  border-color: var(--border2);
+}
+.addon-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.addon-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+.addon-price span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.addon-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ============ FINAL CTA ============ */
+.final-cta {
+  padding: 100px 24px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.final-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta .section-heading {
+  position: relative;
+  z-index: 1;
+}
+.final-cta .section-sub {
+  margin: 0 auto 36px;
+  position: relative;
+  z-index: 1;
+}
+.final-cta-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.footer-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 320px;
+  font-style: italic;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-links { display: flex; gap: 16px; }
+.footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
+.footer-bottom-links a:hover { color: var(--cream); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .pricing-cards { grid-template-columns: repeat(3, 1fr); min-width: 0; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .pricing-cards { grid-template-columns: repeat(2, 1fr); min-width: 0; }
+  .section { padding: 64px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .btn-ghost.hide-mobile { display: none; }
+  .addons-grid { grid-template-columns: 1fr; }
+  .pricing-hero { padding: 60px 24px 30px; }
+  .final-cta { padding: 80px 24px; }
+}
+@media (max-width: 480px) {
+  .pricing-cards { grid-template-columns: 1fr; min-width: 0; }
+  .billing-toggle { flex-wrap: wrap; gap: 10px; }
+  .card-price { font-size: 34px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="ga-platform-landing-v5.html" class="nav-logo">Growth Automation</a>
+    <ul class="nav-links">
+      <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="ga-platform-landing-v5.html#case-studies">Case Studies</a></li>
+      <li><a href="#">Comparisons</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
+      <button class="btn-amber" onclick="window.location.href='#contact'">Book a Strategy Call &rarr;</button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ============ PRICING HERO ============ -->
+<section class="pricing-hero">
+  <div class="pricing-hero-glow"></div>
+  <h1 class="reveal">Transparent Pricing,<br><span class="accent">Guaranteed Results</span></h1>
+  <p class="section-sub reveal">Every plan includes fully managed campaigns, proprietary infrastructure, and AI-driven targeting. Pick the scale that fits your pipeline goals.</p>
+
+  <!-- Billing toggle -->
+  <div class="billing-toggle reveal">
+    <span class="billing-label active" id="labelMonthly">Monthly</span>
+    <div class="billing-switch" id="billingSwitch"></div>
+    <span class="billing-label" id="labelAnnual">3-Month</span>
+    <span class="billing-save">SAVE ~10%</span>
+  </div>
+</section>
+
+<!-- ============ PRICING CARDS ============ -->
+<div class="pricing-cards-wrap reveal">
+  <div class="pricing-cards" id="pricingCards">
+
+    <!-- SOLO -->
+    <div class="pricing-card">
+      <div class="card-plan-name">Solo</div>
+      <div class="card-price" data-monthly="490" data-annual="440">$490<span>/mo</span></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-divider"></div>
+      <ul class="card-metrics">
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">600</span>&nbsp;contacts/mo</li>
+        <li><span class="metric-icon">&#9672;</span> 4 inboxes &middot; 2 domains</li>
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">2&ndash;4</span>&nbsp;avg leads/mo</li>
+        <li class="na"><span class="metric-icon">&mdash;</span> No guaranteed leads</li>
+        <li class="na"><span class="metric-icon">&mdash;</span> No LinkedIn outreach</li>
+      </ul>
+      <button class="card-cta card-cta-ghost">Get Started &rarr;</button>
+      <div class="card-setup">$150 one-time setup</div>
+    </div>
+
+    <!-- STARTER -->
+    <div class="pricing-card">
+      <div class="card-plan-name">Starter</div>
+      <div class="card-price" data-monthly="980" data-annual="880">$980<span>/mo</span></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-divider"></div>
+      <ul class="card-metrics">
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">3,250</span>&nbsp;contacts/mo</li>
+        <li><span class="metric-icon">&#9672;</span> 35 inboxes &middot; 6 domains</li>
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">6&ndash;12+</span>&nbsp;avg leads/mo</li>
+        <li class="na"><span class="metric-icon">&mdash;</span> No guaranteed leads</li>
+        <li><span class="metric-icon">&#9672;</span> 1 LinkedIn profile &middot; 800 conn/mo</li>
+      </ul>
+      <button class="card-cta card-cta-ghost">Get Started &rarr;</button>
+      <div class="card-setup">$250 one-time setup</div>
+    </div>
+
+    <!-- GROWTH (RECOMMENDED) -->
+    <div class="pricing-card recommended">
+      <div class="card-badge">Recommended</div>
+      <div class="card-plan-name">Growth</div>
+      <div class="card-price" data-monthly="1890" data-annual="1700">$1,890<span>/mo</span></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-divider"></div>
+      <ul class="card-metrics">
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">10,000</span>&nbsp;contacts/mo</li>
+        <li><span class="metric-icon">&#9672;</span> 105 inboxes &middot; 18 domains</li>
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">20&ndash;40+</span>&nbsp;avg leads/mo</li>
+        <li class="highlight"><span class="metric-icon">&#10003;</span> <span class="metric-val">10&ndash;20</span>&nbsp;guaranteed leads</li>
+        <li><span class="metric-icon">&#9672;</span> 2 LinkedIn profiles &middot; 1,600 conn/mo</li>
+      </ul>
+      <button class="card-cta card-cta-amber">Get Started &rarr;</button>
+      <div class="card-setup">$500 one-time setup</div>
+    </div>
+
+    <!-- PRO -->
+    <div class="pricing-card">
+      <div class="card-plan-name">Pro</div>
+      <div class="card-price" data-monthly="2890" data-annual="2600">$2,890<span>/mo</span></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-divider"></div>
+      <ul class="card-metrics">
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">20,000</span>&nbsp;contacts/mo</li>
+        <li><span class="metric-icon">&#9672;</span> 210 inboxes &middot; 36 domains</li>
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">40&ndash;80+</span>&nbsp;avg leads/mo</li>
+        <li class="highlight"><span class="metric-icon">&#10003;</span> <span class="metric-val">20&ndash;40</span>&nbsp;guaranteed leads</li>
+        <li><span class="metric-icon">&#9672;</span> 4 LinkedIn profiles &middot; 3,200 conn/mo</li>
+      </ul>
+      <button class="card-cta card-cta-ghost">Get Started &rarr;</button>
+      <div class="card-setup">$800 one-time setup</div>
+    </div>
+
+    <!-- ENTERPRISE -->
+    <div class="pricing-card">
+      <div class="card-plan-name">Enterprise</div>
+      <div class="card-price" data-monthly="4790" data-annual="4310">$4,790<span>/mo</span></div>
+      <div class="card-price-sub" data-monthly="" data-annual="billed quarterly"><!-- dynamic --></div>
+      <div class="card-divider"></div>
+      <ul class="card-metrics">
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">40,000</span>&nbsp;contacts/mo</li>
+        <li><span class="metric-icon">&#9672;</span> 420 inboxes &middot; 72 domains</li>
+        <li><span class="metric-icon">&#9672;</span> <span class="metric-val">80&ndash;160+</span>&nbsp;avg leads/mo</li>
+        <li class="highlight"><span class="metric-icon">&#10003;</span> <span class="metric-val">40&ndash;80</span>&nbsp;guaranteed leads</li>
+        <li><span class="metric-icon">&#9672;</span> 8 LinkedIn profiles &middot; 6,400 conn/mo</li>
+      </ul>
+      <button class="card-cta card-cta-ghost">Contact Sales &rarr;</button>
+      <div class="card-setup">$1,400 one-time setup</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ FEATURE COMPARISON TABLE ============ -->
+<section class="feature-table-section section-alt">
+  <div class="section-header reveal">
+    <div class="section-label" style="justify-content:center;"><span class="section-label-line"></span>DETAILED COMPARISON<span class="section-label-line"></span></div>
+    <h2 class="section-heading">Compare Every Feature</h2>
+    <p class="section-sub">See exactly what each plan includes so you can choose with confidence.</p>
+  </div>
+
+  <div class="feature-table-wrap reveal">
+    <table class="feature-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Solo</th>
+          <th>Starter</th>
+          <th class="highlight-col">Growth</th>
+          <th>Pro</th>
+          <th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- LEAD GENERATION -->
+        <tr class="category-row">
+          <td colspan="6">Lead Generation</td>
+        </tr>
+        <tr>
+          <td>3-Step Lead Qualification</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Warm Lead Data + Phone Numbers</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Lead Nurturing Sequences</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Guaranteed Leads</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="value">10&ndash;20</span></td>
+          <td><span class="value">20&ndash;40</span></td>
+          <td><span class="value">40&ndash;80</span></td>
+        </tr>
+
+        <!-- LINKEDIN OUTREACH -->
+        <tr class="category-row">
+          <td colspan="6">LinkedIn Outreach</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Outreach</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>LinkedIn Profiles</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="value">1</span></td>
+          <td class="highlight-col"><span class="value">2</span></td>
+          <td><span class="value">4</span></td>
+          <td><span class="value">8</span></td>
+        </tr>
+        <tr>
+          <td>LinkedIn Connections/mo</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="value">800</span></td>
+          <td class="highlight-col"><span class="value">1,600</span></td>
+          <td><span class="value">3,200</span></td>
+          <td><span class="value">6,400</span></td>
+        </tr>
+
+        <!-- INFRASTRUCTURE -->
+        <tr class="category-row">
+          <td colspan="6">Infrastructure</td>
+        </tr>
+        <tr>
+          <td>Proprietary Outreach Infrastructure</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Azure &amp; Google IPs</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Domain &amp; Mailbox Warm-up</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Real-time Monitoring</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Deliverability Testing</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>DKIM / SPF / DMARC Setup</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+
+        <!-- CAMPAIGN MANAGEMENT -->
+        <tr class="category-row">
+          <td colspan="6">Campaign Management</td>
+        </tr>
+        <tr>
+          <td>100% Done-For-You</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Account Manager</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Dedicated Program Manager</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Monthly Strategy Consulting</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Custom Workflows</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+
+        <!-- TARGETING -->
+        <tr class="category-row">
+          <td colspan="6">Targeting</td>
+        </tr>
+        <tr>
+          <td>AI-Driven Audience Targeting</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Firmographic / Buying Intent / Technographic</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Clay Enrichment</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>2B+ Contacts Database</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+
+        <!-- CONTENT -->
+        <tr class="category-row">
+          <td colspan="6">Content</td>
+        </tr>
+        <tr>
+          <td>AI + Human-Written Copies</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>A/B Testing</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Multilingual Copies</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Unlimited Iterations</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+
+        <!-- REPORTING -->
+        <tr class="category-row">
+          <td colspan="6">Reporting</td>
+        </tr>
+        <tr>
+          <td>Basic Monthly Reporting</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Advanced Reporting + Industry Data</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+
+        <!-- SUPPORT -->
+        <tr class="category-row">
+          <td colspan="6">Support</td>
+        </tr>
+        <tr>
+          <td>Email / Chat / Slack Support</td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td class="highlight-col"><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>On Demand C-suite Support</td>
+          <td><span class="dash">&mdash;</span></td>
+          <td><span class="dash">&mdash;</span></td>
+          <td class="highlight-col"><span class="dash">&mdash;</span></td>
+          <td><span class="check">&#10003;</span></td>
+          <td><span class="check">&#10003;</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ ADD-ONS ============ -->
+<section class="addons-section">
+  <div class="section-header reveal">
+    <div class="section-label" style="justify-content:center;"><span class="section-label-line"></span>OPTIONAL ADD-ONS<span class="section-label-line"></span></div>
+    <h2 class="section-heading">Power Up Your Plan</h2>
+    <p class="section-sub">Extend any plan with additional channels, automation, and support.</p>
+  </div>
+
+  <div class="addons-grid reveal">
+    <div class="addon-card">
+      <div class="addon-name">LinkedIn Added Account (BYO)</div>
+      <div class="addon-price">$360<span>/mo</span></div>
+      <div class="addon-desc">Bring your own LinkedIn account. We manage outreach, connections, and follow-ups on your behalf.</div>
+    </div>
+    <div class="addon-card">
+      <div class="addon-name">LinkedIn Account (GA Managed)</div>
+      <div class="addon-price">$540<span>/mo</span></div>
+      <div class="addon-desc">We provide and fully manage a dedicated LinkedIn profile for your outreach campaigns.</div>
+    </div>
+    <div class="addon-card">
+      <div class="addon-name">AI Auto-Responder</div>
+      <div class="addon-price">$50&ndash;$500<span>/mo</span></div>
+      <div class="addon-desc">AI-powered replies to inbound leads. Pricing scales with your plan volume.</div>
+    </div>
+    <div class="addon-card">
+      <div class="addon-name">GA Managed Meeting Booking</div>
+      <div class="addon-price">$200&ndash;$2,400<span>/mo</span></div>
+      <div class="addon-desc">Our team qualifies and books meetings directly onto your calendar. Pricing varies by plan.</div>
+    </div>
+    <div class="addon-card">
+      <div class="addon-name">Content Generator</div>
+      <div class="addon-price">$50&ndash;$500<span>/mo</span></div>
+      <div class="addon-desc">AI-generated outreach sequences, landing page copy, and nurture emails tailored to your ICP.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" id="contact">
+  <div class="final-cta-glow"></div>
+  <h2 class="section-heading reveal">Ready to Fill Your Pipeline?</h2>
+  <p class="section-sub reveal">Book a free strategy call. We'll map your ICP, estimate lead volume, and build a custom plan&mdash;no commitment required.</p>
+  <div class="final-cta-actions reveal">
+    <a href="#" class="btn-amber btn-amber-lg">Book a Strategy Call &rarr;</a>
+    <a href="ga-platform-landing-v5.html#how-it-works" class="btn-ghost">See How It Works</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Growth Automation</div>
+      <p class="footer-desc">AI-powered GTM campaigns that fill your pipeline &mdash; verified contacts, warm infrastructure, and Dex AI built in.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <ul>
+        <li><a href="ga-platform-landing-v5.html">Dashboard</a></li>
+        <li><a href="ga-platform-landing-v5.html">Campaign Builder</a></li>
+        <li><a href="ga-platform-landing-v5.html#dex">Dex AI</a></li>
+        <li><a href="ga-platform-landing-v5.html">Audience Search</a></li>
+        <li><a href="ga-platform-landing-v5.html">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+        <li><a href="ga-platform-landing-v5.html#case-studies">Case Studies</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">GA vs Belkins</a>
+      <a href="#">GA vs Apollo</a>
+      <a href="#">GA vs Instantly</a>
+      <a href="#">GA vs Cleverly</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ SCROLL RESTORATION ============ */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============ INTERSECTION OBSERVER — REVEAL ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ============ BILLING TOGGLE ============ */
+const billingSwitch = document.getElementById('billingSwitch');
+const labelMonthly = document.getElementById('labelMonthly');
+const labelAnnual = document.getElementById('labelAnnual');
+let isAnnual = false;
+
+function updatePrices() {
+  const cards = document.querySelectorAll('.pricing-card');
+  cards.forEach(card => {
+    const priceEl = card.querySelector('.card-price');
+    const subEl = card.querySelector('.card-price-sub');
+    if (!priceEl) return;
+    const monthly = parseInt(priceEl.dataset.monthly);
+    const annual = parseInt(priceEl.dataset.annual);
+    const price = isAnnual ? annual : monthly;
+    priceEl.innerHTML = '$' + price.toLocaleString() + '<span>/mo</span>';
+    if (subEl) {
+      subEl.textContent = isAnnual ? (subEl.dataset.annual || '') : (subEl.dataset.monthly || '');
+    }
+  });
+  labelMonthly.classList.toggle('active', !isAnnual);
+  labelAnnual.classList.toggle('active', isAnnual);
+  billingSwitch.classList.toggle('annual', isAnnual);
+}
+
+billingSwitch.addEventListener('click', () => {
+  isAnnual = !isAnnual;
+  updatePrices();
+});
+labelMonthly.addEventListener('click', () => {
+  isAnnual = false;
+  updatePrices();
+});
+labelAnnual.addEventListener('click', () => {
+  isAnnual = true;
+  updatePrices();
+});
+</script>
+</body>
+</html>
