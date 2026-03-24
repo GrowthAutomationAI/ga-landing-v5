@@ -29,6 +29,99 @@
   --r: 14px;
   --r2: 20px;
 }
+/* ============ LIGHT THEME ============ */
+[data-theme="light"] {
+  --bg: #F5F3EE;
+  --bg2: #EBE8E1;
+  --bg3: #E2DFD7;
+  --card: #FFFFFF;
+  --card2: #F0EDE6;
+  --amber: #5448A8;
+  --amber-l: #6B5FAA;
+  --amber-d: #3D3280;
+  --violet: #7B6CD4;
+  --violet-l: #5448A8;
+  --violet-d: #9D91E8;
+  --cream: #1A1A2E;
+  --muted: rgba(26,26,46,0.55);
+  --border: rgba(123,108,212,0.15);
+  --border2: rgba(123,108,212,0.28);
+}
+[data-theme="light"] body { color: var(--cream); }
+[data-theme="light"] .hero h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] .section-heading,
+[data-theme="light"] .statement-h,
+[data-theme="light"] .dex-heading,
+[data-theme="light"] .compare-card h3,
+[data-theme="light"] .feature-card h3,
+[data-theme="light"] .pain-card h3,
+[data-theme="light"] .case-company,
+[data-theme="light"] .hiw-card-title,
+[data-theme="light"] .demo-form-title,
+[data-theme="light"] .battle-card h3,
+[data-theme="light"] .nav-logo { color: #1A1A2E; }
+[data-theme="light"] .btn-amber { color: #fff; }
+[data-theme="light"] .demo-submit { color: #fff; }
+[data-theme="light"] .btn-ghost {
+  color: #1A1A2E;
+  border-color: rgba(123,108,212,0.3);
+}
+[data-theme="light"] .btn-ghost:hover {
+  background: rgba(123,108,212,0.08);
+}
+[data-theme="light"] .nav.scrolled {
+  background: rgba(245,243,238,0.92);
+  box-shadow: 0 1px 0 rgba(123,108,212,0.12);
+}
+[data-theme="light"] .nav-links a { color: rgba(26,26,46,0.6); }
+[data-theme="light"] .nav-links a:hover { color: #1A1A2E; }
+[data-theme="light"] body::after { opacity: 0.015; }
+[data-theme="light"] .announce-bar { color: #fff; }
+[data-theme="light"] .announce-bar a { color: #F4B94D; }
+[data-theme="light"] .cta-banner { color: #fff; }
+[data-theme="light"] .cta-banner-text h3 { color: #fff; }
+[data-theme="light"] .cta-banner .btn-white { color: var(--violet); }
+[data-theme="light"] .browser-frame {
+  box-shadow: 0 40px 80px rgba(0,0,0,0.12), 0 0 1px rgba(123,108,212,0.3);
+}
+[data-theme="light"] .compare-card { background: #fff; }
+[data-theme="light"] .feature-card { background: #fff; }
+[data-theme="light"] .pain-card { background: #fff; }
+[data-theme="light"] .testi-card { background: #fff; }
+[data-theme="light"] .case-card { background: #fff; }
+[data-theme="light"] .battle-card { background: #fff; }
+[data-theme="light"] .hiw-card { background: #fff; }
+[data-theme="light"] .demo-form-card { background: #fff; }
+[data-theme="light"] .stat-number { color: var(--violet); }
+[data-theme="light"] .section-label { color: var(--violet); }
+[data-theme="light"] .footer { background: #E2DFD7; }
+[data-theme="light"] .final-cta {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(123,108,212,0.08) 40%, rgba(123,108,212,0.12) 70%, var(--bg) 100%);
+}
+[data-theme="light"] #vanta-hero { opacity: 0.35; }
+/* Theme toggle button */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--violet);
+  background: rgba(139,127,199,0.08);
+  transform: rotate(20deg);
+}
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter Tight', sans-serif;
@@ -1774,6 +1867,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
       <button class="btn-amber" onclick="window.location.href='#book'">Book a Strategy Call &rarr;</button>
     </div>
@@ -2621,6 +2715,26 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 <script>
 /* ============ SCROLL RESTORATION ============ */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* ============ THEME TOGGLE ============ */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('ga-theme');
+if (savedTheme === 'light') {
+  document.documentElement.setAttribute('data-theme', 'light');
+  themeToggle.innerHTML = '&#9728;'; // sun
+}
+themeToggle.addEventListener('click', () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    themeToggle.innerHTML = '&#9790;'; // moon
+    localStorage.setItem('ga-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeToggle.innerHTML = '&#9728;'; // sun
+    localStorage.setItem('ga-theme', 'light');
+  }
+});
 
 /* ============ NAV SCROLL ============ */
 const nav = document.getElementById('mainNav');
