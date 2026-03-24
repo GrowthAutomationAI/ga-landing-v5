@@ -420,17 +420,19 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   object-fit: cover;
   object-position: top;
   opacity: 0;
-  animation: slideshow-in 18s infinite;
+  animation: slideshow-in 30s infinite;
 }
 .slide-img:nth-child(1) { animation-delay: 0s; }
 .slide-img:nth-child(2) { animation-delay: 6s; }
 .slide-img:nth-child(3) { animation-delay: 12s; }
+.slide-img:nth-child(4) { animation-delay: 18s; }
+.slide-img:nth-child(5) { animation-delay: 24s; }
 @keyframes slideshow-in {
-  0%     { opacity: 0; }
-  3%     { opacity: 1; }
-  33.33% { opacity: 1; }
-  36.33% { opacity: 0; }
-  100%   { opacity: 0; }
+  0%   { opacity: 0; }
+  2%   { opacity: 1; }
+  20%  { opacity: 1; }
+  22%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 .slide-pips {
   display: flex;
@@ -1758,11 +1760,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <div class="browser-url" id="browserUrl">app.growthautomation.ai/dashboard</div>
     </div>
     <div class="browser-body">
-      <img class="slide-img" src="screenshots/dashboard.jpg" alt="Admin Overview Dashboard">
-      <img class="slide-img" src="screenshots/client_dashboard.jpg" alt="Client Dashboard">
-      <img class="slide-img" src="screenshots/content_engine.jpg" alt="Content Engine">
-      <img class="slide-img" src="screenshots/audience_manager.jpg" alt="Audience Manager">
-      <img class="slide-img" src="screenshots/dex_response.jpg" alt="Dex AI Chat">
+      <img class="slide-img" src="screenshots/dashboard.png" alt="Admin Overview Dashboard">
+      <img class="slide-img" src="screenshots/inbox_manager.png" alt="Inbox Manager">
+      <img class="slide-img" src="screenshots/content_engine.png" alt="Content Engine">
+      <img class="slide-img" src="screenshots/audience_manager.png" alt="Audience Manager">
+      <img class="slide-img" src="screenshots/dex_response.png" alt="Dex AI Chat">
     </div>
     <div class="slide-pips">
       <div class="pip active" data-index="0"><div class="pip-fill"></div></div>
@@ -2090,26 +2092,18 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="browser-url">app.growthautomation.ai/dashboard</div>
         </div>
-        <img src="screenshots/dashboard.jpg" alt="Admin Overview Dashboard">
+        <img src="screenshots/dashboard.png" alt="Admin Overview Dashboard">
         <div class="screenshot-caption">Admin Overview &mdash; Complete visibility across every client, campaign, and contact.</div>
       </div>
     </div>
-    <div class="screenshot-pair reveal">
+    <div class="screenshot-row reveal">
       <div class="screenshot-frame">
         <div class="browser-chrome">
           <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/client</div>
+          <div class="browser-url">app.growthautomation.ai/inbox</div>
         </div>
-        <img src="screenshots/client_dashboard.jpg" alt="Client Dashboard">
-        <div class="screenshot-caption">Client Dashboard</div>
-      </div>
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/campaigns</div>
-        </div>
-        <img src="screenshots/campaigns.jpg" alt="Campaign Manager">
-        <div class="screenshot-caption">Campaign Manager</div>
+        <img src="screenshots/inbox_manager.png" alt="Inbox Manager">
+        <div class="screenshot-caption">Inbox Manager &mdash; Centralized reply tracking, AI-classified responses, and real-time lead engagement.</div>
       </div>
     </div>
     <div class="screenshot-pair reveal">
@@ -2118,16 +2112,34 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="browser-url">app.growthautomation.ai/content-engine</div>
         </div>
-        <img src="screenshots/content_engine.jpg" alt="Content Engine">
+        <img src="screenshots/content_engine.png" alt="Content Engine">
         <div class="screenshot-caption">Content Engine &mdash; AI-generated email campaigns with templates &amp; strategy angles.</div>
       </div>
       <div class="screenshot-frame">
         <div class="browser-chrome">
           <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">app.growthautomation.ai/strategy</div>
+        </div>
+        <img src="screenshots/strategy.png" alt="Strategy Development">
+        <div class="screenshot-caption">Strategy Development &mdash; AI-driven GTM strategy with ICP, messaging, and campaign planning.</div>
+      </div>
+    </div>
+    <div class="screenshot-pair reveal">
+      <div class="screenshot-frame">
+        <div class="browser-chrome">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="browser-url">app.growthautomation.ai/audiences</div>
         </div>
-        <img src="screenshots/audience_manager.jpg" alt="Audience Manager">
+        <img src="screenshots/audience_manager.png" alt="Audience Manager">
         <div class="screenshot-caption">Audience Manager &mdash; ICP targeting by role, industry, and geography.</div>
+      </div>
+      <div class="screenshot-frame">
+        <div class="browser-chrome">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">app.growthautomation.ai/deliverability</div>
+        </div>
+        <img src="screenshots/deliverability.png" alt="Deliverability Dashboard">
+        <div class="screenshot-caption">Deliverability &mdash; Monitor inbox placement, domain health, and sender reputation.</div>
       </div>
     </div>
     <div class="screenshot-pair reveal">
@@ -2136,7 +2148,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="browser-url">app.growthautomation.ai/dex</div>
         </div>
-        <img src="screenshots/dex_response.jpg" alt="Dex AI Campaign Analysis">
+        <img src="screenshots/dex_response.png" alt="Dex AI Campaign Analysis">
         <div class="screenshot-caption">Dex AI &mdash; Campaign Analysis</div>
       </div>
       <div class="screenshot-frame">
@@ -2144,17 +2156,25 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="browser-url">app.growthautomation.ai/dex/tools</div>
         </div>
-        <img src="screenshots/dex_tools.jpg" alt="Dex Tool Map">
+        <img src="screenshots/dex_tools.png" alt="Dex Tool Map">
         <div class="screenshot-caption">Dex Tool Map &mdash; AI tools registry filtered by access level.</div>
       </div>
     </div>
-    <div class="screenshot-row reveal">
+    <div class="screenshot-pair reveal">
+      <div class="screenshot-frame">
+        <div class="browser-chrome">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">app.growthautomation.ai/ai-usage</div>
+        </div>
+        <img src="screenshots/ai_usage.png" alt="AI Usage Dashboard">
+        <div class="screenshot-caption">AI Usage &mdash; Track token consumption, model performance, and automation efficiency.</div>
+      </div>
       <div class="screenshot-frame">
         <div class="browser-chrome">
           <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="browser-url">app.growthautomation.ai/knowledge-base</div>
         </div>
-        <img src="screenshots/knowledge_base.jpg" alt="Knowledge Base">
+        <img src="screenshots/knowledge_base.png" alt="Knowledge Base">
         <div class="screenshot-caption">Knowledge Base &mdash; 1,000+ indexed documents powering AI-driven search &amp; context.</div>
       </div>
     </div>
@@ -2289,7 +2309,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
             <div class="browser-url">app.growthautomation.ai/dex</div>
           </div>
           <div style="overflow:hidden;">
-            <img src="screenshots/dex_response.jpg" alt="Dex AI in action" style="width:100%;display:block;">
+            <img src="screenshots/dex_response.png" alt="Dex AI in action" style="width:100%;display:block;">
           </div>
         </div>
       </div>
@@ -2598,7 +2618,7 @@ const pips = document.querySelectorAll('.pip');
 const urlBar = document.getElementById('browserUrl');
 const slideUrls = [
   'app.growthautomation.ai/dashboard',
-  'app.growthautomation.ai/client',
+  'app.growthautomation.ai/inbox',
   'app.growthautomation.ai/content-engine',
   'app.growthautomation.ai/audiences',
   'app.growthautomation.ai/dex'
