@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Plan — Growth Automation</title>
+<meta name="description" content="Customize your Growth Automation plan. Slide to find the right outbound volume, then add LinkedIn outreach, AI auto-responder, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0B0B0F;
+  --bg2: #121218;
+  --bg3: #1A1A24;
+  --card: #13131D;
+  --card2: #1C1C2A;
+  --amber: #E8A023;
+  --amber-l: #F4B94D;
+  --amber-d: #C4841A;
+  --violet: #8B7FC7;
+  --violet-l: #A99FDB;
+  --violet-d: #6B5FAA;
+  --cream: #EDE9DF;
+  --muted: rgba(237,233,223,0.5);
+  --border: rgba(139,127,199,0.12);
+  --border2: rgba(139,127,199,0.25);
+  --r: 14px;
+  --r2: 20px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 90px;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(11,11,15,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost {
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--cream);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--violet); background: rgba(139,127,199,0.08); }
+.btn-amber {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+.btn-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ============ SECTIONS ============ */
+.section { padding: 100px 24px; }
+.section-heading {
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.section-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+  font-style: italic;
+}
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-header .section-sub { margin: 0 auto; }
+.section-alt { background: var(--bg2); }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  justify-content: center;
+}
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--violet);
+}
+.accent { color: var(--amber); }
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ HERO ============ */
+.plan-hero {
+  position: relative;
+  padding: 80px 24px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.plan-hero-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+.plan-hero h1 {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.plan-hero .section-sub {
+  margin: 0 auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ VOLUME SLIDER SECTION ============ */
+.slider-section {
+  padding: 40px 24px 60px;
+}
+.slider-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  padding: 48px 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.slider-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--violet-d), var(--violet), var(--amber), var(--violet), var(--violet-d));
+}
+.slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.slider-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet-l);
+  margin-bottom: 6px;
+}
+.slider-plan-name {
+  font-size: 42px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.slider-plan-name .plan-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--amber);
+  color: #0B0B0F;
+  padding: 3px 10px;
+  border-radius: 100px;
+  vertical-align: middle;
+  margin-left: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.slider-price-block {
+  text-align: right;
+}
+.slider-price {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.slider-price span {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.slider-contacts {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ============ CUSTOM RANGE SLIDER ============ */
+.slider-track-wrap {
+  position: relative;
+  padding: 0 0 52px;
+}
+.slider-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 100px;
+  background: var(--bg3);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: 3px solid #fff;
+  cursor: grab;
+  box-shadow: 0 0 20px rgba(232,160,35,0.5), 0 2px 8px rgba(0,0,0,0.4);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.slider-range::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 32px rgba(232,160,35,0.7), 0 2px 12px rgba(0,0,0,0.5);
+  transform: scale(1.1);
+}
+.slider-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+.slider-range::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: 3px solid #fff;
+  cursor: grab;
+  box-shadow: 0 0 20px rgba(232,160,35,0.5), 0 2px 8px rgba(0,0,0,0.4);
+}
+.slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8px;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--violet-d), var(--violet));
+  pointer-events: none;
+  z-index: 1;
+  transition: width 0.15s ease-out;
+}
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.slider-tick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  opacity: 0.5;
+  flex: 0 0 auto;
+  width: 80px;
+}
+.slider-tick:first-child { align-items: flex-start; }
+.slider-tick:last-child { align-items: flex-end; }
+.slider-tick.active { opacity: 1; }
+.slider-tick-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--violet);
+  transition: background 0.2s, transform 0.2s;
+}
+.slider-tick.active .slider-tick-dot {
+  background: var(--amber);
+  transform: scale(1.5);
+}
+.slider-tick-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.slider-tick.active .slider-tick-label {
+  color: var(--cream);
+}
+.slider-tick-volume {
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+/* ============ COMPARISON GRID ============ */
+.grid-section {
+  padding: 20px 24px 80px;
+}
+.grid-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+.grid-wrap::-webkit-scrollbar { height: 4px; }
+.grid-wrap::-webkit-scrollbar-track { background: var(--bg3); border-radius: 100px; }
+.grid-wrap::-webkit-scrollbar-thumb { background: var(--violet-d); border-radius: 100px; }
+
+.compare-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.compare-table th,
+.compare-table td {
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.compare-table th {
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  padding: 20px 16px 16px;
+  position: sticky;
+  top: 64px;
+  background: var(--bg);
+  z-index: 5;
+}
+.compare-table th .plan-col-price {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--amber);
+  margin-top: 4px;
+  letter-spacing: -0.02em;
+}
+.compare-table th .plan-col-price span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.compare-table th .plan-col-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--amber);
+  color: #0B0B0F;
+  padding: 2px 8px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.compare-table td:first-child,
+.compare-table th:first-child {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 500;
+  min-width: 180px;
+  position: sticky;
+  left: 0;
+  background: var(--bg);
+  z-index: 3;
+}
+.compare-table th:first-child {
+  z-index: 6;
+}
+.compare-table .cat-row td {
+  padding: 24px 16px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--violet-l);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(139,127,199,0.2);
+  text-align: left;
+  background: var(--bg);
+}
+.compare-table .active-col {
+  background: rgba(139,127,199,0.06) !important;
+  position: relative;
+}
+.compare-table th.active-col {
+  background: rgba(139,127,199,0.10) !important;
+}
+.compare-table th.active-col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--violet);
+}
+.check { color: var(--violet-l); font-weight: 700; }
+.cross-mark { color: rgba(237,233,223,0.2); }
+.dash { color: rgba(237,233,223,0.2); }
+
+/* ============ LINKEDIN ADD-ON ============ */
+.addon-section {
+  padding: 0 24px 80px;
+}
+.addon-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 40px 48px;
+}
+.addon-card-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.addon-card-desc {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  font-style: italic;
+}
+.linkedin-controls {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.linkedin-slider-wrap {
+  flex: 1;
+  min-width: 260px;
+}
+.linkedin-slider-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.linkedin-slider-label strong {
+  font-size: 28px;
+  color: var(--amber);
+  font-weight: 800;
+}
+.linkedin-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 100px;
+  background: var(--bg3);
+  outline: none;
+  cursor: pointer;
+}
+.linkedin-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--violet);
+  border: 2px solid #fff;
+  cursor: grab;
+  box-shadow: 0 0 12px rgba(139,127,199,0.4);
+}
+.linkedin-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--violet);
+  border: 2px solid #fff;
+  cursor: grab;
+}
+.linkedin-output {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.linkedin-output strong { color: var(--cream); font-weight: 600; }
+.linkedin-cost {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.linkedin-type-toggle {
+  display: flex;
+  gap: 0;
+  border-radius: 100px;
+  border: 1px solid var(--border2);
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: 24px;
+}
+.linkedin-type-btn {
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.linkedin-type-btn.active {
+  background: var(--violet);
+  color: #fff;
+}
+.linkedin-type-btn:hover:not(.active) {
+  background: rgba(139,127,199,0.1);
+  color: var(--cream);
+}
+.linkedin-included-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* ============ TOGGLE ADD-ON CARDS ============ */
+.toggles-section {
+  padding: 0 24px 80px;
+}
+.toggles-section .section-header { margin-bottom: 36px; }
+.toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.toggle-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 24px;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+.toggle-card.active {
+  border-color: var(--violet);
+  box-shadow: 0 0 24px rgba(139,127,199,0.15);
+}
+.toggle-card.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.toggle-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+.toggle-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.toggle-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 100px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.25s, background 0.25s;
+}
+.toggle-card.active .toggle-switch {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+.toggle-card.active .toggle-switch::after {
+  transform: translateX(20px);
+  background: #fff;
+}
+.toggle-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.toggle-card-price {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+.toggle-card-price span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ============ STICKY PRICE BAR ============ */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(11,11,15,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--border2);
+  padding: 14px 24px;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.sticky-bar.visible {
+  transform: translateY(0);
+}
+.sticky-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.sticky-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.sticky-plan {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+.sticky-plan .sticky-plan-name {
+  color: var(--violet-l);
+}
+.sticky-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border2);
+}
+.sticky-item {
+  font-size: 14px;
+  color: var(--muted);
+}
+.sticky-item strong {
+  color: var(--cream);
+  font-weight: 700;
+}
+.sticky-total {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+.sticky-total span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.sticky-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sticky-setup {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.4;
+}
+.sticky-cta {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.3);
+  white-space: nowrap;
+}
+.sticky-cta:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.45);
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.footer-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 320px;
+  font-style: italic;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-links { display: flex; gap: 16px; }
+.footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
+.footer-bottom-links a:hover { color: var(--cream); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .toggle-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .slider-card { padding: 32px 24px 28px; }
+  .slider-top { flex-direction: column; align-items: flex-start; }
+  .slider-price-block { text-align: left; }
+  .addon-card { padding: 28px 24px; }
+  .linkedin-controls { flex-direction: column; gap: 20px; }
+  .toggle-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .btn-ghost.hide-mobile { display: none; }
+  .sticky-left { gap: 12px; }
+  .sticky-divider { display: none; }
+  .sticky-bar-inner { flex-direction: column; text-align: center; gap: 8px; }
+  .sticky-right { width: 100%; justify-content: center; }
+  .compare-table th, .compare-table td { padding: 10px 12px; font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .plan-hero { padding: 60px 24px 24px; }
+  .slider-plan-name { font-size: 32px; }
+  .slider-price { font-size: 36px; }
+  .slider-tick-label { font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="ga-platform-landing-v5.html" class="nav-logo">Growth Automation</a>
+    <ul class="nav-links">
+      <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+      <li><a href="ga-platform-landing-v5.html#pricing">Pricing</a></li>
+      <li><a href="ga-platform-landing-v5.html#case-studies">Case Studies</a></li>
+      <li><a href="ga-platform-landing-v5.html#battle">Comparisons</a></li>
+      <li><a href="ga-platform-landing-v5.html#book">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
+      <a href="ga-platform-landing-v5.html#book" class="btn-amber">Book a Strategy Call &rarr;</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="plan-hero">
+  <div class="plan-hero-glow"></div>
+  <div class="section-label"><span class="section-label-line"></span>PLAN BUILDER<span class="section-label-line"></span></div>
+  <h1>Build Your <span class="accent">Plan</span></h1>
+  <p class="section-sub">Slide to find the right outbound volume, then customize with add-ons.</p>
+</section>
+
+<!-- ============ VOLUME SLIDER ============ -->
+<section class="slider-section reveal">
+  <div class="slider-card">
+    <div class="slider-top">
+      <div>
+        <div class="slider-label">Monthly Email Contacts</div>
+        <div class="slider-plan-name" id="planName">Growth<span class="plan-tag" id="planTag" style="display:inline-block;">Recommended</span></div>
+      </div>
+      <div class="slider-price-block">
+        <div class="slider-price" id="planPrice">$1,890<span>/mo</span></div>
+        <div class="slider-contacts" id="planContacts">10,000 email contacts/mo</div>
+      </div>
+    </div>
+    <div class="slider-track-wrap">
+      <div class="slider-fill" id="sliderFill"></div>
+      <input type="range" min="0" max="4" step="1" value="2" class="slider-range" id="planSlider">
+      <div class="slider-ticks" id="sliderTicks">
+        <div class="slider-tick" data-index="0">
+          <div class="slider-tick-dot"></div>
+          <div class="slider-tick-label">Solo</div>
+          <div class="slider-tick-volume">600</div>
+        </div>
+        <div class="slider-tick" data-index="1">
+          <div class="slider-tick-dot"></div>
+          <div class="slider-tick-label">Starter</div>
+          <div class="slider-tick-volume">3,250</div>
+        </div>
+        <div class="slider-tick active" data-index="2">
+          <div class="slider-tick-dot"></div>
+          <div class="slider-tick-label">Growth</div>
+          <div class="slider-tick-volume">10,000</div>
+        </div>
+        <div class="slider-tick" data-index="3">
+          <div class="slider-tick-dot"></div>
+          <div class="slider-tick-label">Pro</div>
+          <div class="slider-tick-volume">20,000</div>
+        </div>
+        <div class="slider-tick" data-index="4">
+          <div class="slider-tick-dot"></div>
+          <div class="slider-tick-label">Enterprise</div>
+          <div class="slider-tick-volume">40,000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAN COMPARISON GRID ============ -->
+<section class="grid-section reveal">
+  <div class="section-header">
+    <div class="section-label"><span class="section-label-line"></span>COMPARE PLANS<span class="section-label-line"></span></div>
+    <h2 class="section-heading" style="font-size:clamp(28px,3vw,42px);">Everything Included</h2>
+  </div>
+  <div class="grid-wrap">
+    <table class="compare-table" id="compareTable">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="plan-col" data-plan="0">Solo<span class="plan-col-price">$490<span>/mo</span></span></th>
+          <th class="plan-col" data-plan="1">Starter<span class="plan-col-price">$980<span>/mo</span></span></th>
+          <th class="plan-col active-col" data-plan="2">Growth<span class="plan-col-price">$1,890<span>/mo</span></span><span class="plan-col-badge">Recommended</span></th>
+          <th class="plan-col" data-plan="3">Pro<span class="plan-col-price">$2,890<span>/mo</span></span></th>
+          <th class="plan-col" data-plan="4">Enterprise<span class="plan-col-price">$4,790<span>/mo</span></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Pricing & Volume -->
+        <tr class="cat-row"><td colspan="6">Pricing &amp; Volume</td></tr>
+        <tr><td>Email Contacts/mo</td><td class="plan-col" data-plan="0">600</td><td class="plan-col" data-plan="1">3,250</td><td class="plan-col active-col" data-plan="2">10,000</td><td class="plan-col" data-plan="3">20,000</td><td class="plan-col" data-plan="4">40,000</td></tr>
+        <tr><td>Sending Inboxes</td><td class="plan-col" data-plan="0">4</td><td class="plan-col" data-plan="1">35</td><td class="plan-col active-col" data-plan="2">105</td><td class="plan-col" data-plan="3">210</td><td class="plan-col" data-plan="4">420</td></tr>
+
+        <!-- Lead Generation -->
+        <tr class="cat-row"><td colspan="6">Lead Generation</td></tr>
+        <tr><td>Avg Leads/mo</td><td class="plan-col" data-plan="0">2&ndash;4</td><td class="plan-col" data-plan="1">6&ndash;12+</td><td class="plan-col active-col" data-plan="2">20&ndash;40+</td><td class="plan-col" data-plan="3">40&ndash;80+</td><td class="plan-col" data-plan="4">80&ndash;160+</td></tr>
+        <tr><td>Guaranteed Leads</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="dash">&mdash;</span></td><td class="plan-col active-col" data-plan="2">10&ndash;20</td><td class="plan-col" data-plan="3">20&ndash;40</td><td class="plan-col" data-plan="4">40&ndash;80</td></tr>
+        <tr><td>3-Step Lead Qualification</td><td class="plan-col" data-plan="0"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+
+        <!-- LinkedIn Outreach -->
+        <tr class="cat-row"><td colspan="6">LinkedIn Outreach</td></tr>
+        <tr><td>LinkedIn Included</td><td class="plan-col" data-plan="0"><span class="cross-mark">&#10007;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>LinkedIn Profiles</td><td class="plan-col" data-plan="0">0</td><td class="plan-col" data-plan="1">1</td><td class="plan-col active-col" data-plan="2">2</td><td class="plan-col" data-plan="3">4</td><td class="plan-col" data-plan="4">8</td></tr>
+        <tr><td>LinkedIn Contacts/mo</td><td class="plan-col" data-plan="0">0</td><td class="plan-col" data-plan="1">800</td><td class="plan-col active-col" data-plan="2">1,600</td><td class="plan-col" data-plan="3">3,200</td><td class="plan-col" data-plan="4">6,400</td></tr>
+
+        <!-- Campaign Management -->
+        <tr class="cat-row"><td colspan="6">Campaign Management</td></tr>
+        <tr><td>Done-For-You</td><td class="plan-col" data-plan="0"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>Account Manager</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>Program Manager</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="dash">&mdash;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>Strategy Consulting</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="dash">&mdash;</span></td><td class="plan-col active-col" data-plan="2">Monthly</td><td class="plan-col" data-plan="3">Bi-weekly</td><td class="plan-col" data-plan="4">Bi-weekly</td></tr>
+
+        <!-- Targeting & Content -->
+        <tr class="cat-row"><td colspan="6">Targeting &amp; Content</td></tr>
+        <tr><td>AI Audience Targeting</td><td class="plan-col" data-plan="0"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>A/B Testing</td><td class="plan-col" data-plan="0"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>Multilingual</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>CRM Integration</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="dash">&mdash;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+
+        <!-- Reporting & Support -->
+        <tr class="cat-row"><td colspan="6">Reporting &amp; Support</td></tr>
+        <tr><td>Basic Reporting</td><td class="plan-col" data-plan="0"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="1"><span class="check">&#10003;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>Advanced Reporting</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="dash">&mdash;</span></td><td class="plan-col active-col" data-plan="2"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+        <tr><td>C-suite Support</td><td class="plan-col" data-plan="0"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="1"><span class="dash">&mdash;</span></td><td class="plan-col active-col" data-plan="2"><span class="dash">&mdash;</span></td><td class="plan-col" data-plan="3"><span class="check">&#10003;</span></td><td class="plan-col" data-plan="4"><span class="check">&#10003;</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ LINKEDIN ADD-ON ============ -->
+<section class="addon-section reveal">
+  <div class="section-header">
+    <div class="section-label"><span class="section-label-line"></span>LINKEDIN ADD-ON<span class="section-label-line"></span></div>
+    <h2 class="section-heading" style="font-size:clamp(28px,3vw,42px);">Add More LinkedIn Outreach</h2>
+    <p class="section-sub">Extend your reach beyond what is included in your plan.</p>
+  </div>
+  <div class="addon-card">
+    <div class="addon-card-title">Additional LinkedIn Accounts</div>
+    <div class="addon-card-desc">Add extra LinkedIn profiles on top of what your plan includes.</div>
+    <div class="linkedin-controls">
+      <div class="linkedin-slider-wrap">
+        <div class="linkedin-slider-label">Accounts: <strong id="liCount">0</strong></div>
+        <input type="range" min="0" max="10" step="1" value="0" class="linkedin-range" id="linkedinSlider">
+        <div class="linkedin-output" id="liOutput">0 additional connections/mo</div>
+        <div class="linkedin-cost" id="liCost">+$0/mo</div>
+        <div class="linkedin-included-note" id="liNote">Your Growth plan already includes 2 LinkedIn profiles (1,600 connections/mo)</div>
+      </div>
+      <div>
+        <div class="linkedin-type-toggle">
+          <button class="linkedin-type-btn active" id="liByo" data-type="byo">Bring Your Own &mdash; $360/mo</button>
+          <button class="linkedin-type-btn" id="liManaged" data-type="managed">GA Managed &mdash; $540/mo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOGGLE ADD-ONS ============ -->
+<section class="toggles-section reveal">
+  <div class="section-header">
+    <div class="section-label"><span class="section-label-line"></span>ADD-ONS<span class="section-label-line"></span></div>
+    <h2 class="section-heading" style="font-size:clamp(28px,3vw,42px);">Customize Your Stack</h2>
+    <p class="section-sub">Toggle add-ons on or off to tailor your plan.</p>
+  </div>
+  <div class="toggle-grid">
+    <!-- AI Auto-Responder -->
+    <div class="toggle-card active" id="addonResponder" data-addon="responder">
+      <div class="toggle-card-header">
+        <div class="toggle-card-name">AI Auto-Responder</div>
+        <div class="toggle-switch"></div>
+      </div>
+      <div class="toggle-card-desc">AI replies to warm leads within 5 minutes, trained on your data.</div>
+      <div class="toggle-card-price" id="responderPrice">$150<span>/mo</span></div>
+    </div>
+    <!-- GA Managed Meeting Booking -->
+    <div class="toggle-card" id="addonBooking" data-addon="booking">
+      <div class="toggle-card-header">
+        <div class="toggle-card-name">GA Managed Meeting Booking</div>
+        <div class="toggle-switch"></div>
+      </div>
+      <div class="toggle-card-desc">We book qualified meetings directly into your calendar.</div>
+      <div class="toggle-card-price" id="bookingPrice">$500<span>/mo</span></div>
+    </div>
+    <!-- Content Generator -->
+    <div class="toggle-card active" id="addonContent" data-addon="content">
+      <div class="toggle-card-header">
+        <div class="toggle-card-name">Content Generator</div>
+        <div class="toggle-switch"></div>
+      </div>
+      <div class="toggle-card-desc">AI-powered content generation for your campaigns.</div>
+      <div class="toggle-card-price" id="contentPrice">$150<span>/mo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STICKY PRICE BAR ============ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-inner">
+    <div class="sticky-left">
+      <div class="sticky-plan">Selected: <span class="sticky-plan-name" id="stickyPlanName">Growth</span> &mdash; <span id="stickyBasePrice">$1,890</span>/mo</div>
+      <div class="sticky-divider"></div>
+      <div class="sticky-item">Add-ons: <strong id="stickyAddons">+$300/mo</strong></div>
+      <div class="sticky-divider"></div>
+      <div class="sticky-total" id="stickyTotal">$2,190<span>/mo</span></div>
+    </div>
+    <div class="sticky-right">
+      <div class="sticky-setup" id="stickySetup">One-time setup included</div>
+      <a href="ga-platform-landing-v5.html#book" class="sticky-cta">Get Started &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Growth Automation</div>
+      <p class="footer-desc">AI-powered GTM campaigns that fill your pipeline &mdash; verified contacts, warm infrastructure, and Dex AI built in.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Campaign Builder</a></li>
+        <li><a href="#">Dex AI</a></li>
+        <li><a href="#">Audience Search</a></li>
+        <li><a href="#">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+        <li><a href="ga-platform-landing-v5.html#case-studies">Case Studies</a></li>
+        <li><a href="ga-platform-landing-v5.html#pricing">Pricing</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">GA vs Belkins</a>
+      <a href="#">GA vs Apollo</a>
+      <a href="#">GA vs Instantly</a>
+      <a href="#">GA vs Cleverly</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ PLAN DATA ============ */
+const PLANS = [
+  { name: 'Solo',       price: 490,  contacts: 600,    inboxes: 4,   liProfiles: 0, liContacts: 0,    responder: 50,  booking: null, content: null, autoResponder: false, autoBooking: false, autoContent: false },
+  { name: 'Starter',    price: 980,  contacts: 3250,   inboxes: 35,  liProfiles: 1, liContacts: 800,  responder: 50,  booking: 200,  content: 50,   autoResponder: false, autoBooking: false, autoContent: false },
+  { name: 'Growth',     price: 1890, contacts: 10000,  inboxes: 105, liProfiles: 2, liContacts: 1600, responder: 150, booking: 500,  content: 150,  autoResponder: true,  autoBooking: false, autoContent: true },
+  { name: 'Pro',        price: 2890, contacts: 20000,  inboxes: 210, liProfiles: 4, liContacts: 3200, responder: 250, booking: 1200, content: 250,  autoResponder: true,  autoBooking: true,  autoContent: true },
+  { name: 'Enterprise', price: 4790, contacts: 40000,  inboxes: 420, liProfiles: 8, liContacts: 6400, responder: 500, booking: 2400, content: 500,  autoResponder: true,  autoBooking: true,  autoContent: true }
+];
+
+const LI_BYO_PRICE = 360;
+const LI_MANAGED_PRICE = 540;
+const CONNECTIONS_PER_ACCOUNT = 800;
+
+/* ============ STATE ============ */
+let currentPlanIndex = 2; // Growth
+let linkedinType = 'byo'; // 'byo' or 'managed'
+let linkedinExtra = 0;
+let addons = { responder: true, booking: false, content: true };
+
+/* ============ DOM ============ */
+const planSlider = document.getElementById('planSlider');
+const sliderFill = document.getElementById('sliderFill');
+const planNameEl = document.getElementById('planName');
+const planTagEl = document.getElementById('planTag');
+const planPriceEl = document.getElementById('planPrice');
+const planContactsEl = document.getElementById('planContacts');
+const sliderTicks = document.querySelectorAll('.slider-tick');
+const compareTable = document.getElementById('compareTable');
+const linkedinSlider = document.getElementById('linkedinSlider');
+const liCountEl = document.getElementById('liCount');
+const liOutputEl = document.getElementById('liOutput');
+const liCostEl = document.getElementById('liCost');
+const liNoteEl = document.getElementById('liNote');
+const liByo = document.getElementById('liByo');
+const liManaged = document.getElementById('liManaged');
+const stickyBar = document.getElementById('stickyBar');
+const stickyPlanName = document.getElementById('stickyPlanName');
+const stickyBasePrice = document.getElementById('stickyBasePrice');
+const stickyAddons = document.getElementById('stickyAddons');
+const stickyTotal = document.getElementById('stickyTotal');
+const addonResponder = document.getElementById('addonResponder');
+const addonBooking = document.getElementById('addonBooking');
+const addonContent = document.getElementById('addonContent');
+const responderPriceEl = document.getElementById('responderPrice');
+const bookingPriceEl = document.getElementById('bookingPrice');
+const contentPriceEl = document.getElementById('contentPrice');
+
+/* ============ FORMAT ============ */
+function fmt(n) {
+  return '$' + n.toLocaleString('en-US');
+}
+function fmtNum(n) {
+  return n.toLocaleString('en-US');
+}
+
+/* ============ UPDATE SLIDER FILL ============ */
+function updateSliderFill() {
+  const pct = (currentPlanIndex / 4) * 100;
+  sliderFill.style.width = pct + '%';
+}
+
+/* ============ UPDATE PLAN DISPLAY ============ */
+function updatePlan(index, fromSlider) {
+  currentPlanIndex = index;
+  const plan = PLANS[index];
+
+  // Slider position
+  if (!fromSlider) planSlider.value = index;
+  updateSliderFill();
+
+  // Plan name & price
+  planNameEl.innerHTML = plan.name + (index === 2 ? '<span class="plan-tag">Recommended</span>' : '');
+  planPriceEl.innerHTML = fmt(plan.price) + '<span>/mo</span>';
+  planContactsEl.textContent = fmtNum(plan.contacts) + ' email contacts/mo';
+
+  // Ticks
+  sliderTicks.forEach((t, i) => t.classList.toggle('active', i === index));
+
+  // Table columns
+  const allCols = compareTable.querySelectorAll('.plan-col');
+  allCols.forEach(col => {
+    const colPlan = parseInt(col.dataset.plan);
+    col.classList.toggle('active-col', colPlan === index);
+  });
+
+  // Update add-on prices
+  updateAddonPrices();
+
+  // Auto-suggest add-ons
+  autoSuggestAddons();
+
+  // LinkedIn note
+  updateLinkedinNote();
+
+  // Totals
+  updateTotals();
+}
+
+/* ============ UPDATE ADD-ON PRICES ============ */
+function updateAddonPrices() {
+  const plan = PLANS[currentPlanIndex];
+
+  // Responder
+  if (plan.responder !== null) {
+    responderPriceEl.innerHTML = fmt(plan.responder) + '<span>/mo</span>';
+    addonResponder.classList.remove('disabled');
+  } else {
+    responderPriceEl.innerHTML = fmt(50) + '<span>/mo</span>';
+    addonResponder.classList.remove('disabled');
+  }
+
+  // Booking
+  if (plan.booking !== null) {
+    bookingPriceEl.innerHTML = fmt(plan.booking) + '<span>/mo</span>';
+    addonBooking.classList.remove('disabled');
+  } else {
+    bookingPriceEl.innerHTML = 'Not available';
+    addonBooking.classList.add('disabled');
+    addons.booking = false;
+    addonBooking.classList.remove('active');
+  }
+
+  // Content
+  if (plan.content !== null) {
+    contentPriceEl.innerHTML = fmt(plan.content) + '<span>/mo</span>';
+    addonContent.classList.remove('disabled');
+  } else {
+    contentPriceEl.innerHTML = 'Not available';
+    addonContent.classList.add('disabled');
+    addons.content = false;
+    addonContent.classList.remove('active');
+  }
+}
+
+/* ============ AUTO-SUGGEST ADD-ONS ============ */
+function autoSuggestAddons() {
+  const plan = PLANS[currentPlanIndex];
+
+  // Responder: auto-on for Growth+
+  addons.responder = plan.autoResponder;
+  addonResponder.classList.toggle('active', addons.responder);
+
+  // Booking: auto-on for Pro+
+  if (plan.booking !== null) {
+    addons.booking = plan.autoBooking;
+    addonBooking.classList.toggle('active', addons.booking);
+  }
+
+  // Content: auto-on for Growth+
+  if (plan.content !== null) {
+    addons.content = plan.autoContent;
+    addonContent.classList.toggle('active', addons.content);
+  }
+}
+
+/* ============ UPDATE LINKEDIN ============ */
+function updateLinkedin() {
+  linkedinExtra = parseInt(linkedinSlider.value);
+  const pricePerAccount = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
+  const totalConnections = linkedinExtra * CONNECTIONS_PER_ACCOUNT;
+  const totalCost = linkedinExtra * pricePerAccount;
+
+  liCountEl.textContent = linkedinExtra;
+  liOutputEl.innerHTML = '<strong>' + fmtNum(totalConnections) + '</strong> additional connections/mo';
+  liCostEl.textContent = '+' + fmt(totalCost) + '/mo';
+
+  updateLinkedinNote();
+  updateTotals();
+}
+
+function updateLinkedinNote() {
+  const plan = PLANS[currentPlanIndex];
+  if (plan.liProfiles > 0) {
+    liNoteEl.textContent = 'Your ' + plan.name + ' plan already includes ' + plan.liProfiles + ' LinkedIn profile' + (plan.liProfiles > 1 ? 's' : '') + ' (' + fmtNum(plan.liContacts) + ' connections/mo)';
+  } else {
+    liNoteEl.textContent = 'Your ' + plan.name + ' plan does not include LinkedIn outreach.';
+  }
+}
+
+/* ============ UPDATE TOTALS ============ */
+function updateTotals() {
+  const plan = PLANS[currentPlanIndex];
+  let addonTotal = 0;
+
+  if (addons.responder && plan.responder !== null) addonTotal += plan.responder;
+  if (addons.booking && plan.booking !== null) addonTotal += plan.booking;
+  if (addons.content && plan.content !== null) addonTotal += plan.content;
+
+  // LinkedIn extra
+  const liPrice = linkedinType === 'byo' ? LI_BYO_PRICE : LI_MANAGED_PRICE;
+  addonTotal += linkedinExtra * liPrice;
+
+  const total = plan.price + addonTotal;
+
+  stickyPlanName.textContent = plan.name;
+  stickyBasePrice.textContent = fmt(plan.price);
+  stickyAddons.textContent = '+' + fmt(addonTotal) + '/mo';
+  stickyTotal.innerHTML = fmt(total) + '<span>/mo</span>';
+}
+
+/* ============ EVENT LISTENERS ============ */
+
+// Plan slider
+planSlider.addEventListener('input', function() {
+  updatePlan(parseInt(this.value), true);
+});
+
+// Tick clicks
+sliderTicks.forEach(tick => {
+  tick.addEventListener('click', function() {
+    const idx = parseInt(this.dataset.index);
+    updatePlan(idx, false);
+  });
+});
+
+// LinkedIn slider
+linkedinSlider.addEventListener('input', updateLinkedin);
+
+// LinkedIn type toggle
+liByo.addEventListener('click', function() {
+  linkedinType = 'byo';
+  liByo.classList.add('active');
+  liManaged.classList.remove('active');
+  updateLinkedin();
+});
+liManaged.addEventListener('click', function() {
+  linkedinType = 'managed';
+  liManaged.classList.add('active');
+  liByo.classList.remove('active');
+  updateLinkedin();
+});
+
+// Toggle cards
+function setupToggle(card, key) {
+  card.addEventListener('click', function() {
+    if (card.classList.contains('disabled')) return;
+    addons[key] = !addons[key];
+    card.classList.toggle('active', addons[key]);
+    updateTotals();
+  });
+}
+setupToggle(addonResponder, 'responder');
+setupToggle(addonBooking, 'booking');
+setupToggle(addonContent, 'content');
+
+/* ============ STICKY BAR SHOW/HIDE ============ */
+const sliderSection = document.querySelector('.slider-section');
+const stickyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    stickyBar.classList.toggle('visible', !entry.isIntersecting);
+  });
+}, { threshold: 0, rootMargin: '-80px 0px 0px 0px' });
+stickyObserver.observe(sliderSection);
+
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============ REVEAL ANIMATIONS ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ============ INIT ============ */
+updatePlan(2, false);
+updateLinkedin();
+updateSliderFill();
+</script>
+
+</body>
+</html>
