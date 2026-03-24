@@ -222,6 +222,12 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   padding: 100px 24px 80px;
   overflow: hidden;
 }
+#vanta-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
 .hero-glow {
   position: absolute;
   top: -180px;
@@ -231,6 +237,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
   pointer-events: none;
   animation: glow-pulse 8s ease-in-out infinite;
+  z-index: 1;
 }
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.5; transform: scale(1); }
@@ -243,6 +250,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   grid-template-columns: 1.2fr 0.8fr;
   gap: 60px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 .hero-content { position: relative; z-index: 2; }
 @keyframes hero-in {
@@ -1774,6 +1783,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 3. HERO ============ -->
 <section class="hero" id="hero">
+  <div id="vanta-hero"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-content">
@@ -2769,6 +2779,30 @@ hamburger.addEventListener('click', () => {
     navLinks.style.borderBottom = '1px solid var(--border)';
   }
 });
+</script>
+
+<!-- Vanta.js 3D NET hero background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script>
+if (window.VANTA) {
+  VANTA.NET({
+    el: "#vanta-hero",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x8B7FC7,
+    backgroundColor: 0x0B0B0F,
+    points: 12.00,
+    maxDistance: 22.00,
+    spacing: 18.00,
+    showDots: true
+  });
+}
 </script>
 </body>
 </html>
