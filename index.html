@@ -2895,7 +2895,7 @@ hamburger.addEventListener('click', () => {
 });
 </script>
 
-<!-- GLSL Aurora Shader Hero Background -->
+<!-- GLSL Techno Plasma Shader Hero Background -->
 <script>
 (function() {
   'use strict';
@@ -2909,204 +2909,299 @@ hamburger.addEventListener('click', () => {
   var gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
   if (!gl) return;
 
-  var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
-  var hero = document.getElementById('hero');
-  if (hero) {
-    hero.addEventListener('mousemove', function(e) {
-      var r = hero.getBoundingClientRect();
-      mouse.tx = (e.clientX - r.left) / r.width;
-      mouse.ty = 1.0 - (e.clientY - r.top) / r.height;
-    });
-    hero.addEventListener('mouseleave', function() { mouse.tx = 0.5; mouse.ty = 0.5; });
-  }
+  // Mouse state — with velocity for trail energy
+  var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, vx: 0.0, vy: 0.0 };
+  // Click ripples — track up to 3 simultaneous
+  var clicks = [ {x:0.5,y:0.5,t:-99.}, {x:0.5,y:0.5,t:-99.}, {x:0.5,y:0.5,t:-99.} ];
+  var clickIdx = 0;
 
-  /* Vertex shader — fullscreen quad */
+  var hero = document.getElementById('hero');
+  var trackEl = hero || document.body;
+
+  trackEl.addEventListener('mousemove', function(e) {
+    var r = trackEl.getBoundingClientRect();
+    var nx = (e.clientX - r.left) / r.width;
+    var ny = 1.0 - (e.clientY - r.top) / r.height;
+    mouse.vx = nx - mouse.tx;
+    mouse.vy = ny - mouse.ty;
+    mouse.tx = nx;
+    mouse.ty = ny;
+  });
+  trackEl.addEventListener('click', function(e) {
+    var r = trackEl.getBoundingClientRect();
+    clicks[clickIdx % 3] = {
+      x: (e.clientX - r.left) / r.width,
+      y: 1.0 - (e.clientY - r.top) / r.height,
+      t: performance.now() / 1000.0
+    };
+    clickIdx++;
+  });
+
+  /* Vertex shader */
   var vsSource = `
     attribute vec2 a_position;
-    void main() {
-      gl_Position = vec4(a_position, 0.0, 1.0);
-    }
+    void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
   `;
 
-  /* Fragment shader — aurora with flowing gradients */
+  /* Fragment shader — hardcore techno plasma */
   var fsSource = `
     precision highp float;
     uniform vec2 u_resolution;
     uniform float u_time;
-    uniform vec2 u_mouse;
+    uniform vec2 u_mouse;       // 0..1 normalised, y=0 bottom
+    uniform float u_speed;      // mouse speed magnitude
+    uniform vec2 u_click0; uniform float u_click0t;
+    uniform vec2 u_click1; uniform float u_click1t;
+    uniform vec2 u_click2; uniform float u_click2t;
 
-    // Simplex-style noise
-    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-    vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
-
-    float snoise(vec2 v) {
-      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
-                         -0.577350269189626, 0.024390243902439);
-      vec2 i  = floor(v + dot(v, C.yy));
-      vec2 x0 = v - i + dot(i, C.xx);
-      vec2 i1;
-      i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-      vec4 x12 = x0.xyxy + C.xxzz;
-      x12.xy -= i1;
-      i = mod289(i);
-      vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0))
-                                   + i.x + vec3(0.0, i1.x, 1.0));
-      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
-                               dot(x12.zw,x12.zw)), 0.0);
-      m = m*m;
-      m = m*m;
-      vec3 x = 2.0 * fract(p * C.www) - 1.0;
-      vec3 h = abs(x) - 0.5;
-      vec3 ox = floor(x + 0.5);
-      vec3 a0 = x - ox;
-      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
-      vec3 g;
-      g.x  = a0.x  * x0.x  + h.x  * x0.y;
-      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-      return 130.0 * dot(m, g);
+    // ---- Simplex noise ----
+    vec3 _m289(vec3 x){return x-floor(x*(1./289.))*289.;}
+    vec2 _m289(vec2 x){return x-floor(x*(1./289.))*289.;}
+    vec3 _perm(vec3 x){return _m289(((x*34.)+1.)*x);}
+    float snoise(vec2 v){
+      const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);
+      vec2 i=floor(v+dot(v,C.yy)), x0=v-i+dot(i,C.xx);
+      vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+      vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1;
+      i=_m289(i);
+      vec3 p=_perm(_perm(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+      vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+      m=m*m; m=m*m;
+      vec3 xx=2.*fract(p*C.www)-1., hh=abs(xx)-.5, ox=floor(xx+.5), a0=xx-ox;
+      m*=1.79284291400159-.85373472095314*(a0*a0+hh*hh);
+      vec3 g; g.x=a0.x*x0.x+hh.x*x0.y; g.yz=a0.yz*x12.xz+hh.yz*x12.yw;
+      return 130.*dot(m,g);
     }
 
-    float fbm(vec2 p) {
-      float v = 0.0;
-      float a = 0.5;
-      vec2 shift = vec2(100.0);
-      mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
-      for (int i = 0; i < 5; i++) {
-        v += a * snoise(p);
-        p = rot * p * 2.0 + shift;
-        a *= 0.5;
-      }
+    // ---- FBM — 7 octaves for extreme detail ----
+    float fbm(vec2 p){
+      float v=0., a=.5;
+      mat2 rot=mat2(cos(.5),sin(.5),-sin(.5),cos(.5));
+      for(int i=0;i<7;i++){ v+=a*snoise(p); p=rot*p*2.1+vec2(100.); a*=.5; }
       return v;
     }
 
-    void main() {
+    // ---- Click ripple contribution ----
+    float clickRipple(vec2 st, float aspect, vec2 cpos, float ct, float now){
+      float age = now - ct;
+      if(age < 0. || age > 2.5) return 0.;
+      vec2 cp = vec2(cpos.x * aspect, cpos.y);
+      float d = length(st - cp);
+      float ring = sin(d * 40. - age * 18.) * exp(-d * 3.) * exp(-age * 2.5);
+      return max(ring, 0.) * (1. - age/2.5);
+    }
+
+    void main(){
       vec2 uv = gl_FragCoord.xy / u_resolution.xy;
       float aspect = u_resolution.x / u_resolution.y;
-      vec2 p = vec2(uv.x * aspect, uv.y);
+      vec2 st = vec2(uv.x * aspect, uv.y);
+      float t = u_time;
 
-      float t = u_time * 0.15;
+      // ---- Pulses / beat ----
+      float beatA = .5+.5*sin(t*7.0);        // ~7 Hz fast pulse
+      float beatB = .5+.5*sin(t*2.8+1.0);    // slow swell
+      float beatC = .5+.5*sin(t*13.0+.7);    // glitch flicker
 
-      // Mouse influence — gentle distortion
-      vec2 mouseOff = (u_mouse - 0.5) * 0.3;
+      // ---- Mouse in aspect-corrected space ----
+      vec2 mouseUV = vec2(u_mouse.x * aspect, u_mouse.y);
+      vec2 toM = st - mouseUV;
+      float dist = length(toM);
+      float ang  = atan(toM.y, toM.x);
 
-      // Layer 1: primary aurora bands
-      float n1 = fbm(p * 1.2 + vec2(t * 0.7, t * 0.3) + mouseOff);
-      float n2 = fbm(p * 1.8 + vec2(-t * 0.5, t * 0.6) - mouseOff * 0.5);
-      float n3 = fbm(p * 0.8 + vec2(t * 0.3, -t * 0.4) + mouseOff * 0.3);
+      // Exponential influence fields
+      float mPow  = exp(-dist * 2.0);   // wide field
+      float mPow2 = exp(-dist * 5.0);   // tight burst
+      float speed = clamp(u_speed * 60., 0., 1.);
 
-      // Aurora wave shapes — concentrated in upper portion
-      float wave1 = smoothstep(0.0, 0.6, uv.y) * smoothstep(1.0, 0.4, uv.y);
-      float wave2 = smoothstep(0.1, 0.7, uv.y) * smoothstep(1.0, 0.5, uv.y);
-      float wave3 = smoothstep(0.0, 0.5, uv.y) * smoothstep(0.9, 0.3, uv.y);
+      // ---- Vortex / spiral warp at cursor ----
+      float vortAngle = ang - dist * 10. + t * 5.0 + speed * 4.0;
+      vec2  vortWarp  = vec2(cos(vortAngle), sin(vortAngle)) * mPow * (0.3 + speed * 0.4);
 
-      // Flowing curtain effect
-      float curtain1 = sin(uv.x * 6.0 + n1 * 3.0 + t * 2.0) * 0.5 + 0.5;
-      float curtain2 = sin(uv.x * 4.0 + n2 * 4.0 - t * 1.5) * 0.5 + 0.5;
-      float curtain3 = sin(uv.x * 8.0 + n3 * 2.5 + t * 1.0) * 0.5 + 0.5;
+      // ---- Radial shockwave rings from cursor ----
+      float shock1 = sin(dist * 30. - t * 14.) * exp(-dist * 3.5) * mPow;
+      float shock2 = sin(dist * 20. - t * 10. + 1.2) * exp(-dist * 4.0) * mPow;
+      float shockAmt = (pow(max(shock1,0.),2.) + pow(max(shock2,0.),2.)) * .18;
+      vec2  shockWarp = normalize(toM + .0001) * shockAmt;
 
-      // Color palette — violet, amber, deep purple
-      vec3 violet   = vec3(0.545, 0.498, 0.780);  // #8B7FC7
-      vec3 violetL  = vec3(0.663, 0.624, 0.859);  // #A99FDB
-      vec3 amber    = vec3(0.910, 0.627, 0.137);  // #E8A023
-      vec3 deepPurp = vec3(0.318, 0.247, 0.545);  // #513F8B
-      vec3 dark     = vec3(0.043, 0.043, 0.059);  // #0B0B0F
+      // ---- Click ripples ----
+      float cr0 = clickRipple(st, aspect, u_click0, u_click0t, t);
+      float cr1 = clickRipple(st, aspect, u_click1, u_click1t, t);
+      float cr2 = clickRipple(st, aspect, u_click2, u_click2t, t);
+      float clickEnergy = cr0 + cr1 + cr2;
 
-      // Compose aurora layers
-      float a1 = curtain1 * wave1 * (n1 * 0.5 + 0.5) * 0.35;
-      float a2 = curtain2 * wave2 * (n2 * 0.5 + 0.5) * 0.25;
-      float a3 = curtain3 * wave3 * (n3 * 0.5 + 0.5) * 0.15;
+      // ---- Domain-warped plasma ----
+      vec2 p = st * 2.8 + vortWarp + shockWarp;
+      p += vec2(t * 0.18, t * 0.09);
 
-      vec3 col = dark;
-      col = mix(col, deepPurp, a1 * 1.2);
-      col = mix(col, violet,   a1 * 0.8 + a2 * 0.6);
-      col = mix(col, violetL,  a2 * 0.5);
-      col = mix(col, amber,    a3 * 0.7 * smoothstep(0.3, 0.7, curtain1));
+      vec2 q = vec2(fbm(p                      + vec2(0.0,0.0) + t*.12),
+                    fbm(p                      + vec2(5.2,1.3) - t*.09));
+      vec2 r = vec2(fbm(p + 4.8*q + vec2(1.7,9.2) + .20*t),
+                    fbm(p + 4.8*q + vec2(8.3,2.8) + .16*t));
 
-      // Subtle star-like sparkles
-      float sparkle = snoise(uv * 80.0 + t * 0.5);
-      sparkle = pow(max(sparkle, 0.0), 12.0) * 0.4;
-      col += sparkle * violetL;
+      // Extra mouse warping injected at deep level
+      float f = fbm(p + 4.2*r + vortWarp * 2.5 + shockWarp * 3.0);
 
-      // Vertical fade — stronger aurora at top, fading to dark at bottom
-      float topFade = smoothstep(0.0, 0.3, uv.y);
-      float bottomFade = smoothstep(0.0, 0.15, uv.y);
-      col = mix(dark, col, topFade * 0.9 + 0.1);
-      col *= bottomFade;
+      // ---- Neon palette ----
+      vec3 electricBlue  = vec3(0.00, 0.65, 1.00);
+      vec3 hotMagenta    = vec3(1.00, 0.00, 0.65);
+      vec3 deepViolet    = vec3(0.38, 0.00, 0.95);
+      vec3 acidGreen     = vec3(0.15, 1.00, 0.35);
+      vec3 electricAmber = vec3(1.00, 0.55, 0.00);
+      vec3 darkBase      = vec3(0.035, 0.030, 0.055);
 
-      // Slight vignette
-      float vignette = 1.0 - 0.3 * length((uv - 0.5) * vec2(1.2, 1.0));
-      col *= vignette;
+      // Colour mixing driven by domain-warp output
+      float cs = fract(f * .5 + .5 + t * .04);
+      vec3 col = mix(deepViolet,    electricBlue,  smoothstep(0.0, 0.33, cs));
+      col      = mix(col,           hotMagenta,    smoothstep(0.33, 0.66, cs));
+      col      = mix(col,           deepViolet,    smoothstep(0.66, 1.0,  cs));
+
+      // Subtle acid pop on beat
+      col = mix(col, acidGreen * 0.6, beatC * 0.08 * smoothstep(0.6, 0.8, f+.5));
+
+      // Brightness from warp depth
+      float lum = pow((f+1.)*.5, 1.6) * 1.5;
+      col *= lum;
+
+      // ---- Laser strands — thin electric lines ----
+      float laser1 = pow(abs(sin(f * 22. + t * 4.0)), 32.) * 2.5;
+      float laser2 = pow(abs(sin(f * 16. - t * 3.2)), 28.) * 1.8;
+      float laser3 = pow(abs(sin(f * 30. + t * 6.5)), 40.) * 3.0 * beatC;
+      col += laser1 * electricBlue;
+      col += laser2 * hotMagenta;
+      col += laser3 * vec3(1.0, 1.0, 0.6);
+
+      // ---- Beat pulse ----
+      col *= .65 + .35 * beatB;
+      col += electricBlue * .04 * beatA;
+
+      // ---- Mouse burst — massive colour explosion at cursor ----
+      float burst = mPow2 * mPow2 * 3.0;
+      col += burst * mix(electricBlue, hotMagenta, beatA) * (1. + speed * 2.);
+
+      // Speed trail glow — follows fast movement
+      col += mPow * speed * electricBlue * 1.2;
+
+      // ---- Expanding ring halos from cursor (persistent) ----
+      float ringAge1 = fract(t * 0.45);
+      float ringAge2 = fract(t * 0.45 + 0.5);
+      float ring1 = exp(-abs(dist - ringAge1 * 0.9) * 28.) * (1.-ringAge1) * mPow * 2.5;
+      float ring2 = exp(-abs(dist - ringAge2 * 0.9) * 22.) * (1.-ringAge2) * mPow * 2.0;
+      col += ring1 * electricBlue;
+      col += ring2 * hotMagenta * .7;
+
+      // ---- Click ripple colour ----
+      col += max(clickEnergy, 0.) * mix(electricBlue, hotMagenta, beatA) * 2.0;
+
+      // ---- Chromatic aberration — splits at cursor + edges ----
+      float caAmt = .012 + mPow * .04 + speed * .03;
+      vec2 caDir = normalize(uv - .5 + .0001);
+      // Sample neighbouring domain values for R and B channels
+      vec2 pR = st*2.8 + vortWarp + shockWarp + caDir*caAmt*18. + vec2(t*.18,t*.09);
+      vec2 pB = st*2.8 + vortWarp + shockWarp - caDir*caAmt*18. + vec2(t*.18,t*.09);
+      vec2 qR = vec2(fbm(pR+vec2(5.2,1.3)), fbm(pR+vec2(0.,0.)));
+      vec2 qB = vec2(fbm(pB+vec2(5.2,1.3)), fbm(pB+vec2(0.,0.)));
+      float fR = fbm(pR + 4.2*qR);
+      float fB = fbm(pB + 4.2*qB);
+      col.r = mix(col.r, pow(clamp((fR+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*12.);
+      col.b = mix(col.b, pow(clamp((fB+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*12.);
+
+      // ---- Scanlines — sharp techno CRT ----
+      float scan = sin(gl_FragCoord.y * 6.28318) * .025 + .975;
+      col *= scan;
+
+      // ---- Edge vignette ----
+      float vig = 1. - smoothstep(.35, 1.15, length((uv-.5)*vec2(1.5,1.0)));
+      col *= vig;
+
+      // ---- Gamma + clamp ----
+      col = pow(max(col, vec3(0.)), vec3(0.72));
 
       gl_FragColor = vec4(col, 1.0);
     }
   `;
 
-  function createShader(type, source) {
+  function mkShader(type, src) {
     var s = gl.createShader(type);
-    gl.shaderSource(s, source);
+    gl.shaderSource(s, src);
     gl.compileShader(s);
     if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-      console.error(gl.getShaderInfoLog(s));
+      console.error('Shader error:', gl.getShaderInfoLog(s));
       gl.deleteShader(s);
       return null;
     }
     return s;
   }
 
-  var vs = createShader(gl.VERTEX_SHADER, vsSource);
-  var fs = createShader(gl.FRAGMENT_SHADER, fsSource);
+  var vs = mkShader(gl.VERTEX_SHADER, vsSource);
+  var fs = mkShader(gl.FRAGMENT_SHADER, fsSource);
   if (!vs || !fs) return;
 
-  var program = gl.createProgram();
-  gl.attachShader(program, vs);
-  gl.attachShader(program, fs);
-  gl.linkProgram(program);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.error(gl.getProgramInfoLog(program));
+  var prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(prog));
     return;
   }
-  gl.useProgram(program);
+  gl.useProgram(prog);
 
   /* Fullscreen quad */
-  var posAttr = gl.getAttribLocation(program, 'a_position');
+  var posAttr = gl.getAttribLocation(prog, 'a_position');
   var buf = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buf);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    -1, -1,  1, -1,  -1, 1,
-    -1,  1,  1, -1,   1, 1
+    -1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1
   ]), gl.STATIC_DRAW);
   gl.enableVertexAttribArray(posAttr);
   gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
 
   /* Uniforms */
-  var uRes   = gl.getUniformLocation(program, 'u_resolution');
-  var uTime  = gl.getUniformLocation(program, 'u_time');
-  var uMouse = gl.getUniformLocation(program, 'u_mouse');
+  var uRes    = gl.getUniformLocation(prog, 'u_resolution');
+  var uTime   = gl.getUniformLocation(prog, 'u_time');
+  var uMouse  = gl.getUniformLocation(prog, 'u_mouse');
+  var uSpeed  = gl.getUniformLocation(prog, 'u_speed');
+  var uC0     = gl.getUniformLocation(prog, 'u_click0');
+  var uC0t    = gl.getUniformLocation(prog, 'u_click0t');
+  var uC1     = gl.getUniformLocation(prog, 'u_click1');
+  var uC1t    = gl.getUniformLocation(prog, 'u_click1t');
+  var uC2     = gl.getUniformLocation(prog, 'u_click2');
+  var uC2t    = gl.getUniformLocation(prog, 'u_click2t');
 
-  var startTime = performance.now();
+  var t0 = performance.now();
 
   function resize() {
-    var dpr = Math.min(window.devicePixelRatio, 1.5); // cap for performance
-    var w = container.clientWidth;
-    var h = container.clientHeight;
-    canvas.width  = w * dpr;
-    canvas.height = h * dpr;
+    var dpr = Math.min(window.devicePixelRatio, 2.0);
+    canvas.width  = container.clientWidth  * dpr;
+    canvas.height = container.clientHeight * dpr;
     gl.viewport(0, 0, canvas.width, canvas.height);
   }
   resize();
   window.addEventListener('resize', resize);
 
-  function render() {
-    // Smooth mouse interpolation
-    mouse.x += (mouse.tx - mouse.x) * 0.03;
-    mouse.y += (mouse.ty - mouse.y) * 0.03;
+  var smoothSpeed = 0;
 
-    var elapsed = (performance.now() - startTime) / 1000.0;
+  function render() {
+    // Fast mouse lerp for snappy feel
+    var lerpAmt = 0.10;
+    mouse.x += (mouse.tx - mouse.x) * lerpAmt;
+    mouse.y += (mouse.ty - mouse.y) * lerpAmt;
+
+    // Smooth speed
+    var rawSpeed = Math.sqrt(mouse.vx*mouse.vx + mouse.vy*mouse.vy);
+    smoothSpeed += (rawSpeed - smoothSpeed) * 0.15;
+    mouse.vx *= 0.8;
+    mouse.vy *= 0.8;
+
+    var elapsed = (performance.now() - t0) / 1000.0;
 
     gl.uniform2f(uRes, canvas.width, canvas.height);
     gl.uniform1f(uTime, elapsed);
     gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.uniform1f(uSpeed, smoothSpeed);
+    gl.uniform2f(uC0, clicks[0].x, clicks[0].y); gl.uniform1f(uC0t, clicks[0].t);
+    gl.uniform2f(uC1, clicks[1].x, clicks[1].y); gl.uniform1f(uC1t, clicks[1].t);
+    gl.uniform2f(uC2, clicks[2].x, clicks[2].y); gl.uniform1f(uC2t, clicks[2].t);
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     requestAnimationFrame(render);
