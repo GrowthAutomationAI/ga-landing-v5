@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies & References — Growth Automation</title>
+<meta name="description" content="See how Vodafone, Payoneer, Ignyte and 50+ B2B brands generate guaranteed qualified leads with Growth Automation's AI-powered outbound platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0B0B0F;
+  --bg2: #121218;
+  --bg3: #1A1A24;
+  --card: #13131D;
+  --card2: #1C1C2A;
+  --amber: #E8A023;
+  --amber-l: #F4B94D;
+  --amber-d: #C4841A;
+  --violet: #8B7FC7;
+  --violet-l: #A99FDB;
+  --violet-d: #6B5FAA;
+  --cream: #EDE9DF;
+  --muted: rgba(237,233,223,0.5);
+  --border: rgba(139,127,199,0.12);
+  --border2: rgba(139,127,199,0.25);
+  --r: 14px;
+  --r2: 20px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(11,11,15,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--cream); }
+.nav-links a.active::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost {
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--cream);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--violet); background: rgba(139,127,199,0.08); }
+.btn-amber {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+.btn-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.btn-amber-lg {
+  padding: 16px 36px;
+  font-size: 16px;
+  box-shadow: 0 0 32px rgba(232,160,35,0.25);
+}
+.btn-amber-lg:hover { box-shadow: 0 0 48px rgba(232,160,35,0.45); }
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ============ ANNOUNCEMENT BAR ============ */
+.announce-bar {
+  background: linear-gradient(90deg, var(--violet-d), var(--violet), var(--violet-d));
+  padding: 11px 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1001;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+}
+.announce-bar a {
+  color: var(--violet-l);
+  font-weight: 700;
+  margin-left: 10px;
+  transition: color 0.2s;
+}
+.announce-bar a:hover { color: #fff; }
+.announce-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(237,233,223,0.4);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.announce-close:hover { color: var(--cream); }
+.announce-bar.hidden { display: none; }
+
+/* ============ SECTIONS ============ */
+.section { padding: 100px 24px; }
+.section-sm { padding: 60px 24px; }
+.section-heading {
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.section-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+  font-style: italic;
+}
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-header .section-sub { margin: 0 auto; }
+.section-alt { background: var(--bg2); }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--violet);
+}
+.accent { color: var(--amber); }
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ DIAMOND SEPARATOR ============ */
+.diamond-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+.diamond-sep::before, .diamond-sep::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(139,127,199,0.4), transparent);
+}
+.diamond-sep span {
+  width: 8px;
+  height: 8px;
+  background: var(--violet);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* ============ HERO ============ */
+.page-hero {
+  position: relative;
+  padding: 80px 24px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+.page-hero-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+.page-hero .hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(139,127,199,0.3);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.08);
+  margin-bottom: 28px;
+}
+.page-hero h1 {
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.page-hero p {
+  font-size: 19px;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ============ SUCCESS STORIES (TABS) ============ */
+.stories-section {
+  padding: 80px 24px 100px;
+}
+.stories-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.stories-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 100px;
+}
+.story-tab {
+  padding: 20px 24px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+  font-family: 'Inter Tight', sans-serif;
+  letter-spacing: -0.02em;
+  transition: color 0.3s, background 0.3s, padding-left 0.3s;
+  border-radius: var(--r);
+  position: relative;
+}
+.story-tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--violet);
+  border-radius: 2px;
+  transition: height 0.3s;
+}
+.story-tab:hover {
+  color: var(--cream);
+  background: rgba(139,127,199,0.04);
+}
+.story-tab.active {
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.06);
+  padding-left: 28px;
+}
+.story-tab.active::before {
+  height: 60%;
+}
+.stories-content {
+  position: relative;
+  min-height: 320px;
+}
+.story-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+  pointer-events: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 48px 44px;
+}
+.story-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  position: relative;
+}
+.story-panel-company {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--violet-l);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.story-panel-company::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--violet);
+}
+.story-panel-text {
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--cream);
+  font-weight: 400;
+}
+.story-panel-metrics {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.story-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.story-metric-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+}
+.story-metric-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ============ REVIEWS GRID ============ */
+.reviews-section {
+  padding: 100px 24px;
+  background: var(--bg2);
+}
+.reviews-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.review-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 32px 28px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.review-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+.review-company {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.review-company::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--violet);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.review-quote {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--cream);
+  margin-bottom: 20px;
+  font-style: italic;
+  opacity: 0.9;
+}
+.review-quote::before {
+  content: '\201C';
+  color: var(--violet);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  margin-right: 4px;
+  line-height: 0;
+  vertical-align: -4px;
+}
+.review-author {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cream);
+}
+.review-role {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ============ CTA BANNER ============ */
+.cta-section {
+  padding: 100px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section .cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section h2 {
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.cta-section p {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 36px;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.footer-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 320px;
+  font-style: italic;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-links { display: flex; gap: 16px; }
+.footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
+.footer-bottom-links a:hover { color: var(--cream); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .stories-layout { grid-template-columns: 240px 1fr; gap: 32px; }
+  .story-tab { font-size: 17px; padding: 16px 20px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .stories-layout { grid-template-columns: 1fr; gap: 24px; }
+  .stories-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0;
+    position: static;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+  }
+  .stories-tabs::-webkit-scrollbar { display: none; }
+  .story-tab {
+    white-space: nowrap;
+    font-size: 15px;
+    padding: 12px 18px;
+    flex-shrink: 0;
+  }
+  .story-tab::before { display: none; }
+  .story-tab.active { padding-left: 18px; border-bottom: 2px solid var(--violet); border-radius: 0; }
+  .stories-content { min-height: auto; }
+  .story-panel { padding: 32px 24px; }
+  .story-panel-text { font-size: 16px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .section { padding: 64px 24px; }
+  .btn-ghost.hide-mobile { display: none; }
+  .page-hero { padding: 60px 24px 40px; }
+}
+@media (max-width: 480px) {
+  .story-panel-metrics { flex-direction: column; gap: 16px; }
+  .page-hero h1 { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="announce-bar" id="announceBar">
+  Now accepting new clients for Q2 2026<a href="ga-platform-landing-v5.html#book">Book a strategy call &rarr;</a>
+  <button class="announce-close" onclick="document.getElementById('announceBar').classList.add('hidden')">&times;</button>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="ga-platform-landing-v5.html" class="nav-logo">Growth Automation</a>
+    <ul class="nav-links">
+      <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+      <li><a href="ga-platform-landing-v5.html#pricing">Pricing</a></li>
+      <li><a href="case-studies.html" class="active">Case Studies</a></li>
+      <li><a href="#">Comparisons</a></li>
+      <li><a href="ga-platform-landing-v5.html#book">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
+      <button class="btn-amber" onclick="window.location.href='ga-platform-landing-v5.html#book'">Book a Strategy Call &rarr;</button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="hero-badge">&#10022; PROVEN RESULTS &mdash; REAL CLIENTS</div>
+  <h1>Trusted by <span class="accent">50+</span> B2B Brands</h1>
+  <p>From global enterprises to high-growth startups, see how Growth Automation delivers guaranteed qualified leads and measurable ROI.</p>
+</section>
+
+<div class="diamond-sep"><span></span></div>
+
+<!-- ============ SUCCESS STORIES ============ -->
+<section class="stories-section" id="success-stories">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;"><div class="section-label-line"></div> Success Stories</div>
+    <div class="section-header reveal">
+      <h2 class="section-heading">Success Stories</h2>
+      <p class="section-sub">Deep dives into how our clients are winning with AI-powered outbound.</p>
+    </div>
+  </div>
+  <div class="stories-layout">
+    <div class="stories-tabs reveal">
+      <button class="story-tab active" data-story="vodafone">Vodafone</button>
+      <button class="story-tab" data-story="payoneer">Payoneer</button>
+      <button class="story-tab" data-story="novated">Novated Lease</button>
+      <button class="story-tab" data-story="ignyte">Ignyte</button>
+      <button class="story-tab" data-story="fitouts">Total Fitouts</button>
+      <button class="story-tab" data-story="the1">THE1</button>
+    </div>
+    <div class="stories-content reveal">
+      <!-- Vodafone -->
+      <div class="story-panel active" data-story="vodafone">
+        <div class="story-panel-company">Vodafone</div>
+        <p class="story-panel-text">With Growth Automation, Vodafone has generated over 115 qualified leads to date, translating into a projected $500K in new revenue and delivering over 30x ROI. By automating their top-of-funnel outreach, they reclaimed countless hours once lost to prospecting and follow-ups &mdash; now redirected toward closing deals and expanding their market share. All through a setup completed in just 14 days.</p>
+        <div class="story-panel-metrics">
+          <div class="story-metric">
+            <div class="story-metric-value">115+</div>
+            <div class="story-metric-label">Qualified Leads</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">$500K</div>
+            <div class="story-metric-label">Projected Revenue</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">30x</div>
+            <div class="story-metric-label">ROI</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">14 days</div>
+            <div class="story-metric-label">Setup Time</div>
+          </div>
+        </div>
+      </div>
+      <!-- Payoneer -->
+      <div class="story-panel" data-story="payoneer">
+        <div class="story-panel-company">Payoneer</div>
+        <p class="story-panel-text">Payoneer has successfully onboarded over 80 new clients to date through Growth Automation's AI-driven audience targeting &mdash; connecting with the right decision-makers across 7 countries and accelerating their outreach at a remarkable speed. A 33% close rate highlights the strength of our 3-step lead qualification process.</p>
+        <div class="story-panel-metrics">
+          <div class="story-metric">
+            <div class="story-metric-value">80+</div>
+            <div class="story-metric-label">New Clients</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">7</div>
+            <div class="story-metric-label">Countries</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">33%</div>
+            <div class="story-metric-label">Close Rate</div>
+          </div>
+        </div>
+      </div>
+      <!-- Novated Lease -->
+      <div class="story-panel" data-story="novated">
+        <div class="story-panel-company">Novated Lease</div>
+        <p class="story-panel-text">20% of the first 100 leads for Novated Lease has already been converted to new car owners. Their campaign combines AI enriched contact lists, on-brand messaging, and advanced deliverability control.</p>
+        <div class="story-panel-metrics">
+          <div class="story-metric">
+            <div class="story-metric-value">20%</div>
+            <div class="story-metric-label">Conversion Rate</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">100+</div>
+            <div class="story-metric-label">Initial Leads</div>
+          </div>
+        </div>
+      </div>
+      <!-- Ignyte -->
+      <div class="story-panel" data-story="ignyte">
+        <div class="story-panel-company">Ignyte</div>
+        <p class="story-panel-text">With Growth Automation, Ignyte generates over 100 qualified leads each month and has achieved a 9x ROI. Their campaign is fully managed end-to-end, combining multichannel outreach via email and LinkedIn, 260 sending inboxes running in parallel, AI-optimised copy testing, and real-time deliverability monitoring.</p>
+        <div class="story-panel-metrics">
+          <div class="story-metric">
+            <div class="story-metric-value">100+</div>
+            <div class="story-metric-label">Leads / Month</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">9x</div>
+            <div class="story-metric-label">ROI</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">260</div>
+            <div class="story-metric-label">Sending Inboxes</div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Fitouts -->
+      <div class="story-panel" data-story="fitouts">
+        <div class="story-panel-company">Total Fitouts</div>
+        <p class="story-panel-text">Growth Automation has delivered 110 leads to date to Total Fitouts. With 70% of them progressing toward a fitout solution, Total Fitouts is seeing strong momentum.</p>
+        <div class="story-panel-metrics">
+          <div class="story-metric">
+            <div class="story-metric-value">110</div>
+            <div class="story-metric-label">Leads Delivered</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">70%</div>
+            <div class="story-metric-label">Progressing</div>
+          </div>
+        </div>
+      </div>
+      <!-- THE1 -->
+      <div class="story-panel" data-story="the1">
+        <div class="story-panel-company">THE1</div>
+        <p class="story-panel-text">With Growth Automation, THE1 generates an average of 140 qualified leads per month. Our 14-day setup ensured a rapid deployment and their outbound was scaled extremely fast.</p>
+        <div class="story-panel-metrics">
+          <div class="story-metric">
+            <div class="story-metric-value">140</div>
+            <div class="story-metric-label">Leads / Month</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-value">14 days</div>
+            <div class="story-metric-label">Setup Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="diamond-sep"><span></span></div>
+
+<!-- ============ REAL CLIENT REVIEWS ============ -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;"><div class="section-label-line"></div> What Clients Say</div>
+    <div class="section-header reveal">
+      <h2 class="section-heading">Real Client Reviews</h2>
+      <p class="section-sub">Hear directly from the teams using Growth Automation to fill their pipeline.</p>
+    </div>
+  </div>
+  <div class="reviews-grid" style="max-width:1200px;margin:0 auto;">
+
+    <div class="review-card reveal">
+      <div class="review-company">Vodafone</div>
+      <p class="review-quote">Growth Automation's email solution has become a key part of our marketing program, helping us reach new prospects efficiently and at scale.</p>
+      <div class="review-author">Travis Barlow</div>
+      <div class="review-role">Managing Director, Vodafone Business Centre</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Payoneer</div>
+      <p class="review-quote">They have been a valuable partner in our outreach strategy, helping us connect with decision-makers across multiple markets with precision.</p>
+      <div class="review-author">Syed Tafsir Mohammad</div>
+      <div class="review-role">Marketing Manager, Payoneer</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">B&amp;H Australia</div>
+      <p class="review-quote">Growth Automation has been fantastic at connecting us with relevant businesses that are a strong fit for our products and services.</p>
+      <div class="review-author">Michael Carsen</div>
+      <div class="review-role">National Sales Manager, B&amp;H Australia</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">RobobAI</div>
+      <p class="review-quote">We are really happy with the lead generation services. The quality of leads has been consistently strong and the team is responsive.</p>
+      <div class="review-author">Katrina Youdale</div>
+      <div class="review-role">Head of Marketing, RobobAI</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Cogora</div>
+      <p class="review-quote">Growth Automation quickly proved its value by delivering qualified leads that our sales team could action from day one.</p>
+      <div class="review-author">Craig Hughes</div>
+      <div class="review-role">Chief Operating Officer, Cogora</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Novated Lease Australia</div>
+      <p class="review-quote">It has been a fantastic tool for our business. The leads are relevant, the process is smooth, and the results speak for themselves.</p>
+      <div class="review-author">Julian Wood</div>
+      <div class="review-role">Head of Sales, Novated Lease Australia</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Sensei</div>
+      <p class="review-quote">Growth Automation has played a key role in expanding our reach and connecting us with high-value prospects in new markets.</p>
+      <div class="review-author">Cicilie Arentz</div>
+      <div class="review-role">Head of Brand and Client Experience, Sensei</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Smart Union</div>
+      <p class="review-quote">We started seeing results quickly. The team understands outbound and delivers on what they promise.</p>
+      <div class="review-author">Garry Taylor</div>
+      <div class="review-role">Co-Founder, Smart Union</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">WMS Middle East (SAP Gold Partner)</div>
+      <p class="review-quote">Growth Automation has been instrumental in our success, helping us build pipeline in a highly competitive enterprise market.</p>
+      <div class="review-author">Jewel Susan Mathew</div>
+      <div class="review-role">Marketing Manager, WMS Middle East, SAP Gold Partner</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Taper</div>
+      <p class="review-quote">They have helped us connect with international markets that were previously difficult to reach through traditional outbound.</p>
+      <div class="review-author">Mauricio Carbajal</div>
+      <div class="review-role">Head of Sales and Growth, Taper</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Mad About Marketing</div>
+      <p class="review-quote">Even in the early stages we could see green shoots of promise. The platform targets the right audience and the engagement has been encouraging.</p>
+      <div class="review-author">Jaslyin Qiyu</div>
+      <div class="review-role">Managing Director, Mad About Marketing</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Astrix AI</div>
+      <p class="review-quote">Growth Automation has been a real game changer for us. The speed of lead generation and quality of contacts are unmatched.</p>
+      <div class="review-author">Jason Valenti</div>
+      <div class="review-role">Co-Founder, Astrix AI</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">THE1</div>
+      <p class="review-quote">The platform has been an invaluable asset to our lead generation efforts, consistently delivering high-quality prospects to our pipeline.</p>
+      <div class="review-author">Neladri J Mondal</div>
+      <div class="review-role">Director Business Strategy, THE1</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Total Fitouts</div>
+      <p class="review-quote">Growth Automation has been great at connecting us with relevant contacts who are genuinely interested in our fitout solutions.</p>
+      <div class="review-author">Jane Chapman</div>
+      <div class="review-role">Head of Marketing, Total Fitouts</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Ignyte</div>
+      <p class="review-quote">The results have been impressive. We are generating over a hundred qualified leads per month and the ROI keeps climbing.</p>
+      <div class="review-author">Akhil Koka</div>
+      <div class="review-role">Head of Growth, Ignyte</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">RenderToVideo</div>
+      <p class="review-quote">This has been a game-changer for our outbound. The leads are qualified, the automation works, and the team is great to work with.</p>
+      <div class="review-author">Robert Kenfield</div>
+      <div class="review-role">COO, RenderToVideo</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Supply Chain Partner</div>
+      <p class="review-quote">Growth Automation has been a powerful addition to our sales engine, delivering qualified leads that convert into real conversations.</p>
+      <div class="review-author">Vipin Sharma</div>
+      <div class="review-role">Head of Sales, Supply Chain Partner</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Urban Clean</div>
+      <p class="review-quote">The platform has been instrumental in expanding our reach and generating leads in territories we had struggled to penetrate before.</p>
+      <div class="review-author">Paul Haycock</div>
+      <div class="review-role">Branch Owner, Urban Clean</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">Search Republic</div>
+      <p class="review-quote">We have had a great experience working with the Growth Automation team. The onboarding was smooth and the leads started flowing quickly.</p>
+      <div class="review-author">Brad Guthrie</div>
+      <div class="review-role">Managing Director, Search Republic</div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-company">LYL Marketing</div>
+      <p class="review-quote">Growth Automation has been a valuable partner in helping us build pipeline and connect with the right prospects at scale.</p>
+      <div class="review-author">Yee Lin Loke</div>
+      <div class="review-role">Founder/Director/CEO, LYL Marketing</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-label reveal" style="justify-content:center;"><div class="section-label-line"></div> Get Started</div>
+  <h2 class="reveal">Ready to See Results <span class="accent">Like These?</span></h2>
+  <p class="reveal">Book a free strategy call and we will show you exactly how Growth Automation can fill your pipeline.</p>
+  <a href="ga-platform-landing-v5.html#book" class="btn-amber btn-amber-lg reveal">Book Your Free Strategy Call &rarr;</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Growth Automation</div>
+      <p class="footer-desc">AI-powered GTM campaigns that fill your pipeline &mdash; verified contacts, warm infrastructure, and Dex AI built in.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <ul>
+        <li><a href="ga-platform-landing-v5.html#platform">Dashboard</a></li>
+        <li><a href="ga-platform-landing-v5.html#platform">Campaign Builder</a></li>
+        <li><a href="ga-platform-landing-v5.html#dex">Dex AI</a></li>
+        <li><a href="ga-platform-landing-v5.html#platform">Audience Search</a></li>
+        <li><a href="ga-platform-landing-v5.html#platform">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="ga-platform-landing-v5.html">About</a></li>
+        <li><a href="ga-platform-landing-v5.html#how-it-works">How It Works</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="ga-platform-landing-v5.html#pricing">Pricing</a></li>
+        <li><a href="ga-platform-landing-v5.html#book">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">GA vs Belkins</a>
+      <a href="#">GA vs Apollo</a>
+      <a href="#">GA vs Instantly</a>
+      <a href="#">GA vs Cleverly</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ SCROLL RESTORATION ============ */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============ INTERSECTION OBSERVER — REVEAL ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ============ TAB SWITCHING ============ */
+const storyTabs = document.querySelectorAll('.story-tab');
+const storyPanels = document.querySelectorAll('.story-panel');
+
+storyTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.getAttribute('data-story');
+
+    storyTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    storyPanels.forEach(panel => {
+      if (panel.getAttribute('data-story') === target) {
+        panel.classList.add('active');
+      } else {
+        panel.classList.remove('active');
+      }
+    });
+  });
+});
+
+/* ============ MOBILE NAV ============ */
+const hamburger = document.getElementById('navHamburger');
+const navLinks = document.querySelector('.nav-links');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.style.display === 'flex';
+    navLinks.style.display = isOpen ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '64px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'rgba(11,11,15,0.96)';
+    navLinks.style.padding = '16px 24px';
+    navLinks.style.gap = '16px';
+    navLinks.style.backdropFilter = 'blur(24px)';
+    navLinks.style.borderBottom = '1px solid var(--border)';
+  });
+}
+</script>
+</body>
+</html>
