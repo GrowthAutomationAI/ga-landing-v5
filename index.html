@@ -3014,13 +3014,13 @@ hamburger.addEventListener('click', () => {
       float speed = clamp(u_speed * 60., 0., 1.);
 
       // ---- Vortex / spiral warp at cursor ----
-      float vortAngle = ang - dist * 10. + t * 1.3 + speed * 4.0;
-      vec2  vortWarp  = vec2(cos(vortAngle), sin(vortAngle)) * mPow * (0.3 + speed * 0.4);
+      float vortAngle = ang - dist * 10. + t * 0.35 + speed * 2.5;
+      vec2  vortWarp  = vec2(cos(vortAngle), sin(vortAngle)) * mPow * (0.14 + speed * 0.16);
 
       // ---- Radial shockwave rings from cursor ----
-      float shock1 = sin(dist * 30. - t * 14.) * exp(-dist * 3.5) * mPow;
-      float shock2 = sin(dist * 20. - t * 10. + 1.2) * exp(-dist * 4.0) * mPow;
-      float shockAmt = (pow(max(shock1,0.),2.) + pow(max(shock2,0.),2.)) * .18;
+      float shock1 = sin(dist * 16. - t * 5.0) * exp(-dist * 3.5) * mPow;
+      float shock2 = sin(dist * 11. - t * 3.5 + 1.2) * exp(-dist * 4.0) * mPow;
+      float shockAmt = (pow(max(shock1,0.),2.) + pow(max(shock2,0.),2.)) * .08;
       vec2  shockWarp = normalize(toM + .0001) * shockAmt;
 
       // ---- Click ripples ----
@@ -3042,10 +3042,10 @@ hamburger.addEventListener('click', () => {
       float f = fbm(p + 4.2*r + vortWarp * 2.5 + shockWarp * 3.0);
 
       // ---- Neon palette ----
-      vec3 electricBlue  = vec3(0.00, 0.65, 1.00);
-      vec3 hotMagenta    = vec3(0.65, 0.00, 0.48);
+      vec3 electricBlue  = vec3(0.08, 0.48, 1.00);
+      vec3 hotMagenta    = vec3(0.42, 0.00, 0.32);
       vec3 deepViolet    = vec3(0.38, 0.00, 0.95);
-      vec3 acidGreen     = vec3(0.08, 0.50, 0.18);
+      vec3 acidGreen     = vec3(0.04, 0.20, 0.08);
       vec3 electricAmber = vec3(1.00, 0.55, 0.00);
       vec3 darkBase      = vec3(0.035, 0.030, 0.055);
 
@@ -3055,42 +3055,39 @@ hamburger.addEventListener('click', () => {
       col      = mix(col,           hotMagenta,    smoothstep(0.33, 0.66, cs));
       col      = mix(col,           deepViolet,    smoothstep(0.66, 1.0,  cs));
 
-      // Subtle acid pop on beat
-      col = mix(col, acidGreen * 0.6, beatC * 0.08 * smoothstep(0.6, 0.8, f+.5));
+      // Removed acid pop — too green
 
       // Brightness from warp depth
       float lum = pow((f+1.)*.5, 1.6) * 1.5;
       col *= lum;
 
       // ---- Laser strands — thin electric lines ----
-      float laser1 = pow(abs(sin(f * 22. + t * 1.1)), 32.) * 2.5;
-      float laser2 = pow(abs(sin(f * 16. - t * 0.8)), 28.) * 1.1;
-      float laser3 = pow(abs(sin(f * 30. + t * 1.7)), 40.) * 2.0 * beatC;
+      float laser1 = pow(abs(sin(f * 14. + t * 0.6)), 38.) * 1.8;
+      float laser2 = pow(abs(sin(f * 10. - t * 0.4)), 34.) * 0.7;
       col += laser1 * electricBlue;
       col += laser2 * hotMagenta;
-      col += laser3 * vec3(0.85, 0.85, 0.5);
 
       // ---- Beat pulse ----
       col *= .65 + .35 * beatB;
       col += electricBlue * .04 * beatA;
 
-      // ---- Mouse burst — massive colour explosion at cursor ----
-      float burst = mPow2 * mPow2 * 3.0;
-      col += burst * mix(electricBlue, hotMagenta, beatA) * (1. + speed * 2.);
+      // ---- Mouse burst — soft glow at cursor ----
+      float burst = mPow2 * mPow2 * 1.4;
+      col += burst * electricBlue * (0.7 + speed * 0.8);
 
-      // Speed trail glow — follows fast movement
-      col += mPow * speed * electricBlue * 1.2;
+      // Speed trail glow — subtle
+      col += mPow * speed * electricBlue * 0.5;
 
-      // ---- Expanding ring halos from cursor (persistent) ----
-      float ringAge1 = fract(t * 0.22);
-      float ringAge2 = fract(t * 0.22 + 0.5);
-      float ring1 = exp(-abs(dist - ringAge1 * 0.9) * 28.) * (1.-ringAge1) * mPow * 2.5;
-      float ring2 = exp(-abs(dist - ringAge2 * 0.9) * 22.) * (1.-ringAge2) * mPow * 2.0;
+      // ---- Expanding ring halos from cursor (persistent, slow) ----
+      float ringAge1 = fract(t * 0.14);
+      float ringAge2 = fract(t * 0.14 + 0.5);
+      float ring1 = exp(-abs(dist - ringAge1 * 0.9) * 28.) * (1.-ringAge1) * mPow * 1.4;
+      float ring2 = exp(-abs(dist - ringAge2 * 0.9) * 22.) * (1.-ringAge2) * mPow * 1.0;
       col += ring1 * electricBlue;
-      col += ring2 * hotMagenta * .7;
+      col += ring2 * hotMagenta * .5;
 
       // ---- Click ripple colour ----
-      col += max(clickEnergy, 0.) * mix(electricBlue, hotMagenta, beatA) * 2.0;
+      col += max(clickEnergy, 0.) * electricBlue * 1.4;
 
       // ---- Chromatic aberration — splits at cursor + edges ----
       float caAmt = .012 + mPow * .04 + speed * .03;
@@ -3102,11 +3099,11 @@ hamburger.addEventListener('click', () => {
       vec2 qB = vec2(fbm(pB+vec2(5.2,1.3)), fbm(pB+vec2(0.,0.)));
       float fR = fbm(pR + 4.2*qR);
       float fB = fbm(pB + 4.2*qB);
-      col.r = mix(col.r, pow(clamp((fR+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*12.);
-      col.b = mix(col.b, pow(clamp((fB+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*12.);
+      col.r = mix(col.r, pow(clamp((fR+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*5.);
+      col.b = mix(col.b, pow(clamp((fB+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*5.);
 
-      // ---- Scanlines — sharp techno CRT ----
-      float scan = sin(gl_FragCoord.y * 6.28318) * .025 + .975;
+      // ---- Scanlines — very subtle ----
+      float scan = sin(gl_FragCoord.y * 6.28318) * .008 + .992;
       col *= scan;
 
       // ---- Edge vignette ----
