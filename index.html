@@ -2911,9 +2911,6 @@ hamburger.addEventListener('click', () => {
 
   // Mouse state — with velocity for trail energy
   var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, vx: 0.0, vy: 0.0 };
-  // Click ripples — track up to 3 simultaneous
-  var clicks = [ {x:0.5,y:0.5,t:-99.}, {x:0.5,y:0.5,t:-99.}, {x:0.5,y:0.5,t:-99.} ];
-  var clickIdx = 0;
 
   var hero = document.getElementById('hero');
   var trackEl = hero || document.body;
@@ -2926,15 +2923,6 @@ hamburger.addEventListener('click', () => {
     mouse.vy = ny - mouse.ty;
     mouse.tx = nx;
     mouse.ty = ny;
-  });
-  trackEl.addEventListener('click', function(e) {
-    var r = trackEl.getBoundingClientRect();
-    clicks[clickIdx % 3] = {
-      x: (e.clientX - r.left) / r.width,
-      y: 1.0 - (e.clientY - r.top) / r.height,
-      t: performance.now() / 1000.0
-    };
-    clickIdx++;
   });
 
   /* Vertex shader */
@@ -2950,9 +2938,6 @@ hamburger.addEventListener('click', () => {
     uniform float u_time;
     uniform vec2 u_mouse;       // 0..1 normalised, y=0 bottom
     uniform float u_speed;      // mouse speed magnitude
-    uniform vec2 u_click0; uniform float u_click0t;
-    uniform vec2 u_click1; uniform float u_click1t;
-    uniform vec2 u_click2; uniform float u_click2t;
 
     // ---- Simplex noise ----
     vec3 _m289(vec3 x){return x-floor(x*(1./289.))*289.;}
@@ -2973,22 +2958,12 @@ hamburger.addEventListener('click', () => {
       return 130.*dot(m,g);
     }
 
-    // ---- FBM — 7 octaves for extreme detail ----
+    // ---- FBM — 5 octaves for smooth watery look ----
     float fbm(vec2 p){
       float v=0., a=.5;
       mat2 rot=mat2(cos(.5),sin(.5),-sin(.5),cos(.5));
-      for(int i=0;i<7;i++){ v+=a*snoise(p); p=rot*p*2.1+vec2(100.); a*=.5; }
+      for(int i=0;i<5;i++){ v+=a*snoise(p); p=rot*p*2.0+vec2(100.); a*=.5; }
       return v;
-    }
-
-    // ---- Click ripple contribution ----
-    float clickRipple(vec2 st, float aspect, vec2 cpos, float ct, float now){
-      float age = now - ct;
-      if(age < 0. || age > 2.5) return 0.;
-      vec2 cp = vec2(cpos.x * aspect, cpos.y);
-      float d = length(st - cp);
-      float ring = sin(d * 40. - age * 18.) * exp(-d * 3.) * exp(-age * 2.5);
-      return max(ring, 0.) * (1. - age/2.5);
     }
 
     void main(){
@@ -3023,12 +2998,6 @@ hamburger.addEventListener('click', () => {
       float shockAmt = (pow(max(shock1,0.),2.) + pow(max(shock2,0.),2.)) * .08;
       vec2  shockWarp = normalize(toM + .0001) * shockAmt;
 
-      // ---- Click ripples ----
-      float cr0 = clickRipple(st, aspect, u_click0, u_click0t, t);
-      float cr1 = clickRipple(st, aspect, u_click1, u_click1t, t);
-      float cr2 = clickRipple(st, aspect, u_click2, u_click2t, t);
-      float clickEnergy = cr0 + cr1 + cr2;
-
       // ---- Domain-warped plasma ----
       vec2 p = st * 2.8 + vortWarp + shockWarp;
       p += vec2(t * 0.18, t * 0.09);
@@ -3062,10 +3031,7 @@ hamburger.addEventListener('click', () => {
       col *= lum;
 
       // ---- Laser strands — thin electric lines ----
-      float laser1 = pow(abs(sin(f * 14. + t * 0.6)), 38.) * 1.8;
-      float laser2 = pow(abs(sin(f * 10. - t * 0.4)), 34.) * 0.7;
-      col += laser1 * electricBlue;
-      col += laser2 * hotMagenta;
+      // No laser strands — keep it smooth
 
       // ---- Beat pulse ----
       col *= .65 + .35 * beatB;
@@ -3085,9 +3051,6 @@ hamburger.addEventListener('click', () => {
       float ring2 = exp(-abs(dist - ringAge2 * 0.9) * 22.) * (1.-ringAge2) * mPow * 1.0;
       col += ring1 * electricBlue;
       col += ring2 * hotMagenta * .5;
-
-      // ---- Click ripple colour ----
-      col += max(clickEnergy, 0.) * electricBlue * 1.4;
 
       // ---- Chromatic aberration — splits at cursor + edges ----
       float caAmt = .012 + mPow * .04 + speed * .03;
@@ -3158,12 +3121,6 @@ hamburger.addEventListener('click', () => {
   var uTime   = gl.getUniformLocation(prog, 'u_time');
   var uMouse  = gl.getUniformLocation(prog, 'u_mouse');
   var uSpeed  = gl.getUniformLocation(prog, 'u_speed');
-  var uC0     = gl.getUniformLocation(prog, 'u_click0');
-  var uC0t    = gl.getUniformLocation(prog, 'u_click0t');
-  var uC1     = gl.getUniformLocation(prog, 'u_click1');
-  var uC1t    = gl.getUniformLocation(prog, 'u_click1t');
-  var uC2     = gl.getUniformLocation(prog, 'u_click2');
-  var uC2t    = gl.getUniformLocation(prog, 'u_click2t');
 
   var t0 = performance.now();
 
@@ -3196,9 +3153,6 @@ hamburger.addEventListener('click', () => {
     gl.uniform1f(uTime, elapsed);
     gl.uniform2f(uMouse, mouse.x, mouse.y);
     gl.uniform1f(uSpeed, smoothSpeed);
-    gl.uniform2f(uC0, clicks[0].x, clicks[0].y); gl.uniform1f(uC0t, clicks[0].t);
-    gl.uniform2f(uC1, clicks[1].x, clicks[1].y); gl.uniform1f(uC1t, clicks[1].t);
-    gl.uniform2f(uC2, clicks[2].x, clicks[2].y); gl.uniform1f(uC2t, clicks[2].t);
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     requestAnimationFrame(render);
