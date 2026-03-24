@@ -26,8 +26,8 @@
   --muted: rgba(237,233,223,0.5);
   --border: rgba(139,127,199,0.12);
   --border2: rgba(139,127,199,0.25);
-  --r: 2px;
-  --r2: 4px;
+  --r: 14px;
+  --r2: 20px;
 }
 html { scroll-behavior: smooth; }
 body {
@@ -62,14 +62,13 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 /* ============ ANNOUNCEMENT BAR ============ */
 .announce-bar {
-  background: var(--bg3);
+  background: linear-gradient(90deg, var(--violet-d), var(--violet), var(--violet-d));
   padding: 11px 24px;
   text-align: center;
   font-size: 14px;
   font-weight: 500;
   position: relative;
   z-index: 1001;
-  border-left: 4px solid var(--violet);
   font-family: 'Inter Tight', sans-serif;
   color: var(--cream);
   letter-spacing: 0.01em;
@@ -154,7 +153,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .btn-ghost {
   padding: 9px 20px;
   border: 1px solid var(--border2);
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 13px;
   font-weight: 600;
   font-family: 'Inter Tight', sans-serif;
@@ -167,7 +166,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .btn-amber {
   padding: 10px 24px;
   border: none;
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 13px;
   font-weight: 700;
   font-family: 'Inter Tight', sans-serif;
@@ -193,7 +192,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .btn-white {
   padding: 16px 36px;
   border: none;
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 15px;
   font-weight: 700;
   font-family: 'Inter Tight', sans-serif;
@@ -263,7 +262,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   display: inline-block;
   padding: 6px 16px;
   border: 1px solid rgba(139,127,199,0.3);
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -559,23 +558,22 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   gap: 24px;
 }
 .pain-card {
-  background: linear-gradient(135deg, var(--card) 0%, rgba(139,127,199,0.06) 100%);
+  background: var(--card);
   border: 1px solid var(--border);
-  border-top: 3px solid var(--violet);
-  border-radius: var(--r2);
-  padding: 40px 32px 36px;
+  border-radius: var(--r);
+  padding: 36px 28px;
   position: relative;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .pain-card:hover {
   transform: translateY(-4px);
-  border-top-color: var(--violet-l);
+  border-color: var(--violet-d);
   box-shadow: 0 20px 40px rgba(139,127,199,0.1), 0 0 0 1px rgba(139,127,199,0.15);
 }
 .pain-icon {
   width: 48px;
   height: 48px;
-  border-radius: 10px;
+  border-radius: 14px;
   background: rgba(139,127,199,0.12);
   display: flex;
   align-items: center;
@@ -777,13 +775,27 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   stroke-linecap: square;
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.5s ease;
 }
 .cross-svg line:nth-child(2) {
-  transition-delay: 0.2s;
 }
 .cross.animated .cross-svg line {
-  stroke-dashoffset: 0;
+  animation: draw-x 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.cross.animated .cross-svg line:nth-child(2) {
+  animation-delay: 0.15s;
+}
+@keyframes draw-x {
+  0% { stroke-dashoffset: 100; }
+  70% { stroke-dashoffset: -5; }
+  100% { stroke-dashoffset: 0; }
+}
+.cross.animated .cross-svg {
+  animation: x-pulse 1.5s ease-out 0.8s;
+}
+@keyframes x-pulse {
+  0% { filter: drop-shadow(0 0 0px rgba(232,160,35,0)); }
+  30% { filter: drop-shadow(0 0 12px rgba(232,160,35,0.6)); }
+  100% { filter: drop-shadow(0 0 0px rgba(232,160,35,0)); }
 }
 .statement-sub {
   font-size: clamp(26px, 3.5vw, 50px);
@@ -816,7 +828,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .compare-badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -1026,7 +1038,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .hiw-check {
   width: 20px;
   height: 20px;
-  border-radius: var(--r);
+  border-radius: 50%;
   background: rgba(139,127,199,0.15);
   color: var(--violet-l);
   display: flex;
@@ -1235,7 +1247,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .demo-quote-avatar {
   width: 40px;
   height: 40px;
-  border-radius: var(--r);
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--violet-d), var(--violet));
   color: #fff;
   display: flex;
@@ -1255,7 +1267,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .demo-logo {
   padding: 5px 12px;
   border: 1px solid var(--border);
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 12px;
   font-weight: 600;
   color: var(--muted);
@@ -1313,7 +1325,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   width: 100%;
   padding: 14px;
   border: none;
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 14px;
   font-weight: 700;
   font-family: 'Inter Tight', sans-serif;
@@ -1420,7 +1432,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .testi-avatar {
   width: 34px;
   height: 34px;
-  border-radius: var(--r);
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--violet-d), var(--violet));
   color: #fff;
   display: flex;
@@ -1476,7 +1488,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .case-tag {
   display: inline-block;
   padding: 3px 10px;
-  border-radius: var(--r);
+  border-radius: 100px;
   font-size: 10px;
   font-weight: 700;
   background: rgba(139,127,199,0.08);
