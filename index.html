@@ -403,6 +403,12 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 .hero-proof span { display: flex; align-items: center; gap: 6px; }
 .hero-proof strong { color: var(--violet-l); font-weight: 700; }
+.hero-cta-subtext {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: -4px;
+  font-family: 'Inter Tight', sans-serif;
+}
 .hero-deco {
   position: relative;
   z-index: 1;
@@ -691,6 +697,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   letter-spacing: -0.01em;
 }
 .pain-card p { font-size: 15px; color: var(--muted); line-height: 1.75; }
+.pain-card h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--violet-l); margin: 16px 0 8px; }
+.pain-short { margin-top: 12px; font-size: 14px; opacity: 0.85; }
 
 /* ============ FEATURE GRID (Interactive Tabs) ============ */
 .platform-tabs {
@@ -1227,6 +1235,18 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 .hiw-stat-item { font-size: 11px; }
 .hiw-stat-item strong { color: var(--violet-l); font-weight: 700; }
+.hiw-verify-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.hiw-verify-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--cream);
+}
 .hiw-export-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1882,15 +1902,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">&#10022; AI-POWERED OUTBOUND &mdash; FULLY MANAGED</div>
-      <h1>Stop Overpaying for Outbound That <span class="accent">Underdelivers</span></h1>
-      <p class="hero-sub">Agencies charge $8K+/mo with no guarantees. DIY tools waste months and land in spam. Growth Automation delivers guaranteed qualified leads &mdash; fully managed, AI-driven, and human-verified.</p>
+      <h1>Qualified lead pipeline &mdash; without agency fees or <span class="accent">DIY chaos.</span></h1>
+      <p class="hero-sub">Fully managed outbound powered by agentic AI, human verification, and zero client lift.</p>
       <div class="hero-ctas">
-        <a href="#book" class="btn-amber btn-amber-lg">Book a Strategy Call &rarr;</a>
-        <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+        <a href="#book" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
+        <a href="#book" class="btn-ghost">Book a strategy call</a>
       </div>
+      <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (10 mins)</div>
       <div class="hero-proof">
         <span>Trusted by <strong>Vodafone</strong>, <strong>Payoneer</strong>, <strong>Cogora</strong> &amp; 50+ B2B brands</span>
-        <span><strong>30x ROI</strong> for enterprise clients</span>
       </div>
     </div>
     <div class="hero-deco">
@@ -1925,87 +1945,177 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </div>
 
-<!-- ============ 5. CLIENT LOGOS MARQUEE ============ -->
-<section class="marquee-section">
-  <div class="marquee-row">
-    <div class="marquee-track fwd">
-      <span class="marquee-item">Vodafone Business</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Payoneer</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Total Fitouts</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Ignyte</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Cogora</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Modul-Bio</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Reputation House</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">THE1</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Astrix AI</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Search Republic</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Vodafone Business</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Payoneer</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Total Fitouts</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Ignyte</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Cogora</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Modul-Bio</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Reputation House</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">THE1</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Astrix AI</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Search Republic</span><span class="marquee-sep">&#9670;</span>
-    </div>
-  </div>
-  <div class="marquee-row">
-    <div class="marquee-track rev">
-      <span class="marquee-item">RenderToVideo</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Smart Union</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">SCP</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Novated Lease Australia</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">B&amp;H</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">RobobAI</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">WMS</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Sensei</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Taper</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Urban Clean</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">RenderToVideo</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Smart Union</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">SCP</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Novated Lease Australia</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">B&amp;H</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">RobobAI</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">WMS</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Sensei</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Taper</span><span class="marquee-sep">&#9670;</span>
-      <span class="marquee-item">Urban Clean</span><span class="marquee-sep">&#9670;</span>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 6. PAIN SECTION ============ -->
 <section class="section section-alt" id="pain">
   <div class="container">
     <div class="section-header reveal">
       <h2 class="section-heading">Sound Familiar?</h2>
-      <p class="section-sub">Most B2B companies either overpay for agencies or waste months on DIY tools that don't work.</p>
     </div>
     <div class="pain-grid">
       <div class="pain-card reveal" style="transition-delay: 0.05s;">
         <div class="pain-icon">&#128171;</div>
-        <h3>The DIY Trap</h3>
-        <p>You bought Apollo or Instantly, spent 3&ndash;6 months building campaigns, and ended up in spam folders with unqualified leads overwhelming your sales team.</p>
+        <h3>DIY Fatigue</h3>
+        <p>You tried Apollo, Instantly, Lemlist, or similar tools &mdash; and outbound still underperformed after months of trial.</p>
+        <h4>Solution</h4>
+        <p>Growth Automation replaces fragile DIY outbound with a fully managed agentic outbound engine. We handle audience build, infrastructure, messaging, execution, and qualification &mdash; so your team gets full campaign visibility and qualified conversations, not operational headaches.</p>
+        <p class="pain-short"><em>You didn&rsquo;t fail at outbound. Your infrastructure failed you.</em></p>
       </div>
       <div class="pain-card reveal" style="transition-delay: 0.15s;">
         <div class="pain-icon">&#128184;</div>
-        <h3>The Agency Invoice Shock</h3>
-        <p>Agencies want $8,000&ndash;$15,000/mo with 30-day onboarding, no guarantees, and they're using the same third-party tools you already tried.</p>
+        <h3>Agency Priced-Out</h3>
+        <p>You need outbound, but paying $8,000&ndash;$15,000/month for a traditional agency doesn&rsquo;t make sense.</p>
+        <h4>Solution</h4>
+        <p>Growth Automation gives you a fully managed outbound program with guaranteed qualified leads. You get the infrastructure, execution, AI systems, and human qualification layer &mdash; without agency overhead.</p>
+        <p class="pain-short"><em>Enterprise-grade outbound. Non-enterprise pricing.</em></p>
       </div>
       <div class="pain-card reveal" style="transition-delay: 0.25s;">
         <div class="pain-icon">&#9203;</div>
-        <h3>The Hiring Bottleneck</h3>
-        <p>A single SDR costs $4,000&ndash;$6,000/mo plus tools and management overhead. You need pipeline growth, not headcount.</p>
+        <h3>Lean Sales Team</h3>
+        <p>Your company needs inbound but your sales team is lean, and they can&rsquo;t afford to waste time chasing weak leads or managing 5+ pieces of software.</p>
+        <h4>Solution</h4>
+        <p>Growth Automation helps lean teams scale pipeline without adding SDR headcount. We run outbound, qualify interest, and deliver better-fit opportunities so your reps stay focused on closing.</p>
+        <p class="pain-short"><em>More pipeline. Less headcount. Less wasted rep time.</em></p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ============ 12. HOW IT WORKS ============ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div> How It Works</div>
+    </div>
+    <div class="hiw-heading-area reveal">
+      <h3 id="hiwHeading">Define your ICP</h3>
+      <p id="hiwSub">Tell us exactly who you want to reach. We build your audience from 40+ targeting fields.</p>
+    </div>
+    <div class="hiw-tabs reveal" id="hiwTabs">
+      <button class="hiw-tab active" data-step="0">Define ICP</button>
+      <button class="hiw-tab" data-step="1">Build Audience</button>
+      <button class="hiw-tab" data-step="2">Launch Sequences</button>
+      <button class="hiw-tab" data-step="3">Test &amp; Verify</button>
+      <button class="hiw-tab" data-step="4">Scale</button>
+    </div>
+    <div class="hiw-cards reveal" id="hiwCards">
+      <div class="hiw-card active" data-step="0">
+        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Define ICP</div>
+        <div class="hiw-mockup">
+          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Job Title</span><span class="hiw-mockup-value">VP Revenue, CMO, CEO</span></div>
+          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Revenue</span><span class="hiw-mockup-value">$5M &ndash; $50M</span></div>
+          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Headcount</span><span class="hiw-mockup-value">20 &ndash; 200</span></div>
+          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Industry</span><span class="hiw-mockup-value">SaaS, Fintech</span></div>
+          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Region</span><span class="hiw-mockup-value">US, UK, AU</span></div>
+        </div>
+      </div>
+      <div class="hiw-card" data-step="1">
+        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Build Audience</div>
+        <div class="hiw-mockup">
+          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#6B5FAA;">KM</div><span class="hiw-mockup-value">Kathryn Murphy</span><span class="hiw-mockup-label" style="margin-left:auto;">VP Revenue @ TechCo</span><span class="hiw-badge-ok">&#10003;</span></div>
+          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#8B7FC7;">RF</div><span class="hiw-mockup-value">Ray Franklin</span><span class="hiw-mockup-label" style="margin-left:auto;">CMO @ ScaleUp</span><span class="hiw-badge-ok">&#10003;</span></div>
+          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#A99FDB;">GH</div><span class="hiw-mockup-value">Guy Hawkins</span><span class="hiw-mockup-label" style="margin-left:auto;">CEO @ CloudBase</span><span class="hiw-badge-ok">&#10003;</span></div>
+          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#C4841A;">SR</div><span class="hiw-mockup-value">Sandra Rivera</span><span class="hiw-mockup-label" style="margin-left:auto;">VP Sales @ Datalink</span><span class="hiw-badge-ok">&#10003;</span></div>
+        </div>
+        <div class="hiw-more">+ 4,196 more contacts matched</div>
+      </div>
+      <div class="hiw-card" data-step="2">
+        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Launch Sequences</div>
+        <div class="hiw-mockup">
+          <div class="hiw-step-label">Step 1 &mdash; Day 0: Intro</div>
+          <div class="hiw-step-text">Personalised to their recent funding round...</div>
+          <div class="hiw-step-label">Step 2 &mdash; Day 3: Case Study</div>
+          <div class="hiw-step-text">How Payoneer achieved 11x reply rate...</div>
+          <div class="hiw-step-label">Step 3 &mdash; Day 7: Break-up</div>
+          <div class="hiw-step-text">Soft close with social proof...</div>
+          <div class="hiw-stats-row">
+            <span class="hiw-stat-item"><strong>12</strong> Warmed IPs</span>
+            <span class="hiw-stat-item"><strong>95%</strong> Send rate</span>
+            <span class="hiw-stat-item"><strong>97%</strong> Inbox rate</span>
+          </div>
+        </div>
+      </div>
+      <div class="hiw-card" data-step="3">
+        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Test &amp; Verify</div>
+        <div class="hiw-mockup">
+          <div class="hiw-verify-grid">
+            <div class="hiw-verify-item"><span class="hiw-badge-ok">&#10003;</span> ICP Refinement</div>
+            <div class="hiw-verify-item"><span class="hiw-badge-ok">&#10003;</span> Content Optimization</div>
+            <div class="hiw-verify-item"><span class="hiw-badge-ok">&#10003;</span> Deliverability Monitoring</div>
+            <div class="hiw-verify-item"><span class="hiw-badge-ok">&#10003;</span> Human Verification</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">AI powered &amp; human verified at every stage</div>
+        </div>
+      </div>
+      <div class="hiw-card" data-step="4">
+        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Scale</div>
+        <div class="hiw-mockup" style="text-align:center;">
+          <div style="font-size:36px;margin-bottom:8px;">&#128640;</div>
+          <div style="font-size:14px;color:var(--cream);font-weight:600;margin-bottom:6px;">1-Click Scale</div>
+          <div style="font-size:12px;color:var(--muted);">Scale successful campaigns with full ICP coverage worldwide.</div>
+          <div style="margin-top:14px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+            <span class="hiw-badge-ok" style="font-size:10px;">&#127758; Global Reach</span>
+            <span class="hiw-badge-ok" style="font-size:10px;">&#9889; Instant Deploy</span>
+            <span class="hiw-badge-ok" style="font-size:10px;">&#128200; 10x Volume</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. CASE STUDIES ============ -->
+<section class="section section-alt" id="case-studies">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-heading">Proven Results Across Industries</h2>
+    </div>
+    <div class="case-grid">
+      <div class="case-card reveal" style="transition-delay:0.05s">
+        <div class="case-metric">30x</div>
+        <div class="case-company">Vodafone</div>
+        <div class="case-tag">Telecommunications</div>
+        <p class="case-result">115 qualified leads &rarr; $500K revenue</p>
+        <a href="#" class="case-link">Read full case study &rarr;</a>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.1s">
+        <div class="case-metric">33%</div>
+        <div class="case-company">Payoneer</div>
+        <div class="case-tag">Fintech</div>
+        <p class="case-result">80 new clients across Pakistan market</p>
+        <a href="#" class="case-link">Read full case study &rarr;</a>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.15s">
+        <div class="case-metric">70%</div>
+        <div class="case-company">Total Fitouts</div>
+        <div class="case-tag">Construction / Franchise</div>
+        <p class="case-result">110 qualified leads generated, 70% progressing through pipeline</p>
+        <a href="#" class="case-link">Read full case study &rarr;</a>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.2s">
+        <div class="case-metric">9x</div>
+        <div class="case-company">Ignyte</div>
+        <div class="case-tag">SaaS / Technology</div>
+        <p class="case-result">120+ leads in 3 months</p>
+        <a href="#" class="case-link">Read full case study &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. STOP GUESSING STATEMENT ============ -->
+<section class="statement-section reveal">
+  <div class="statement-bg">
+    <div class="statement-shape-l"></div>
+    <div class="statement-shape-r"></div>
+    <div class="statement-glow"></div>
+  </div>
+  <h2 class="statement-h">Stop <span class="cross"><svg class="cross-svg" viewBox="0 0 100 100"><line x1="15" y1="15" x2="85" y2="85"/><line x1="85" y1="15" x2="15" y2="85"/></svg></span> guessing</h2>
+  <div class="statement-sub">start winning with data-driven GTM.</div>
+</section>
+
 <!-- ============ 7. THE PLATFORM ============ -->
-<section class="section" id="platform">
+<section class="section section-alt" id="platform">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div> The Platform</div>
@@ -2165,69 +2275,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ 8. STOP GUESSING STATEMENT ============ -->
-<section class="statement-section reveal">
-  <div class="statement-bg">
-    <div class="statement-shape-l"></div>
-    <div class="statement-shape-r"></div>
-    <div class="statement-glow"></div>
-  </div>
-  <h2 class="statement-h">Stop <span class="cross"><svg class="cross-svg" viewBox="0 0 100 100"><line x1="15" y1="15" x2="85" y2="85"/><line x1="85" y1="15" x2="15" y2="85"/></svg></span> guessing</h2>
-  <div class="statement-sub">start winning with data-driven GTM.</div>
-</section>
-
-<!-- ============ 9. COST COMPARISON ============ -->
-<section class="section section-alt" id="pricing">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-heading">The Math Doesn't Lie</h2>
-      <p class="section-sub">Compare the real cost of building pipeline &mdash; including hidden costs most don't account for.</p>
-    </div>
-    <div class="compare-grid">
-      <div class="compare-card reveal" style="transition-delay:0.05s">
-        <div class="compare-badge red">MOST EXPENSIVE</div>
-        <h3>Hire an SDR</h3>
-        <div class="compare-price">$6,000+<span style="font-size:16px;font-weight:500;color:var(--muted)">/mo</span></div>
-        <ul class="compare-list">
-          <li><strong>Base salary:</strong> $4,000&ndash;$6,000/mo</li>
-          <li><strong>Tools</strong> (Apollo, Instantly, etc.): $300&ndash;$800/mo</li>
-          <li><strong>Management overhead:</strong> 10+ hrs/week</li>
-          <li><strong>Ramp time:</strong> 3&ndash;6 months</li>
-          <li><strong>Volume:</strong> 500&ndash;1,000 prospects/mo</li>
-          <li><strong>Guarantees:</strong> None</li>
-        </ul>
-      </div>
-      <div class="compare-card reveal" style="transition-delay:0.15s">
-        <div class="compare-badge orange">SLOW TO START</div>
-        <h3>Hire an Agency</h3>
-        <div class="compare-price">$8,000+<span style="font-size:16px;font-weight:500;color:var(--muted)">/mo</span></div>
-        <ul class="compare-list">
-          <li><strong>Monthly retainer:</strong> $8,000&ndash;$15,000</li>
-          <li><strong>Third-party tool fees:</strong> Often extra</li>
-          <li><strong>Onboarding:</strong> 30+ days</li>
-          <li><strong>Infrastructure:</strong> Shared / third-party</li>
-          <li><strong>Volume:</strong> Varies, no standard</li>
-          <li><strong>Guarantees:</strong> Rare, only at $8K+</li>
-        </ul>
-      </div>
-      <div class="compare-card highlight reveal" style="transition-delay:0.25s">
-        <div class="compare-badge gold-badge">BEST VALUE</div>
-        <h3>Growth Automation</h3>
-        <div class="compare-price" style="color:var(--violet-l)">$970<span style="font-size:16px;font-weight:500;color:var(--muted)">/mo</span></div>
-        <ul class="compare-list">
-          <li><strong>Starter:</strong> $970/mo (3K prospects)</li>
-          <li><strong>Growth:</strong> $1,970/mo (10K prospects + guarantees)</li>
-          <li><strong>Pro:</strong> $3,150/mo (20K prospects)</li>
-          <li><strong>Enterprise:</strong> $5,500/mo (40K prospects)</li>
-          <li><strong>Setup:</strong> 14 days</li>
-          <li><strong>Infrastructure:</strong> 260+ dedicated inboxes</li>
-          <li><strong>Guarantees:</strong> 10&ndash;80 leads/mo (Growth+)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ 10. SCREENSHOTS ============ -->
 <section class="screenshots-section" id="screenshots">
   <div class="container">
@@ -2330,6 +2377,58 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
+<!-- ============ 9. COST COMPARISON ============ -->
+<section class="section section-alt" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-heading">The Math Doesn't Lie</h2>
+      <p class="section-sub">Compare the real cost of building pipeline &mdash; including hidden costs most don't account for.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card reveal" style="transition-delay:0.05s">
+        <div class="compare-badge red">MOST EXPENSIVE</div>
+        <h3>Hire an SDR</h3>
+        <div class="compare-price">$6,000+<span style="font-size:16px;font-weight:500;color:var(--muted)">/mo</span></div>
+        <ul class="compare-list">
+          <li><strong>Base salary:</strong> $4,000&ndash;$6,000/mo</li>
+          <li><strong>Tools</strong> (Apollo, Instantly, etc.): $300&ndash;$800/mo</li>
+          <li><strong>Management overhead:</strong> 10+ hrs/week</li>
+          <li><strong>Ramp time:</strong> 3&ndash;6 months</li>
+          <li><strong>Volume:</strong> 500&ndash;1,000 prospects/mo</li>
+          <li><strong>Guarantees:</strong> None</li>
+        </ul>
+      </div>
+      <div class="compare-card reveal" style="transition-delay:0.15s">
+        <div class="compare-badge orange">SLOW TO START</div>
+        <h3>Hire an Agency</h3>
+        <div class="compare-price">$8,000+<span style="font-size:16px;font-weight:500;color:var(--muted)">/mo</span></div>
+        <ul class="compare-list">
+          <li><strong>Monthly retainer:</strong> $8,000&ndash;$15,000</li>
+          <li><strong>Third-party tool fees:</strong> Often extra</li>
+          <li><strong>Onboarding:</strong> 30+ days</li>
+          <li><strong>Infrastructure:</strong> Shared / third-party</li>
+          <li><strong>Volume:</strong> Varies, no standard</li>
+          <li><strong>Guarantees:</strong> Rare, only at $8K+</li>
+        </ul>
+      </div>
+      <div class="compare-card highlight reveal" style="transition-delay:0.25s">
+        <div class="compare-badge gold-badge">BEST VALUE</div>
+        <h3>Growth Automation</h3>
+        <div class="compare-price" style="color:var(--violet-l)">$970<span style="font-size:16px;font-weight:500;color:var(--muted)">/mo</span></div>
+        <ul class="compare-list">
+          <li><strong>Starter:</strong> $970/mo (3K prospects)</li>
+          <li><strong>Growth:</strong> $1,970/mo (10K prospects + guarantees)</li>
+          <li><strong>Pro:</strong> $3,150/mo (20K prospects)</li>
+          <li><strong>Enterprise:</strong> $5,500/mo (40K prospects)</li>
+          <li><strong>Setup:</strong> 14 days</li>
+          <li><strong>Infrastructure:</strong> 260+ dedicated inboxes</li>
+          <li><strong>Guarantees:</strong> 10&ndash;80 leads/mo (Growth+)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 11. STATS ROW ============ -->
 <div class="stats-section">
   <div class="stats-row reveal" id="statsRow">
@@ -2351,88 +2450,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     </div>
   </div>
 </div>
-
-<!-- ============ 12. HOW IT WORKS ============ -->
-<section class="section section-alt" id="how-it-works">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div> How It Works</div>
-    </div>
-    <div class="hiw-heading-area reveal">
-      <h3 id="hiwHeading">Define your ICP</h3>
-      <p id="hiwSub">Tell us exactly who you want to reach. We build your audience from 40+ targeting fields.</p>
-    </div>
-    <div class="hiw-tabs reveal" id="hiwTabs">
-      <button class="hiw-tab active" data-step="0">Define ICP</button>
-      <button class="hiw-tab" data-step="1">Build Audience</button>
-      <button class="hiw-tab" data-step="2">Launch Sequences</button>
-      <button class="hiw-tab" data-step="3">Verify &amp; Enrich</button>
-      <button class="hiw-tab" data-step="4">Export &amp; Scale</button>
-    </div>
-    <div class="hiw-cards reveal" id="hiwCards">
-      <div class="hiw-card active" data-step="0">
-        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Define ICP</div>
-        <div class="hiw-mockup">
-          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Job Title</span><span class="hiw-mockup-value">VP Revenue, CMO, CEO</span></div>
-          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Revenue</span><span class="hiw-mockup-value">$5M &ndash; $50M</span></div>
-          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Headcount</span><span class="hiw-mockup-value">20 &ndash; 200</span></div>
-          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Industry</span><span class="hiw-mockup-value">SaaS, Fintech</span></div>
-          <div class="hiw-mockup-row"><span class="hiw-mockup-label">Region</span><span class="hiw-mockup-value">US, UK, AU</span></div>
-        </div>
-      </div>
-      <div class="hiw-card" data-step="1">
-        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Build Audience</div>
-        <div class="hiw-mockup">
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#6B5FAA;">KM</div><span class="hiw-mockup-value">Kathryn Murphy</span><span class="hiw-mockup-label" style="margin-left:auto;">VP Revenue @ TechCo</span><span class="hiw-badge-ok">&#10003;</span></div>
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#8B7FC7;">RF</div><span class="hiw-mockup-value">Ray Franklin</span><span class="hiw-mockup-label" style="margin-left:auto;">CMO @ ScaleUp</span><span class="hiw-badge-ok">&#10003;</span></div>
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#A99FDB;">GH</div><span class="hiw-mockup-value">Guy Hawkins</span><span class="hiw-mockup-label" style="margin-left:auto;">CEO @ CloudBase</span><span class="hiw-badge-ok">&#10003;</span></div>
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#C4841A;">SR</div><span class="hiw-mockup-value">Sandra Rivera</span><span class="hiw-mockup-label" style="margin-left:auto;">VP Sales @ Datalink</span><span class="hiw-badge-ok">&#10003;</span></div>
-        </div>
-        <div class="hiw-more">+ 4,196 more contacts matched</div>
-      </div>
-      <div class="hiw-card" data-step="2">
-        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Launch Sequences</div>
-        <div class="hiw-mockup">
-          <div class="hiw-step-label">Step 1 &mdash; Day 0: Intro</div>
-          <div class="hiw-step-text">Personalised to their recent funding round...</div>
-          <div class="hiw-step-label">Step 2 &mdash; Day 3: Case Study</div>
-          <div class="hiw-step-text">How Payoneer achieved 11x reply rate...</div>
-          <div class="hiw-step-label">Step 3 &mdash; Day 7: Break-up</div>
-          <div class="hiw-step-text">Soft close with social proof...</div>
-          <div class="hiw-stats-row">
-            <span class="hiw-stat-item"><strong>12</strong> Warmed IPs</span>
-            <span class="hiw-stat-item"><strong>95%</strong> Send rate</span>
-            <span class="hiw-stat-item"><strong>97%</strong> Inbox rate</span>
-          </div>
-        </div>
-      </div>
-      <div class="hiw-card" data-step="3">
-        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Verify &amp; Enrich</div>
-        <div class="hiw-mockup">
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#6B5FAA;">KM</div><span class="hiw-mockup-value" style="font-size:10px;">kmurphy@techco.com</span><span class="hiw-badge-ok" style="font-size:9px;">&#10003; Verified</span></div>
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#8B7FC7;">RF</div><span class="hiw-mockup-value" style="font-size:10px;">ray@scaleup.io</span><span class="hiw-badge-ok" style="font-size:9px;">&#10003; Verified</span></div>
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#A99FDB;">GH</div><span class="hiw-mockup-value" style="font-size:10px;">Email not valid</span><span class="hiw-badge-fail" style="font-size:9px;">Not charged</span></div>
-          <div class="hiw-mockup-row"><div class="hiw-avatar" style="background:#C4841A;">SR</div><span class="hiw-mockup-value" style="font-size:10px;">s.rivera@datalink.com</span><span class="hiw-badge-ok" style="font-size:9px;">&#10003; Verified</span></div>
-        </div>
-        <div class="hiw-accuracy">Accuracy: 96.4%</div>
-      </div>
-      <div class="hiw-card" data-step="4">
-        <div class="hiw-card-title"><div class="hiw-check">&#10003;</div> Export &amp; Scale</div>
-        <div class="hiw-mockup">
-          <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">Push to your CRM or sequencer</div>
-          <div class="hiw-export-grid">
-            <div class="hiw-export-item"><div class="hiw-export-icon">&#128196;</div> CSV / Excel</div>
-            <div class="hiw-export-item"><div class="hiw-export-icon" style="background:var(--violet-d);">H</div> HubSpot</div>
-            <div class="hiw-export-item"><div class="hiw-export-icon" style="background:#00A1E0;">S</div> Salesforce</div>
-            <div class="hiw-export-item"><div class="hiw-export-icon" style="background:#6B5FAA;">I</div> Instantly.ai</div>
-            <div class="hiw-export-item"><div class="hiw-export-icon" style="background:#28CA41;">S</div> Smartlead</div>
-            <div class="hiw-export-item"><div class="hiw-export-icon" style="background:#FF6B35;">R</div> Reply.io</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 13. MEET DEX ============ -->
 <section class="section" id="dex">
@@ -2580,45 +2597,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ 16. CASE STUDIES ============ -->
-<section class="section" id="case-studies">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-heading">Proven Results Across Industries</h2>
-    </div>
-    <div class="case-grid">
-      <div class="case-card reveal" style="transition-delay:0.05s">
-        <div class="case-metric">30x</div>
-        <div class="case-company">Vodafone</div>
-        <div class="case-tag">Telecommunications</div>
-        <p class="case-result">115 qualified leads &rarr; $500K revenue</p>
-        <a href="#" class="case-link">Read full case study &rarr;</a>
-      </div>
-      <div class="case-card reveal" style="transition-delay:0.1s">
-        <div class="case-metric">33%</div>
-        <div class="case-company">Payoneer</div>
-        <div class="case-tag">Fintech</div>
-        <p class="case-result">80 new clients across Pakistan market</p>
-        <a href="#" class="case-link">Read full case study &rarr;</a>
-      </div>
-      <div class="case-card reveal" style="transition-delay:0.15s">
-        <div class="case-metric">70%</div>
-        <div class="case-company">Total Fitouts</div>
-        <div class="case-tag">Construction / Franchise</div>
-        <p class="case-result">110 qualified leads generated, 70% progressing through pipeline</p>
-        <a href="#" class="case-link">Read full case study &rarr;</a>
-      </div>
-      <div class="case-card reveal" style="transition-delay:0.2s">
-        <div class="case-metric">9x</div>
-        <div class="case-company">Ignyte</div>
-        <div class="case-tag">SaaS / Technology</div>
-        <p class="case-result">120+ leads in 3 months</p>
-        <a href="#" class="case-link">Read full case study &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ 17. CTA BANNER ============ -->
 <div class="cta-banner reveal">
   <div class="cta-banner-dots"></div>
@@ -2671,6 +2649,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   <br>
   <a href="#platform" class="final-secondary reveal">Or explore the platform &rarr;</a>
 </section>
+
 
 <!-- ============ 20. FOOTER ============ -->
 <footer class="footer">
@@ -2852,8 +2831,8 @@ const hiwData = [
   { heading: 'Define your ICP', sub: 'Tell us exactly who you want to reach. We build your audience from 40+ targeting fields.' },
   { heading: 'Build Audience', sub: 'AI scans our 2B+ contact database and returns only verified, ICP-matched contacts.' },
   { heading: 'Launch Sequences', sub: 'Multi-step outreach from 260+ dedicated inboxes with AI-personalised messaging.' },
-  { heading: 'Verify & Enrich', sub: 'Every contact is verified through our 5-step pipeline. You only pay for valid emails.' },
-  { heading: 'Export & Scale', sub: 'Push verified leads to your CRM, sequencer, or download as CSV. Scale to 40K+ prospects/mo.' }
+  { heading: 'Test & Verify', sub: 'AI powered & human verified: analysis, ICP refinement, content optimization, deliverability monitoring.' },
+  { heading: 'Scale', sub: 'Scale successful campaigns with 1 click with full ICP coverage worldwide.' }
 ];
 hiwTabs.forEach(tab => {
   tab.addEventListener('click', () => {
