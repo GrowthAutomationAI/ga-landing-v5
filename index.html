@@ -337,15 +337,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   50% { opacity: 1; transform: scale(1.1); }
 }
 .hero-inner {
-  max-width: 1200px;
+  max-width: 860px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   position: relative;
   z-index: 2;
 }
+.hero-deco { display: none; }
 .hero-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; }
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(32px); }
