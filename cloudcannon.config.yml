@@ -1,30 +1,43 @@
 # CloudCannon configuration for ga-landing-v5
-# Docs: https://cloudcannon.com/documentation/
+# Static HTML site — no SSG
 
-# Source and build settings
-source: ""
 paths:
   uploads: images/uploads
 
-# Collections (for structured data editing)
+# Collections
 collections_config:
+  pages:
+    path: ""
+    output: true
+    url: "/[slug]/"
+    glob:
+      - "*.html"
+      - "!admin/**"
+    icon: wysiwyg
+    _enabled_editors:
+      - visual
+      - content
+      - source
+    filter:
+      exclude:
+        - admin/
   data:
     path: _data
+    output: false
     disable_add: true
     disable_remove: true
+    icon: settings
 
-# Data editing (JSON files in _data/)
-data_config:
-  hero:
-    path: _data/hero.json
-  pain:
-    path: _data/pain.json
-  case-studies:
-    path: _data/case-studies.json
-  settings:
-    path: _data/settings.json
+# Sidebar grouping
+collection_groups:
+  - heading: Pages
+    collections:
+      - pages
+  - heading: Data
+    collections:
+      - data
 
-# Visual editing — mark editable regions in HTML
+# Visual editing — editable region toolbar options
 _editables:
   text:
     bold: true
@@ -47,14 +60,4 @@ _editables:
     height: 1600
     resize_style: contain
     expandable: true
-    allowed_sources:
-      - uploads
-
-# File-level config for the main page
-collection_groups:
-  - heading: Pages
-    collections:
-      - pages
-  - heading: Data
-    collections:
-      - data
+    mime_type: image/jpeg,image/png,image/webp
