@@ -536,47 +536,28 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   object-fit: cover;
   object-position: top;
   opacity: 0;
-  animation: slideshow-in 30s infinite;
+  transition: opacity 0.6s ease;
 }
-.slide-img:nth-child(1) { animation-delay: 0s; }
-.slide-img:nth-child(2) { animation-delay: 6s; }
-.slide-img:nth-child(3) { animation-delay: 12s; }
-.slide-img:nth-child(4) { animation-delay: 18s; }
-.slide-img:nth-child(5) { animation-delay: 24s; }
-@keyframes slideshow-in {
-  0%   { opacity: 0; }
-  2%   { opacity: 1; }
-  20%  { opacity: 1; }
-  22%  { opacity: 0; }
-  100% { opacity: 0; }
-}
+.slide-img.active { opacity: 1; }
 .slide-pips {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   padding: 14px 0;
   background: var(--bg3);
 }
 .pip {
-  width: 36px;
-  height: 3px;
-  border-radius: 1px;
-  background: rgba(139,127,199,0.2);
-  overflow: hidden;
-  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(139,127,199,0.25);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  padding: 0;
 }
-.pip-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0%;
-  background: var(--violet);
-  border-radius: 1px;
-}
-.pip.active .pip-fill {
-  animation: pip-progress 6s linear forwards;
-}
+.pip:hover { background: rgba(139,127,199,0.5); transform: scale(1.2); }
+.pip.active { background: var(--violet); }
 @keyframes pip-progress {
   from { width: 0%; }
   to { width: 100%; }
@@ -1938,18 +1919,20 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <div class="browser-url" id="browserUrl">app.growthautomation.ai/dashboard</div>
     </div>
     <div class="browser-body">
-      <img class="slide-img" src="screenshots/dex_response.png" alt="Dex AI Chat">
+      <img class="slide-img active" src="screenshots/dashboard.png" alt="Dashboard Overview">
       <img class="slide-img" src="screenshots/inbox_manager.png" alt="Inbox Manager">
+      <img class="slide-img" src="screenshots/dex_response.png" alt="Dex AI Chat">
       <img class="slide-img" src="screenshots/content_engine.png" alt="Content Engine">
-      <img class="slide-img" src="screenshots/audience_manager.png" alt="Audience Manager">
       <img class="slide-img" src="screenshots/ai_usage.png" alt="AI Usage Dashboard">
+      <img class="slide-img" src="screenshots/deliverability.png" alt="Deliverability Dashboard">
     </div>
     <div class="slide-pips">
-      <div class="pip active" data-index="0"><div class="pip-fill"></div></div>
-      <div class="pip" data-index="1"><div class="pip-fill"></div></div>
-      <div class="pip" data-index="2"><div class="pip-fill"></div></div>
-      <div class="pip" data-index="3"><div class="pip-fill"></div></div>
-      <div class="pip" data-index="4"><div class="pip-fill"></div></div>
+      <div class="pip active" data-index="0"></div>
+      <div class="pip" data-index="1"></div>
+      <div class="pip" data-index="2"></div>
+      <div class="pip" data-index="3"></div>
+      <div class="pip" data-index="4"></div>
+      <div class="pip" data-index="5"></div>
     </div>
   </div>
 </div>
@@ -2284,71 +2267,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ 10. SCREENSHOTS ============ -->
-<section class="screenshots-section" id="screenshots">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-heading">Real Platform, Real Results</h2>
-      <p class="section-sub">Every client. Every campaign. Every conversation &mdash; in one place.</p>
-    </div>
-    <div class="screenshot-row reveal">
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/dex</div>
-        </div>
-        <img src="screenshots/dex_response.png" alt="Dex AI Campaign Analysis">
-        <div class="screenshot-caption">Dex AI &mdash; Campaign analysis, instant answers, and cross-client insights.</div>
-      </div>
-    </div>
-    <div class="screenshot-row reveal">
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/inbox</div>
-        </div>
-        <img src="screenshots/inbox_manager.png" alt="Inbox Manager">
-        <div class="screenshot-caption">Inbox Manager &mdash; Centralized reply tracking, AI-classified responses, and real-time lead engagement.</div>
-      </div>
-    </div>
-    <div class="screenshot-pair reveal">
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/content-engine</div>
-        </div>
-        <img src="screenshots/content_engine.png" alt="Content Engine">
-        <div class="screenshot-caption">Content Engine &mdash; AI-generated email campaigns with templates &amp; strategy angles.</div>
-      </div>
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/audiences</div>
-        </div>
-        <img src="screenshots/audience_manager.png" alt="Audience Manager">
-        <div class="screenshot-caption">Audience Manager &mdash; ICP targeting by role, industry, and geography.</div>
-      </div>
-    </div>
-    <div class="screenshot-pair reveal">
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/deliverability</div>
-        </div>
-        <img src="screenshots/deliverability.png" alt="Deliverability Dashboard">
-        <div class="screenshot-caption">Deliverability &mdash; Monitor inbox placement, domain health, and sender reputation.</div>
-      </div>
-      <div class="screenshot-frame">
-        <div class="browser-chrome">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.growthautomation.ai/ai-usage</div>
-        </div>
-        <img src="screenshots/ai_usage.png" alt="AI Usage Dashboard">
-        <div class="screenshot-caption">AI Usage &mdash; Track token consumption, model performance, and automation efficiency.</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Screenshots section removed — all screenshots shown in hero slideshow -->
 
 <!-- ============ 9. COST COMPARISON ============ -->
 <section class="section section-alt" id="pricing">
@@ -2752,31 +2671,41 @@ statsObserver.observe(statsRow);
 
 /* ============ BROWSER SLIDESHOW ============ */
 const pips = document.querySelectorAll('.pip');
+const slides = document.querySelectorAll('.slide-img');
 const urlBar = document.getElementById('browserUrl');
 const slideUrls = [
-  'app.growthautomation.ai/dex',
+  'app.growthautomation.ai/dashboard',
   'app.growthautomation.ai/inbox',
+  'app.growthautomation.ai/dex',
   'app.growthautomation.ai/content-engine',
-  'app.growthautomation.ai/audiences',
-  'app.growthautomation.ai/ai-usage'
+  'app.growthautomation.ai/ai-usage',
+  'app.growthautomation.ai/deliverability'
 ];
 let currentSlide = 0;
 const totalSlides = slideUrls.length;
-function activatePip(index) {
-  pips.forEach((p) => {
-    p.classList.remove('active');
-    p.querySelector('.pip-fill').style.animation = 'none';
-    void p.querySelector('.pip-fill').offsetWidth;
-  });
+let slideTimer;
+function goToSlide(index) {
+  slides.forEach(s => s.classList.remove('active'));
+  pips.forEach(p => p.classList.remove('active'));
+  slides[index].classList.add('active');
   pips[index].classList.add('active');
-  pips[index].querySelector('.pip-fill').style.animation = 'pip-progress 6s linear forwards';
   urlBar.textContent = slideUrls[index];
+  currentSlide = index;
 }
-activatePip(0);
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  activatePip(currentSlide);
-}, 6000);
+function startAutoSlide() {
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }, 5000);
+}
+pips.forEach(p => {
+  p.addEventListener('click', () => {
+    goToSlide(parseInt(p.dataset.index));
+    startAutoSlide();
+  });
+});
+goToSlide(0);
+startAutoSlide();
 
 /* ============ PLATFORM FEATURE TABS ============ */
 const platformTabs = document.querySelectorAll('.platform-tab');
