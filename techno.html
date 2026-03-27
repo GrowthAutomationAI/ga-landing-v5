@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>&#9889;</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #0B0B0F; cursor: crosshair; }
+  #canvas-wrap { position: fixed; inset: 0; }
+</style>
+</head>
+<body>
+<div id="canvas-wrap"></div>
+<script>
+(function() {
+  'use strict';
+  var container = document.getElementById('canvas-wrap');
+  if (!container) return;
+
+  var canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
+  container.appendChild(canvas);
+
+  var gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+  if (!gl) return;
+
+  var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, vx: 0.0, vy: 0.0 };
+  var clicks = [ {x:0.5,y:0.5,t:-99.}, {x:0.5,y:0.5,t:-99.}, {x:0.5,y:0.5,t:-99.} ];
+  var clickIdx = 0;
+
+  document.addEventListener('mousemove', function(e) {
+    var nx = e.clientX / window.innerWidth;
+    var ny = 1.0 - e.clientY / window.innerHeight;
+    mouse.vx = nx - mouse.tx;
+    mouse.vy = ny - mouse.ty;
+    mouse.tx = nx;
+    mouse.ty = ny;
+  });
+  document.addEventListener('click', function(e) {
+    clicks[clickIdx % 3] = {
+      x: e.clientX / window.innerWidth,
+      y: 1.0 - e.clientY / window.innerHeight,
+      t: performance.now() / 1000.0
+    };
+    clickIdx++;
+  });
+
+  var vsSource = 'attribute vec2 a_position; void main() { gl_Position = vec4(a_position, 0.0, 1.0); }';
+
+  var fsSource = `
+    precision highp float;
+    uniform vec2 u_resolution;
+    uniform float u_time;
+    uniform vec2 u_mouse;
+    uniform float u_speed;
+    uniform vec2 u_click0; uniform float u_click0t;
+    uniform vec2 u_click1; uniform float u_click1t;
+    uniform vec2 u_click2; uniform float u_click2t;
+
+    vec3 _m289(vec3 x){return x-floor(x*(1./289.))*289.;}
+    vec2 _m289(vec2 x){return x-floor(x*(1./289.))*289.;}
+    vec3 _perm(vec3 x){return _m289(((x*34.)+1.)*x);}
+    float snoise(vec2 v){
+      const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);
+      vec2 i=floor(v+dot(v,C.yy)), x0=v-i+dot(i,C.xx);
+      vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+      vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1;
+      i=_m289(i);
+      vec3 p=_perm(_perm(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+      vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+      m=m*m; m=m*m;
+      vec3 xx=2.*fract(p*C.www)-1., hh=abs(xx)-.5, ox=floor(xx+.5), a0=xx-ox;
+      m*=1.79284291400159-.85373472095314*(a0*a0+hh*hh);
+      vec3 g; g.x=a0.x*x0.x+hh.x*x0.y; g.yz=a0.yz*x12.xz+hh.yz*x12.yw;
+      return 130.*dot(m,g);
+    }
+
+    float fbm(vec2 p){
+      float v=0., a=.5;
+      mat2 rot=mat2(cos(.5),sin(.5),-sin(.5),cos(.5));
+      for(int i=0;i<7;i++){ v+=a*snoise(p); p=rot*p*2.1+vec2(100.); a*=.5; }
+      return v;
+    }
+
+    float clickRipple(vec2 st, float aspect, vec2 cpos, float ct, float now){
+      float age = now - ct;
+      if(age < 0. || age > 2.5) return 0.;
+      vec2 cp = vec2(cpos.x * aspect, cpos.y);
+      float d = length(st - cp);
+      float ring = sin(d * 40. - age * 18.) * exp(-d * 3.) * exp(-age * 2.5);
+      return max(ring, 0.) * (1. - age/2.5);
+    }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+      float aspect = u_resolution.x / u_resolution.y;
+      vec2 st = vec2(uv.x * aspect, uv.y);
+      float t = u_time;
+
+      float beatA = .5+.5*sin(t*7.0);
+      float beatB = .5+.5*sin(t*2.8+1.0);
+      float beatC = .5+.5*sin(t*13.0+.7);
+
+      vec2 mouseUV = vec2(u_mouse.x * aspect, u_mouse.y);
+      vec2 toM = st - mouseUV;
+      float dist = length(toM);
+      float ang  = atan(toM.y, toM.x);
+
+      float mPow  = exp(-dist * 2.0);
+      float mPow2 = exp(-dist * 5.0);
+      float speed = clamp(u_speed * 60., 0., 1.);
+
+      float vortAngle = ang - dist * 10. + t * 5.0 + speed * 4.0;
+      vec2  vortWarp  = vec2(cos(vortAngle), sin(vortAngle)) * mPow * (0.3 + speed * 0.4);
+
+      float shock1 = sin(dist * 30. - t * 14.) * exp(-dist * 3.5) * mPow;
+      float shock2 = sin(dist * 20. - t * 10. + 1.2) * exp(-dist * 4.0) * mPow;
+      float shockAmt = (pow(max(shock1,0.),2.) + pow(max(shock2,0.),2.)) * .18;
+      vec2  shockWarp = normalize(toM + .0001) * shockAmt;
+
+      float cr0 = clickRipple(st, aspect, u_click0, u_click0t, t);
+      float cr1 = clickRipple(st, aspect, u_click1, u_click1t, t);
+      float cr2 = clickRipple(st, aspect, u_click2, u_click2t, t);
+      float clickEnergy = cr0 + cr1 + cr2;
+
+      vec2 p = st * 2.8 + vortWarp + shockWarp;
+      p += vec2(t * 0.18, t * 0.09);
+
+      vec2 q = vec2(fbm(p + vec2(0.0,0.0) + t*.12),
+                    fbm(p + vec2(5.2,1.3) - t*.09));
+      vec2 r = vec2(fbm(p + 4.8*q + vec2(1.7,9.2) + .20*t),
+                    fbm(p + 4.8*q + vec2(8.3,2.8) + .16*t));
+
+      float f = fbm(p + 4.2*r + vortWarp * 2.5 + shockWarp * 3.0);
+
+      vec3 electricBlue  = vec3(0.00, 0.65, 1.00);
+      vec3 hotMagenta    = vec3(1.00, 0.00, 0.65);
+      vec3 deepViolet    = vec3(0.38, 0.00, 0.95);
+      vec3 acidGreen     = vec3(0.15, 1.00, 0.35);
+      vec3 electricAmber = vec3(1.00, 0.55, 0.00);
+
+      float cs = fract(f * .5 + .5 + t * .04);
+      vec3 col = mix(deepViolet,    electricBlue,  smoothstep(0.0, 0.33, cs));
+      col      = mix(col,           hotMagenta,    smoothstep(0.33, 0.66, cs));
+      col      = mix(col,           deepViolet,    smoothstep(0.66, 1.0,  cs));
+
+      col = mix(col, acidGreen * 0.6, beatC * 0.08 * smoothstep(0.6, 0.8, f+.5));
+
+      float lum = pow((f+1.)*.5, 1.6) * 1.5;
+      col *= lum;
+
+      float laser1 = pow(abs(sin(f * 22. + t * 4.0)), 32.) * 2.5;
+      float laser2 = pow(abs(sin(f * 16. - t * 3.2)), 28.) * 1.8;
+      float laser3 = pow(abs(sin(f * 30. + t * 6.5)), 40.) * 3.0 * beatC;
+      col += laser1 * electricBlue;
+      col += laser2 * hotMagenta;
+      col += laser3 * vec3(1.0, 1.0, 0.6);
+
+      col *= .65 + .35 * beatB;
+      col += electricBlue * .04 * beatA;
+
+      float burst = mPow2 * mPow2 * 3.0;
+      col += burst * mix(electricBlue, hotMagenta, beatA) * (1. + speed * 2.);
+
+      col += mPow * speed * electricBlue * 1.2;
+
+      float ringAge1 = fract(t * 0.45);
+      float ringAge2 = fract(t * 0.45 + 0.5);
+      float ring1 = exp(-abs(dist - ringAge1 * 0.9) * 28.) * (1.-ringAge1) * mPow * 2.5;
+      float ring2 = exp(-abs(dist - ringAge2 * 0.9) * 22.) * (1.-ringAge2) * mPow * 2.0;
+      col += ring1 * electricBlue;
+      col += ring2 * hotMagenta * .7;
+
+      col += max(clickEnergy, 0.) * mix(electricBlue, hotMagenta, beatA) * 2.0;
+
+      float caAmt = .012 + mPow * .04 + speed * .03;
+      vec2 caDir = normalize(uv - .5 + .0001);
+      vec2 pR = st*2.8 + vortWarp + shockWarp + caDir*caAmt*18. + vec2(t*.18,t*.09);
+      vec2 pB = st*2.8 + vortWarp + shockWarp - caDir*caAmt*18. + vec2(t*.18,t*.09);
+      vec2 qR = vec2(fbm(pR+vec2(5.2,1.3)), fbm(pR+vec2(0.,0.)));
+      vec2 qB = vec2(fbm(pB+vec2(5.2,1.3)), fbm(pB+vec2(0.,0.)));
+      float fR = fbm(pR + 4.2*qR);
+      float fB = fbm(pB + 4.2*qB);
+      col.r = mix(col.r, pow(clamp((fR+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*12.);
+      col.b = mix(col.b, pow(clamp((fB+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*12.);
+
+      float scan = sin(gl_FragCoord.y * 6.28318) * .025 + .975;
+      col *= scan;
+
+      float vig = 1. - smoothstep(.35, 1.15, length((uv-.5)*vec2(1.5,1.0)));
+      col *= vig;
+
+      col = pow(max(col, vec3(0.)), vec3(0.72));
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function mkShader(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('Shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s);
+      return null;
+    }
+    return s;
+  }
+
+  var vs = mkShader(gl.VERTEX_SHADER, vsSource);
+  var fs = mkShader(gl.FRAGMENT_SHADER, fsSource);
+  if (!vs || !fs) return;
+
+  var prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(prog));
+    return;
+  }
+  gl.useProgram(prog);
+
+  var posAttr = gl.getAttribLocation(prog, 'a_position');
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1
+  ]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(posAttr);
+  gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
+
+  var uRes   = gl.getUniformLocation(prog, 'u_resolution');
+  var uTime  = gl.getUniformLocation(prog, 'u_time');
+  var uMouse = gl.getUniformLocation(prog, 'u_mouse');
+  var uSpeed = gl.getUniformLocation(prog, 'u_speed');
+  var uC0    = gl.getUniformLocation(prog, 'u_click0');
+  var uC0t   = gl.getUniformLocation(prog, 'u_click0t');
+  var uC1    = gl.getUniformLocation(prog, 'u_click1');
+  var uC1t   = gl.getUniformLocation(prog, 'u_click1t');
+  var uC2    = gl.getUniformLocation(prog, 'u_click2');
+  var uC2t   = gl.getUniformLocation(prog, 'u_click2t');
+
+  var t0 = performance.now();
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio, 2.0);
+    canvas.width  = window.innerWidth  * dpr;
+    canvas.height = window.innerHeight * dpr;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var smoothSpeed = 0;
+
+  function render() {
+    var lerpAmt = 0.10;
+    mouse.x += (mouse.tx - mouse.x) * lerpAmt;
+    mouse.y += (mouse.ty - mouse.y) * lerpAmt;
+
+    var rawSpeed = Math.sqrt(mouse.vx*mouse.vx + mouse.vy*mouse.vy);
+    smoothSpeed += (rawSpeed - smoothSpeed) * 0.15;
+    mouse.vx *= 0.8;
+    mouse.vy *= 0.8;
+
+    var elapsed = (performance.now() - t0) / 1000.0;
+
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, elapsed);
+    gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.uniform1f(uSpeed, smoothSpeed);
+    gl.uniform2f(uC0, clicks[0].x, clicks[0].y); gl.uniform1f(uC0t, clicks[0].t);
+    gl.uniform2f(uC1, clicks[1].x, clicks[1].y); gl.uniform1f(uC1t, clicks[1].t);
+    gl.uniform2f(uC2, clicks[2].x, clicks[2].y); gl.uniform1f(uC2t, clicks[2].t);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    requestAnimationFrame(render);
+  }
+  render();
+})();
+</script>
+</body>
+</html>
