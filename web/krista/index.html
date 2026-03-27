@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiritual Wisdom School &mdash; Ancient Wisdom for Modern Seekers</title>
+<meta name="description" content="A sacred space of learning where timeless spiritual traditions meet transformative education. Courses, workshops, retreats, and 1:1 mentorship with Krista.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Philosopher:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  color: #3a3a4a;
+  background: #faf8f5;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============ CSS VARIABLES ============ */
+:root {
+  --cream: #faf8f5;
+  --cream-dark: #f0ede8;
+  --teal: #2d8a8e;
+  --teal-deep: #1a5c5e;
+  --teal-light: #a8dde0;
+  --teal-pale: #e4f5f6;
+  --gold: #c9a84c;
+  --gold-light: #e8d5a0;
+  --gold-glow: rgba(201,168,76,0.15);
+  --plum: #6b4c7a;
+  --plum-soft: rgba(107,76,122,0.08);
+  --text: #3a3a4a;
+  --text-soft: #6a6a7a;
+  --text-light: #9a9aaa;
+  --white: #ffffff;
+}
+
+/* ============ TYPOGRAPHY ============ */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--teal-deep);
+}
+h1 { font-size: clamp(42px, 6vw, 80px); letter-spacing: -0.02em; }
+h2 { font-size: clamp(32px, 4vw, 56px); letter-spacing: -0.01em; }
+h3 { font-size: clamp(22px, 2.5vw, 32px); }
+
+.philosopher { font-family: 'Philosopher', sans-serif; }
+.section-eyebrow {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ============ NAVIGATION ============ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
+}
+.nav.scrolled {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+  padding: 12px 40px;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--teal-deep);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--gold-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--teal-deep); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  padding: 10px 24px;
+  background: var(--teal);
+  color: var(--white) !important;
+  border-radius: 100px;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--teal-deep); transform: translateY(-1px); color: var(--white) !important; }
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  z-index: 101;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--teal-deep);
+  transition: 0.3s;
+  position: absolute;
+  left: 0;
+}
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 11px; }
+.nav-toggle span:nth-child(3) { top: 22px; }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 24px 100px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f0f7f7 0%, var(--cream) 60%, var(--cream-dark) 100%);
+}
+/* Decorative sacred geometry background */
+.hero-sacred {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-sacred::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 900px;
+  background:
+    radial-gradient(circle at center, transparent 200px, rgba(45,138,142,0.03) 201px, transparent 202px),
+    radial-gradient(circle at center, transparent 300px, rgba(45,138,142,0.025) 301px, transparent 302px),
+    radial-gradient(circle at center, transparent 400px, rgba(201,168,76,0.02) 401px, transparent 402px);
+  animation: sacred-pulse 12s ease-in-out infinite;
+}
+.hero-sacred::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+}
+@keyframes sacred-pulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+}
+/* Floating decorative elements */
+.hero-float {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  animation: float-drift 20s ease-in-out infinite;
+}
+.hero-float-1 {
+  width: 300px; height: 300px;
+  top: -80px; right: -60px;
+  background: radial-gradient(circle, var(--teal-light), transparent);
+  animation-delay: -3s;
+}
+.hero-float-2 {
+  width: 200px; height: 200px;
+  bottom: 10%; left: -40px;
+  background: radial-gradient(circle, var(--gold-light), transparent);
+  animation-delay: -8s;
+  animation-duration: 25s;
+}
+.hero-float-3 {
+  width: 150px; height: 150px;
+  top: 30%; right: 10%;
+  background: radial-gradient(circle, rgba(107,76,122,0.3), transparent);
+  animation-delay: -12s;
+  animation-duration: 18s;
+}
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-20px) translateX(10px); }
+  50% { transform: translateY(-10px) translateX(-15px); }
+  75% { transform: translateY(-25px) translateX(5px); }
+}
+
+.hero-eyebrow {
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  max-width: 800px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--teal-deep) 30%, var(--teal) 60%, var(--plum) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(17px, 2vw, 20px);
+  color: var(--text-soft);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: scroll-bob 2s ease-in-out infinite;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+}
+@keyframes scroll-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ BUTTONS ============ */
+.btn-primary {
+  display: inline-block;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  color: var(--white);
+  border-radius: 100px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-transform: uppercase;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(45,138,142,0.25);
+}
+.btn-secondary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--teal-deep);
+  border: 1.5px solid var(--teal);
+  border-radius: 100px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, color 0.3s;
+  text-transform: uppercase;
+}
+.btn-secondary:hover {
+  background: var(--teal);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+.btn-gold {
+  display: inline-block;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, var(--gold), #b8953e);
+  color: var(--white);
+  border-radius: 100px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-transform: uppercase;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--gold-glow);
+}
+
+/* ============ SECTIONS ============ */
+.section {
+  padding: 120px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-full {
+  padding: 120px 24px;
+}
+.section-centered { text-align: center; }
+.section-centered h2 { margin-bottom: 16px; }
+.section-centered .section-eyebrow { justify-content: center; }
+.section-centered .section-eyebrow::before { display: block; }
+.section-centered .section-eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+.section-desc {
+  font-size: 17px;
+  color: var(--text-soft);
+  max-width: 620px;
+  margin: 0 auto 60px;
+  line-height: 1.8;
+}
+
+/* ============ ALTERNATING BACKGROUNDS ============ */
+.bg-cream { background: var(--cream); }
+.bg-teal-mist {
+  background: linear-gradient(180deg, var(--teal-pale) 0%, #f2fafa 50%, var(--cream) 100%);
+}
+.bg-warm {
+  background: var(--cream-dark);
+}
+.bg-sacred {
+  background: linear-gradient(180deg, var(--cream) 0%, #f4f0e8 50%, var(--cream) 100%);
+  position: relative;
+}
+
+/* ============ MISSION / ABOUT ============ */
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.mission-text h2 {
+  margin-bottom: 24px;
+}
+.mission-text p {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.mission-text p:last-of-type { margin-bottom: 32px; }
+.mission-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--teal-pale) 0%, #e0d8c8 50%, var(--teal-pale) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mission-visual-inner {
+  text-align: center;
+  padding: 40px;
+  color: var(--teal-deep);
+}
+.mission-visual-icon {
+  font-size: 72px;
+  margin-bottom: 16px;
+  display: block;
+}
+.mission-visual-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 260px;
+}
+/* Decorative border on visual */
+.mission-visual::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+/* ============ PILLARS / VALUES ============ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.pillar-card {
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid rgba(45,138,142,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(45,138,142,0.08);
+}
+.pillar-card:hover::before { opacity: 1; }
+.pillar-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+  display: block;
+}
+.pillar-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+.pillar-card p {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+/* ============ COURSES ============ */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.course-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.course-thumb {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.course-thumb-1 { background: linear-gradient(135deg, #2d8a8e, #1a5c5e); }
+.course-thumb-2 { background: linear-gradient(135deg, #c9a84c, #a88a35); }
+.course-thumb-3 { background: linear-gradient(135deg, #6b4c7a, #4a3558); }
+.course-thumb-4 { background: linear-gradient(135deg, #5a8a6a, #3a6a4a); }
+.course-thumb-5 { background: linear-gradient(135deg, #8a6a4a, #6a4a2a); }
+.course-thumb-6 { background: linear-gradient(135deg, #4a6a8a, #2a4a6a); }
+.course-thumb-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 56px;
+  opacity: 0.3;
+}
+.course-thumb-label {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.2);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.course-body {
+  padding: 28px 24px;
+}
+.course-body h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: var(--teal-deep);
+}
+.course-body p {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.course-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+.course-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============ COMMUNITY ============ */
+.community-banner {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal) 40%, #3a9a8e 100%);
+  border-radius: 24px;
+  padding: 72px 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.community-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+.community-text {
+  position: relative;
+  z-index: 1;
+}
+.community-text h2 {
+  color: var(--white);
+  font-size: clamp(28px, 3vw, 42px);
+  margin-bottom: 16px;
+}
+.community-text p {
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+.community-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.community-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+}
+.community-features li::before {
+  content: '✦';
+  color: var(--gold-light);
+  font-size: 12px;
+}
+.community-price {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.community-price-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 40px 32px;
+}
+.community-price-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+}
+.community-price-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.community-price-period {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+.btn-white {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--white);
+  color: var(--teal-deep);
+  border-radius: 100px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* ============ WORKSHOPS / RETREATS ============ */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.event-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px 32px;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.event-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at top right, var(--gold-glow), transparent);
+  pointer-events: none;
+}
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.event-type {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.event-card h3 {
+  margin-bottom: 10px;
+}
+.event-card p {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.event-details {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ============ 1:1 SESSIONS ============ */
+.sessions-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.sessions-text h2 { margin-bottom: 20px; }
+.sessions-text p {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.sessions-text p:last-of-type { margin-bottom: 32px; }
+.sessions-offerings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.session-type {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.session-type:hover {
+  transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.session-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.session-icon-teal { background: var(--teal-pale); }
+.session-icon-gold { background: rgba(201,168,76,0.12); }
+.session-icon-plum { background: var(--plum-soft); }
+.session-type h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--teal-deep);
+  margin-bottom: 4px;
+}
+.session-type p {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============ ABOUT / BIO ============ */
+.bio-section {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.bio-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 0 auto 32px;
+  background: linear-gradient(135deg, var(--teal-pale), var(--gold-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  position: relative;
+}
+.bio-photo::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-light);
+}
+.bio-section h2 { margin-bottom: 8px; }
+.bio-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.bio-text {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.9;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+.bio-traditions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.bio-tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-pale);
+  padding: 6px 16px;
+  border-radius: 100px;
+}
+
+/* ============ EMAIL SIGNUP ============ */
+.signup-section {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.signup-section h2 { margin-bottom: 12px; }
+.signup-section p {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+.signup-form {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.signup-input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1.5px solid rgba(45,138,142,0.2);
+  border-radius: 100px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.3s;
+}
+.signup-input:focus {
+  border-color: var(--teal);
+}
+.signup-input::placeholder { color: var(--text-light); }
+.signup-note {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* ============ QUOTE DIVIDER ============ */
+.quote-divider {
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--cream);
+  position: relative;
+}
+.quote-divider blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal-deep);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+.quote-divider cite {
+  display: block;
+  margin-top: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+/* Decorative line above and below */
+.quote-divider::before,
+.quote-divider::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto;
+}
+.quote-divider::before { margin-bottom: 40px; }
+.quote-divider::after { margin-top: 40px; }
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--teal-deep);
+  color: rgba(255,255,255,0.7);
+  padding: 80px 40px 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto 60px;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.footer-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 280px;
+}
+.footer h4 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+}
+.footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer ul a {
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.footer ul a:hover { color: var(--white); }
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+.footer-social a:hover { background: rgba(255,255,255,0.15); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ============ REVEAL ANIMATIONS ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============ GOLD DIVIDER ============ */
+.gold-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .mission-grid,
+  .sessions-layout { grid-template-columns: 1fr; gap: 40px; }
+  .pillars-grid,
+  .courses-grid { grid-template-columns: 1fr 1fr; }
+  .community-banner { grid-template-columns: 1fr; padding: 48px 32px; }
+  .events-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(250,248,245,0.98);
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    z-index: 100;
+  }
+  .nav-links.open a { font-size: 18px; }
+}
+@media (max-width: 600px) {
+  .pillars-grid,
+  .courses-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .signup-form { flex-direction: column; }
+  .hero { padding: 120px 20px 80px; }
+  .hero-ctas { flex-direction: column; }
+  .section, .section-full { padding: 80px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-icon">&#10022;</span>
+    Wisdom School
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#events">Workshops</a></li>
+    <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#signup" class="nav-cta">Begin Your Journey</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-sacred"></div>
+  <div class="hero-float hero-float-1"></div>
+  <div class="hero-float hero-float-2"></div>
+  <div class="hero-float hero-float-3"></div>
+
+  <div class="hero-eyebrow reveal">Ancient Wisdom &middot; Modern Practice</div>
+  <h1 class="reveal reveal-delay-1">The Spiritual<br>Wisdom School</h1>
+  <p class="hero-sub reveal reveal-delay-2">A sacred space of learning where timeless traditions meet transformative practice. Walk the path of the mystic, the healer, and the seeker.</p>
+  <div class="hero-ctas reveal reveal-delay-3">
+    <a href="#courses" class="btn-primary">Explore Courses</a>
+    <a href="#community" class="btn-secondary">Join the Community</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Discover
+  </div>
+</section>
+
+<!-- ============ MISSION ============ -->
+<section class="section bg-cream" id="mission">
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <div class="section-eyebrow">Our Purpose</div>
+      <h2>Awakening the Sacred Within</h2>
+      <p>The Spiritual Wisdom School exists to bridge the ancient and the modern &mdash; offering seekers a grounded, rigorous, and deeply transformative path through the world's great spiritual traditions.</p>
+      <p>Here, education is not mere information. It is initiation. Each course, each practice, each gathering is designed to bring you closer to the luminous truth at the heart of all traditions: that wisdom is your birthright, and the sacred is alive within you.</p>
+      <a href="#courses" class="btn-secondary">Explore Our Teachings</a>
+    </div>
+    <div class="mission-visual reveal reveal-delay-1">
+      <div class="mission-visual-inner">
+        <span class="mission-visual-icon">&#10040;</span>
+        <div class="mission-visual-text">"The temple is not a place. It is a state of being you carry within."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILLARS ============ -->
+<section class="section-full bg-teal-mist section-centered">
+  <div class="section-eyebrow reveal" style="justify-content:center;">
+    <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+    Foundations
+    <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+  </div>
+  <h2 class="reveal">Three Pillars of the Path</h2>
+  <p class="section-desc reveal">Our teachings are rooted in three sacred principles that guide every course, workshop, and mentorship within the school.</p>
+  <div class="pillars-grid">
+    <div class="pillar-card reveal">
+      <span class="pillar-icon">&#9672;</span>
+      <h3>Wisdom</h3>
+      <p>Deep study of mystical traditions spanning Hermetic philosophy, Tibetan Buddhism, plant medicine lineages, esoteric Christianity, and the Western Mystery tradition.</p>
+    </div>
+    <div class="pillar-card reveal reveal-delay-1">
+      <span class="pillar-icon">&#10047;</span>
+      <h3>Practice</h3>
+      <p>Embodied practice through meditation, ritual, energy work, contemplative prayer, and sacred arts. Knowledge without practice remains incomplete.</p>
+    </div>
+    <div class="pillar-card reveal reveal-delay-2">
+      <span class="pillar-icon">&#9733;</span>
+      <h3>Service</h3>
+      <p>The ultimate fruit of wisdom is compassionate action. We cultivate the capacity to serve the world with clarity, love, and transformative presence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<div class="quote-divider">
+  <blockquote class="reveal">"The wound is the place where the Light enters you."</blockquote>
+  <cite class="reveal reveal-delay-1">Rumi</cite>
+</div>
+
+<!-- ============ COURSES ============ -->
+<section class="section-full bg-cream section-centered" id="courses">
+  <div class="section-eyebrow reveal" style="justify-content:center;">
+    <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+    Evergreen Courses
+    <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+  </div>
+  <h2 class="reveal">Sacred Curriculum</h2>
+  <p class="section-desc reveal">Self-paced courses designed to deepen your understanding and activate your innate wisdom. Begin whenever you are called.</p>
+  <div class="courses-grid">
+    <div class="course-card reveal">
+      <div class="course-thumb course-thumb-1">
+        <span class="course-thumb-icon">&#9673;</span>
+        <span class="course-thumb-label">Foundation</span>
+      </div>
+      <div class="course-body">
+        <h3>The Inner Sanctum</h3>
+        <p>An introductory journey through meditation, breathwork, and contemplative practice. Build the foundation for all deeper work.</p>
+        <div class="course-meta">
+          <span>&#9202; 8 Modules</span>
+          <span>&#9733; Self-Paced</span>
+        </div>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-1">
+      <div class="course-thumb course-thumb-2">
+        <span class="course-thumb-icon">&#9788;</span>
+        <span class="course-thumb-label">Intermediate</span>
+      </div>
+      <div class="course-body">
+        <h3>Hermetic Foundations</h3>
+        <p>Study the seven Hermetic principles, alchemical transformation, and the art of sacred correspondence across traditions.</p>
+        <div class="course-meta">
+          <span>&#9202; 12 Modules</span>
+          <span>&#9733; Self-Paced</span>
+        </div>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-2">
+      <div class="course-thumb course-thumb-3">
+        <span class="course-thumb-icon">&#10017;</span>
+        <span class="course-thumb-label">Advanced</span>
+      </div>
+      <div class="course-body">
+        <h3>The Mystic's Way</h3>
+        <p>An advanced exploration of mystical states, visionary practice, and the direct experience of the sacred across traditions.</p>
+        <div class="course-meta">
+          <span>&#9202; 16 Modules</span>
+          <span>&#9733; Self-Paced</span>
+        </div>
+      </div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-thumb course-thumb-4">
+        <span class="course-thumb-icon">&#9752;</span>
+        <span class="course-thumb-label">Specialty</span>
+      </div>
+      <div class="course-body">
+        <h3>Plant Medicine Wisdom</h3>
+        <p>Sacred plant traditions, ceremonial context, integration practices, and the ethics of working with entheogenic allies.</p>
+        <div class="course-meta">
+          <span>&#9202; 10 Modules</span>
+          <span>&#9733; Self-Paced</span>
+        </div>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-1">
+      <div class="course-thumb course-thumb-5">
+        <span class="course-thumb-icon">&#9775;</span>
+        <span class="course-thumb-label">Specialty</span>
+      </div>
+      <div class="course-body">
+        <h3>Energy &amp; the Subtle Body</h3>
+        <p>Chakra systems, meridian pathways, aura work, and the science of subtle energy across Eastern and Western traditions.</p>
+        <div class="course-meta">
+          <span>&#9202; 10 Modules</span>
+          <span>&#9733; Self-Paced</span>
+        </div>
+      </div>
+    </div>
+    <div class="course-card reveal reveal-delay-2">
+      <div class="course-thumb course-thumb-6">
+        <span class="course-thumb-icon">&#9681;</span>
+        <span class="course-thumb-label">Immersion</span>
+      </div>
+      <div class="course-body">
+        <h3>Sacred Arts &amp; Ritual</h3>
+        <p>Thangka painting, altar craft, ritual design, and the creative arts as spiritual practice and devotion.</p>
+        <div class="course-meta">
+          <span>&#9202; 8 Modules</span>
+          <span>&#9733; Self-Paced</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="section-full bg-warm" id="community">
+  <div class="community-banner reveal">
+    <div class="community-text">
+      <h2>The Inner Circle</h2>
+      <p>A living community of seekers, practitioners, and wisdom-keepers. Access weekly teachings, guided practices, and a supportive space to walk the path together.</p>
+      <ul class="community-features">
+        <li>Weekly video teachings &amp; live Q&amp;A</li>
+        <li>Guided meditation &amp; practice library</li>
+        <li>Community forum &amp; discussion</li>
+        <li>Exclusive articles &amp; contemplations</li>
+        <li>Early access to workshops &amp; retreats</li>
+      </ul>
+    </div>
+    <div class="community-price">
+      <div class="community-price-card">
+        <div class="community-price-label">Monthly Membership</div>
+        <div class="community-price-amount">$XX</div>
+        <div class="community-price-period">per month</div>
+        <a href="#signup" class="btn-white">Join the Circle</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKSHOPS & RETREATS ============ -->
+<section class="section-full bg-cream section-centered" id="events">
+  <div class="section-eyebrow reveal" style="justify-content:center;">
+    <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+    Gatherings
+    <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+  </div>
+  <h2 class="reveal">Workshops &amp; Retreats</h2>
+  <p class="section-desc reveal">Immersive experiences designed to deepen your practice in sacred community. Both online and in person.</p>
+  <div class="events-grid">
+    <div class="event-card reveal">
+      <div class="event-type">Workshop &middot; Online</div>
+      <h3>Introduction to Sacred Breathwork</h3>
+      <p>A 3-hour immersive workshop exploring pranayama, holotropic breathwork, and breath as a gateway to expanded states of consciousness.</p>
+      <div class="event-details">
+        <span>&#128197; Coming Soon</span>
+        <span>&#9202; 3 Hours</span>
+        <span>&#128187; Online</span>
+      </div>
+    </div>
+    <div class="event-card reveal reveal-delay-1">
+      <div class="event-type">Retreat &middot; In Person</div>
+      <h3>The Temple Within: Silent Retreat</h3>
+      <p>A 5-day silent retreat combining meditation, contemplation, nature immersion, and guided inner journeying in a sanctuary setting.</p>
+      <div class="event-details">
+        <span>&#128197; Coming Soon</span>
+        <span>&#9202; 5 Days</span>
+        <span>&#127793; In Person</span>
+      </div>
+    </div>
+    <div class="event-card reveal">
+      <div class="event-type">Workshop &middot; Online</div>
+      <h3>Art of Ritual Design</h3>
+      <p>Learn to create meaningful personal rituals that honor transitions, seasons, and the sacred rhythms of life.</p>
+      <div class="event-details">
+        <span>&#128197; Coming Soon</span>
+        <span>&#9202; 4 Hours</span>
+        <span>&#128187; Online</span>
+      </div>
+    </div>
+    <div class="event-card reveal reveal-delay-1">
+      <div class="event-type">Training &middot; Application Required</div>
+      <h3>Year-Long Practitioner Training</h3>
+      <p>A deep-dive mentorship program for those called to integrate spiritual wisdom into their life's work. Limited enrollment.</p>
+      <div class="event-details">
+        <span>&#128197; Applications Open</span>
+        <span>&#9202; 12 Months</span>
+        <span>&#127793; Hybrid</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<div class="quote-divider bg-warm">
+  <blockquote class="reveal">"We are not human beings having a spiritual experience. We are spiritual beings having a human experience."</blockquote>
+  <cite class="reveal reveal-delay-1">Pierre Teilhard de Chardin</cite>
+</div>
+
+<!-- ============ 1:1 SESSIONS ============ -->
+<section class="section bg-cream" id="sessions">
+  <div class="sessions-layout">
+    <div class="sessions-text reveal">
+      <div class="section-eyebrow">Personal Guidance</div>
+      <h2>1:1 Sessions with Krista</h2>
+      <p>Sometimes the path calls for a guide who can see what you cannot yet see in yourself. Private sessions offer personalized spiritual mentorship, energy work, and wisdom counsel.</p>
+      <p>Whether you are navigating a dark night of the soul, seeking clarity on your path, or ready to deepen your practice, these sessions provide a sacred container for transformation.</p>
+      <a href="#contact" class="btn-gold">Book a Session</a>
+    </div>
+    <div class="sessions-offerings reveal reveal-delay-1">
+      <div class="session-type">
+        <div class="session-icon session-icon-teal">&#9673;</div>
+        <div>
+          <h4>Spiritual Mentorship</h4>
+          <p>Guidance on your personal path, practice development, and navigating spiritual awakening.</p>
+        </div>
+      </div>
+      <div class="session-type">
+        <div class="session-icon session-icon-gold">&#10022;</div>
+        <div>
+          <h4>Energy &amp; Healing Work</h4>
+          <p>Subtle body assessment, energy clearing, and restoration of natural energetic flow.</p>
+        </div>
+      </div>
+      <div class="session-type">
+        <div class="session-icon session-icon-plum">&#9733;</div>
+        <div>
+          <h4>Wisdom Counsel</h4>
+          <p>Deep listening and intuitive guidance for life transitions, purpose, and sacred alignment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / BIO ============ -->
+<section class="section-full bg-sacred section-centered" id="about">
+  <div class="bio-section">
+    <div class="bio-photo reveal">&#10047;</div>
+    <div class="section-eyebrow reveal" style="justify-content:center;">
+      <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+      Your Guide
+      <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+    </div>
+    <h2 class="reveal">Krista</h2>
+    <div class="bio-title reveal">Founder &amp; Lead Teacher</div>
+    <p class="bio-text reveal">Krista brings decades of devoted study and practice across the world's great spiritual traditions. Her path has wound through Hermetic mysticism, Tibetan Buddhist training, plant medicine lineages, contemplative Christianity, and the Western Mystery tradition.</p>
+    <p class="bio-text reveal">What makes her teaching extraordinary is not breadth alone, but depth &mdash; the lived experience of walking each path with reverence, rigor, and an open heart. She founded the Spiritual Wisdom School to create the sacred learning space she wished had existed: one that honors the ancient while speaking to the modern seeker.</p>
+    <div class="bio-traditions reveal">
+      <span class="bio-tag">Hermetic Philosophy</span>
+      <span class="bio-tag">Tibetan Buddhism</span>
+      <span class="bio-tag">Plant Medicine</span>
+      <span class="bio-tag">Contemplative Arts</span>
+      <span class="bio-tag">Energy Work</span>
+      <span class="bio-tag">Western Mysticism</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMAIL SIGNUP ============ -->
+<section class="section bg-cream section-centered" id="signup">
+  <div class="signup-section">
+    <div class="section-eyebrow reveal" style="justify-content:center;">
+      <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+      Stay Connected
+      <span style="width:40px;height:1px;background:var(--gold);display:inline-block;"></span>
+    </div>
+    <h2 class="reveal">Receive Wisdom</h2>
+    <p class="reveal">Join our mailing list for contemplations, practice invitations, and first access to new courses and events. We honor your inbox &mdash; only meaningful content, never spam.</p>
+    <form class="signup-form reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank You ✦'; this.querySelector('input').disabled=true;">
+      <input type="email" class="signup-input" placeholder="Your email address" required>
+      <button type="submit" class="btn-primary" style="padding:14px 28px;">Subscribe</button>
+    </form>
+    <div class="signup-note reveal">&#10022; We respect your privacy. Unsubscribe at any time.</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Spiritual Wisdom School</div>
+      <p class="footer-desc">Ancient wisdom for modern seekers. A sacred space of learning, practice, and community founded by Krista.</p>
+      <div class="footer-social" style="margin-top:20px;">
+        <a href="#" aria-label="Instagram">&#9679;</a>
+        <a href="#" aria-label="YouTube">&#9654;</a>
+        <a href="#" aria-label="Facebook">&#402;</a>
+      </div>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#events">Workshops</a></li>
+        <li><a href="#events">Retreats</a></li>
+        <li><a href="#community">Community</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#sessions">1:1 Sessions</a></li>
+        <li><a href="#about">About Krista</a></li>
+        <li><a href="#signup">Newsletter</a></li>
+        <li><a href="mailto:hello@example.com">Email Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Practice Library</a></li>
+        <li><a href="#">Recommended Reading</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="gold-divider" style="margin-bottom:24px;"></div>
+    &copy; 2026 Spiritual Wisdom School. All rights reserved. &nbsp;|&nbsp; <a href="#" style="color:rgba(255,255,255,0.5);">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ============ MOBILE NAV ============ */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+/* ============ REVEAL ON SCROLL ============ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
