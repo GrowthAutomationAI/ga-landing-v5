@@ -11,9 +11,9 @@
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg: #0B0B0F;
-  --bg2: #121218;
-  --bg3: #1A1A24;
+  --bg: #101016;
+  --bg2: #151520;
+  --bg3: #1C1C2A;
   --card: #13131D;
   --card2: #1C1C2A;
   --amber: #E8A023;
@@ -601,7 +601,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .marquee-row { margin-bottom: 12px; overflow: hidden; }
 
 /* ============ SECTION GLOBALS ============ */
-.section { padding: 100px 24px; }
+.section { padding: 100px 24px; background: var(--bg2); }
 .section-sm { padding: 60px 24px; }
 .section-heading {
   font-size: clamp(34px, 4vw, 56px);
@@ -621,7 +621,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 .section-header { text-align: center; margin-bottom: 56px; }
 .section-header .section-sub { margin: 0 auto; }
-.section-alt { background: var(--bg2); }
+.section-alt { background: var(--bg); }
 .section-label {
   display: flex;
   align-items: center;
@@ -1017,7 +1017,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 /* ============ STATS ROW ============ */
 .stats-section {
   padding: 60px 24px;
-  background: var(--bg2);
+  background: var(--bg3);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -1709,46 +1709,55 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   text-transform: uppercase;
 }
 
-/* ============ FINAL CTA ============ */
-.final-cta {
+/* ============ PRE-FOOTER CTA ============ */
+.prefooter-cta {
+  padding: 80px 24px;
   text-align: center;
-  padding: 120px 24px;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--bg) 0%, rgba(91,79,167,0.08) 40%, rgba(91,79,167,0.15) 70%, var(--bg) 100%);
+  background: var(--bg3);
 }
-.final-cta-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px;
-  height: 500px;
-  background: radial-gradient(ellipse, rgba(139,127,199,0.15) 0%, rgba(139,127,199,0.05) 40%, transparent 70%);
-  pointer-events: none;
+.prefooter-cta-inner {
+  max-width: 700px;
+  margin: 0 auto;
 }
-.final-cta-dots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(139,127,199,0.15) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
+.prefooter-cta-inner h3 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+  color: var(--cream);
 }
-.final-cta .section-heading { position: relative; z-index: 1; }
-.final-cta .section-sub {
-  position: relative;
-  z-index: 1;
-  max-width: 540px;
-  margin: 0 auto 36px;
-}
-.final-cta .btn-amber { position: relative; z-index: 1; }
-.final-secondary {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 13px;
+.prefooter-cta-inner p {
+  font-size: 16px;
   color: var(--muted);
-  position: relative;
-  z-index: 1;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+.prefooter-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-white-outline {
+  padding: 12px 24px;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-white-outline:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.8);
+  transform: translateY(-1px);
+}
   transition: color 0.2s;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1757,7 +1766,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 /* ============ FOOTER ============ */
 .footer {
-  background: var(--bg2);
+  background: var(--bg);
   border-top: 1px solid var(--border);
   padding: 64px 24px 32px;
 }
@@ -2522,16 +2531,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ 17. CTA BANNER ============ -->
-<div class="cta-banner reveal">
-  <div class="cta-banner-dots"></div>
-  <div class="cta-banner-text editable">
-    <h3>Launch Your GTM Campaign in 14 Days or Less</h3>
-    <p>AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
-  </div>
-  <a href="#book" class="btn-white">Interactive Demo &rarr;</a>
-</div>
-
 <!-- ============ 18. BATTLE CARDS ============ -->
 <section class="section">
   <div class="container">
@@ -2560,6 +2559,18 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <p class="battle-stat">Multi-channel (email + LinkedIn) with 3-step qualification vs. LinkedIn-only outreach.</p>
         <span class="battle-link">Compare &rarr;</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17. CTA BANNER (PRE-FOOTER) ============ -->
+<section class="prefooter-cta">
+  <div class="prefooter-cta-inner reveal">
+    <h3>Launch Your GTM Campaign in 14 Days or Less</h3>
+    <p>AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
+    <div class="prefooter-cta-buttons">
+      <a href="#book" class="btn-amber">Interactive Demo &rarr;</a>
+      <a href="#book" class="btn-white-outline">Book a Strategy Call</a>
     </div>
   </div>
 </section>
