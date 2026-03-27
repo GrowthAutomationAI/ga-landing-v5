@@ -1,6 +1,6 @@
 {
-  "redirects": [
-    { "source": "/admin", "destination": "/admin/", "statusCode": 301 }
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin/index.html" }
   ],
   "headers": [
     {
