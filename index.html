@@ -3005,8 +3005,8 @@ hamburger.addEventListener('click', () => {
 
       // ---- Neon palette ----
       vec3 electricBlue  = vec3(0.08, 0.48, 1.00);
-      vec3 hotMagenta    = vec3(0.55, 0.20, 0.55);
-      vec3 deepViolet    = vec3(0.50, 0.30, 0.90);
+      vec3 hotMagenta    = vec3(0.72, 0.42, 0.58);   // dusty rose
+      vec3 deepViolet    = vec3(0.70, 0.45, 0.68);   // soft warm pink
       vec3 acidGreen     = vec3(0.04, 0.20, 0.08);
       vec3 electricAmber = vec3(1.00, 0.55, 0.00);
       vec3 darkBase      = vec3(0.035, 0.030, 0.055);
@@ -3046,7 +3046,7 @@ hamburger.addEventListener('click', () => {
       float ring1 = exp(-ringDist1 * ringDist1 * 12.) * (1.-ringAge1) * mPow * 0.7;
       float ring2 = exp(-ringDist2 * ringDist2 * 8.)  * (1.-ringAge2) * mPow * 0.5;
       col += ring1 * electricBlue * 0.7;
-      col += ring2 * vec3(0.35, 0.30, 0.85) * 0.4;
+      col += ring2 * vec3(0.70, 0.45, 0.65) * 0.4;
 
       // ---- Chromatic aberration — splits at cursor + edges ----
       float caAmt = .012 + mPow * .04 + speed * .03;
