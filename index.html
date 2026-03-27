@@ -101,8 +101,9 @@
 [data-theme="light"] .footer-col h4 { color: #1A1A2E; }
 [data-theme="light"] .statement-section { background: var(--bg3); }
 [data-theme="light"] .statement-h { color: #1A1A2E; }
-[data-theme="light"] .stats-section { background: var(--bg3); }
-[data-theme="light"] .prefooter-cta { background: var(--bg3); }
+[data-theme="light"] .stats-section { background: var(--bg); }
+[data-theme="light"] .prefooter-cta { background: var(--bg2); }
+[data-theme="light"] .battle-cards-section { background: var(--bg3); }
 [data-theme="light"] .prefooter-cta-inner h3 { color: #1A1A2E; }
 [data-theme="light"] .btn-white-outline { color: #1A1A2E; border-color: rgba(26,26,46,0.25); }
 [data-theme="light"] .btn-white-outline:hover { background: rgba(26,26,46,0.05); border-color: rgba(26,26,46,0.4); }
@@ -192,7 +193,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   letter-spacing: 0.01em;
 }
 .announce-bar a {
-  color: var(--violet-l);
+  color: var(--amber);
   font-weight: 700;
   margin-left: 10px;
   transition: color 0.2s;
@@ -510,7 +511,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 
 /* ============ BROWSER MOCKUP ============ */
-.browser-section { padding: 40px 24px 80px; }
+.browser-section { padding: 40px 24px 80px; background: var(--bg2); position: relative; overflow: hidden; isolation: isolate; }
 .browser-frame {
   max-width: 1020px;
   margin: 0 auto;
@@ -1082,7 +1083,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 /* ============ STATS ROW ============ */
 .stats-section {
   padding: 60px 24px;
-  background: var(--bg3);
+  background: var(--bg);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -1778,7 +1779,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .prefooter-cta {
   padding: 80px 24px;
   text-align: center;
-  background: var(--bg3);
+  background: var(--bg2);
 }
 .prefooter-cta-inner {
   max-width: 700px;
@@ -1805,8 +1806,10 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   gap: 14px;
   flex-wrap: wrap;
 }
+.battle-cards-section { background: var(--bg3); }
 .prefooter-cta-buttons .btn-amber,
-.prefooter-cta-buttons .btn-white-outline {
+.prefooter-cta-buttons .btn-white-outline,
+.prefooter-cta-buttons .btn-violet-sm {
   padding: 13px 28px;
   font-size: 15px;
 }
@@ -2011,6 +2014,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 4. BROWSER MOCKUP ============ -->
 <div class="browser-section reveal">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="browser-frame">
     <div class="browser-chrome">
       <div class="browser-dots"><span></span><span></span><span></span></div>
@@ -2458,7 +2462,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <li>Web research on demand</li>
           <li>Cross-client insights</li>
         </ul>
-        <a href="#book" class="btn-amber">Interactive Demo &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
         <img src="screenshots/dex_response_square.png" alt="Dex AI in action" style="width:100%;max-width:420px;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
@@ -2470,7 +2473,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 <!-- ============ 13B. GET STARTED — ONBOARDING CTA ============ -->
 <section class="section section-alt" id="get-started">
   <div class="container">
-    <div class="dex-section">
+    <div class="dex-section reversed">
       <div class="reveal">
         <div class="dex-kicker">GET STARTED IN MINUTES</div>
         <h2 class="dex-heading editable">Launch Your First Campaign</h2>
@@ -2482,7 +2485,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <li>Custom messaging &amp; sequences</li>
           <li>Fully warmed sending infrastructure</li>
         </ul>
-        <a href="#book" class="btn-violet-sm" style="padding:12px 24px;font-size:15px;">Interactive Demo &rarr;</a>
+        <a href="#book" class="btn-amber" style="padding:12px 24px;font-size:15px;">Interactive Demo &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
         <img src="screenshots/dashboard.png" alt="Growth Automation Dashboard" style="width:100%;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
@@ -2606,7 +2609,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 </section>
 
 <!-- ============ 18. BATTLE CARDS ============ -->
-<section class="section">
+<section class="section battle-cards-section">
   <div class="container">
     <div class="section-header reveal">
       <h2 class="section-heading editable">See How We Compare</h2>
@@ -2644,7 +2647,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     <p>AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
     <div class="prefooter-cta-buttons">
       <a href="#book" class="btn-amber">Interactive Demo &rarr;</a>
-      <a href="#book" class="btn-white-outline">Book a Strategy Call</a>
+      <a href="#book" class="btn-violet-sm">Book a Strategy Call</a>
     </div>
   </div>
 </section>
