@@ -31,9 +31,9 @@
 }
 /* ============ LIGHT THEME ============ */
 [data-theme="light"] {
-  --bg: #FFFFFF;
-  --bg2: #F7F7F9;
-  --bg3: #EEEFF3;
+  --bg: #FAFAFA;
+  --bg2: #F2F2F5;
+  --bg3: #E8E8EE;
   --card: #FFFFFF;
   --card2: #F7F7F9;
   --amber: #E8A023;
@@ -96,7 +96,7 @@
 [data-theme="light"] .demo-form-card { background: #fff; border-color: rgba(0,0,0,0.08); }
 [data-theme="light"] .stat-number { color: var(--violet); }
 [data-theme="light"] .section-label { color: var(--violet); }
-[data-theme="light"] .footer { background: #F0F0F4; }
+[data-theme="light"] .footer { background: #E6E6EC; }
 [data-theme="light"] .footer-brand,
 [data-theme="light"] .footer-col h4 { color: #1A1A2E; }
 [data-theme="light"] .statement-section { background: var(--bg3); }
@@ -112,11 +112,15 @@
 [data-theme="light"] .dex-checklist li { color: #1A1A2E; }
 [data-theme="light"] .accent { color: var(--amber); }
 [data-theme="light"] .gold { color: var(--amber); }
-[data-theme="light"] #vanta-hero { opacity: 0.30; }
-[data-theme="light"] .hero-sub { color: rgba(26,26,46,0.6); }
-[data-theme="light"] .hero-badge { color: var(--violet); border-color: rgba(139,127,199,0.25); }
-[data-theme="light"] .hero-proof { color: rgba(26,26,46,0.55); }
-[data-theme="light"] .hero-cta-subtext { color: rgba(26,26,46,0.5); }
+[data-theme="light"] .hero { background: #101016; }
+[data-theme="light"] .hero h1 { color: #fff; }
+[data-theme="light"] .hero .hero-badge { color: #fff; background: var(--violet); }
+[data-theme="light"] .hero .hero-sub { color: rgba(255,255,255,0.85); }
+[data-theme="light"] .hero .hero-proof { color: rgba(255,255,255,0.85); }
+[data-theme="light"] .hero .hero-proof strong { color: var(--violet-l); }
+[data-theme="light"] .hero .hero-cta-subtext { color: rgba(255,255,255,0.75); }
+[data-theme="light"] #vanta-hero { opacity: 1; }
+/* hero light overrides moved to .hero scope above */
 [data-theme="light"] .pain-card h4 { color: var(--violet); }
 [data-theme="light"] .dex-body,
 [data-theme="light"] .dex-subheading { color: rgba(26,26,46,0.6); }
@@ -398,14 +402,14 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .hero-content > *:nth-child(5) { animation-delay: 0.7s; }
 .hero-badge {
   display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid rgba(139,127,199,0.3);
+  padding: 8px 18px;
+  border: none;
   border-radius: 100px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--violet-l);
-  background: rgba(139,127,199,0.08);
+  color: #fff;
+  background: var(--violet);
   margin-bottom: 28px;
 }
 .hero h1 {
@@ -420,7 +424,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .gold { color: var(--amber); }
 .hero-sub {
   font-size: 19px;
-  color: var(--muted);
+  color: rgba(255,255,255,0.9);
   max-width: 560px;
   margin-bottom: 36px;
   line-height: 1.7;
@@ -434,14 +438,14 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   gap: 20px;
   flex-wrap: wrap;
   font-size: 14px;
-  color: var(--muted);
+  color: rgba(255,255,255,0.9);
   font-family: 'Inter Tight', sans-serif;
 }
 .hero-proof span { display: flex; align-items: center; gap: 6px; }
 .hero-proof strong { color: var(--violet-l); font-weight: 700; }
 .hero-cta-subtext {
   font-size: 13px;
-  color: var(--muted);
+  color: rgba(255,255,255,0.85);
   margin-top: -4px;
   font-family: 'Inter Tight', sans-serif;
 }
@@ -1916,7 +1920,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 1. ANNOUNCEMENT BAR ============ -->
 <div class="announce-bar" id="announceBar">
-  Now accepting new clients for Q2 2026<a href="#book">Book a strategy call &rarr;</a>
+  Offering free strategy proposals for Q2: <a href="#book">Run the Interactive Demo &rarr;</a>
   <button class="announce-close" onclick="document.getElementById('announceBar').classList.add('hidden')">&times;</button>
 </div>
 
@@ -1946,12 +1950,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-content editable">
-      <div class="hero-badge">&#10022; AI-POWERED OUTBOUND &mdash; FULLY MANAGED</div>
+      <div class="hero-badge">&#10022; AI-POWERED OUTBOUND - FULLY MANAGED</div>
       <h1>Qualified lead pipeline &mdash; without agency fees or <span class="accent">DIY chaos.</span></h1>
       <p class="hero-sub">Fully managed outbound powered by agentic AI, human verification, and zero client lift.</p>
       <div class="hero-ctas">
         <a href="#book" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
-        <a href="#book" class="btn-violet-sm">Book a Strategy Call</a>
       </div>
       <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (10 mins)</div>
       <div class="hero-proof">
