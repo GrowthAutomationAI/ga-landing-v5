@@ -102,9 +102,7 @@
 [data-theme="light"] .statement-section { background: var(--bg3); }
 [data-theme="light"] .statement-h { color: #1A1A2E; }
 [data-theme="light"] .stats-section { background: var(--bg); }
-[data-theme="light"] .prefooter-cta { background: var(--violet); }
-[data-theme="light"] .prefooter-cta-inner h3 { color: #fff; }
-[data-theme="light"] .prefooter-cta-inner p { color: rgba(255,255,255,0.8); }
+[data-theme="light"] .final-cta { background: linear-gradient(180deg, var(--bg) 0%, rgba(91,79,167,0.06) 40%, rgba(91,79,167,0.12) 70%, var(--bg) 100%); }
 [data-theme="light"] .battle-cards-section { background: var(--bg3); }
 [data-theme="light"] .btn-white-outline { color: #1A1A2E; border-color: rgba(26,26,46,0.25); }
 [data-theme="light"] .btn-white-outline:hover { background: rgba(26,26,46,0.05); border-color: rgba(26,26,46,0.4); }
@@ -493,7 +491,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .hero-proof span { display: flex; align-items: center; gap: 6px; }
 .hero-proof strong { color: var(--violet-l); font-weight: 700; }
 .hero-cta-subtext {
-  font-size: 13px;
+  font-size: 15px;
   color: rgba(255,255,255,0.85);
   margin-top: -4px;
   font-family: 'Inter Tight', sans-serif;
@@ -1905,69 +1903,53 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   text-transform: uppercase;
 }
 
-/* ============ PRE-FOOTER CTA ============ */
-.prefooter-cta {
-  padding: 80px 24px;
+/* ============ FINAL CTA ============ */
+.final-cta {
   text-align: center;
-  background: var(--violet);
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(91,79,167,0.08) 40%, rgba(91,79,167,0.15) 70%, var(--bg) 100%);
 }
-.prefooter-cta .btn-white-outline,
-.prefooter-cta .btn-strat-white {
-  padding: 13px 28px;
-  border: 2px solid rgba(255,255,255,0.7);
-  border-radius: 100px;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: 'Inter Tight', sans-serif;
-  color: #fff;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+.final-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.15) 0%, rgba(139,127,199,0.05) 40%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139,127,199,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.final-cta .section-heading { position: relative; z-index: 1; }
+.final-cta .section-sub {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto 36px;
+}
+.final-cta .btn-amber,
+.final-cta .btn-violet-sm { position: relative; z-index: 1; }
+.final-secondary {
   display: inline-block;
-  text-decoration: none;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.prefooter-cta .btn-strat-white:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: #fff;
-  transform: translateY(-1px);
-}
-.prefooter-cta-inner {
-  max-width: 700px;
-  margin: 0 auto;
-}
-.prefooter-cta-inner h3 {
-  font-size: clamp(30px, 3.5vw, 48px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-  color: #fff;
-  line-height: 1.15;
-}
-.prefooter-cta-inner h3 .accent { color: var(--amber); }
-.prefooter-cta-inner p {
-  font-size: 20px;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.6;
-  font-style: italic;
-  margin-bottom: 32px;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.prefooter-cta-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+.final-secondary:hover { color: var(--cream); }
 .battle-cards-section { background: var(--bg3); }
-.prefooter-cta-buttons .btn-amber,
-.prefooter-cta-buttons .btn-white-outline,
-.prefooter-cta-buttons .btn-violet-sm {
-  padding: 13px 28px;
-  font-size: 15px;
-}
 .btn-white-outline {
   padding: 12px 24px;
   border: 1.5px solid rgba(255,255,255,0.5);
@@ -2118,7 +2100,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 1. ANNOUNCEMENT BAR ============ -->
 <div class="announce-bar" id="announceBar">
-  Offering free strategy proposals for Q2: <a href="https://app.growthautomation.ai/onboard/public">Run the Interactive Demo &rarr;</a>
+  Offering free strategy proposals for Q2: <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener">Run the Interactive Demo &rarr;</a>
   <button class="announce-close" onclick="document.getElementById('announceBar').classList.add('hidden')">&times;</button>
 </div>
 
@@ -2144,7 +2126,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     <div class="nav-actions">
       <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
-      <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.location.href='https://calendly.com/mikeborman/growth-automation-lead-gen-client-call'">Book a Strategy Call</button>
+      <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
     </div>
     <button class="nav-hamburger" id="navHamburger">&#9776;</button>
   </div>
@@ -2160,7 +2142,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <h1>Qualified lead pipeline &mdash; without agency fees or <span class="accent">DIY chaos.</span></h1>
       <p class="hero-sub">Fully managed outbound powered by agentic AI, human verification, and zero client lift.</p>
       <div class="hero-ctas">
-        <a href="https://app.growthautomation.ai/onboard/public" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
+        <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
       </div>
       <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (10 mins)</div>
       <div class="hero-proof">
@@ -2369,7 +2351,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   <h2 class="statement-h editable">Stop <span class="cross"><svg class="cross-svg" viewBox="0 0 100 100"><line x1="15" y1="15" x2="85" y2="85"/><line x1="85" y1="15" x2="15" y2="85"/></svg></span> guessing</h2>
   <div class="statement-sub editable">start winning with data-driven GTM.</div>
   <div style="margin-top:40px;position:relative;z-index:1;">
-    <a href="https://app.growthautomation.ai/onboard/public" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
+    <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
   </div>
 </section>
 
@@ -2650,7 +2632,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <li>Custom messaging &amp; sequences</li>
           <li>Fully warmed sending infrastructure</li>
         </ul>
-        <a href="https://app.growthautomation.ai/onboard/public" class="btn-amber" style="padding:12px 24px;font-size:15px;">Interactive Demo &rarr;</a>
+        <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber" style="padding:12px 24px;font-size:15px;">Interactive Demo &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
         <img src="screenshots/dashboard.png" alt="Growth Automation Dashboard" style="width:100%;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
@@ -2711,7 +2693,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
               <option>$10,000+/mo</option>
             </select>
           </div>
-          <button class="demo-submit" type="button" onclick="window.location.href='https://calendly.com/mikeborman/growth-automation-lead-gen-client-call'">Book a Strategy Call</button>
+          <button class="demo-submit" type="button" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
           <div class="demo-fine-print">No commitment. 15-minute call. We'll map your ICP and show you the infrastructure.</div>
         </div>
       </div>
@@ -2806,16 +2788,19 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 </section>
 
 <!-- ============ 17. CTA BANNER (PRE-FOOTER) ============ -->
-<section class="prefooter-cta">
-  <div class="prefooter-cta-inner reveal">
-    <div class="section-label" style="justify-content:center;color:#fff;"><div class="section-label-line" style="background:rgba(255,255,255,0.4);"></div> GET STARTED</div>
-    <h3>Launch Your GTM Campaign in <span class="accent">14 Days or Less</span></h3>
-    <p>AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
-    <div class="prefooter-cta-buttons">
-      <a href="https://app.growthautomation.ai/onboard/public" class="btn-amber">Interactive Demo &rarr;</a>
-      <a href="https://calendly.com/mikeborman/growth-automation-lead-gen-client-call" class="btn-strat-white">Book a Strategy Call</a>
-    </div>
+<section class="final-cta">
+  <div class="final-cta-glow"></div>
+  <div class="final-cta-dots"></div>
+  <div class="section-label reveal" style="justify-content:center;">
+    <span class="section-label-line"></span>GET STARTED<span class="section-label-line"></span>
   </div>
+  <h2 class="section-heading reveal">Launch Your GTM Campaign in <span class="accent">14 Days or Less</span></h2>
+  <p class="section-sub reveal">AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
+  <div style="display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+    <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber btn-amber-lg reveal" target="_blank" rel="noopener">Interactive Demo &rarr;</a>
+    <a href="https://calendly.com/mikeborman/growth-automation-lead-gen-client-call" target="_blank" rel="noopener" class="btn-violet-sm reveal" style="padding:16px 32px;font-size:16px;" target="_blank" rel="noopener">Book a Strategy Call</a>
+  </div>
+  <a href="pricing.html" class="final-secondary reveal">Or explore pricing &rarr;</a>
 </section>
 
 <!-- ============ 20. FOOTER ============ -->
