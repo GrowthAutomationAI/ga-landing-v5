@@ -1333,6 +1333,12 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   font-weight: 700;
   font-family: 'Inter Tight', sans-serif;
 }
+.dex-section.reversed {
+  direction: rtl;
+}
+.dex-section.reversed > * {
+  direction: ltr;
+}
 
 /* ============ TALK TO SALES ============ */
 .demo-section {
@@ -1792,16 +1798,28 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .footer-bottom {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 24px;
+  padding: 32px 0;
   border-top: 1px solid var(--border);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
   font-size: 13px;
   color: var(--muted);
   font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-ctas {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 .footer-bottom-links { display: flex; gap: 16px; }
 .footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
@@ -1924,7 +1942,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <img class="slide-img" src="screenshots/dex_response.png" alt="Dex AI Chat">
       <img class="slide-img" src="screenshots/content_engine.png" alt="Content Engine">
       <img class="slide-img" src="screenshots/ai_usage.png" alt="AI Usage Dashboard">
-      <img class="slide-img" src="screenshots/deliverability.png" alt="Deliverability Dashboard">
     </div>
     <div class="slide-pips">
       <div class="pip active" data-index="0"></div>
@@ -1932,7 +1949,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <div class="pip" data-index="2"></div>
       <div class="pip" data-index="3"></div>
       <div class="pip" data-index="4"></div>
-      <div class="pip" data-index="5"></div>
     </div>
   </div>
 </div>
@@ -2361,15 +2377,31 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <a href="#book" class="btn-amber">See Dex in Action &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
-        <div class="browser-frame" style="box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);">
-          <div class="browser-chrome">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">app.growthautomation.ai/dex</div>
-          </div>
-          <div style="overflow:hidden;">
-            <img src="screenshots/dex_response.png" alt="Dex AI in action" style="width:100%;display:block;">
-          </div>
-        </div>
+        <img src="screenshots/dex_response_square.png" alt="Dex AI in action" style="width:100%;max-width:420px;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13B. GET STARTED — ONBOARDING CTA ============ -->
+<section class="section section-alt" id="get-started">
+  <div class="container">
+    <div class="dex-section reversed">
+      <div class="reveal">
+        <div class="dex-kicker">GET STARTED IN MINUTES</div>
+        <h2 class="dex-heading editable">Launch Your First Campaign</h2>
+        <p class="dex-subheading editable">From zero to qualified leads in 14 days.</p>
+        <p class="dex-body editable">Our guided onboarding walks you through ICP definition, audience targeting, messaging strategy, and infrastructure setup. No technical skills required &mdash; just answer a few questions and we build your entire outbound engine.</p>
+        <ul class="dex-checklist">
+          <li>5-minute onboarding questionnaire</li>
+          <li>AI-powered ICP &amp; audience research</li>
+          <li>Custom messaging &amp; sequences</li>
+          <li>Fully warmed sending infrastructure</li>
+        </ul>
+        <a href="#book" class="btn-amber">Start Onboarding &rarr;</a>
+      </div>
+      <div class="reveal" style="transition-delay:0.15s">
+        <img src="screenshots/dashboard.png" alt="Growth Automation Dashboard" style="width:100%;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
       </div>
     </div>
   </div>
@@ -2573,12 +2605,18 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Growth Automation. All rights reserved.</span>
-    <div class="footer-bottom-links">
-      <a href="comparisons.html#belkins">GA vs Belkins</a>
-      <a href="comparisons.html#apollo">GA vs Apollo</a>
-      <a href="comparisons.html#instantly">GA vs Instantly</a>
-      <a href="comparisons.html#cleverly">GA vs Cleverly</a>
+    <div class="footer-bottom-ctas">
+      <a href="#book" class="btn-amber">Book a Strategy Call &rarr;</a>
+      <a href="#book" class="btn-violet-sm">Interactive Demo</a>
+    </div>
+    <div class="footer-bottom-row">
+      <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="comparisons.html#belkins">GA vs Belkins</a>
+        <a href="comparisons.html#apollo">GA vs Apollo</a>
+        <a href="comparisons.html#instantly">GA vs Instantly</a>
+        <a href="comparisons.html#cleverly">GA vs Cleverly</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -2678,8 +2716,7 @@ const slideUrls = [
   'app.growthautomation.ai/inbox',
   'app.growthautomation.ai/dex',
   'app.growthautomation.ai/content-engine',
-  'app.growthautomation.ai/ai-usage',
-  'app.growthautomation.ai/deliverability'
+  'app.growthautomation.ai/ai-usage'
 ];
 let currentSlide = 0;
 const totalSlides = slideUrls.length;
