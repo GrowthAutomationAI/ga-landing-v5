@@ -1,0 +1,60 @@
+# CloudCannon configuration for ga-landing-v5
+# Docs: https://cloudcannon.com/documentation/
+
+# Source and build settings
+source: ""
+paths:
+  uploads: images/uploads
+
+# Collections (for structured data editing)
+collections_config:
+  data:
+    path: _data
+    disable_add: true
+    disable_remove: true
+
+# Data editing (JSON files in _data/)
+data_config:
+  hero:
+    path: _data/hero.json
+  pain:
+    path: _data/pain.json
+  case-studies:
+    path: _data/case-studies.json
+  settings:
+    path: _data/settings.json
+
+# Visual editing — mark editable regions in HTML
+_editables:
+  text:
+    bold: true
+    italic: true
+    link: true
+    bulletedlist: true
+    numberedlist: true
+  block:
+    bold: true
+    italic: true
+    link: true
+    bulletedlist: true
+    numberedlist: true
+    format: p h1 h2 h3 h4
+    image: true
+    undo: true
+    redo: true
+  image:
+    width: 1600
+    height: 1600
+    resize_style: contain
+    expandable: true
+    allowed_sources:
+      - uploads
+
+# File-level config for the main page
+collection_groups:
+  - heading: Pages
+    collections:
+      - pages
+  - heading: Data
+    collections:
+      - data
