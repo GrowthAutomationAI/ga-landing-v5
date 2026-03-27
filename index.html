@@ -296,6 +296,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   display: inline-block;
 }
 .btn-violet-sm:hover { background: var(--violet-l); transform: translateY(-1px); }
+.btn-sm { padding: 9px 20px; font-size: 13px; border-radius: 100px; }
 .btn-white {
   padding: 16px 36px;
   border: none;
@@ -484,7 +485,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 
 /* ============ BROWSER MOCKUP ============ */
-.browser-section { padding: 0 24px 80px; }
+.browser-section { padding: 40px 24px 80px; }
 .browser-frame {
   max-width: 1020px;
   margin: 0 auto;
@@ -1447,18 +1448,18 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   font-size: 14px;
   font-weight: 700;
   font-family: 'Inter Tight', sans-serif;
-  color: #0B0B0F;
-  background: var(--amber);
+  color: #fff;
+  background: var(--violet);
   cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  box-shadow: 0 0 24px rgba(139,127,199,0.2);
   margin-top: 8px;
   letter-spacing: 0.02em;
 }
 .demo-submit:hover {
-  background: var(--amber-l);
+  background: var(--violet-l);
   transform: translateY(-1px);
-  box-shadow: 0 0 36px rgba(232,160,35,0.35);
+  box-shadow: 0 0 36px rgba(139,127,199,0.35);
 }
 .demo-fine-print {
   font-size: 13px;
@@ -1897,7 +1898,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     <div class="nav-actions">
       <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
-      <button class="btn-amber" onclick="window.location.href='#book'">Book a Strategy Call &rarr;</button>
+      <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.location.href='#book'">Book a Strategy Call</button>
     </div>
     <button class="nav-hamburger" id="navHamburger">&#9776;</button>
   </div>
@@ -1914,7 +1915,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <p class="hero-sub">Fully managed outbound powered by agentic AI, human verification, and zero client lift.</p>
       <div class="hero-ctas">
         <a href="#book" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
-        <a href="#book" class="btn-violet-sm">Book a strategy call</a>
+        <a href="#book" class="btn-violet-sm">Book a Strategy Call</a>
       </div>
       <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (10 mins)</div>
       <div class="hero-proof">
@@ -2374,7 +2375,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <li>Web research on demand</li>
           <li>Cross-client insights</li>
         </ul>
-        <a href="#book" class="btn-amber">See Dex in Action &rarr;</a>
+        <a href="#book" class="btn-amber">Interactive Demo &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
         <img src="screenshots/dex_response_square.png" alt="Dex AI in action" style="width:100%;max-width:420px;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
@@ -2398,7 +2399,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
           <li>Custom messaging &amp; sequences</li>
           <li>Fully warmed sending infrastructure</li>
         </ul>
-        <a href="#book" class="btn-amber">Start Onboarding &rarr;</a>
+        <a href="#book" class="btn-violet-sm" style="padding:12px 24px;font-size:15px;">Interactive Demo &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
         <img src="screenshots/dashboard.png" alt="Growth Automation Dashboard" style="width:100%;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
@@ -2459,7 +2460,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
               <option>$10,000+/mo</option>
             </select>
           </div>
-          <button class="demo-submit" type="button">Book My Strategy Call &rarr;</button>
+          <button class="demo-submit" type="button">Book a Strategy Call</button>
           <div class="demo-fine-print">No commitment. 15-minute call. We'll map your ICP and show you the infrastructure.</div>
         </div>
       </div>
@@ -2528,7 +2529,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     <h3>Launch Your GTM Campaign in 14 Days or Less</h3>
     <p>AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
   </div>
-  <a href="#book" class="btn-white">Start Your Campaign &rarr;</a>
+  <a href="#book" class="btn-white">Interactive Demo &rarr;</a>
 </div>
 
 <!-- ============ 18. BATTLE CARDS ============ -->
@@ -2563,18 +2564,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ 19. FINAL CTA ============ -->
-<section class="final-cta">
-  <div class="final-cta-dots"></div>
-  <div class="final-cta-glow"></div>
-  <h2 class="section-heading reveal editable">Ready to Fill Your Pipeline?</h2>
-  <p class="section-sub reveal editable">Enterprise-grade outbound infrastructure. Guaranteed qualified leads. 14-day setup.</p>
-  <a href="#book" class="btn-amber btn-amber-lg reveal">Book Your Free Strategy Call &rarr;</a>
-  <br>
-  <a href="#platform" class="final-secondary reveal">Or explore the platform &rarr;</a>
-</section>
-
-
 <!-- ============ 20. FOOTER ============ -->
 <footer class="footer">
   <div class="footer-grid">
@@ -2585,10 +2574,9 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     <div class="footer-col">
       <h4>PLATFORM</h4>
       <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Campaign Builder</a></li>
+        <li><a href="#">Inbox Manager</a></li>
+        <li><a href="#">Content Engine</a></li>
         <li><a href="#dex">Dex AI</a></li>
-        <li><a href="#">Audience Search</a></li>
         <li><a href="#">Analytics</a></li>
       </ul>
     </div>
@@ -2597,7 +2585,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <ul>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="plan-builder.html">Plan Builder</a></li>
         <li><a href="case-studies.html">Case Studies</a></li>
         <li><a href="comparisons.html">Comparisons</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -2606,8 +2593,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-ctas">
-      <a href="#book" class="btn-amber">Book a Strategy Call &rarr;</a>
-      <a href="#book" class="btn-violet-sm">Interactive Demo</a>
+      <a href="#book" class="btn-amber btn-sm">Interactive Demo &rarr;</a>
+      <a href="#book" class="btn-violet-sm">Book a Strategy Call</a>
     </div>
     <div class="footer-bottom-row">
       <span>&copy; 2026 Growth Automation. All rights reserved.</span>
