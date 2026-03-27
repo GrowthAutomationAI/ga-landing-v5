@@ -32,8 +32,8 @@
 /* ============ LIGHT THEME ============ */
 [data-theme="light"] {
   --bg: #FAFAFA;
-  --bg2: #F2F2F5;
-  --bg3: #E8E8EE;
+  --bg2: #ECEDF3;
+  --bg3: #D5D6E6;
   --card: #FFFFFF;
   --card2: #F7F7F9;
   --amber: #E8A023;
@@ -127,6 +127,14 @@
 [data-theme="light"] .dex-subheading { color: rgba(26,26,46,0.6); }
 [data-theme="light"] .testi-text { color: rgba(26,26,46,0.7); }
 [data-theme="light"] .testi-role { color: rgba(26,26,46,0.5); }
+[data-theme="light"] .testi-section { background: var(--bg3); }
+/* Light theme: boost shape opacity so they're visible on light backgrounds */
+[data-theme="light"] .decor-shape-l { opacity: 0.18; }
+[data-theme="light"] .decor-shape-r { opacity: 0.13; }
+[data-theme="light"] .statement-shape-l { opacity: 0.20; }
+[data-theme="light"] .statement-shape-r { opacity: 0.15; }
+[data-theme="light"] .decor-glow { background: radial-gradient(ellipse, rgba(139,127,199,0.22) 0%, transparent 70%); }
+[data-theme="light"] .statement-glow { background: radial-gradient(ellipse, rgba(139,127,199,0.25) 0%, transparent 70%); }
 /* Theme toggle button */
 .theme-toggle {
   width: 36px;
@@ -878,6 +886,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 
 /* ============ SHARED SECTION DECOR (hex shapes + glow) ============ */
+.testi-section { background: var(--bg3); }
 #how-it-works, #dex, #pricing, .stats-section { position: relative; overflow: hidden; isolation: isolate; }
 .decor-bg {
   position: absolute;
@@ -885,26 +894,10 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   pointer-events: none;
   z-index: -1;
 }
-.decor-shape-l {
+/* Base shape styles — overridden per section */
+.decor-shape-l, .decor-shape-r {
   position: absolute;
-  left: -60px;
-  top: 50%;
-  transform: translateY(-50%) rotate(-15deg);
-  width: 250px;
-  height: 350px;
   background: var(--violet);
-  opacity: 0.10;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
-.decor-shape-r {
-  position: absolute;
-  right: -40px;
-  top: 50%;
-  transform: translateY(-50%) rotate(12deg);
-  width: 220px;
-  height: 320px;
-  background: var(--violet);
-  opacity: 0.07;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 .decor-glow {
@@ -914,7 +907,90 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   transform: translate(-50%, -50%);
   width: 600px;
   height: 400px;
-  background: radial-gradient(ellipse, rgba(139,127,199,0.14) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(139,127,199,0.12) 0%, transparent 70%);
+}
+
+/* --- Browser slideshow: medium right-bottom, small left-top --- */
+.browser-section .decor-shape-l {
+  width: 320px; height: 440px;
+  left: auto; right: 8%;
+  top: auto; bottom: -110px;
+  transform: rotate(10deg);
+  opacity: 0.08;
+}
+.browser-section .decor-shape-r {
+  width: 160px; height: 220px;
+  left: -40px; right: auto;
+  top: 15%;
+  transform: rotate(-22deg);
+  opacity: 0.05;
+}
+
+/* --- How It Works: very large upper-left (bleed from above), small lower-right --- */
+#how-it-works .decor-shape-l {
+  width: 540px; height: 700px;
+  left: -160px; right: auto;
+  top: -140px; bottom: auto;
+  transform: rotate(-20deg);
+  opacity: 0.09;
+}
+#how-it-works .decor-shape-r {
+  width: 230px; height: 310px;
+  right: -60px; left: auto;
+  top: auto; bottom: -70px;
+  transform: rotate(16deg);
+  opacity: 0.06;
+}
+
+/* --- Pricing: large upper-right, medium lower-left — sets up flow into Stats --- */
+#pricing .decor-shape-l {
+  width: 380px; height: 500px;
+  right: -100px; left: auto;
+  top: -80px; bottom: auto;
+  transform: rotate(18deg);
+  opacity: 0.08;
+}
+#pricing .decor-shape-r {
+  width: 240px; height: 330px;
+  left: -50px; right: auto;
+  top: auto; bottom: -80px;
+  transform: rotate(-14deg);
+  opacity: 0.06;
+}
+
+/* --- Stats: massive center plate (reference screenshot look) + right connects to Pricing --- */
+.stats-section .decor-shape-l {
+  width: 620px; height: 780px;
+  left: 50%; top: 50%;
+  transform: translate(-65%, -50%) rotate(-6deg);
+  opacity: 0.065;
+}
+.stats-section .decor-shape-r {
+  width: 280px; height: 380px;
+  right: -80px; left: auto;
+  top: -70px; bottom: auto;
+  transform: rotate(14deg);
+  opacity: 0.05;
+}
+.stats-section .decor-glow {
+  width: 800px; height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 60%);
+}
+
+/* --- Dex: upper-left connects from Stats bottom-left, large lower-right --- */
+#dex .decor-shape-l {
+  width: 200px; height: 280px;
+  left: -50px; right: auto;
+  top: -80px; bottom: auto;
+  transform: rotate(-18deg);
+  opacity: 0.08;
+}
+#dex .decor-shape-r {
+  width: 450px; height: 580px;
+  right: -130px; left: auto;
+  top: auto; bottom: -110px;
+  transform: rotate(22deg);
+  opacity: 0.09;
 }
 .statement-h {
   font-size: clamp(42px, 5.5vw, 76px);
