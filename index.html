@@ -282,6 +282,20 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   box-shadow: 0 0 32px rgba(232,160,35,0.25);
 }
 .btn-amber-lg:hover { box-shadow: 0 0 48px rgba(232,160,35,0.45); }
+.btn-violet-sm {
+  padding: 9px 20px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: #fff;
+  background: var(--violet);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
+}
+.btn-violet-sm:hover { background: var(--violet-l); transform: translateY(-1px); }
 .btn-white {
   padding: 16px 36px;
   border: none;
@@ -312,7 +326,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 /* ============ HERO ============ */
 .hero {
   position: relative;
-  padding: 100px 24px 80px;
+  padding: 100px 24px 32px;
   overflow: hidden;
 }
 #vanta-hero {
@@ -391,7 +405,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   font-weight: 400;
   font-style: italic;
 }
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; justify-content: center; }
+.hero-ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 20px; }
 .hero-proof {
   display: flex;
   align-items: center;
@@ -1906,7 +1920,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <p class="hero-sub">Fully managed outbound powered by agentic AI, human verification, and zero client lift.</p>
       <div class="hero-ctas">
         <a href="#book" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
-        <a href="#book" class="btn-ghost">Book a strategy call</a>
+        <a href="#book" class="btn-violet-sm">Book a strategy call</a>
       </div>
       <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (10 mins)</div>
       <div class="hero-proof">
