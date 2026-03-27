@@ -1,0 +1,81 @@
+backend:
+  name: github
+  repo: GrowthAutomationAI/ga-landing-v5
+  branch: main
+  base_url: https://ga-landing-v5.vercel.app
+  auth_endpoint: /api/auth
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Decap CMS collections — edit key text fields without touching code
+collections:
+  - name: "homepage"
+    label: "Homepage"
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "_data/hero.json"
+        fields:
+          - { label: "Badge Text", name: "badge", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subtext", name: "subtext", widget: "string" }
+          - { label: "Primary CTA Label", name: "cta_primary", widget: "string" }
+          - { label: "CTA Subtext", name: "cta_subtext", widget: "string" }
+          - { label: "Secondary CTA Label", name: "cta_secondary", widget: "string" }
+
+      - name: "pain"
+        label: "Sound Familiar Section"
+        file: "_data/pain.json"
+        fields:
+          - label: "Card 1"
+            name: "card1"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Pain Text", name: "pain", widget: "text" }
+              - { label: "Solution Text", name: "solution", widget: "text" }
+              - { label: "Short Version", name: "short", widget: "string" }
+          - label: "Card 2"
+            name: "card2"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Pain Text", name: "pain", widget: "text" }
+              - { label: "Solution Text", name: "solution", widget: "text" }
+              - { label: "Short Version", name: "short", widget: "string" }
+          - label: "Card 3"
+            name: "card3"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Pain Text", name: "pain", widget: "text" }
+              - { label: "Solution Text", name: "solution", widget: "text" }
+              - { label: "Short Version", name: "short", widget: "string" }
+
+      - name: "case_studies"
+        label: "Case Studies"
+        file: "_data/case-studies.json"
+        fields:
+          - label: "Studies"
+            name: "studies"
+            widget: "list"
+            fields:
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Industry", name: "industry", widget: "string" }
+              - { label: "Result Headline", name: "result", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stat 1 Label", name: "stat1_label", widget: "string" }
+              - { label: "Stat 1 Value", name: "stat1_value", widget: "string" }
+              - { label: "Stat 2 Label", name: "stat2_label", widget: "string" }
+              - { label: "Stat 2 Value", name: "stat2_value", widget: "string" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "nav"
+        label: "Navigation & Banner"
+        file: "_data/settings.json"
+        fields:
+          - { label: "Announcement Bar Text", name: "announcement", widget: "string" }
+          - { label: "Announcement CTA", name: "announcement_cta", widget: "string" }

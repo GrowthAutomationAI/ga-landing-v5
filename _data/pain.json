@@ -1,0 +1,20 @@
+{
+  "card1": {
+    "title": "DIY Fatigue",
+    "pain": "You tried Apollo, Instantly, Lemlist, or similar tools — and outbound still underperformed after months of trial.",
+    "solution": "Growth Automation replaces fragile DIY outbound with a fully managed agentic outbound engine. We handle audience build, infrastructure, messaging, execution, and qualification — so your team gets full campaign visibility and qualified conversations, not operational headaches.",
+    "short": "You didn't fail at outbound. Your infrastructure failed you."
+  },
+  "card2": {
+    "title": "Agency Priced-Out",
+    "pain": "You need outbound, but paying $8,000–$15,000/month for a traditional agency doesn't make sense.",
+    "solution": "Growth Automation gives you a fully managed outbound program with guaranteed qualified leads. You get the infrastructure, execution, AI systems, and human qualification layer — without agency overhead.",
+    "short": "Enterprise-grade outbound. Non-enterprise pricing."
+  },
+  "card3": {
+    "title": "Lean Sales Team",
+    "pain": "Your company needs inbound but your sales team is lean, and they can't afford to waste time chasing weak leads or managing 5+ pieces of software.",
+    "solution": "Growth Automation helps lean teams scale pipeline without adding SDR headcount. We run outbound, qualify interest, and deliver better-fit opportunities so your reps stay focused on closing.",
+    "short": "More pipeline. Less headcount. Less wasted rep time."
+  }
+}
