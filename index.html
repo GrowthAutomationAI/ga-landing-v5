@@ -852,7 +852,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   width: 250px;
   height: 350px;
   background: var(--violet);
-  opacity: 0.06;
+  opacity: 0.12;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 .statement-shape-r {
@@ -863,7 +863,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   width: 220px;
   height: 320px;
   background: var(--violet);
-  opacity: 0.04;
+  opacity: 0.09;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 .statement-glow {
@@ -873,7 +873,47 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   transform: translate(-50%, -50%);
   width: 500px;
   height: 350px;
-  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(139,127,199,0.18) 0%, transparent 70%);
+}
+
+/* ============ SHARED SECTION DECOR (hex shapes + glow) ============ */
+#how-it-works, #dex, #pricing, .stats-section { position: relative; overflow: hidden; isolation: isolate; }
+.decor-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.decor-shape-l {
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-15deg);
+  width: 250px;
+  height: 350px;
+  background: var(--violet);
+  opacity: 0.10;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.decor-shape-r {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(12deg);
+  width: 220px;
+  height: 320px;
+  background: var(--violet);
+  opacity: 0.07;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.decor-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.14) 0%, transparent 70%);
 }
 .statement-h {
   font-size: clamp(42px, 5.5vw, 76px);
@@ -2031,6 +2071,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 12. HOW IT WORKS ============ -->
 <section class="section" id="how-it-works">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div> How It Works</div>
@@ -2327,6 +2368,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 9. COST COMPARISON ============ -->
 <section class="section section-alt" id="pricing">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="container">
     <div class="section-header reveal">
       <h2 class="section-heading editable">The Math Doesn't Lie</h2>
@@ -2379,6 +2421,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 11. STATS ROW ============ -->
 <div class="stats-section">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="stats-row reveal" id="statsRow">
     <div class="stat-item">
       <div class="stat-number" data-target="1337786" data-prefix="" data-suffix="">0</div>
@@ -2401,6 +2444,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 13. MEET DEX ============ -->
 <section class="section" id="dex">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="container">
     <div class="dex-section">
       <div class="reveal">
