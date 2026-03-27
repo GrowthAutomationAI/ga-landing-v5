@@ -559,7 +559,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 
 /* ============ BROWSER MOCKUP ============ */
-.browser-section { padding: 40px 24px 80px; background: var(--bg2); position: relative; overflow: hidden; isolation: isolate; }
+.browser-section { padding: 40px 24px 48px; background: var(--bg2); position: relative; overflow: hidden; isolation: isolate; }
 .browser-frame {
   max-width: 1020px;
   margin: 0 auto;
@@ -599,7 +599,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 .browser-body {
   position: relative;
-  aspect-ratio: 16/9.5;
+  aspect-ratio: 16/10.8;
   overflow: hidden;
   background: var(--bg);
 }
@@ -608,7 +608,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -1936,18 +1936,23 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   margin: 0 auto;
 }
 .prefooter-cta-inner h3 {
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(30px, 3.5vw, 48px);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
   color: #fff;
+  line-height: 1.15;
 }
+.prefooter-cta-inner h3 .accent { color: var(--amber); }
 .prefooter-cta-inner p {
-  font-size: 16px;
+  font-size: 20px;
   color: rgba(255,255,255,0.8);
   line-height: 1.6;
   font-style: italic;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .prefooter-cta-buttons {
   display: flex;
@@ -2803,7 +2808,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 <!-- ============ 17. CTA BANNER (PRE-FOOTER) ============ -->
 <section class="prefooter-cta">
   <div class="prefooter-cta-inner reveal">
-    <h3>Launch Your GTM Campaign in 14 Days or Less</h3>
+    <div class="section-label" style="justify-content:center;color:#fff;"><div class="section-label-line" style="background:rgba(255,255,255,0.4);"></div> GET STARTED</div>
+    <h3>Launch Your GTM Campaign in <span class="accent">14 Days or Less</span></h3>
     <p>AI audience research, warmed infrastructure, verified contacts, and done-for-you sequences &mdash; everything you need to fill your pipeline.</p>
     <div class="prefooter-cta-buttons">
       <a href="https://app.growthautomation.ai/onboard/public" class="btn-amber">Interactive Demo &rarr;</a>
