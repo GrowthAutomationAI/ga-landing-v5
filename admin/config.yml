@@ -2,7 +2,7 @@ backend:
   name: github
   repo: GrowthAutomationAI/ga-landing-v5
   branch: main
-  base_url: https://ga-landing-v5.vercel.app
+  base_url: https://ga-landing-uz3i.vercel.app
   auth_endpoint: /api/auth
 
 media_folder: "images/uploads"
