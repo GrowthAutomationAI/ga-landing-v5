@@ -407,6 +407,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* Fallback background shown until shader loads, or permanently on weak devices */
+  background: url('screenshots/hero-fallback.webp') center/cover no-repeat, #101016;
+}
+@media (max-width: 768px) {
+  #vanta-hero { background-image: url('screenshots/hero-fallback-mobile.webp'); }
 }
 .hero-glow {
   position: absolute;
@@ -2166,11 +2171,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <div class="browser-url" id="browserUrl">app.growthautomation.ai/dashboard</div>
     </div>
     <div class="browser-body">
-      <img class="slide-img active" src="screenshots/dashboard.png" alt="Dashboard Overview">
-      <img class="slide-img" src="screenshots/inbox_manager.png" alt="Inbox Manager" loading="lazy">
-      <img class="slide-img" src="screenshots/dex_response.png" alt="Dex AI Chat" loading="lazy">
-      <img class="slide-img" src="screenshots/content_engine.png" alt="Content Engine" loading="lazy">
-      <img class="slide-img" src="screenshots/ai_usage.png" alt="AI Usage Dashboard" loading="lazy">
+      <img class="slide-img active" src="screenshots/dashboard.webp" alt="Dashboard Overview">
+      <img class="slide-img" src="screenshots/inbox_manager.webp" alt="Inbox Manager" loading="lazy">
+      <img class="slide-img" src="screenshots/dex_response.webp" alt="Dex AI Chat" loading="lazy">
+      <img class="slide-img" src="screenshots/content_engine.webp" alt="Content Engine" loading="lazy">
+      <img class="slide-img" src="screenshots/ai_usage.webp" alt="AI Usage Dashboard" loading="lazy">
     </div>
     <div class="slide-pips">
       <div class="pip active" data-index="0"></div>
@@ -2611,7 +2616,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         </ul>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
-        <img src="screenshots/dex_response_square.png" alt="Dex AI in action" loading="lazy" style="width:100%;max-width:420px;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
+        <img src="screenshots/dex_response_square.webp" alt="Dex AI in action" loading="lazy" style="width:100%;max-width:420px;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
       </div>
     </div>
   </div>
@@ -2635,7 +2640,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber" style="padding:12px 24px;font-size:15px;">Interactive Demo &rarr;</a>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
-        <img src="screenshots/dashboard.png" alt="Growth Automation Dashboard" loading="lazy" style="width:100%;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
+        <img src="screenshots/dashboard.webp" alt="Growth Automation Dashboard" loading="lazy" style="width:100%;border-radius:var(--r2);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 1px var(--violet-d);display:block;">
       </div>
     </div>
   </div>
@@ -3033,12 +3038,23 @@ hamburger.addEventListener('click', () => {
 });
 </script>
 
-<!-- GLSL Techno Plasma Shader Hero Background -->
+<!-- GLSL Techno Plasma Shader Hero Background (with adaptive fallback) -->
 <script>
 (function() {
   'use strict';
   var container = document.getElementById('vanta-hero');
   if (!container) return;
+
+  // ---- Adaptive check: skip shader on mobile / weak devices / reduced-motion ----
+  // Fallback image is already set via CSS background-image on #vanta-hero
+  var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 900;
+  var lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4;
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (isMobile || lowMemory || prefersReduced) {
+    // Static fallback image is already showing via CSS — nothing to do
+    return;
+  }
 
   var canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
