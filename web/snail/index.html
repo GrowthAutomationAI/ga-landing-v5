@@ -36,6 +36,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0a12;cursor:none;
 }
 .ctrl-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4);}
 .ctrl-btn:active{background:rgba(255,255,255,0.18);transform:scale(0.92);}
+.ctrl-btn.flash{
+  background:rgba(255,255,255,0.45) !important;
+  border-color:rgba(255,255,255,0.8) !important;
+  transition:none;
+}
 .ctrl-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 .ctrl-dot-a{background:rgba(255,100,200,0.6);}
 .ctrl-dot-b{background:rgba(100,255,200,0.6);}
@@ -164,10 +169,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0a12;cursor:none;
   });
 
   var paramA=0.0, paramB=1.0;
-  document.getElementById('aUp').onclick=function(){paramA+=0.4;};
-  document.getElementById('aDown').onclick=function(){paramA-=0.4;};
-  document.getElementById('bDown').onclick=function(){paramB=Math.min(50,paramB*1.35);};
-  document.getElementById('bUp').onclick=function(){paramB=Math.max(0.15,paramB/1.35);};
+  function flash(el){
+    el.classList.add('flash');
+    setTimeout(function(){el.classList.remove('flash');},120);
+  }
+  var aUp=document.getElementById('aUp'), aDown=document.getElementById('aDown');
+  var bUp=document.getElementById('bUp'), bDown=document.getElementById('bDown');
+  aUp.onclick=function(){paramA+=0.4;flash(aUp);};
+  aDown.onclick=function(){paramA-=0.4;flash(aDown);};
+  bDown.onclick=function(){paramB=Math.min(50,paramB*1.35);flash(bDown);};
+  bUp.onclick=function(){paramB=Math.max(0.15,paramB/1.35);flash(bUp);};
 
   var vsSource='attribute vec2 a_position;void main(){gl_Position=vec4(a_position,0.,1.);}';
 
@@ -215,10 +226,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0a12;cursor:none;
     return v;
   }
 
-  vec3 hsv2rgb(vec3 c){
-    vec4 K=vec4(1.,2./3.,1./3.,3.);
-    vec3 p=abs(fract(c.xxx+K.xyz)*6.-K.www);
-    return c.z*mix(K.xxx,clamp(p-K.xxx,0.,1.),c.y);
+  // Hue rotation in RGB space
+  vec3 hueShift(vec3 c, float h){
+    float co=cos(h),si=sin(h);
+    vec3 w=vec3(0.299,0.587,0.114);
+    return vec3(
+      c.r*(co+(1.-co)*w.r)+c.g*((1.-co)*w.r-si*0.328)+c.b*((1.-co)*w.r+si*0.883),
+      c.r*((1.-co)*w.g+si*0.328)+c.g*(co+(1.-co)*w.g)+c.b*((1.-co)*w.g-si*0.197),
+      c.r*((1.-co)*w.b-si*0.883)+c.g*((1.-co)*w.b+si*0.197)+c.b*(co+(1.-co)*w.b)
+    );
   }
 
   // Sample snail mask — returns 0..1 influence at this pixel
@@ -293,43 +309,41 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0a12;cursor:none;
                 fbm(p+warpStr*q+vec2(8.3,2.8)+.09*t));
     float f=fbm(p+(warpStr*0.9)*r+vortWarp*warpMul*1.5+shockWarp*warpMul*2.);
 
-    // ---- Psychedelic rainbow ----
-    float hueBase=u_hue*0.3+t*0.08;
-    float cs=fract(f*.5+.5+t*.05);
+    // ---- Original neon palette with hue shift ----
+    vec3 electricBlue = vec3(0.08, 0.48, 1.00);
+    vec3 hotMagenta   = vec3(0.72, 0.42, 0.58);
+    vec3 deepViolet   = vec3(0.70, 0.45, 0.68);
 
-    float h1=fract(hueBase+cs*0.7+f*0.15);
-    float h2=fract(hueBase+0.33+cs*0.5-f*0.1);
-    float h3=fract(hueBase+0.66+cs*0.6+f*0.2);
+    float cs=fract(f*.5+.5+t*.04);
+    vec3 col=mix(deepViolet, electricBlue, smoothstep(0.0,0.33,cs));
+    col=mix(col, hotMagenta, smoothstep(0.33,0.66,cs));
+    col=mix(col, deepViolet, smoothstep(0.66,1.0,cs));
 
-    vec3 c1=hsv2rgb(vec3(h1, 0.7+0.3*beatA, 0.9));
-    vec3 c2=hsv2rgb(vec3(h2, 0.8, 0.85+0.15*beatB));
-    vec3 c3=hsv2rgb(vec3(h3, 0.65+0.2*sin(t*0.3), 0.95));
+    // Apply hue shift from controls
+    col = hueShift(col, u_hue);
 
-    vec3 col=mix(c1,c2,smoothstep(0.,0.5,cs));
-    col=mix(col,c3,smoothstep(0.4,0.9,cs));
-
-    float lum=pow((f+1.)*.5,1.5)*1.4;
+    float lum=pow((f+1.)*.5,1.6)*1.5;
     col*=lum;
-    col*=.6+.4*beatB;
+    col*=.65+.35*beatB;
+    col+=electricBlue*.04*beatA;
 
     // ---- Snail-shaped glow (follows silhouette) ----
-    vec3 glowCol=hsv2rgb(vec3(fract(hueBase+t*0.2),0.5,1.));
-    col += mPow2 * glowCol * (0.7 + speed*0.5);
-    col += mPow * speed * glowCol * 0.3;
+    col += mPow2 * electricBlue * (0.7 + speed*0.5);
+    col += mPow * speed * electricBlue * 0.3;
 
     // Shell-center bright pull — the "black hole" is in the shell
     float shellPull = exp(-shellDist*6.) * mask;
-    col += shellPull * hsv2rgb(vec3(fract(hueBase+t*0.4+shellDist*2.),0.6,1.)) * 0.6;
+    col += shellPull * electricBlue * 0.6;
 
-    // Trail rings from shell center — rainbow
+    // Trail rings from shell center
     float ringAge1=fract(t*0.12);
     float ringAge2=fract(t*0.12+0.5);
     float ringDist1=abs(shellDist-ringAge1*1.2);
     float ringDist2=abs(shellDist-ringAge2*1.2);
     float ring1=exp(-ringDist1*ringDist1*14.)*(1.-ringAge1)*mPow*0.8;
     float ring2=exp(-ringDist2*ringDist2*10.)*(1.-ringAge2)*mPow*0.6;
-    col+=ring1*hsv2rgb(vec3(fract(hueBase+0.1),0.8,1.))*0.8;
-    col+=ring2*hsv2rgb(vec3(fract(hueBase+0.5),0.7,1.))*0.5;
+    col+=ring1*electricBlue*0.7;
+    col+=ring2*vec3(0.70,0.45,0.65)*0.5;
 
     // Chromatic aberration
     float caAmt=.015+mPow*.05+speed*.04+logD*0.003;
@@ -340,8 +354,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0a12;cursor:none;
     vec2 qB=vec2(fbm(pB+vec2(5.2,1.3)),fbm(pB+vec2(0.,0.)));
     float fR=fbm(pR+warpStr*0.9*qR);
     float fB=fbm(pB+warpStr*0.9*qB);
-    col.r=mix(col.r,pow(clamp((fR+1.)*.5,0.,1.),1.5)*1.4*lum*c1.r*2.,caAmt*4.);
-    col.b=mix(col.b,pow(clamp((fB+1.)*.5,0.,1.),1.5)*1.4*lum*c3.b*2.,caAmt*4.);
+    col.r=mix(col.r,pow(clamp((fR+1.)*.5,0.,1.),1.6)*1.5*lum,caAmt*5.);
+    col.b=mix(col.b,pow(clamp((fB+1.)*.5,0.,1.),1.6)*1.5*lum,caAmt*5.);
 
     float scan=sin(gl_FragCoord.y*6.28318)*.006+.994;
     col*=scan;
