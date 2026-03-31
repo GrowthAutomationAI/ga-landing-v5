@@ -104,15 +104,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:#101016;}
 
   // ---- Interactive parameters ----
   var paramA = 0.0;  // color hue shift (radians, wraps)
-  var paramB = 1.0;  // depth / warp intensity (0.2 → 3.0)
+  var paramB = 1.0;  // depth level: 1.0 = default, goes up to 50 for extreme fractal zoom
 
   var STEP_A = 0.35;
-  var STEP_B = 0.25;
 
   document.getElementById('aUp').onclick   = function(){ paramA += STEP_A; };
   document.getElementById('aDown').onclick = function(){ paramA -= STEP_A; };
-  document.getElementById('bUp').onclick   = function(){ paramB = Math.min(10.0, paramB + STEP_B); };
-  document.getElementById('bDown').onclick = function(){ paramB = Math.max(0.05, paramB - STEP_B); };
+  // Bottom pair: - zooms IN deeper, + zooms OUT — exponential steps so each click goes proportionally deeper
+  document.getElementById('bDown').onclick = function(){ paramB = Math.min(50.0, paramB * 1.35); };
+  document.getElementById('bUp').onclick   = function(){ paramB = Math.max(0.15, paramB / 1.35); };
 
   var vsSource = `
     attribute vec2 a_position;
@@ -146,16 +146,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:#101016;}
       return 130.*dot(m,g);
     }
 
-    // 8-octave FBM — higher octaves add fine detail at deep zoom
-    // u_depth controls effective octave count: low depth = smooth, high = fractal detail
+    // 12-octave FBM — octaves fade in with depth for fractal zoom fidelity
+    // At depth 1 = ~5 octaves (default look), depth 50 = all 12 (extreme detail)
     float fbm(vec2 p){
       float v=0., a=.5;
       mat2 rot=mat2(cos(.5),sin(.5),-sin(.5),cos(.5));
-      // Extra octaves fade in as depth increases
-      float maxOct = 5.0 + u_depth * 0.4; // at depth 1 = ~5.4 octaves, at depth 10 = 9 octaves
-      for(int i=0;i<8;i++){
-        float octF = float(i);
-        float weight = clamp(maxOct - octF, 0.0, 1.0); // smooth fade for partial octaves
+      float maxOct = 4.5 + log2(max(u_depth, 0.5)) * 1.8; // logarithmic: scales smoothly from ~5 to ~12
+      for(int i=0;i<12;i++){
+        float weight = clamp(maxOct - float(i), 0.0, 1.0);
+        if(weight <= 0.0) break; // early exit saves GPU at low depth
         v += a * weight * snoise(p);
         p = rot * p * 2.0 + vec2(100.);
         a *= .5;
@@ -200,20 +199,23 @@ html,body{width:100%;height:100%;overflow:hidden;background:#101016;}
       float shockAmt = (pow(max(shock1,0.),2.) + pow(max(shock2,0.),2.)) * .08;
       vec2  shockWarp = normalize(toM + .0001) * shockAmt;
 
-      // Domain scale: depth increases warp complexity AND fine structure
+      // Domain scale: logarithmic scaling keeps detail rich at any depth
       float d = u_depth;
-      // Base scale increases gently; warp multiplier increases strongly
-      float baseScale = 2.0 + d * 0.5;
-      vec2 p = st * baseScale + vortWarp * (0.8 + d * 0.4) + shockWarp * (0.8 + d * 0.4);
+      float logD = log2(max(d, 0.5));  // smooth scaling: 0.15→-1.7, 1→0, 10→3.3, 50→5.6
+      // Base noise scale grows with log — prevents stretchy grain at high zoom
+      float baseScale = 2.5 + logD * 0.8;
+      // Warp influence grows more aggressively — this is what makes deep zoom look fractal
+      float warpMul = 0.6 + d * 0.25;
+      vec2 p = st * baseScale + vortWarp * warpMul + shockWarp * warpMul;
       p += vec2(t * 0.10, t * 0.05);
 
-      // Warp feedback strength scales with depth — this is what creates the fractal look
-      float warpStr = 3.5 + d * 1.8;
+      // Warp feedback: drives the fractal folding. More depth = deeper recursion feel
+      float warpStr = 3.0 + logD * 2.5;
       vec2 q = vec2(fbm(p + vec2(0.0,0.0) + t*.07),
                     fbm(p + vec2(5.2,1.3) - t*.05));
       vec2 r = vec2(fbm(p + warpStr*q + vec2(1.7,9.2) + .12*t),
                     fbm(p + warpStr*q + vec2(8.3,2.8) + .09*t));
-      float f = fbm(p + (warpStr*0.85)*r + vortWarp * (1.0 + d*0.6) + shockWarp * (1.5 + d*0.6));
+      float f = fbm(p + (warpStr*0.9)*r + vortWarp * warpMul * 1.5 + shockWarp * warpMul * 2.0);
 
       vec3 electricBlue  = vec3(0.08, 0.48, 1.00);
       vec3 hotMagenta    = vec3(0.72, 0.42, 0.58);
@@ -243,15 +245,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:#101016;}
       col += ring1 * electricBlue * 0.7;
       col += ring2 * vec3(0.70, 0.45, 0.65) * 0.4;
 
-      // Chromatic aberration
-      float caAmt = .012 + mPow * .04 + speed * .03;
+      // Chromatic aberration — intensifies slightly at deep zoom
+      float caAmt = .012 + mPow * .04 + speed * .03 + logD * 0.003;
       vec2 caDir = normalize(uv - .5 + .0001);
-      vec2 pR = st*baseScale + vortWarp*(0.8+d*0.4) + shockWarp*(0.8+d*0.4) + caDir*caAmt*18. + vec2(t*.10,t*.05);
-      vec2 pB = st*baseScale + vortWarp*(0.8+d*0.4) + shockWarp*(0.8+d*0.4) - caDir*caAmt*18. + vec2(t*.10,t*.05);
+      vec2 pR = st*baseScale + vortWarp*warpMul + shockWarp*warpMul + caDir*caAmt*18. + vec2(t*.10,t*.05);
+      vec2 pB = st*baseScale + vortWarp*warpMul + shockWarp*warpMul - caDir*caAmt*18. + vec2(t*.10,t*.05);
       vec2 qR = vec2(fbm(pR+vec2(5.2,1.3)), fbm(pR+vec2(0.,0.)));
       vec2 qB = vec2(fbm(pB+vec2(5.2,1.3)), fbm(pB+vec2(0.,0.)));
-      float fR = fbm(pR + warpStr*0.85*qR);
-      float fB = fbm(pB + warpStr*0.85*qB);
+      float fR = fbm(pR + warpStr*0.9*qR);
+      float fB = fbm(pB + warpStr*0.9*qB);
       col.r = mix(col.r, pow(clamp((fR+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*5.);
       col.b = mix(col.b, pow(clamp((fB+1.)*.5,0.,1.), 1.6)*1.5*lum, caAmt*5.);
 
@@ -338,9 +340,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#101016;}
     mouse.vx *= 0.8;
     mouse.vy *= 0.8;
 
-    // Smooth interpolation of interactive params
-    smoothA += (paramA - smoothA) * 0.04;
-    smoothB += (paramB - smoothB) * 0.04;
+    // Smooth interpolation — log-space lerp for depth so deep zoom transitions feel natural
+    smoothA += (paramA - smoothA) * 0.05;
+    var logTarget = Math.log2(Math.max(paramB, 0.1));
+    var logCurrent = Math.log2(Math.max(smoothB, 0.1));
+    logCurrent += (logTarget - logCurrent) * 0.06;
+    smoothB = Math.pow(2, logCurrent);
 
     var elapsed = (performance.now() - t0) / 1000.0;
 
