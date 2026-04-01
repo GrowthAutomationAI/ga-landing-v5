@@ -5,13 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing & Plan Builder — Growth Automation</title>
 <meta name="description" content="Transparent pricing for AI-powered outbound. From Solo to Enterprise — guaranteed qualified leads, fully managed campaigns, and dedicated infrastructure. Customize your plan with add-ons.">
+<meta property="og:title" content="Pricing & Plan Builder — Growth Automation">
+<meta property="og:description" content="Transparent pricing for AI-powered outbound. From $490/mo. Build your plan with add-ons.">
+<meta property="og:image" content="https://gtm.growthautomation.ai/screenshots/dashboard.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg: #0B0B0F;
+  --bg: #101016;
   --bg2: #121218;
   --bg3: #1A1A24;
   --card: #13131D;
@@ -1186,9 +1191,48 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   .dual-cta-card-right { border-left: none; border-top: 1px solid rgba(139,127,199,0.12); }
   .dual-cta-card { padding: 36px 24px; }
 }
+/* ============ ANNOUNCEMENT BAR ============ */
+.announce-bar {
+  background: linear-gradient(90deg, var(--violet-d), var(--violet), var(--violet-d));
+  padding: 11px 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1001;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+}
+.announce-bar a {
+  color: var(--violet-l);
+  font-weight: 700;
+  margin-left: 10px;
+  transition: color 0.2s;
+}
+.announce-bar a:hover { color: #fff; }
+.announce-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(237,233,223,0.4);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.announce-close:hover { color: var(--cream); }
+.announce-bar.hidden { display: none; }
 </style>
 </head>
 <body>
+
+<div class="announce-bar" id="announceBar">
+  Offering free strategy proposals for Q2: <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener">Run the Interactive Demo &rarr;</a>
+  <button class="announce-close" onclick="document.getElementById('announceBar').classList.add('hidden')">&times;</button>
+</div>
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="mainNav">
@@ -1210,7 +1254,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="btn-ghost hide-mobile" onclick="window.location.href='#'">Login</button>
+      <button class="btn-ghost hide-mobile" onclick="window.open('https://app.growthautomation.ai','_blank')">Login</button>
       <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
     </div>
     <button class="nav-hamburger" id="navHamburger">&#9776;</button>
@@ -1883,6 +1927,30 @@ labelAnnual.addEventListener('click', () => {
 /* ============ INIT ============ */
 selectPlan(2); // Pre-select Growth
 updateLinkedin();
+
+/* Mobile nav */
+var hamburger = document.querySelector('.nav-hamburger');
+var navLinks = document.querySelector('.nav-links');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', function() {
+    var open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? '' : 'flex';
+    navLinks.style.flexDirection = open ? '' : 'column';
+    navLinks.style.position = open ? '' : 'fixed';
+    navLinks.style.top = open ? '' : '0';
+    navLinks.style.left = open ? '' : '0';
+    navLinks.style.right = open ? '' : '0';
+    navLinks.style.bottom = open ? '' : '0';
+    navLinks.style.background = open ? '' : 'rgba(16,16,22,0.98)';
+    navLinks.style.backdropFilter = open ? '' : 'blur(20px)';
+    navLinks.style.zIndex = open ? '' : '999';
+    navLinks.style.justifyContent = open ? '' : 'center';
+    navLinks.style.alignItems = open ? '' : 'center';
+    navLinks.style.gap = open ? '' : '24px';
+    navLinks.style.padding = open ? '' : '24px';
+    navLinks.style.borderBottom = open ? '' : '1px solid var(--border)';
+  });
+}
 </script>
 
 </body>
