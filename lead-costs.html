@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B Lead Cost Comparison — What Does a Qualified Lead Actually Cost?</title>
+<meta name="description" content="B2B SMB benchmarks across paid advertising, cold email agencies, and Growth Automation. See real cost per qualified lead (SQL) data for Google Ads, LinkedIn, Meta, and more.">
+<meta property="og:title" content="B2B Lead Cost Comparison — What Does a Qualified Lead Actually Cost?">
+<meta property="og:description" content="Compare the real cost per qualified lead across Google Ads, LinkedIn, Meta, cold email agencies, and Growth Automation.">
+<meta property="og:image" content="https://gtm.growthautomation.ai/screenshots/dashboard.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #101016;
+  --bg2: #121218;
+  --bg3: #1A1A24;
+  --card: #13131D;
+  --card2: #1C1C2A;
+  --amber: #E8A023;
+  --amber-l: #F4B94D;
+  --amber-d: #C4841A;
+  --violet: #8B7FC7;
+  --violet-l: #A99FDB;
+  --violet-d: #6B5FAA;
+  --cream: #EDE9DF;
+  --muted: rgba(237,233,223,0.5);
+  --border: rgba(139,127,199,0.12);
+  --border2: rgba(139,127,199,0.25);
+  --r: 14px;
+  --r2: 20px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ============ ANNOUNCEMENT BAR ============ */
+.announce-bar {
+  background: linear-gradient(90deg, var(--violet-d), var(--violet), var(--violet-d));
+  padding: 11px 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1001;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+}
+.announce-bar a {
+  color: var(--violet-l);
+  font-weight: 700;
+  margin-left: 10px;
+  transition: color 0.2s;
+}
+.announce-bar a:hover { color: #fff; }
+.announce-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(237,233,223,0.4);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.announce-close:hover { color: var(--cream); }
+.announce-bar.hidden { display: none; }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(11,11,15,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--cream); }
+.nav-links a.active::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost {
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--cream);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--violet); background: rgba(139,127,199,0.08); }
+.btn-amber {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter Tight', sans-serif;
+  color: #0B0B0F;
+  background: var(--amber);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 0 24px rgba(232,160,35,0.2);
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+.btn-amber:hover {
+  background: var(--amber-l);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(232,160,35,0.35);
+}
+.btn-amber-lg {
+  padding: 16px 36px;
+  font-size: 16px;
+  box-shadow: 0 0 32px rgba(232,160,35,0.25);
+}
+.btn-amber-lg:hover { box-shadow: 0 0 48px rgba(232,160,35,0.45); }
+.btn-violet-sm {
+  padding: 9px 20px;
+  border: none;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: #fff;
+  background: #8B7FC7;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
+}
+.btn-violet-sm:hover { background: #A99FDB; transform: translateY(-1px); }
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+/* NAV DROPDOWN */
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  list-style: none;
+  min-width: 210px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  z-index: 1001;
+}
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.nav-dropdown-menu li a:hover { background: rgba(139,127,199,0.10); color: var(--cream); }
+.nav-dropdown-menu li a::after { display: none; }
+
+/* ============ SECTIONS ============ */
+.section { padding: 100px 24px; }
+.section-sm { padding: 60px 24px; }
+.section-heading {
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.section-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+  font-style: italic;
+}
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-header .section-sub { margin: 0 auto; }
+.section-alt { background: var(--bg2); }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--violet);
+}
+.accent { color: var(--amber); }
+
+/* ============ REVEAL ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ DIAMOND SEPARATOR ============ */
+.diamond-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+.diamond-sep::before, .diamond-sep::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(139,127,199,0.4), transparent);
+}
+.diamond-sep span {
+  width: 8px;
+  height: 8px;
+  background: var(--violet);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* ============ HERO ============ */
+.lc-hero {
+  position: relative;
+  padding: 100px 24px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+.lc-hero-glow {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.lc-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.lc-hero-content > * {
+  opacity: 0;
+  animation: hero-in 0.7s ease-out forwards;
+}
+.lc-hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.lc-hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+.lc-hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(139,127,199,0.3);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.08);
+  margin-bottom: 28px;
+}
+
+/* ============ GA HIGHLIGHT CARD ============ */
+.ga-highlight-card {
+  max-width: 720px;
+  margin: 0 auto 80px;
+  background: linear-gradient(135deg, rgba(139,127,199,0.12) 0%, rgba(139,127,199,0.04) 100%);
+  border: 2px solid rgba(139,127,199,0.35);
+  border-radius: var(--r2);
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.ga-highlight-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(139,127,199,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ga-highlight-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--violet-l);
+  background: rgba(139,127,199,0.15);
+  border: 1px solid rgba(139,127,199,0.3);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.ga-highlight-card h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.ga-highlight-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 28px 0 24px;
+}
+.ga-stat {
+  text-align: center;
+}
+.ga-stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.ga-stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.ga-highlight-tagline {
+  font-size: 15px;
+  color: var(--violet-l);
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(139,127,199,0.15);
+}
+
+/* ============ COMPARISON TABLE ============ */
+.lc-table-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+.lc-table-section h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.lc-table-section > p {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 700px;
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.lc-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  background: var(--card);
+}
+.lc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.lc-table thead th {
+  padding: 18px 20px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.lc-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.lc-table tbody tr:last-child { border-bottom: none; }
+.lc-table tbody tr:hover { background: rgba(139,127,199,0.03); }
+.lc-table td {
+  padding: 16px 20px;
+  vertical-align: middle;
+  line-height: 1.5;
+  color: var(--muted);
+  font-size: 13px;
+}
+.lc-table td:first-child {
+  font-weight: 600;
+  color: var(--cream);
+  font-size: 14px;
+}
+/* GA highlighted row */
+.lc-table tr.ga-row {
+  background: rgba(139,127,199,0.06);
+}
+.lc-table tr.ga-row td {
+  color: var(--cream);
+  font-weight: 500;
+}
+.lc-table tr.ga-row td:first-child {
+  color: var(--violet-l);
+  font-weight: 700;
+  position: relative;
+}
+.lc-table tr.ga-row td:first-child::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: var(--violet);
+  border-radius: 2px;
+}
+.lc-table .sql-cpl {
+  font-weight: 700;
+  color: var(--cream);
+}
+.lc-table tr.ga-row .sql-cpl {
+  color: var(--amber);
+  font-weight: 800;
+}
+.lc-table .consideration {
+  font-size: 12px;
+  color: rgba(237,233,223,0.4);
+  font-style: italic;
+}
+
+/* ============ EMERGING SECTION ============ */
+.emerging-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+.emerging-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(232,160,35,0.06);
+  border: 1px solid rgba(232,160,35,0.15);
+  border-radius: var(--r);
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.emerging-note-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.emerging-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--card);
+  opacity: 0.8;
+}
+
+/* ============ SAVINGS BARS ============ */
+.savings-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+}
+.savings-section h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.savings-section > p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+.savings-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.savings-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.savings-bar-label {
+  width: 120px;
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  text-align: right;
+}
+.savings-bar-track {
+  flex: 1;
+  height: 44px;
+  background: rgba(139,127,199,0.06);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.savings-bar-fill {
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0B0B0F;
+  white-space: nowrap;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.savings-bar-fill.bar-linkedin { background: rgba(139,127,199,0.35); width: 25%; color: var(--cream); }
+.savings-bar-fill.bar-google { background: rgba(139,127,199,0.35); width: 25%; color: var(--cream); }
+.savings-bar-fill.bar-meta { background: rgba(139,127,199,0.45); width: 45%; color: var(--cream); }
+.savings-bar-fill.bar-ga {
+  background: linear-gradient(90deg, var(--violet), var(--amber));
+  width: 100%;
+  color: #0B0B0F;
+}
+.savings-bar-count {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ============ TAKEAWAYS ============ */
+.takeaways-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+}
+.takeaways-section h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 32px;
+}
+.takeaway-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.takeaway-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: 15px;
+  color: var(--cream);
+  line-height: 1.6;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.takeaway-list li:hover {
+  border-color: var(--border2);
+  transform: translateX(4px);
+}
+.takeaway-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(232,160,35,0.1);
+  border: 1px solid rgba(232,160,35,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-top: 2px;
+}
+.takeaway-icon.violet {
+  background: rgba(139,127,199,0.1);
+  border-color: rgba(139,127,199,0.2);
+}
+
+/* ============ SOURCES ============ */
+.sources-line {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  font-size: 11px;
+  color: rgba(237,233,223,0.3);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ============ FINAL CTA ============ */
+.final-cta {
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(91,79,167,0.08) 40%, rgba(91,79,167,0.15) 70%, var(--bg) 100%);
+}
+.final-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.15) 0%, rgba(139,127,199,0.05) 40%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139,127,199,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.final-cta .section-heading { position: relative; z-index: 1; }
+.final-cta .section-sub {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+  margin: 0 auto 36px;
+}
+.final-cta .btn-amber { position: relative; z-index: 1; }
+.final-secondary {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.final-secondary:hover { color: var(--cream); }
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.footer-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 320px;
+  font-style: italic;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--violet-l);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter Tight', sans-serif;
+}
+.footer-bottom-links { display: flex; gap: 16px; }
+.footer-bottom-links a { color: var(--muted); font-size: 12px; transition: color 0.2s; font-family: 'Inter Tight', sans-serif; }
+.footer-bottom-links a:hover { color: var(--cream); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .lc-table-wrap, .emerging-table-wrap { overflow-x: auto; }
+  .lc-table { min-width: 800px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .section { padding: 64px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .btn-ghost.hide-mobile { display: none; }
+  .lc-hero { padding: 60px 24px 40px; }
+  .ga-highlight-card { padding: 32px 24px; }
+  .ga-highlight-stats { grid-template-columns: 1fr; gap: 16px; }
+  .savings-bar-item { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .savings-bar-label { width: auto; text-align: left; }
+  .savings-bar-track { width: 100%; }
+  .lc-table { min-width: 700px; }
+}
+@media (max-width: 480px) {
+  .lc-hero { padding: 48px 24px 32px; }
+  .ga-highlight-card h3 { font-size: 22px; }
+  .ga-stat-value { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="announce-bar" id="announceBar">
+  Offering free strategy proposals for Q2: <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener">Run the Interactive Demo &rarr;</a>
+  <button class="announce-close" onclick="document.getElementById('announceBar').classList.add('hidden')">&times;</button>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Growth Automation</a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="index.html#platform">Platform</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="index.html#platform">Platform Overview</a></li>
+          <li><a href="index.html#how-it-works">How It Works</a></li>
+          <li><a href="index.html#dex">Meet Dex</a></li>
+          <li><a href="pricing.html">Pricing &amp; Features</a></li>
+        </ul>
+      </li>
+      <li><a href="pricing.html">Pricing &amp; Features</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="comparisons.html">Comparisons</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost hide-mobile" onclick="window.open('https://app.growthautomation.ai','_blank')">Login</button>
+      <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="lc-hero">
+  <div class="lc-hero-glow"></div>
+  <div class="lc-hero-content">
+    <div class="hero-badge">&#8212;&#8212;&#8212; LEAD COST COMPARISON</div>
+    <h1 class="section-heading">What Does a Qualified Lead <span class="accent">Actually Cost</span>?</h1>
+    <p class="section-sub" style="margin: 0 auto;">B2B SMB benchmarks across paid advertising, cold email agencies, and Growth Automation. All figures reflect cost per qualified lead (SQL), not raw form fills.</p>
+  </div>
+</section>
+
+<div class="diamond-sep reveal"><span></span></div>
+
+<!-- ============ GA HIGHLIGHT CARD ============ -->
+<div class="container" style="padding-bottom: 20px;">
+  <div class="ga-highlight-card reveal">
+    <div class="ga-highlight-badge">Growth Automation</div>
+    <h3>Growth Plan &mdash; $1,890/mo</h3>
+    <div class="ga-highlight-stats">
+      <div class="ga-stat">
+        <div class="ga-stat-value">10&ndash;20</div>
+        <div class="ga-stat-label">Guaranteed Qualified Leads</div>
+      </div>
+      <div class="ga-stat">
+        <div class="ga-stat-value">$94&ndash;$189</div>
+        <div class="ga-stat-label">Effective CPL (SQL)</div>
+      </div>
+      <div class="ga-stat">
+        <div class="ga-stat-value">100%</div>
+        <div class="ga-stat-label">Qualified Rate</div>
+      </div>
+    </div>
+    <div class="ga-highlight-tagline">Human-verified. Guaranteed. No ad spend required.</div>
+  </div>
+</div>
+
+<div class="diamond-sep reveal"><span></span></div>
+
+<!-- ============ PRIMARY COMPARISON TABLE ============ -->
+<div class="lc-table-section reveal">
+  <div class="section-label">
+    <span class="section-label-line"></span>PRIMARY B2B PLATFORMS
+  </div>
+  <h2>Main Channel <span class="accent">Comparison</span></h2>
+  <p>Cost per qualified lead (SQL) across the most common B2B SMB acquisition channels. Raw CPL measures cost per form fill or click; the SQL column reflects what you actually pay per sales-qualified lead after conversion rates.</p>
+
+  <div class="lc-table-wrap">
+    <table class="lc-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Cost Per Qualified Lead (SQL)</th>
+          <th>Raw CPL</th>
+          <th>MQL &rarr; SQL Rate</th>
+          <th>Min Monthly Spend</th>
+          <th>Key Consideration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ga-row">
+          <td>Growth Automation</td>
+          <td class="sql-cpl">$94&ndash;$189</td>
+          <td>N/A (done-for-you)</td>
+          <td>100% qualified</td>
+          <td>$1,890</td>
+          <td class="consideration">Fully managed. Guaranteed leads. No ad spend.</td>
+        </tr>
+        <tr>
+          <td>Google Ads (Search)</td>
+          <td class="sql-cpl">$250&ndash;$450</td>
+          <td>$70&ndash;$237</td>
+          <td>7&ndash;12%</td>
+          <td>$3,000&ndash;$4,000</td>
+          <td class="consideration">High intent but expensive. Requires ongoing optimization.</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Ads</td>
+          <td class="sql-cpl">$300&ndash;$500</td>
+          <td>$75&ndash;$200</td>
+          <td>14&ndash;18%</td>
+          <td>$3,000+</td>
+          <td class="consideration">Best B2B targeting but highest CPMs. Long sales cycles.</td>
+        </tr>
+        <tr>
+          <td>Meta Ads (Facebook/IG)</td>
+          <td class="sql-cpl">$150&ndash;$250</td>
+          <td>$41&ndash;$63</td>
+          <td>5&ndash;10%</td>
+          <td>$1,500&ndash;$2,500</td>
+          <td class="consideration">Low raw CPL but poor B2B targeting. High volume, low quality.</td>
+        </tr>
+        <tr>
+          <td>Microsoft / Bing Ads</td>
+          <td class="sql-cpl">$150&ndash;$350</td>
+          <td>~$41</td>
+          <td>10&ndash;15%</td>
+          <td>$1,500&ndash;$2,000</td>
+          <td class="consideration">Lower competition than Google. Skews older/enterprise demographic.</td>
+        </tr>
+        <tr>
+          <td>Cold Email Agencies</td>
+          <td class="sql-cpl">$200&ndash;$500</td>
+          <td>Varies</td>
+          <td>Varies</td>
+          <td>$3,000&ndash;$7,000</td>
+          <td class="consideration">Quality depends on vendor. No guarantees. Multi-month contracts.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ EMERGING / NICHE PLATFORMS ============ -->
+<div class="emerging-section reveal">
+  <div class="section-label">
+    <span class="section-label-line"></span>EMERGING / NICHE PLATFORMS
+  </div>
+  <h2 style="font-size:clamp(20px,2.5vw,28px);font-weight:800;letter-spacing:-0.02em;color:#fff;margin-bottom:16px;">Secondary Channels</h2>
+
+  <div class="emerging-note">
+    <span class="emerging-note-icon">&#9888;&#65039;</span>
+    <span>These platforms have lower CPCs but limited B2B SMB targeting. Best used for top-of-funnel awareness, not qualified lead generation.</span>
+  </div>
+
+  <div class="emerging-table-wrap">
+    <table class="lc-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>SQL CPL (est.)</th>
+          <th>Raw CPL</th>
+          <th>MQL &rarr; SQL Rate</th>
+          <th>Min Monthly Spend</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reddit Ads</td>
+          <td class="sql-cpl">$50&ndash;$200</td>
+          <td>$45&ndash;$85</td>
+          <td>1&ndash;5%</td>
+          <td>$500&ndash;$1,500</td>
+          <td class="consideration">Only suitable for niche B2B tech communities.</td>
+        </tr>
+        <tr>
+          <td>TikTok Ads</td>
+          <td class="sql-cpl">$50&ndash;$150+</td>
+          <td>$8&ndash;$15</td>
+          <td>&lt;1% B2B</td>
+          <td>$500&ndash;$1,500</td>
+          <td class="consideration">Primarily B2C. Not reliable for B2B SMB lead gen.</td>
+        </tr>
+        <tr>
+          <td>X / Twitter Ads</td>
+          <td class="sql-cpl">$75&ndash;$200+</td>
+          <td>~$22 CPA</td>
+          <td>1&ndash;3%</td>
+          <td>$500&ndash;$1,500</td>
+          <td class="consideration">Declining platform. Useful mainly for retargeting.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="diamond-sep reveal"><span></span></div>
+
+<!-- ============ SAVINGS COMPARISON ============ -->
+<div class="savings-section reveal">
+  <div class="section-label">
+    <span class="section-label-line"></span>WHAT $1,890/MO GETS YOU
+  </div>
+  <h2>Lead Volume <span class="accent">Comparison</span></h2>
+  <p>For the same $1,890/month budget, here is how many qualified leads each channel delivers.</p>
+
+  <div class="savings-bars">
+    <div class="savings-bar-item">
+      <div class="savings-bar-label">LinkedIn</div>
+      <div class="savings-bar-track">
+        <div class="savings-bar-fill bar-linkedin" data-width="25">~5 leads</div>
+      </div>
+    </div>
+    <div class="savings-bar-item">
+      <div class="savings-bar-label">Google Ads</div>
+      <div class="savings-bar-track">
+        <div class="savings-bar-fill bar-google" data-width="25">~5 leads</div>
+      </div>
+    </div>
+    <div class="savings-bar-item">
+      <div class="savings-bar-label">Meta Ads</div>
+      <div class="savings-bar-track">
+        <div class="savings-bar-fill bar-meta" data-width="45">~9 leads</div>
+      </div>
+    </div>
+    <div class="savings-bar-item">
+      <div class="savings-bar-label" style="color:var(--amber);font-weight:800;">GA Growth</div>
+      <div class="savings-bar-track" style="border-color:rgba(139,127,199,0.3);">
+        <div class="savings-bar-fill bar-ga" data-width="100">10&ndash;20 guaranteed leads</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="diamond-sep reveal"><span></span></div>
+
+<!-- ============ KEY TAKEAWAYS ============ -->
+<div class="takeaways-section reveal">
+  <div class="section-label">
+    <span class="section-label-line"></span>KEY TAKEAWAYS
+  </div>
+  <h2>What the <span class="accent">Data</span> Shows</h2>
+  <ul class="takeaway-list">
+    <li>
+      <div class="takeaway-icon">&#9660;</div>
+      <span><strong>Raw CPL is misleading.</strong> A $50 form fill that never converts is infinitely more expensive than a $189 guaranteed SQL. Always benchmark on cost per <em>qualified</em> lead.</span>
+    </li>
+    <li>
+      <div class="takeaway-icon violet">&#128176;</div>
+      <span><strong>Ad platforms require additional spend.</strong> Google, LinkedIn, and Meta CPLs are on top of agency fees, creative costs, and landing page builds. GA's price is all-inclusive.</span>
+    </li>
+    <li>
+      <div class="takeaway-icon">&#128200;</div>
+      <span><strong>MQL-to-SQL conversion kills ROI.</strong> With 5&ndash;18% conversion rates on ads, you need massive top-of-funnel volume to produce a handful of real opportunities.</span>
+    </li>
+    <li>
+      <div class="takeaway-icon violet">&#10003;</div>
+      <span><strong>Guarantees change the math.</strong> Growth Automation is the only channel here that offers a contractual lead guarantee. No other platform or agency commits to a minimum output.</span>
+    </li>
+    <li>
+      <div class="takeaway-icon">&#9889;</div>
+      <span><strong>Cold email agencies are unpredictable.</strong> Retainer fees of $3K&ndash;$7K/mo with no volume commitments make cost-per-lead impossible to forecast.</span>
+    </li>
+    <li>
+      <div class="takeaway-icon violet">&#127919;</div>
+      <span><strong>Emerging platforms are not ready for B2B SMB.</strong> Reddit, TikTok, and X can supplement awareness, but none reliably produce sales-qualified leads at scale.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ============ SOURCES ============ -->
+<div class="sources-line reveal">
+  Sources: SaaS Hero 2026, Sopro 2025, Martal 2026, Belkins 2026, First Page Sage 2026, Impactable 2026, ZenABM 2026, WordStream 2025, Dreamdata 2026, BrightBid 2026, Lever Digital 2026, WebFX 2026
+</div>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="final-cta-glow"></div>
+  <div class="final-cta-dots"></div>
+  <div class="section-label reveal" style="justify-content: center;">
+    <span class="section-label-line"></span>STOP OVERPAYING FOR LEADS<span class="section-label-line"></span>
+  </div>
+  <h2 class="section-heading reveal">Get Guaranteed Leads at a <span class="accent">Fraction</span> of the Cost</h2>
+  <p class="section-sub reveal">Why spend $300+ per lead on ads when you can get 10&ndash;20 guaranteed qualified leads for $1,890/mo? See for yourself.</p>
+  <div style="display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+    <a href="https://app.growthautomation.ai/onboard/public" class="btn-amber btn-amber-lg reveal" target="_blank" rel="noopener">Interactive Demo &rarr;</a>
+    <a href="https://calendly.com/mikeborman/growth-automation-lead-gen-client-call" class="btn-violet-sm reveal" style="padding:16px 32px;font-size:16px;" target="_blank" rel="noopener">Book a Strategy Call</a>
+  </div>
+  <a href="pricing.html" class="final-secondary reveal" style="margin-top:12px;display:block;">Or explore pricing &rarr;</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Growth Automation</div>
+      <p class="footer-desc">AI-powered GTM campaigns that fill your pipeline &mdash; verified contacts, warm infrastructure, and Dex AI built in.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <ul>
+        <li><a href="index.html#platform">Inbox Manager</a></li>
+        <li><a href="index.html#platform">Content Engine</a></li>
+        <li><a href="index.html#dex">Dex AI</a></li>
+        <li><a href="index.html#platform">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing &amp; Features</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="comparisons.html">Comparisons</a></li>
+        <li><a href="lead-costs.html">Lead Costs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-row">
+      <span>&copy; 2026 Growth Automation. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="comparisons.html">Comparisons</a>
+        <a href="lead-costs.html">Lead Costs</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ SCROLL RESTORATION ============ */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============ INTERSECTION OBSERVER — REVEAL ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ============ ANIMATED BARS ============ */
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bars = entry.target.querySelectorAll('.savings-bar-fill');
+      bars.forEach((bar, i) => {
+        const targetWidth = bar.dataset.width + '%';
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.width = targetWidth;
+        }, 150 + i * 120);
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+const savingsBars = document.querySelector('.savings-bars');
+if (savingsBars) barObserver.observe(savingsBars);
+
+/* ============ MOBILE NAV ============ */
+const hamburger = document.getElementById('navHamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  const isVisible = navLinks.style.display === 'flex';
+  if (isVisible) {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.display = 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '64px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'rgba(11,11,15,0.96)';
+    navLinks.style.backdropFilter = 'blur(24px)';
+    navLinks.style.padding = '24px';
+    navLinks.style.gap = '20px';
+    navLinks.style.borderBottom = '1px solid var(--border)';
+  }
+});
+</script>
+</body>
+</html>
