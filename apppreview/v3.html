@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Onboarding — Modern Light (V3)</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg: #f8f9fb;
+    --white: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #5a5b6a;
+    --text-muted: #8e8fa3;
+    --border: #e5e7eb;
+    --border-hover: #d1d5db;
+    --teal: #0d7377;
+    --teal-light: #e8f7f7;
+    --teal-bg: rgba(13, 115, 119, 0.05);
+    --blue: #3b82f6;
+    --blue-light: #eff6ff;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --green: #059669;
+    --green-light: #ecfdf5;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --sidebar-width: 260px;
+  }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Top Bar ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .brand-dot {
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, var(--teal), #0ea5e9);
+    border-radius: 6px;
+  }
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .badge-submitted {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+  }
+  .badge-submitted::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+  .topbar-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), #0ea5e9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+  }
+
+  /* ── Layout ── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: var(--sidebar-width);
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 28px 0;
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    padding: 0 24px;
+    margin-bottom: 12px;
+  }
+  .sidebar-nav {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .sidebar-nav li a:hover {
+    background: var(--bg);
+    color: var(--text-primary);
+  }
+  .sidebar-nav li a.active {
+    color: var(--teal);
+    background: var(--teal-bg);
+    border-left-color: var(--teal);
+    font-weight: 600;
+  }
+  .sidebar-nav .nav-icon {
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+  .sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 24px;
+  }
+
+  /* ── Content Area ── */
+  .content {
+    flex: 1;
+    padding: 36px 48px 80px;
+    max-width: 840px;
+  }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--teal); }
+
+  /* ── Page Header ── */
+  .page-header {
+    margin-bottom: 28px;
+  }
+  .page-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .page-header .meta {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* ── Warning Banner ── */
+  .warning-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: var(--amber-light);
+    border: 1px solid rgba(217, 119, 6, 0.2);
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #92400e;
+  }
+  .warning-banner .icon { font-size: 16px; }
+
+  /* ── Contact Info ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .contact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s;
+  }
+  .contact-card:hover { box-shadow: var(--shadow-md); }
+  .contact-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .contact-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* ── Section Header ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    margin-top: 8px;
+  }
+  .section-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--teal);
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-num.amber { background: var(--amber); }
+  .section-divider h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .section-divider .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Content Card ── */
+  .field-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid transparent;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .field-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+  .field-card.teal-accent { border-left-color: var(--teal); }
+  .field-card.amber-accent { border-left-color: var(--amber); }
+
+  .field-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .teal-accent .field-label { color: var(--teal); }
+  .amber-accent .field-label { color: var(--amber); }
+
+  .field-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+  .field-text ul {
+    margin-top: 8px;
+    padding-left: 20px;
+  }
+  .field-text li {
+    margin-bottom: 6px;
+  }
+  .field-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ── Tags ── */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag-pill {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .tag-pill:hover {
+    background: var(--teal-light);
+    color: var(--teal);
+    border-color: rgba(13, 115, 119, 0.2);
+  }
+
+  /* ── Print Styles ── */
+  @media print {
+    .topbar, .sidebar, .back-link { display: none; }
+    .layout { display: block; }
+    .content { max-width: 100%; padding: 24px; }
+    .field-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    body { background: white; }
+  }
+
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .content { padding: 24px 20px 60px; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="brand-dot"></div>
+    GTM Engine
+  </div>
+  <div class="topbar-right">
+    <span class="badge-submitted">Submitted</span>
+    <div class="topbar-avatar">SM</div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-section-label">Navigation</div>
+    <ul class="sidebar-nav">
+      <li><a href="#contact"><span class="nav-icon">&#9679;</span> Contact Info</a></li>
+    </ul>
+
+    <div class="sidebar-section-label">Section 1</div>
+    <ul class="sidebar-nav">
+      <li><a href="#overview" class="active"><span class="nav-icon">&#9679;</span> Overview</a></li>
+      <li><a href="#features"><span class="nav-icon">&#9679;</span> Features</a></li>
+      <li><a href="#roi"><span class="nav-icon">&#9679;</span> ROI & Revenue</a></li>
+      <li><a href="#cost"><span class="nav-icon">&#9679;</span> Cost Savings</a></li>
+      <li><a href="#time"><span class="nav-icon">&#9679;</span> Time Savings</a></li>
+      <li><a href="#competition"><span class="nav-icon">&#9679;</span> vs Competition</a></li>
+      <li><a href="#painpoints"><span class="nav-icon">&#9679;</span> Pain Points</a></li>
+      <li><a href="#pricing"><span class="nav-icon">&#9679;</span> Pricing</a></li>
+      <li><a href="#objections"><span class="nav-icon">&#9679;</span> Objections</a></li>
+      <li><a href="#lead-def"><span class="nav-icon">&#9679;</span> Lead Definition</a></li>
+    </ul>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section-label">Section 2</div>
+    <ul class="sidebar-nav">
+      <li><a href="#audience-name"><span class="nav-icon">&#9679;</span> Audience Name</a></li>
+      <li><a href="#countries"><span class="nav-icon">&#9679;</span> Countries</a></li>
+      <li><a href="#industries"><span class="nav-icon">&#9679;</span> Industries</a></li>
+      <li><a href="#titles"><span class="nav-icon">&#9679;</span> Job Titles</a></li>
+    </ul>
+  </nav>
+
+  <!-- Content -->
+  <main class="content">
+
+    <a href="index.html" class="back-link">&larr; Back to mockups</a>
+
+    <div class="page-header">
+      <h1>GTM Onboarding</h1>
+      <p class="meta">PipelineFlow &mdash; Submitted March 28, 2026 at 2:15 PM</p>
+    </div>
+
+    <!-- Warning -->
+    <div class="warning-banner">
+      <span class="icon">&#9888;</span>
+      <span>This onboarding form has been submitted and is under review. Contact your account manager to request changes.</span>
+    </div>
+
+    <!-- Contact Info -->
+    <div id="contact" class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-label">Full Name</div>
+        <div class="contact-value">Sarah Mitchell</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">sarah@pipelineflow.io</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Company</div>
+        <div class="contact-value">PipelineFlow</div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section-divider">
+      <div class="section-num">1</div>
+      <h2>Service & Content</h2>
+      <div class="line"></div>
+    </div>
+
+    <div id="overview" class="field-card teal-accent">
+      <div class="field-label">Overview</div>
+      <div class="field-text">PipelineFlow is a B2B SaaS platform that helps mid-market sales teams automate their outbound pipeline generation. We combine AI-powered lead scoring with multi-channel sequencing to help sales teams book 3x more qualified meetings without increasing headcount. Our platform integrates natively with Salesforce, HubSpot, and major email providers.</div>
+    </div>
+
+    <div id="features" class="field-card teal-accent">
+      <div class="field-label">Features</div>
+      <div class="field-text">
+        <ul>
+          <li>AI Lead Scoring Engine that analyzes 50+ intent signals across the web</li>
+          <li>Multi-channel sequencing (email, LinkedIn, phone) with A/B testing</li>
+          <li>Real-time pipeline analytics dashboard with AI-powered forecasting</li>
+          <li>Native CRM sync with bi-directional data flow</li>
+          <li>Automated meeting scheduling with calendar integration</li>
+          <li>Team performance benchmarking and coaching insights</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="roi" class="field-card teal-accent">
+      <div class="field-label">ROI & Revenue Benefits</div>
+      <div class="field-text">Customers typically see a 3x increase in qualified meetings booked within the first 90 days. Average deal cycle shortens by 22% due to better-qualified leads entering the pipeline. Teams using PipelineFlow report 40% higher win rates compared to manual prospecting methods. One enterprise customer attributed $2.4M in new pipeline to PipelineFlow in their first quarter.</div>
+    </div>
+
+    <div id="cost" class="field-card teal-accent">
+      <div class="field-label">Cost Savings</div>
+      <div class="field-text">Replaces the need for 2-3 dedicated SDRs per team, saving $180K-$270K annually in labor costs. Eliminates spend on 4-5 separate point solutions (enrichment, sequencing, analytics, intent data) with average consolidation savings of $45K/year. Reduces CRM data entry time by 15 hours per rep per month.</div>
+    </div>
+
+    <div id="time" class="field-card teal-accent">
+      <div class="field-label">Time Savings</div>
+      <div class="field-text">Sales reps save an average of 12 hours per week on manual prospecting and data entry. Managers save 5 hours per week on reporting and pipeline reviews. Onboarding new reps takes 2 weeks instead of 6 with built-in playbooks and guided workflows.</div>
+    </div>
+
+    <div id="competition" class="field-card teal-accent">
+      <div class="field-label">Key Selling Points vs Competition</div>
+      <div class="field-text">
+        <ul>
+          <li>Only platform combining AI lead scoring + sequencing + analytics in one tool</li>
+          <li>50% faster implementation than competitors (2 weeks vs 6-8 weeks)</li>
+          <li>True bi-directional CRM sync (not just one-way push)</li>
+          <li>Transparent AI scoring with user-adjustable criteria</li>
+          <li>Usage-based pricing that scales with team size, not contact volume</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="painpoints" class="field-card teal-accent">
+      <div class="field-label">Pain Points & Solutions</div>
+      <div class="field-text">
+        <ul>
+          <li><strong>Pain:</strong> Sales teams waste 60% of time on unqualified leads. <strong>Solution:</strong> AI scoring surfaces only high-intent prospects.</li>
+          <li><strong>Pain:</strong> Pipeline visibility is fragmented across tools. <strong>Solution:</strong> Single-pane dashboard with real-time metrics.</li>
+          <li><strong>Pain:</strong> New SDRs take months to ramp. <strong>Solution:</strong> Guided playbooks reduce onboarding to 2 weeks.</li>
+          <li><strong>Pain:</strong> CRM data is always stale. <strong>Solution:</strong> Continuous bi-directional sync keeps records current.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="pricing" class="field-card teal-accent">
+      <div class="field-label">Pricing</div>
+      <div class="field-text">Growth Plan: $149/user/month (5-25 users). Scale Plan: $249/user/month (25-100 users, includes advanced analytics and dedicated CSM). Enterprise: Custom pricing with SLA, SSO, and custom integrations. All plans include unlimited contacts and sequences. Annual billing saves 20%.</div>
+    </div>
+
+    <div id="objections" class="field-card teal-accent">
+      <div class="field-label">Common Objections</div>
+      <div class="field-text">
+        <ul>
+          <li><strong>"We already use Outreach/Salesloft"</strong> — PipelineFlow replaces both your sequencer AND intent data tool, saving $30K+ annually.</li>
+          <li><strong>"Our team is too small"</strong> — Growth plan starts at 5 users and most teams see ROI within 30 days.</li>
+          <li><strong>"We don't trust AI scoring"</strong> — Fully transparent model. See every signal and adjust weights in real time.</li>
+          <li><strong>"Integration will take too long"</strong> — Average implementation is 10 business days. 98% of customers go live in under 2 weeks.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="lead-def" class="field-card teal-accent">
+      <div class="field-label">Successful Lead Definition</div>
+      <div class="field-text">A successful lead is a VP or Director-level decision maker at a B2B company with 50-2,000 employees, currently using Salesforce or HubSpot, who has shown intent signals (website visits, content downloads, job postings for sales roles) within the last 30 days. They should be in a growth phase (Series B+ or profitable with expanding sales teams) and operating in North America or Western Europe.</div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section-divider" style="margin-top: 40px;">
+      <div class="section-num amber">2</div>
+      <h2>Audience</h2>
+      <div class="line"></div>
+    </div>
+
+    <div id="audience-name" class="field-card amber-accent">
+      <div class="field-label">Audience Name</div>
+      <div class="field-text">Mid-Market SaaS Sales Leaders — North America</div>
+    </div>
+
+    <div id="countries" class="field-card amber-accent">
+      <div class="field-label">Countries</div>
+      <div class="tag-row">
+        <span class="tag-pill">United States</span>
+        <span class="tag-pill">Canada</span>
+        <span class="tag-pill">United Kingdom</span>
+        <span class="tag-pill">Australia</span>
+      </div>
+    </div>
+
+    <div id="industries" class="field-card amber-accent">
+      <div class="field-label">Industries</div>
+      <div class="tag-row">
+        <span class="tag-pill">SaaS / Software</span>
+        <span class="tag-pill">Technology</span>
+        <span class="tag-pill">Financial Services</span>
+        <span class="tag-pill">Professional Services</span>
+        <span class="tag-pill">Healthcare Technology</span>
+      </div>
+    </div>
+
+    <div id="titles" class="field-card amber-accent">
+      <div class="field-label">Job Titles</div>
+      <div class="tag-row">
+        <span class="tag-pill">VP of Sales</span>
+        <span class="tag-pill">Head of Sales</span>
+        <span class="tag-pill">Director of Sales Development</span>
+        <span class="tag-pill">Chief Revenue Officer</span>
+        <span class="tag-pill">Sales Operations Manager</span>
+        <span class="tag-pill">Director of Revenue Operations</span>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+  // Sidebar active state on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+  function updateActive() {
+    let current = '';
+    sections.forEach(s => {
+      const top = s.getBoundingClientRect().top;
+      if (top < 160) current = s.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', updateActive);
+</script>
+
+</body>
+</html>

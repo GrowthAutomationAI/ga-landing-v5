@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Onboarding — Clean Current (V1)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0B0B12;
+    color: #EDE9DF;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11, 11, 18, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid #1e1e2e;
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #EDE9DF;
+  }
+  .header-brand .sep { color: #3a3a50; }
+  .header-brand .sub { color: #8B7FC7; font-weight: 500; }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .theme-toggle {
+    width: 36px; height: 20px;
+    background: #2a2a3e;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    border: none;
+  }
+  .theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 14px; height: 14px;
+    background: #8B7FC7;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(34, 197, 94, 0.12);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+  }
+  .status-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+  }
+
+  /* ── Progress Bar ── */
+  .progress-container {
+    padding: 20px 32px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #9993a8;
+  }
+  .progress-pct {
+    font-size: 13px;
+    font-weight: 700;
+    color: #8B7FC7;
+  }
+  .progress-track {
+    height: 6px;
+    background: #1a1a28;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 85%;
+    background: linear-gradient(90deg, #8B7FC7, #E8A023);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+  .progress-steps {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .progress-step {
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    padding-top: 8px;
+    border-top: 2px solid #1a1a28;
+  }
+  .progress-step.done { border-top-color: #8B7FC7; color: #8B7FC7; }
+  .progress-step.active { border-top-color: #E8A023; color: #E8A023; }
+
+  /* ── Main Content ── */
+  .main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  /* ── Title Area ── */
+  .title-area {
+    margin-bottom: 32px;
+  }
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .title-row h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #EDE9DF;
+  }
+  .title-meta {
+    font-size: 13px;
+    color: #6b6b80;
+  }
+
+  /* ── Warning Banner ── */
+  .warning-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: rgba(232, 160, 35, 0.08);
+    border: 1px solid rgba(232, 160, 35, 0.2);
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #E8A023;
+  }
+  .warning-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ── Contact Info ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .contact-item {
+    background: #12121c;
+    border: 1px solid #1e1e2e;
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .contact-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #6b6b80;
+    margin-bottom: 6px;
+  }
+  .contact-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #EDE9DF;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 8px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    background: #12121c;
+    border: 1px solid #1e1e2e;
+    border-radius: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .section-header:hover {
+    background: #161624;
+    border-color: #2a2a42;
+  }
+  .section-number {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    min-width: 40px;
+  }
+  .section.violet .section-number { color: #8B7FC7; }
+  .section.amber .section-number { color: #E8A023; }
+  .section-title-group { flex: 1; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #EDE9DF;
+  }
+  .section-count {
+    font-size: 12px;
+    color: #6b6b80;
+    margin-top: 2px;
+  }
+  .section-chevron {
+    font-size: 20px;
+    color: #6b6b80;
+    transition: transform 0.3s;
+  }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section-body {
+    padding: 24px 0 24px 0;
+    display: grid;
+    gap: 16px;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s;
+  }
+  .section.collapsed .section-body {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  /* ── Content Block ── */
+  .content-block {
+    background: #12121c;
+    border: 1px solid #1e1e2e;
+    border-radius: 10px;
+    padding: 20px 24px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .section.violet .content-block { border-left-color: #8B7FC7; }
+  .section.amber .content-block { border-left-color: #E8A023; }
+  .content-block:hover {
+    background: #161624;
+  }
+  .block-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+  }
+  .section.violet .block-label { color: #8B7FC7; }
+  .section.amber .block-label { color: #E8A023; }
+  .block-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #b8b5c4;
+  }
+  .block-text ul {
+    margin-top: 8px;
+    padding-left: 20px;
+  }
+  .block-text li {
+    margin-bottom: 4px;
+  }
+
+  /* ── Tags ── */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #1a1a2c;
+    color: #9993a8;
+    border: 1px solid #2a2a3e;
+  }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #6b6b80;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 20px 32px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: #8B7FC7; }
+
+  @media (max-width: 700px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .main { padding: 0 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-brand">
+    GTM Engine <span class="sep">/</span> <span class="sub">Growth Automation</span>
+  </div>
+  <div class="header-right">
+    <span class="status-badge">Submitted</span>
+    <button class="theme-toggle" title="Toggle theme"></button>
+  </div>
+</div>
+
+<!-- Back Link -->
+<a href="index.html" class="back-link">&larr; Back to mockups</a>
+
+<!-- Progress -->
+<div class="progress-container">
+  <div class="progress-header">
+    <span class="progress-label">Onboarding Completion</span>
+    <span class="progress-pct">85%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill"></div>
+  </div>
+  <div class="progress-steps">
+    <div class="progress-step done">Contact Info</div>
+    <div class="progress-step done">Service & Content</div>
+    <div class="progress-step active">Audience</div>
+    <div class="progress-step">Review</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Title -->
+  <div class="title-area">
+    <div class="title-row">
+      <h1>GTM Onboarding</h1>
+    </div>
+    <div class="title-meta">Submitted on March 28, 2026 at 2:15 PM &mdash; Last updated 3 days ago</div>
+  </div>
+
+  <!-- Warning Banner -->
+  <div class="warning-banner">
+    <span class="warning-icon">&#9888;</span>
+    <span>This onboarding form has been submitted and is under review. Editing is currently locked. Contact your account manager to request changes.</span>
+  </div>
+
+  <!-- Contact Info -->
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-label">Full Name</div>
+      <div class="contact-value">Sarah Mitchell</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-value">sarah@pipelineflow.io</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Company</div>
+      <div class="contact-value">PipelineFlow</div>
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section violet" id="sec1">
+    <div class="section-header" onclick="toggleSection('sec1')">
+      <div class="section-number">01</div>
+      <div class="section-title-group">
+        <div class="section-title">Service & Content</div>
+        <div class="section-count">10 fields completed</div>
+      </div>
+      <div class="section-chevron">&#8250;</div>
+    </div>
+    <div class="section-body">
+
+      <div class="content-block">
+        <div class="block-label">Overview</div>
+        <div class="block-text">PipelineFlow is a B2B SaaS platform that helps mid-market sales teams automate their outbound pipeline generation. We combine AI-powered lead scoring with multi-channel sequencing to help sales teams book 3x more qualified meetings without increasing headcount. Our platform integrates with Salesforce, HubSpot, and major email providers.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Features</div>
+        <div class="block-text">
+          <ul>
+            <li>AI Lead Scoring Engine that analyzes 50+ intent signals across the web</li>
+            <li>Multi-channel sequencing (email, LinkedIn, phone) with A/B testing</li>
+            <li>Real-time pipeline analytics dashboard with forecasting</li>
+            <li>Native CRM sync with bi-directional data flow</li>
+            <li>Automated meeting scheduling with calendar integration</li>
+            <li>Team performance benchmarking and coaching insights</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">ROI & Revenue Benefits</div>
+        <div class="block-text">Customers typically see a 3x increase in qualified meetings booked within the first 90 days. Average deal cycle shortens by 22% due to better-qualified leads entering the pipeline. Teams using PipelineFlow report 40% higher win rates compared to manual prospecting methods. One enterprise customer attributed $2.4M in new pipeline to PipelineFlow in their first quarter.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Cost Savings</div>
+        <div class="block-text">Replaces the need for 2-3 dedicated SDRs per team, saving $180K-$270K annually in labor costs. Eliminates spend on 4-5 separate point solutions (enrichment, sequencing, analytics, intent data) — average consolidation savings of $45K/year. Reduces CRM data entry time by 15 hours per rep per month.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Time Savings</div>
+        <div class="block-text">Sales reps save an average of 12 hours per week on manual prospecting and data entry. Managers save 5 hours per week on reporting and pipeline reviews. Onboarding new reps takes 2 weeks instead of 6 with built-in playbooks and guided workflows.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Key Selling Points vs Competition</div>
+        <div class="block-text">
+          <ul>
+            <li>Only platform combining AI lead scoring + sequencing + analytics in one tool</li>
+            <li>50% faster implementation than competitors (2 weeks vs 6-8 weeks)</li>
+            <li>True bi-directional CRM sync (not just one-way push)</li>
+            <li>Transparent AI — users can see and adjust scoring criteria</li>
+            <li>Usage-based pricing that scales with team size, not contact volume</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Pain Points & Solutions</div>
+        <div class="block-text">
+          <ul>
+            <li><strong>Pain:</strong> Sales teams waste 60% of time on unqualified leads. <strong>Solution:</strong> AI scoring surfaces only high-intent prospects.</li>
+            <li><strong>Pain:</strong> Pipeline visibility is fragmented across tools. <strong>Solution:</strong> Single-pane dashboard with real-time metrics.</li>
+            <li><strong>Pain:</strong> New SDRs take months to ramp. <strong>Solution:</strong> Guided playbooks and automated sequences reduce ramp to 2 weeks.</li>
+            <li><strong>Pain:</strong> CRM data is always stale. <strong>Solution:</strong> Continuous bi-directional sync keeps records current.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Pricing</div>
+        <div class="block-text">Growth Plan: $149/user/month (5-25 users). Scale Plan: $249/user/month (25-100 users, includes advanced analytics and dedicated CSM). Enterprise: Custom pricing with SLA, SSO, and custom integrations. All plans include unlimited contacts and sequences. Annual billing saves 20%.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Common Objections</div>
+        <div class="block-text">
+          <ul>
+            <li>"We already use Outreach/Salesloft" — PipelineFlow replaces both your sequencer AND your intent data tool, saving $30K+ annually.</li>
+            <li>"Our team is too small" — Our Growth plan starts at 5 users and scales with you. Most teams see ROI within 30 days.</li>
+            <li>"We don't trust AI scoring" — Our scoring model is fully transparent. You can see every signal and adjust weights in real time.</li>
+            <li>"Integration will take too long" — Average implementation is 10 business days, with 98% of customers live within 2 weeks.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Successful Lead Definition</div>
+        <div class="block-text">A successful lead is a VP or Director-level decision maker at a B2B company with 50-2,000 employees, currently using Salesforce or HubSpot, who has shown intent signals (website visits, content downloads, job postings for sales roles) within the last 30 days. They should be in a growth phase (Series B+ or profitable with expanding sales teams) and operating in North America or Western Europe.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section amber" id="sec2">
+    <div class="section-header" onclick="toggleSection('sec2')">
+      <div class="section-number">02</div>
+      <div class="section-title-group">
+        <div class="section-title">Audience</div>
+        <div class="section-count">4 fields completed</div>
+      </div>
+      <div class="section-chevron">&#8250;</div>
+    </div>
+    <div class="section-body">
+
+      <div class="content-block">
+        <div class="block-label">Audience Name</div>
+        <div class="block-text">Mid-Market SaaS Sales Leaders — North America</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Countries</div>
+        <div class="tag-list">
+          <span class="tag">United States</span>
+          <span class="tag">Canada</span>
+          <span class="tag">United Kingdom</span>
+          <span class="tag">Australia</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Industries</div>
+        <div class="tag-list">
+          <span class="tag">SaaS / Software</span>
+          <span class="tag">Technology</span>
+          <span class="tag">Financial Services</span>
+          <span class="tag">Professional Services</span>
+          <span class="tag">Healthcare Technology</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Job Titles</div>
+        <div class="tag-list">
+          <span class="tag">VP of Sales</span>
+          <span class="tag">Head of Sales</span>
+          <span class="tag">Director of Sales Development</span>
+          <span class="tag">Chief Revenue Officer</span>
+          <span class="tag">Sales Operations Manager</span>
+          <span class="tag">Director of Revenue Operations</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+  // Start all expanded
+</script>
+
+</body>
+</html>
