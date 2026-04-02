@@ -70,19 +70,13 @@ body {
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: 80vh;
-  max-height: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 60px 24px 80px;
+  padding: 100px 24px 100px;
   overflow: hidden;
   background: #000;
 }
 
-/* Video background — fills hero, covers like background-size:cover */
+/* Video background — fills hero width, natural height, centered */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -94,10 +88,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
+  min-height: 100%;
   object-fit: cover;
 }
 
@@ -206,7 +199,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: 75vh; max-height: none; padding: 50px 20px 60px; }
+  .hero { padding: 80px 20px 60px; }
   .hero-ctas { flex-direction: column; align-items: center; }
 }
 </style>
@@ -252,8 +245,19 @@ body {
   </div>
 </section>
 
-<div class="below-hero">
-  <h2>[ Rest of homepage continues below &hellip; ]</h2>
+<!-- Browser mockup placeholder to show where the next section starts -->
+<div style="padding:40px 24px 80px;background:#151520;text-align:center;">
+  <div style="max-width:1020px;margin:0 auto;border:1px solid rgba(139,127,199,0.15);border-radius:14px;overflow:hidden;background:#13131D;">
+    <div style="padding:10px 16px;background:#1C1C2A;display:flex;align-items:center;gap:8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
+      <span style="flex:1;text-align:center;font-size:12px;color:rgba(237,233,223,0.3);">app.growthautomation.ai/dashboard</span>
+    </div>
+    <div style="padding:60px 24px;text-align:center;">
+      <p style="color:rgba(237,233,223,0.25);font-size:14px;">[ Dashboard slideshow would appear here ]</p>
+    </div>
+  </div>
 </div>
 
 <div class="preview-label">Interstella Video (Shader Gradient 2) &mdash; 31MB desktop / 5MB mobile &mdash; high quality preview</div>
