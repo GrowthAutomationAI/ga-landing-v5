@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Banner Options — Growth Automation</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0a10;color:#ddd;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:40px 24px 80px;}
+h1{text-align:center;font-size:28px;font-weight:300;letter-spacing:0.05em;color:#a89fd0;margin-bottom:8px;}
+.sub{text-align:center;font-size:14px;color:#666;margin-bottom:48px;}
+.grid{display:grid;grid-template-columns:1fr;gap:48px;max-width:1200px;margin:0 auto;}
+.option{position:relative;}
+.option-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.option-name{font-size:16px;font-weight:600;color:#c4b8ff;letter-spacing:0.03em;}
+.option-num{font-size:12px;color:#555;font-weight:700;letter-spacing:0.1em;}
+.option-desc{font-size:13px;color:#777;margin-bottom:16px;line-height:1.5;}
+.preview{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(139,127,199,0.1);transition:border-color 0.3s;}
+.preview:hover{border-color:rgba(139,127,199,0.3);}
+.preview img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;}
+.preview-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+.preview-text{text-align:center;text-shadow:0 2px 20px rgba(0,0,0,0.8);}
+.preview-text h2{font-size:clamp(24px,4vw,48px);font-weight:900;color:#fff;letter-spacing:-0.02em;line-height:1.15;}
+.preview-text .accent{color:#E8A023;}
+.preview-text p{font-size:clamp(12px,1.5vw,18px);color:rgba(255,255,255,0.7);font-style:italic;margin-top:8px;}
+.mobile-toggle{display:flex;gap:8px;margin-bottom:12px;}
+.toggle-btn{padding:6px 16px;border-radius:100px;border:1px solid rgba(139,127,199,0.2);background:transparent;color:#888;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.toggle-btn.active{background:rgba(139,127,199,0.15);color:#c4b8ff;border-color:rgba(139,127,199,0.4);}
+.size-badge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.7);color:#888;font-size:11px;padding:4px 10px;border-radius:6px;pointer-events:none;}
+@media(max-width:600px){body{padding:24px 16px;}.preview-text h2{font-size:20px;}}
+</style>
+</head>
+<body>
+<h1>Hero Banner Options</h1>
+<p class="sub">Click Desktop / Mobile to preview each. These replace the WebGL shader fallback on mobile &amp; weak devices.</p>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const options = [
+  { id: '1-deep-nebula', name: 'Deep Nebula', desc: 'Rich purple-blue cloud with golden center highlight. Organic, mystical, and deep — closest to the shader\'s actual look.' },
+  { id: '2-midnight-grid', name: 'Midnight Grid', desc: 'Geometric dark with subtle grid lines and a central violet glow. Technical, structured, modern.' },
+  { id: '3-warm-amber', name: 'Warm Amber Flow', desc: 'Dark base with warm amber organic swirls. Adds warmth to the GA brand — premium, inviting.' },
+  { id: '4-electric-plasma', name: 'Electric Plasma', desc: 'Sharper and crisper than the current fallback. More detail and contrast in the purple tones.' },
+  { id: '5-void-gradient', name: 'Void Gradient', desc: 'Ultra clean minimal. Near-black center fading to subtle violet edges. Lets the text hero shine.' },
+  { id: '6-crystalline', name: 'Crystalline Dark', desc: 'Faceted geometric shapes with voronoi-like cells. Dark, structured, unique texture.' },
+  { id: '7-aurora-sweep', name: 'Aurora Sweep', desc: 'Horizontal color sweep like northern lights. Purple-to-teal flow across the frame.' },
+  { id: '8-deep-space', name: 'Deep Space', desc: 'Near-black with scattered faint star points and a subtle nebula glow. Vast, quiet, premium.' },
+];
+
+const grid = document.getElementById('grid');
+options.forEach((opt, i) => {
+  const div = document.createElement('div');
+  div.className = 'option';
+  div.innerHTML = `
+    <div class="option-header">
+      <span class="option-name">${opt.name}</span>
+      <span class="option-num">OPTION ${String(i+1).padStart(2,'0')}</span>
+    </div>
+    <div class="option-desc">${opt.desc}</div>
+    <div class="mobile-toggle">
+      <button class="toggle-btn active" onclick="toggleView(this,'desktop','${opt.id}')">Desktop (1920×1080)</button>
+      <button class="toggle-btn" onclick="toggleView(this,'mobile','${opt.id}')">Mobile (960×540)</button>
+    </div>
+    <div class="preview" id="preview-${opt.id}">
+      <img src="${opt.id}.webp" alt="${opt.name}" id="img-${opt.id}">
+      <span class="size-badge" id="badge-${opt.id}">Desktop</span>
+      <div class="preview-overlay">
+        <div class="preview-text">
+          <h2>Qualified lead pipeline —<br>without agency fees or <span class="accent">DIY chaos.</span></h2>
+          <p>Fully managed outbound powered by agentic AI</p>
+        </div>
+      </div>
+    </div>
+  `;
+  grid.appendChild(div);
+});
+
+function toggleView(btn, mode, id) {
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const img = document.getElementById('img-' + id);
+  const badge = document.getElementById('badge-' + id);
+  if (mode === 'mobile') {
+    img.src = id + '-mobile.webp';
+    badge.textContent = 'Mobile';
+  } else {
+    img.src = id + '.webp';
+    badge.textContent = 'Desktop';
+  }
+}
+</script>
+</body>
+</html>
