@@ -3040,14 +3040,15 @@ hamburger.addEventListener('click', () => {
   var container = document.getElementById('vanta-hero');
   if (!container) return;
 
-  // ---- Adaptive check: skip shader on mobile / weak devices / reduced-motion ----
+  // ---- Adaptive check: skip shader on weaker devices ----
   // Fallback image is already set via CSS background-image on #vanta-hero
   var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 900;
-  var lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4;
+  var lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 6;
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var slowConnection = navigator.connection && (navigator.connection.saveData || navigator.connection.effectiveType === '2g' || navigator.connection.effectiveType === 'slow-2g');
+  var lowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
 
-  if (isMobile || lowMemory || prefersReduced) {
-    // Static fallback image is already showing via CSS — nothing to do
+  if (isMobile || lowMemory || prefersReduced || slowConnection || lowCores) {
     return;
   }
 
