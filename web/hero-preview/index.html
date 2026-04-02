@@ -70,13 +70,14 @@ body {
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 80vh;
+  max-height: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 24px 100px;
+  padding: 60px 24px 80px;
   overflow: hidden;
   background: #000;
 }
@@ -205,7 +206,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: 85vh; padding: 60px 20px 80px; }
+  .hero { min-height: 75vh; max-height: none; padding: 50px 20px 60px; }
   .hero-ctas { flex-direction: column; align-items: center; }
 }
 </style>
@@ -228,10 +229,11 @@ body {
 
 <section class="hero">
   <div class="hero-video">
-    <video autoplay muted loop playsinline poster="/video/hero-poster.jpg">
-      <source src="/video/hero-bg.mp4" type="video/mp4">
-      <source src="/video/hero-bg.webm" type="video/webm">
-    </video>
+    <video autoplay muted loop playsinline poster="/video/hero-poster.jpg" id="heroVideo"></video>
+    <script>
+      var v=document.getElementById('heroVideo');
+      v.src=window.innerWidth>768?'/video/hero-bg.mp4':'/video/hero-bg-mobile.mp4';
+    </script>
   </div>
   <div class="hero-overlay"></div>
 
@@ -254,7 +256,7 @@ body {
   <h2>[ Rest of homepage continues below &hellip; ]</h2>
 </div>
 
-<div class="preview-label">Interstella Video Background &mdash; 4.4MB desktop / 1.1MB mobile</div>
+<div class="preview-label">Interstella Video (Shader Gradient 2) &mdash; 31MB desktop / 5MB mobile &mdash; high quality preview</div>
 
 </body>
 </html>
