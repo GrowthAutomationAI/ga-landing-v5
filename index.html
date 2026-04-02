@@ -262,6 +262,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   color: var(--cream);
 }
 .nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-mobile-ctas { display: none; }
 .nav-links a {
   font-size: 13px;
   font-weight: 600;
@@ -496,18 +497,20 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 .hero-proof {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 8px;
   flex-wrap: wrap;
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(255,255,255,0.9);
   font-family: 'Inter Tight', sans-serif;
+  margin-top: 16px;
 }
 .hero-proof span { display: flex; align-items: center; gap: 6px; }
 .hero-proof strong { color: var(--violet-l); font-weight: 700; }
 .hero-cta-subtext {
-  font-size: 15px;
-  color: rgba(255,255,255,0.85);
-  margin-top: -4px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 0;
   font-family: 'Inter Tight', sans-serif;
 }
 .hero-deco {
@@ -2087,10 +2090,14 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   .hero { padding: 60px 24px 60px; }
   .section { padding: 64px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .btn-ghost.hide-mobile { display: none; }
-  .hiw-tab { padding: 12px 18px; font-size: 11px; }
+  .btn-ghost.hide-mobile, .btn-violet-sm.hide-mobile { display: none; }
+  .nav-mobile-ctas { display: block; padding: 16px 0 8px; border-top: 1px solid var(--border); margin-top: 8px; }
+  .hiw-tabs { scrollbar-width: none; flex-wrap: nowrap; justify-content: flex-start; padding: 0 16px; }
+  .hiw-tabs::-webkit-scrollbar { display: none; }
+  .hiw-tab { padding: 12px 18px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
   .cta-banner { margin: 0 16px 48px; padding: 40px 28px; }
   .testi-card { flex: 0 0 280px; }
+  .testi-track { gap: 16px; }
   .statement-section { padding: 100px 24px; clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%); }
 }
 @media (max-width: 480px) {
@@ -2103,6 +2110,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   .platform-tab { padding: 8px 14px; font-size: 11px; }
   .hiw-card { flex: 0 0 260px; }
   .testi-card { flex: 0 0 260px; padding: 24px 20px; }
+  .testi-track { gap: 12px; }
 }
 </style>
 </head>
@@ -2132,11 +2140,15 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <li><a href="case-studies.html">Case Studies</a></li>
       <li><a href="comparisons.html">Comparisons</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li class="nav-mobile-ctas">
+        <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber" style="padding:12px 24px;font-size:14px;width:100%;text-align:center;display:block;">Interactive Demo &rarr;</a>
+        <a href="https://calendly.com/mikeborman/growth-automation-lead-gen-client-call" target="_blank" rel="noopener" class="btn-violet-sm" style="padding:12px 24px;font-size:14px;width:100%;text-align:center;display:block;margin-top:10px;">Book a Strategy Call</a>
+      </li>
     </ul>
     <div class="nav-actions">
       <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.open('https://app.growthautomation.ai','_blank')">Login</button>
-      <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
+      <button class="btn-violet-sm hide-mobile" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
     </div>
     <button class="nav-hamburger" id="navHamburger">&#9776;</button>
   </div>
@@ -2154,7 +2166,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <div class="hero-ctas">
         <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener" class="btn-amber btn-amber-lg">Interactive Demo &rarr;</a>
       </div>
-      <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (10 mins)</div>
+      <div class="hero-cta-subtext">Get a custom outbound plan and demo campaign (5 min)</div>
       <div class="hero-proof">
         <span>Trusted by <strong>Vodafone</strong>, <strong>Payoneer</strong>, <strong>Cogora</strong> &amp; 50+ B2B brands</span>
       </div>
@@ -2179,15 +2191,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <img class="slide-img active" src="screenshots/dashboard.webp" alt="Dashboard Overview">
       <img class="slide-img" src="screenshots/inbox_manager.webp" alt="Inbox Manager" loading="lazy">
       <img class="slide-img" src="screenshots/dex_response.webp" alt="Dex AI Chat" loading="lazy">
-      <img class="slide-img" src="screenshots/content_engine.webp" alt="Content Engine" loading="lazy">
-      <img class="slide-img" src="screenshots/ai_usage.webp" alt="AI Usage Dashboard" loading="lazy">
     </div>
     <div class="slide-pips">
       <div class="pip active" data-index="0"></div>
       <div class="pip" data-index="1"></div>
       <div class="pip" data-index="2"></div>
-      <div class="pip" data-index="3"></div>
-      <div class="pip" data-index="4"></div>
     </div>
   </div>
 </div>
@@ -2347,6 +2355,61 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <p class="case-result">120+ leads in 3 months</p>
         <a href="case-studies.html" class="case-link">Read full case study &rarr;</a>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 15. TESTIMONIALS ============ -->
+<section class="testi-section section-alt" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div> What Clients Say</div>
+      <h2>The results speak for themselves.<br>Trusted by <span class="gold">industry leaders</span> &amp; <span class="accent">fast-movers</span>.</h2>
+    </div>
+  </div>
+  <!-- Row 1: Forward -->
+  <div class="testi-marquee">
+    <div class="testi-track testi-fwd">
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"A fantastic marketing tool for any business to increase new leads in the sales pipeline. We have seen an increasing level of sales success from the new leads provided."</div><div class="testi-author"><div class="testi-avatar">TB</div><div><div class="testi-name">Travis Barlow</div><div class="testi-role">Managing Director, Vodafone Business Centre</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Over three months, we generated 120+ high-quality leads, significantly boosting our sales pipeline. Precision targeting at its best."</div><div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Akhil Koka</div><div class="testi-role">Head of Growth, Ignyte</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"It has rapidly expanded our reach, creating highly valuable introductions which have the potential to be long term clients. This solution pays for itself."</div><div class="testi-author"><div class="testi-avatar">CH</div><div><div class="testi-name">Craig Hughes</div><div class="testi-role">COO, Cogora</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team helped us get in front of exactly the right people. We started having real conversations with decision-makers almost right away."</div><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Robert Kenfield</div><div class="testi-role">COO, RenderToVideo</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team quickly understood our goals and built campaigns that consistently brought in the right opportunities."</div><div class="testi-author"><div class="testi-avatar">IS</div><div><div class="testi-name">Iuliia Sidorova</div><div class="testi-role">Head of Sales, Reputation House</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"In addition to receiving high quality leads converted into revenue, we've been able to reach wide audiences to refine and validate our messaging."</div><div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Valenti</div><div class="testi-role">CEO, Astrix AI</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us move from unreliable outreach to a steady flow of qualified conversations."</div><div class="testi-author"><div class="testi-avatar">JG</div><div><div class="testi-name">James Garner</div><div class="testi-role">Chief Revenue Officer, Altimo</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The quality of leads generated has been outstanding, allowing our sales team to maximize their efficiency and focus on closing deals."</div><div class="testi-author"><div class="testi-avatar">NM</div><div><div class="testi-name">Neladri J Mondal</div><div class="testi-role">Founder, THE1</div></div></div></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"A fantastic marketing tool for any business to increase new leads in the sales pipeline. We have seen an increasing level of sales success from the new leads provided."</div><div class="testi-author"><div class="testi-avatar">TB</div><div><div class="testi-name">Travis Barlow</div><div class="testi-role">Managing Director, Vodafone Business Centre</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Over three months, we generated 120+ high-quality leads, significantly boosting our sales pipeline. Precision targeting at its best."</div><div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Akhil Koka</div><div class="testi-role">Head of Growth, Ignyte</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"It has rapidly expanded our reach, creating highly valuable introductions which have the potential to be long term clients. This solution pays for itself."</div><div class="testi-author"><div class="testi-avatar">CH</div><div><div class="testi-name">Craig Hughes</div><div class="testi-role">COO, Cogora</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team helped us get in front of exactly the right people. We started having real conversations with decision-makers almost right away."</div><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Robert Kenfield</div><div class="testi-role">COO, RenderToVideo</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team quickly understood our goals and built campaigns that consistently brought in the right opportunities."</div><div class="testi-author"><div class="testi-avatar">IS</div><div><div class="testi-name">Iuliia Sidorova</div><div class="testi-role">Head of Sales, Reputation House</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"In addition to receiving high quality leads converted into revenue, we've been able to reach wide audiences to refine and validate our messaging."</div><div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Valenti</div><div class="testi-role">CEO, Astrix AI</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us move from unreliable outreach to a steady flow of qualified conversations."</div><div class="testi-author"><div class="testi-avatar">JG</div><div><div class="testi-name">James Garner</div><div class="testi-role">Chief Revenue Officer, Altimo</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The quality of leads generated has been outstanding, allowing our sales team to maximize their efficiency and focus on closing deals."</div><div class="testi-author"><div class="testi-avatar">NM</div><div><div class="testi-name">Neladri J Mondal</div><div class="testi-role">Founder, THE1</div></div></div></div>
+    </div>
+  </div>
+  <!-- Row 2: Reverse -->
+  <div class="testi-marquee" style="margin-top:20px;">
+    <div class="testi-track testi-rev">
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their approach is strategic, efficient, and delivers measurable outcomes. A fantastic solution for any business looking to expand its reach."</div><div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Syed Tafsir Mohammad</div><div class="testi-role">Marketing Manager, Payoneer</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The process felt organised, data-driven, and well managed, which made outbound a reliable and repeatable channel for us."</div><div class="testi-author"><div class="testi-avatar">CC</div><div><div class="testi-name">Cameron Calhoun</div><div class="testi-role">Business Development Manager, Modul-Bio</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us connect with relevant contacts across targeted audiences, setting up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">JC</div><div><div class="testi-name">Jane Chapman</div><div class="testi-role">General Manager, Total Fitouts</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Targeted messaging and data-driven approach quickly delivered qualified leads. They genuinely operate like part of our team."</div><div class="testi-author"><div class="testi-avatar">RB</div><div><div class="testi-name">Robert Beerworth</div><div class="testi-role">Managing Director, Digital8</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"What we value most is their responsiveness and transparency. A dependable partner in helping us expand our pipeline."</div><div class="testi-author"><div class="testi-avatar">BG</div><div><div class="testi-name">Brad Guthrie</div><div class="testi-role">Director, Search Republic</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their ability to understand our offering and craft messages that resonate with our audience has been impressive."</div><div class="testi-author"><div class="testi-avatar">VS</div><div><div class="testi-name">Vipin Sharma</div><div class="testi-role">Director, SCP</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their strategic approach and consistent results make them an invaluable partner of ours."</div><div class="testi-author"><div class="testi-avatar">JW</div><div><div class="testi-name">Julian Wood</div><div class="testi-role">Managing Director, Novated Lease Australia</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"They helped us connect with highly relevant contacts and set up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">GT</div><div><div class="testi-name">Garry Taylor</div><div class="testi-role">CEO, Smart Union</div></div></div></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their approach is strategic, efficient, and delivers measurable outcomes. A fantastic solution for any business looking to expand its reach."</div><div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Syed Tafsir Mohammad</div><div class="testi-role">Marketing Manager, Payoneer</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The process felt organised, data-driven, and well managed, which made outbound a reliable and repeatable channel for us."</div><div class="testi-author"><div class="testi-avatar">CC</div><div><div class="testi-name">Cameron Calhoun</div><div class="testi-role">Business Development Manager, Modul-Bio</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us connect with relevant contacts across targeted audiences, setting up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">JC</div><div><div class="testi-name">Jane Chapman</div><div class="testi-role">General Manager, Total Fitouts</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Targeted messaging and data-driven approach quickly delivered qualified leads. They genuinely operate like part of our team."</div><div class="testi-author"><div class="testi-avatar">RB</div><div><div class="testi-name">Robert Beerworth</div><div class="testi-role">Managing Director, Digital8</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"What we value most is their responsiveness and transparency. A dependable partner in helping us expand our pipeline."</div><div class="testi-author"><div class="testi-avatar">BG</div><div><div class="testi-name">Brad Guthrie</div><div class="testi-role">Director, Search Republic</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their ability to understand our offering and craft messages that resonate with our audience has been impressive."</div><div class="testi-author"><div class="testi-avatar">VS</div><div><div class="testi-name">Vipin Sharma</div><div class="testi-role">Director, SCP</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their strategic approach and consistent results make them an invaluable partner of ours."</div><div class="testi-author"><div class="testi-avatar">JW</div><div><div class="testi-name">Julian Wood</div><div class="testi-role">Managing Director, Novated Lease Australia</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"They helped us connect with highly relevant contacts and set up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">GT</div><div><div class="testi-name">Garry Taylor</div><div class="testi-role">CEO, Smart Union</div></div></div></div>
     </div>
   </div>
 </section>
@@ -2693,59 +2756,6 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   </div>
 </section>
 
-<!-- ============ 15. TESTIMONIALS ============ -->
-<section class="testi-section section-alt" id="testimonials">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div> What Clients Say</div>
-      <h2>The results speak for themselves.<br>Trusted by <span class="gold">industry leaders</span> &amp; <span class="accent">fast-movers</span>.</h2>
-    </div>
-  </div>
-  <!-- Row 1: Forward -->
-  <div class="testi-marquee">
-    <div class="testi-track testi-fwd">
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"A fantastic marketing tool for any business to increase new leads in the sales pipeline. We have seen an increasing level of sales success from the new leads provided."</div><div class="testi-author"><div class="testi-avatar">TB</div><div><div class="testi-name">Travis Barlow</div><div class="testi-role">Managing Director, Vodafone Business Centre</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Over three months, we generated 120+ high-quality leads, significantly boosting our sales pipeline. Precision targeting at its best."</div><div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Akhil Koka</div><div class="testi-role">Head of Growth, Ignyte</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"It has rapidly expanded our reach, creating highly valuable introductions which have the potential to be long term clients. This solution pays for itself."</div><div class="testi-author"><div class="testi-avatar">CH</div><div><div class="testi-name">Craig Hughes</div><div class="testi-role">COO, Cogora</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team helped us get in front of exactly the right people. We started having real conversations with decision-makers almost right away."</div><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Robert Kenfield</div><div class="testi-role">COO, RenderToVideo</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team quickly understood our goals and built campaigns that consistently brought in the right opportunities."</div><div class="testi-author"><div class="testi-avatar">IS</div><div><div class="testi-name">Iuliia Sidorova</div><div class="testi-role">Head of Sales, Reputation House</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"In addition to receiving high quality leads converted into revenue, we've been able to reach wide audiences to refine and validate our messaging."</div><div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Valenti</div><div class="testi-role">CEO, Astrix AI</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us move from unreliable outreach to a steady flow of qualified conversations."</div><div class="testi-author"><div class="testi-avatar">JG</div><div><div class="testi-name">James Garner</div><div class="testi-role">Chief Revenue Officer, Altimo</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The quality of leads generated has been outstanding, allowing our sales team to maximize their efficiency and focus on closing deals."</div><div class="testi-author"><div class="testi-avatar">NM</div><div><div class="testi-name">Neladri J Mondal</div><div class="testi-role">Founder, THE1</div></div></div></div>
-      <!-- Duplicate for seamless loop -->
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"A fantastic marketing tool for any business to increase new leads in the sales pipeline. We have seen an increasing level of sales success from the new leads provided."</div><div class="testi-author"><div class="testi-avatar">TB</div><div><div class="testi-name">Travis Barlow</div><div class="testi-role">Managing Director, Vodafone Business Centre</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Over three months, we generated 120+ high-quality leads, significantly boosting our sales pipeline. Precision targeting at its best."</div><div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Akhil Koka</div><div class="testi-role">Head of Growth, Ignyte</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"It has rapidly expanded our reach, creating highly valuable introductions which have the potential to be long term clients. This solution pays for itself."</div><div class="testi-author"><div class="testi-avatar">CH</div><div><div class="testi-name">Craig Hughes</div><div class="testi-role">COO, Cogora</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team helped us get in front of exactly the right people. We started having real conversations with decision-makers almost right away."</div><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Robert Kenfield</div><div class="testi-role">COO, RenderToVideo</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their team quickly understood our goals and built campaigns that consistently brought in the right opportunities."</div><div class="testi-author"><div class="testi-avatar">IS</div><div><div class="testi-name">Iuliia Sidorova</div><div class="testi-role">Head of Sales, Reputation House</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"In addition to receiving high quality leads converted into revenue, we've been able to reach wide audiences to refine and validate our messaging."</div><div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Valenti</div><div class="testi-role">CEO, Astrix AI</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us move from unreliable outreach to a steady flow of qualified conversations."</div><div class="testi-author"><div class="testi-avatar">JG</div><div><div class="testi-name">James Garner</div><div class="testi-role">Chief Revenue Officer, Altimo</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The quality of leads generated has been outstanding, allowing our sales team to maximize their efficiency and focus on closing deals."</div><div class="testi-author"><div class="testi-avatar">NM</div><div><div class="testi-name">Neladri J Mondal</div><div class="testi-role">Founder, THE1</div></div></div></div>
-    </div>
-  </div>
-  <!-- Row 2: Reverse -->
-  <div class="testi-marquee" style="margin-top:20px;">
-    <div class="testi-track testi-rev">
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their approach is strategic, efficient, and delivers measurable outcomes. A fantastic solution for any business looking to expand its reach."</div><div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Syed Tafsir Mohammad</div><div class="testi-role">Marketing Manager, Payoneer</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The process felt organised, data-driven, and well managed, which made outbound a reliable and repeatable channel for us."</div><div class="testi-author"><div class="testi-avatar">CC</div><div><div class="testi-name">Cameron Calhoun</div><div class="testi-role">Business Development Manager, Modul-Bio</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us connect with relevant contacts across targeted audiences, setting up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">JC</div><div><div class="testi-name">Jane Chapman</div><div class="testi-role">General Manager, Total Fitouts</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Targeted messaging and data-driven approach quickly delivered qualified leads. They genuinely operate like part of our team."</div><div class="testi-author"><div class="testi-avatar">RB</div><div><div class="testi-name">Robert Beerworth</div><div class="testi-role">Managing Director, Digital8</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"What we value most is their responsiveness and transparency. A dependable partner in helping us expand our pipeline."</div><div class="testi-author"><div class="testi-avatar">BG</div><div><div class="testi-name">Brad Guthrie</div><div class="testi-role">Director, Search Republic</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their ability to understand our offering and craft messages that resonate with our audience has been impressive."</div><div class="testi-author"><div class="testi-avatar">VS</div><div><div class="testi-name">Vipin Sharma</div><div class="testi-role">Director, SCP</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their strategic approach and consistent results make them an invaluable partner of ours."</div><div class="testi-author"><div class="testi-avatar">JW</div><div><div class="testi-name">Julian Wood</div><div class="testi-role">Managing Director, Novated Lease Australia</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"They helped us connect with highly relevant contacts and set up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">GT</div><div><div class="testi-name">Garry Taylor</div><div class="testi-role">CEO, Smart Union</div></div></div></div>
-      <!-- Duplicate for seamless loop -->
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their approach is strategic, efficient, and delivers measurable outcomes. A fantastic solution for any business looking to expand its reach."</div><div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Syed Tafsir Mohammad</div><div class="testi-role">Marketing Manager, Payoneer</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"The process felt organised, data-driven, and well managed, which made outbound a reliable and repeatable channel for us."</div><div class="testi-author"><div class="testi-avatar">CC</div><div><div class="testi-name">Cameron Calhoun</div><div class="testi-role">Business Development Manager, Modul-Bio</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Growth Automation helped us connect with relevant contacts across targeted audiences, setting up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">JC</div><div><div class="testi-name">Jane Chapman</div><div class="testi-role">General Manager, Total Fitouts</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Targeted messaging and data-driven approach quickly delivered qualified leads. They genuinely operate like part of our team."</div><div class="testi-author"><div class="testi-avatar">RB</div><div><div class="testi-name">Robert Beerworth</div><div class="testi-role">Managing Director, Digital8</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"What we value most is their responsiveness and transparency. A dependable partner in helping us expand our pipeline."</div><div class="testi-author"><div class="testi-avatar">BG</div><div><div class="testi-name">Brad Guthrie</div><div class="testi-role">Director, Search Republic</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their ability to understand our offering and craft messages that resonate with our audience has been impressive."</div><div class="testi-author"><div class="testi-avatar">VS</div><div><div class="testi-name">Vipin Sharma</div><div class="testi-role">Director, SCP</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"Their strategic approach and consistent results make them an invaluable partner of ours."</div><div class="testi-author"><div class="testi-avatar">JW</div><div><div class="testi-name">Julian Wood</div><div class="testi-role">Managing Director, Novated Lease Australia</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-text">"They helped us connect with highly relevant contacts and set up numerous high-quality meetings."</div><div class="testi-author"><div class="testi-avatar">GT</div><div><div class="testi-name">Garry Taylor</div><div class="testi-role">CEO, Smart Union</div></div></div></div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 18. BATTLE CARDS ============ -->
 <section class="section battle-cards-section">
@@ -2926,9 +2936,7 @@ const urlBar = document.getElementById('browserUrl');
 const slideUrls = [
   'app.growthautomation.ai/dashboard',
   'app.growthautomation.ai/inbox',
-  'app.growthautomation.ai/dex',
-  'app.growthautomation.ai/content-engine',
-  'app.growthautomation.ai/ai-usage'
+  'app.growthautomation.ai/dex'
 ];
 let currentSlide = 0;
 const totalSlides = slideUrls.length;
