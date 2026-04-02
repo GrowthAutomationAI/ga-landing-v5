@@ -63,7 +63,7 @@ options.forEach((opt, i) => {
       <button class="toggle-btn" onclick="toggleView(this,'mobile','${opt.id}')">Mobile (960×540)</button>
     </div>
     <div class="preview" id="preview-${opt.id}">
-      <img src="${opt.id}.webp" alt="${opt.name}" id="img-${opt.id}">
+      <img src="/web/banner/${opt.id}.webp" alt="${opt.name}" id="img-${opt.id}">
       <span class="size-badge" id="badge-${opt.id}">Desktop</span>
       <div class="preview-overlay">
         <div class="preview-text">
@@ -83,10 +83,10 @@ function toggleView(btn, mode, id) {
   const img = document.getElementById('img-' + id);
   const badge = document.getElementById('badge-' + id);
   if (mode === 'mobile') {
-    img.src = id + '-mobile.webp';
+    img.src = '/web/banner/' + id + '-mobile.webp';
     badge.textContent = 'Mobile';
   } else {
-    img.src = id + '.webp';
+    img.src = '/web/banner/' + id + '.webp';
     badge.textContent = 'Desktop';
   }
 }
