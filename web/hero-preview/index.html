@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hero Preview — Interstella ShaderGradient</title>
+<title>Hero Preview — Interstella Video Background</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,8 +15,6 @@ body {
   color: #EDE9DF;
   overflow-x: hidden;
 }
-
-/* ── Announcement Bar ── */
 .announce-bar {
   background: linear-gradient(90deg, #6B5FAA, #8B7FC7, #6B5FAA);
   padding: 11px 24px;
@@ -24,13 +22,10 @@ body {
   font-size: 14px;
   font-weight: 500;
   color: #EDE9DF;
-  letter-spacing: 0.01em;
   position: relative;
   z-index: 10;
 }
 .announce-bar a { color: #F4B94D; font-weight: 700; margin-left: 10px; text-decoration: none; }
-
-/* ── Nav ── */
 .nav {
   padding: 0 24px;
   background: rgba(16,16,22,0.88);
@@ -72,7 +67,7 @@ body {
   cursor: pointer;
 }
 
-/* ── Hero Section ── */
+/* ── Hero ── */
 .hero {
   position: relative;
   min-height: 92vh;
@@ -83,31 +78,37 @@ body {
   text-align: center;
   padding: 80px 24px 100px;
   overflow: hidden;
+  background: #000;
 }
 
-/* ShaderGradient container — same size as hero, no zoom/squish */
-#sg-canvas {
+/* Video background — fills hero, covers like background-size:cover */
+.hero-video {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
 }
-#sg-canvas canvas {
-  width: 100% !important;
-  height: 100% !important;
+.hero-video video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
 }
 
-/* Dark overlay for text readability — heavier at edges */
+/* Overlay for text readability */
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: radial-gradient(ellipse at 40% 40%, rgba(16,16,22,0.15) 0%, rgba(16,16,22,0.45) 50%, rgba(16,16,22,0.8) 100%);
+  background: radial-gradient(ellipse at 40% 40%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.75) 100%);
   pointer-events: none;
 }
 
-/* Hero content */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -172,21 +173,11 @@ body {
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  transition: border-color 0.2s;
 }
-.btn-outline:hover { border-color: rgba(139,127,199,0.7); }
-.hero-subtext {
-  font-size: 14px;
-  color: rgba(255,255,255,0.7);
-}
-.hero-proof {
-  margin-top: 16px;
-  font-size: 16px;
-  color: rgba(255,255,255,0.9);
-}
+.hero-subtext { font-size: 14px; color: rgba(255,255,255,0.7); }
+.hero-proof { margin-top: 16px; font-size: 16px; color: rgba(255,255,255,0.9); }
 .hero-proof strong { color: #A99FDB; }
 
-/* ── Below Hero ── */
 .below-hero {
   padding: 80px 24px;
   text-align: center;
@@ -198,24 +189,6 @@ body {
   color: rgba(237,233,223,0.3);
 }
 
-/* ── Loading State ── */
-.sg-loading {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: #101016;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: rgba(139,127,199,0.4);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: opacity 0.8s;
-}
-.sg-loading.hidden { opacity: 0; pointer-events: none; }
-
-/* ── Preview Label ── */
 .preview-label {
   position: fixed;
   bottom: 20px;
@@ -254,9 +227,12 @@ body {
 </nav>
 
 <section class="hero">
-  <!-- ShaderGradient renders here -->
-  <div id="sg-canvas"></div>
-  <div class="sg-loading" id="sgLoading">Loading shader&hellip;</div>
+  <div class="hero-video">
+    <video autoplay muted loop playsinline poster="/video/hero-poster.jpg">
+      <source src="/video/hero-bg.mp4" type="video/mp4">
+      <source src="/video/hero-bg.webm" type="video/webm">
+    </video>
+  </div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
@@ -278,91 +254,7 @@ body {
   <h2>[ Rest of homepage continues below &hellip; ]</h2>
 </div>
 
-<div class="preview-label">Interstella ShaderGradient Preview</div>
+<div class="preview-label">Interstella Video Background &mdash; 4.4MB desktop / 1.1MB mobile</div>
 
-<!-- Load React + ShaderGradient via esm.sh CDN -->
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-    "shadergradient": "https://esm.sh/shadergradient@2.0.1?deps=react@18.3.1,react-dom@18.3.1,three@0.160.0,@react-three/fiber@8.15.12",
-    "shadergradient/": "https://esm.sh/shadergradient@2.0.1&deps=react@18.3.1,react-dom@18.3.1,three@0.160.0,@react-three/fiber@8.15.12/"
-  }
-}
-</script>
-<script type="module">
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-
-// Dynamic import for the shader gradient (handles chunked deps)
-async function init() {
-  try {
-    const sg = await import('shadergradient');
-    const { ShaderGradient, ShaderGradientCanvas } = sg;
-
-    const App = () => {
-      return React.createElement(ShaderGradientCanvas, {
-        style: { position: 'absolute', inset: 0 },
-        pointerEvents: 'none'
-      },
-        React.createElement(ShaderGradient, {
-          // Interstella preset — your exact parameters
-          animate: 'on',
-          brightness: 0.8,
-          cAzimuthAngle: 270,
-          cDistance: 0.5,
-          cPolarAngle: 180,
-          cameraZoom: 15.1,
-          color1: '#3C73CC',
-          color2: '#E8A023',
-          color3: '#10B981',
-          envPreset: 'city',
-          grain: 'on',
-          lightType: 'env',
-          pixelDensity: 1,
-          positionX: -0.1,
-          positionY: 0,
-          positionZ: 0,
-          reflection: 0.4,
-          rotationX: 0,
-          rotationY: 130,
-          rotationZ: 70,
-          shader: 'defaults',
-          type: 'sphere',
-          uAmplitude: 3.2,
-          uDensity: 0.8,
-          uFrequency: 5.5,
-          uSpeed: 0.3,
-          uStrength: 0.3,
-          uTime: 0,
-          wireframe: false,
-          zoomOut: false
-        })
-      );
-    };
-
-    const root = createRoot(document.getElementById('sg-canvas'));
-    root.render(React.createElement(App));
-
-    // Hide loading indicator after a delay
-    setTimeout(() => {
-      document.getElementById('sgLoading').classList.add('hidden');
-    }, 2000);
-
-  } catch (err) {
-    console.error('ShaderGradient failed to load:', err);
-    // Fallback: show a static gradient approximation
-    const el = document.getElementById('sg-canvas');
-    el.style.background = 'radial-gradient(ellipse at 35% 35%, #3C73CC 0%, #E8A023 30%, #10B981 50%, #101016 80%)';
-    el.style.filter = 'blur(40px) saturate(0.7)';
-    document.getElementById('sgLoading').classList.add('hidden');
-  }
-}
-
-init();
-</script>
 </body>
 </html>
