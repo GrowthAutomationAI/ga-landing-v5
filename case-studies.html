@@ -270,6 +270,65 @@ img { max-width: 100%; display: block; }
   opacity: 0.6;
 }
 
+/* ============ DECORATIVE HEX SHAPES + GLOW (matches homepage) ============ */
+.stories-section, .reviews-section { position: relative; overflow: hidden; isolation: isolate; }
+.decor-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.decor-shape-l, .decor-shape-r {
+  position: absolute;
+  background: var(--violet);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.decor-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.12) 0%, transparent 70%);
+}
+/* Stories section: large shape upper-right, small lower-left */
+.stories-section { background: var(--bg2); }
+.stories-section .decor-shape-l {
+  width: 480px; height: 620px;
+  right: -120px; left: auto;
+  top: -100px; bottom: auto;
+  transform: rotate(15deg);
+  opacity: 0.07;
+}
+.stories-section .decor-shape-r {
+  width: 200px; height: 280px;
+  left: -50px; right: auto;
+  top: auto; bottom: -60px;
+  transform: rotate(-20deg);
+  opacity: 0.05;
+}
+/* Reviews section: large center-left, medium upper-right */
+.reviews-section { background: var(--bg); }
+.reviews-section .decor-shape-l {
+  width: 520px; height: 680px;
+  left: -140px; right: auto;
+  top: 50%;
+  transform: translateY(-50%) rotate(-12deg);
+  opacity: 0.06;
+}
+.reviews-section .decor-shape-r {
+  width: 260px; height: 350px;
+  right: -70px; left: auto;
+  top: -80px; bottom: auto;
+  transform: rotate(22deg);
+  opacity: 0.05;
+}
+.reviews-section .decor-glow {
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(139,127,199,0.10) 0%, transparent 65%);
+}
+
 /* ============ HERO ============ */
 .page-hero {
   position: relative;
@@ -809,6 +868,7 @@ img { max-width: 100%; display: block; }
 
 <!-- ============ SUCCESS STORIES ============ -->
 <section class="stories-section" id="success-stories">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="container">
     <div class="section-label reveal" style="justify-content:center;"><div class="section-label-line"></div> Success Stories</div>
     <div class="section-header reveal">
@@ -940,6 +1000,7 @@ img { max-width: 100%; display: block; }
 
 <!-- ============ REAL CLIENT REVIEWS ============ -->
 <section class="reviews-section" id="reviews">
+  <div class="decor-bg"><div class="decor-shape-l"></div><div class="decor-shape-r"></div><div class="decor-glow"></div></div>
   <div class="container">
     <div class="section-label reveal" style="justify-content:center;"><div class="section-label-line"></div> What Clients Say</div>
     <div class="section-header reveal">
