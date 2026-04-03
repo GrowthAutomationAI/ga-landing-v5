@@ -1204,7 +1204,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   letter-spacing: 0.01em;
 }
 .announce-bar a {
-  color: var(--violet-l);
+  color: #F4B94D;
   font-weight: 700;
   margin-left: 10px;
   transition: color 0.2s;
@@ -1242,10 +1242,9 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <li class="nav-dropdown">
         <a href="index.html#platform">Platform</a>
         <ul class="nav-dropdown-menu">
-          <li><a href="index.html#platform">Platform Overview</a></li>
           <li><a href="index.html#how-it-works">How It Works</a></li>
+          <li><a href="index.html#platform">Platform Overview</a></li>
           <li><a href="index.html#dex">Meet Dex</a></li>
-          <li><a href="pricing.html">Pricing &amp; Features</a></li>
         </ul>
       </li>
       <li><a href="pricing.html" class="active">Pricing &amp; Features</a></li>
@@ -1927,6 +1926,8 @@ labelAnnual.addEventListener('click', () => {
 /* ============ INIT ============ */
 selectPlan(2); // Pre-select Growth
 updateLinkedin();
+// Ensure page starts at top (selectPlan may scroll to add-ons)
+window.scrollTo(0, 0);
 
 /* Mobile nav */
 var hamburger = document.querySelector('.nav-hamburger');
