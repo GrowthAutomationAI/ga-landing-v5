@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stripe-Style Mesh Gradient Hero Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: #101016;
+  color: #EDE9DF;
+  overflow-x: hidden;
+}
+
+/* ── Announcement Bar ── */
+.announce-bar {
+  background: linear-gradient(90deg, #6B5FAA, #8B7FC7, #6B5FAA);
+  padding: 11px 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #EDE9DF;
+  position: relative;
+  z-index: 10;
+}
+.announce-bar a { color: #F4B94D; font-weight: 700; margin-left: 10px; text-decoration: none; }
+
+/* ── Nav ── */
+.nav {
+  padding: 0 24px;
+  background: rgba(16,16,22,0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(139,127,199,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.nav-logo { font-weight: 800; font-size: 17px; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 600; color: rgba(237,233,223,0.5); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+.nav-links a:hover { color: #EDE9DF; }
+.nav-actions { display: flex; gap: 12px; align-items: center; }
+.btn-violet { padding: 10px 20px; background: #8B7FC7; color: #fff; border: none; border-radius: 100px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-ghost-sm { padding: 8px 16px; background: transparent; border: 1px solid rgba(139,127,199,0.25); color: rgba(237,233,223,0.6); border-radius: 100px; font-family: inherit; font-size: 13px; cursor: pointer; }
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding: 100px 24px 100px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Wave gradient canvas */
+#gradient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  /* Stripe's signature diagonal clip */
+  --gradient-color-1: #0a0a14;
+  --gradient-color-2: #3C73CC;
+  --gradient-color-3: #E8A023;
+  --gradient-color-4: #10B981;
+}
+
+/* Optional: Stripe-style diagonal skew on the container */
+.hero-skew-wrap {
+  position: absolute;
+  inset: -40% 0;
+  z-index: 0;
+  transform: skewY(-6deg);
+  overflow: hidden;
+}
+.hero-skew-wrap canvas {
+  transform: skewY(6deg) scale(1.2);
+  transform-origin: center center;
+}
+
+/* Dark overlay — subtle, keeps text readable */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, rgba(10,10,20,0.15) 0%, rgba(10,10,20,0.4) 60%, rgba(10,10,20,0.7) 100%);
+  pointer-events: none;
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(139,127,199,0.2);
+  border: 1px solid rgba(139,127,199,0.3);
+  color: #c4b8ff;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+}
+.hero h1 {
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.hero h1 .accent { color: #E8A023; }
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+  max-width: 580px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.btn-amber {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #E8A023;
+  color: #000;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-amber:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,160,35,0.3); }
+.btn-outline {
+  display: inline-block;
+  padding: 14px 28px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(139,127,199,0.35);
+  color: #c4b8ff;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color: rgba(139,127,199,0.6); background: rgba(255,255,255,0.08); }
+.hero-subtext { font-size: 14px; color: rgba(255,255,255,0.6); }
+.hero-proof { margin-top: 16px; font-size: 16px; color: rgba(255,255,255,0.85); }
+.hero-proof strong { color: #c4b8ff; }
+
+/* ── Below Hero ── */
+.below-hero {
+  padding: 60px 24px 80px;
+  background: var(--bg, #151520);
+  text-align: center;
+}
+.below-hero h2 { font-size: 28px; font-weight: 800; color: rgba(237,233,223,0.2); }
+
+/* ── Controls Panel ── */
+.controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 200;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(139,127,199,0.2);
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 12px;
+  color: #aaa;
+  width: 280px;
+  transition: opacity 0.3s;
+}
+.controls h3 { font-size: 13px; color: #c4b8ff; margin-bottom: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.ctrl-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.ctrl-row label { font-size: 11px; color: #888; }
+.ctrl-row input[type="range"] { width: 140px; accent-color: #8B7FC7; }
+.ctrl-row input[type="color"] { width: 32px; height: 24px; border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; cursor: pointer; background: transparent; }
+.ctrl-row .val { font-size: 11px; color: #c4b8ff; min-width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── Preview Label ── */
+.preview-label {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 200;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139,127,199,0.3);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 12px;
+  color: #A99FDB;
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 80px 20px 60px; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .nav-links { display: none; }
+  .controls { width: 240px; padding: 14px; bottom: 10px; right: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="announce-bar">
+  Offering free strategy proposals for Q2: <a href="#">Run the Interactive Demo &rarr;</a>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Growth Automation</div>
+    <ul class="nav-links">
+      <li><a href="#">Platform</a></li>
+      <li><a href="#">Pricing & Features</a></li>
+      <li><a href="#">Case Studies</a></li>
+      <li><a href="#">Comparisons</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost-sm">Login</button>
+      <button class="btn-violet">Book a Strategy Call</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="gradient-canvas" data-transition-in></canvas>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">&#10022; AI-Powered Outbound &mdash; Fully Managed</div>
+    <h1>Qualified lead pipeline &mdash; without agency fees or <span class="accent">DIY chaos.</span></h1>
+    <p class="hero-sub">Fully managed outbound powered by agentic AI, human verification, and zero client lift.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-amber">Interactive Demo &rarr;</a>
+      <a href="#" class="btn-outline">Book a Strategy Call</a>
+    </div>
+    <div class="hero-subtext">Get a custom outbound plan and demo campaign (5 min)</div>
+    <div class="hero-proof">
+      Trusted by <strong>Vodafone</strong>, <strong>Payoneer</strong>, <strong>Cogora</strong> &amp; 50+ B2B brands
+    </div>
+  </div>
+</section>
+
+<div class="below-hero">
+  <h2>[ Rest of homepage continues below &hellip; ]</h2>
+</div>
+
+<!-- Controls for live adjustment -->
+<div class="controls" id="controls">
+  <h3>&#9881; Adjust Gradient</h3>
+  <div class="ctrl-row">
+    <label>Speed</label>
+    <input type="range" id="ctrlSpeed" min="0.1" max="4" step="0.1" value="1.25">
+    <span class="val" id="valSpeed">1.25</span>
+  </div>
+  <div class="ctrl-row">
+    <label>Amplitude</label>
+    <input type="range" id="ctrlAmp" min="50" max="800" step="10" value="320">
+    <span class="val" id="valAmp">320</span>
+  </div>
+  <div class="ctrl-row">
+    <label>Seed</label>
+    <input type="range" id="ctrlSeed" min="0" max="100" step="1" value="5">
+    <span class="val" id="valSeed">5</span>
+  </div>
+  <div class="ctrl-row">
+    <label>Color 1</label>
+    <input type="color" id="ctrlC1" value="#0a0a14">
+    <span class="val">Base</span>
+  </div>
+  <div class="ctrl-row">
+    <label>Color 2</label>
+    <input type="color" id="ctrlC2" value="#3C73CC">
+    <span class="val">Blue</span>
+  </div>
+  <div class="ctrl-row">
+    <label>Color 3</label>
+    <input type="color" id="ctrlC3" value="#E8A023">
+    <span class="val">Amber</span>
+  </div>
+  <div class="ctrl-row">
+    <label>Color 4</label>
+    <input type="color" id="ctrlC4" value="#10B981">
+    <span class="val">Green</span>
+  </div>
+</div>
+
+<div class="preview-label">WaveGradient (Stripe-style) &mdash; 12KB, zero deps</div>
+
+<script type="module">
+import { WaveGradient } from '/js/wave-gradient.js';
+
+const canvas = document.getElementById('gradient-canvas');
+
+// Initialize with Interstella colors
+let gradient = new WaveGradient(canvas, {
+  colors: ['#0a0a14', '#3C73CC', '#E8A023', '#10B981'],
+  speed: 1.25,
+  amplitude: 320,
+  seed: 5,
+  fps: 30,
+  density: [0.06, 0.16],
+});
+
+// Pause when off-screen (Stripe's approach)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      gradient.play();
+    } else {
+      gradient.pause();
+    }
+  });
+}, { threshold: 0 });
+observer.observe(canvas);
+
+// ── Live controls ──
+function rebuildGradient() {
+  const speed = parseFloat(document.getElementById('ctrlSpeed').value);
+  const amp = parseInt(document.getElementById('ctrlAmp').value);
+  const seed = parseInt(document.getElementById('ctrlSeed').value);
+  const c1 = document.getElementById('ctrlC1').value;
+  const c2 = document.getElementById('ctrlC2').value;
+  const c3 = document.getElementById('ctrlC3').value;
+  const c4 = document.getElementById('ctrlC4').value;
+
+  document.getElementById('valSpeed').textContent = speed.toFixed(2);
+  document.getElementById('valAmp').textContent = amp;
+  document.getElementById('valSeed').textContent = seed;
+
+  gradient.destroy();
+  gradient = new WaveGradient(canvas, {
+    colors: [c1, c2, c3, c4],
+    speed: speed,
+    amplitude: amp,
+    seed: seed,
+    fps: 30,
+    density: [0.06, 0.16],
+  });
+}
+
+// Attach listeners
+['ctrlSpeed', 'ctrlAmp', 'ctrlSeed', 'ctrlC1', 'ctrlC2', 'ctrlC3', 'ctrlC4'].forEach(id => {
+  document.getElementById(id).addEventListener('input', rebuildGradient);
+});
+</script>
+</body>
+</html>
