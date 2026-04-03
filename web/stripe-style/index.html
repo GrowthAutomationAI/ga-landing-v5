@@ -27,10 +27,11 @@ body{font-family:'Inter Tight',sans-serif;background:#080810;color:#EDE9DF;overf
 /* Canvas — pushed to right side like Stripe */
 #gradient-canvas{
   position:absolute;
-  top:-20%;bottom:-20%;
-  right:-10%;
-  width:80%;
+  top:-40%;bottom:-40%;
+  right:0%;
+  width:90%;
   z-index:0;
+  transition:transform 0.3s ease,width 0.3s ease,right 0.3s ease;
 }
 
 /* Fade the gradient into the dark left side */
@@ -95,7 +96,7 @@ body{font-family:'Inter Tight',sans-serif;background:#080810;color:#EDE9DF;overf
   .hero-ctas{flex-direction:column;align-items:center;}
   .nav-links{display:none;}
   .controls{width:240px;padding:12px;top:70px;right:10px;font-size:10px;}
-  #gradient-canvas{width:100%;right:-20%;}
+  #gradient-canvas{width:120%;right:-10%;}
 }
 </style>
 </head>
@@ -154,6 +155,7 @@ body{font-family:'Inter Tight',sans-serif;background:#080810;color:#EDE9DF;overf
     <h4>Presets</h4>
     <div class="ctrl-preset" id="presets">
       <button onclick="applyPreset('interstella')" class="active">Interstella</button>
+      <button onclick="applyPreset('stripe')">Stripe</button>
       <button onclick="applyPreset('midnight')">Midnight</button>
       <button onclick="applyPreset('sunset')">Sunset</button>
       <button onclick="applyPreset('ocean')">Ocean</button>
@@ -163,29 +165,30 @@ body{font-family:'Inter Tight',sans-serif;background:#080810;color:#EDE9DF;overf
 
   <div class="ctrl-section">
     <h4>Colors (4 layers)</h4>
-    <div class="ctrl-row"><label>Base</label><input type="color" id="c1" value="#080810"><span class="val">Dark</span></div>
-    <div class="ctrl-row"><label>Layer 2</label><input type="color" id="c2" value="#1a3a6e"><span class="val">Blue</span></div>
-    <div class="ctrl-row"><label>Layer 3</label><input type="color" id="c3" value="#c4841a"><span class="val">Amber</span></div>
-    <div class="ctrl-row"><label>Layer 4</label><input type="color" id="c4" value="#1a5a8e"><span class="val">Teal</span></div>
+    <div class="ctrl-row"><label>Base</label><input type="color" id="c1" value="#665a55"><span class="val">Dark</span></div>
+    <div class="ctrl-row"><label>Layer 2</label><input type="color" id="c2" value="#213c6e"><span class="val">Blue</span></div>
+    <div class="ctrl-row"><label>Layer 3</label><input type="color" id="c3" value="#0bb534"><span class="val">Amber</span></div>
+    <div class="ctrl-row"><label>Layer 4</label><input type="color" id="c4" value="#1c4a6d"><span class="val">Teal</span></div>
   </div>
 
   <div class="ctrl-section">
     <h4>Motion</h4>
-    <div class="ctrl-row"><label>Speed</label><input type="range" id="speed" min="0.1" max="3" step="0.05" value="0.6"><span class="val" id="vSpeed">0.60</span></div>
-    <div class="ctrl-row"><label>Amplitude</label><input type="range" id="amp" min="100" max="1500" step="10" value="620"><span class="val" id="vAmp">620</span></div>
+    <div class="ctrl-row"><label>Speed</label><input type="range" id="speed" min="0.1" max="3" step="0.05" value="1.25"><span class="val" id="vSpeed">1.25</span></div>
+    <div class="ctrl-row"><label>Amplitude</label><input type="range" id="amp" min="100" max="1500" step="10" value="430"><span class="val" id="vAmp">430</span></div>
   </div>
 
   <div class="ctrl-section">
     <h4>Shape</h4>
-    <div class="ctrl-row"><label>Density X</label><input type="range" id="dx" min="0.01" max="0.15" step="0.005" value="0.025"><span class="val" id="vDx">0.025</span></div>
-    <div class="ctrl-row"><label>Density Y</label><input type="range" id="dy" min="0.01" max="0.3" step="0.005" value="0.06"><span class="val" id="vDy">0.060</span></div>
-    <div class="ctrl-row"><label>Seed</label><input type="range" id="seed" min="0" max="50" step="1" value="2"><span class="val" id="vSeed">2</span></div>
+    <div class="ctrl-row"><label>Density X</label><input type="range" id="dx" min="0.005" max="0.15" step="0.001" value="0.035"><span class="val" id="vDx">0.035</span></div>
+    <div class="ctrl-row"><label>Density Y</label><input type="range" id="dy" min="0.005" max="0.3" step="0.001" value="0.06"><span class="val" id="vDy">0.060</span></div>
+    <div class="ctrl-row"><label>Seed</label><input type="range" id="seed" min="0" max="50" step="1" value="23"><span class="val" id="vSeed">23</span></div>
   </div>
 
   <div class="ctrl-section">
-    <h4>Position</h4>
-    <div class="ctrl-row"><label>Right offset</label><input type="range" id="posR" min="-50" max="20" step="1" value="-10"><span class="val" id="vPosR">-10%</span></div>
-    <div class="ctrl-row"><label>Width</label><input type="range" id="posW" min="50" max="120" step="1" value="80"><span class="val" id="vPosW">80%</span></div>
+    <h4>Rotation &amp; Position</h4>
+    <div class="ctrl-row"><label>Rotation</label><input type="range" id="rot" min="0" max="360" step="1" value="0"><span class="val" id="vRot">0&deg;</span></div>
+    <div class="ctrl-row"><label>Right offset</label><input type="range" id="posR" min="-50" max="20" step="1" value="0"><span class="val" id="vPosR">0%</span></div>
+    <div class="ctrl-row"><label>Width</label><input type="range" id="posW" min="50" max="150" step="1" value="90"><span class="val" id="vPosW">90%</span></div>
   </div>
 </div>
 
@@ -198,11 +201,12 @@ const canvas = document.getElementById('gradient-canvas');
 let gradient;
 
 const presets = {
-  interstella: { c1:'#080810', c2:'#1a3a6e', c3:'#c4841a', c4:'#1a5a8e', speed:0.6, amp:620, dx:0.025, dy:0.06, seed:2 },
-  midnight:    { c1:'#050510', c2:'#1a2a5e', c3:'#3a2a6e', c4:'#0a1a3e', speed:0.4, amp:500, dx:0.02, dy:0.05, seed:7 },
-  sunset:      { c1:'#0a0808', c2:'#6e2a1a', c3:'#c4641a', c4:'#8e3a1a', speed:0.5, amp:700, dx:0.03, dy:0.07, seed:4 },
-  ocean:       { c1:'#060a10', c2:'#0a3a5e', c3:'#1a6a8e', c4:'#0a2a4e', speed:0.35, amp:550, dx:0.02, dy:0.06, seed:11 },
-  ember:       { c1:'#0a0606', c2:'#5e1a0a', c3:'#c47a1a', c4:'#3e1a0a', speed:0.7, amp:800, dx:0.025, dy:0.08, seed:1 },
+  interstella: { c1:'#665a55', c2:'#213c6e', c3:'#0bb534', c4:'#1c4a6d', speed:1.25, amp:430, dx:0.035, dy:0.06, seed:23, rot:0, posR:0, posW:90 },
+  midnight:    { c1:'#050510', c2:'#1a2a5e', c3:'#3a2a6e', c4:'#0a1a3e', speed:0.4, amp:500, dx:0.02, dy:0.05, seed:7, rot:0, posR:-10, posW:80 },
+  sunset:      { c1:'#0a0808', c2:'#6e2a1a', c3:'#c4641a', c4:'#8e3a1a', speed:0.5, amp:700, dx:0.03, dy:0.07, seed:4, rot:0, posR:-10, posW:80 },
+  ocean:       { c1:'#060a10', c2:'#0a3a5e', c3:'#1a6a8e', c4:'#0a2a4e', speed:0.35, amp:550, dx:0.02, dy:0.06, seed:11, rot:0, posR:-10, posW:80 },
+  ember:       { c1:'#0a0606', c2:'#5e1a0a', c3:'#c47a1a', c4:'#3e1a0a', speed:0.7, amp:800, dx:0.025, dy:0.08, seed:1, rot:0, posR:-10, posW:80 },
+  stripe:      { c1:'#0a0a12', c2:'#1a2a5e', c3:'#c47a20', c4:'#162e58', speed:0.5, amp:600, dx:0.015, dy:0.04, seed:5, rot:90, posR:0, posW:100 },
 };
 
 function getValues() {
@@ -216,6 +220,9 @@ function getValues() {
     dx: parseFloat(document.getElementById('dx').value),
     dy: parseFloat(document.getElementById('dy').value),
     seed: parseInt(document.getElementById('seed').value),
+    rot: parseInt(document.getElementById('rot').value),
+    posR: parseInt(document.getElementById('posR').value),
+    posW: parseInt(document.getElementById('posW').value),
   };
 }
 
@@ -229,6 +236,9 @@ function setValues(v) {
   document.getElementById('dx').value = v.dx;
   document.getElementById('dy').value = v.dy;
   document.getElementById('seed').value = v.seed;
+  document.getElementById('rot').value = v.rot || 0;
+  document.getElementById('posR').value = v.posR !== undefined ? v.posR : 0;
+  document.getElementById('posW').value = v.posW !== undefined ? v.posW : 90;
   updateLabels(v);
 }
 
@@ -238,15 +248,22 @@ function updateLabels(v) {
   document.getElementById('vDx').textContent = v.dx.toFixed(3);
   document.getElementById('vDy').textContent = v.dy.toFixed(3);
   document.getElementById('vSeed').textContent = v.seed;
+  document.getElementById('vRot').textContent = (v.rot || 0) + '\u00B0';
 }
 
 function updatePosition() {
   const r = document.getElementById('posR').value;
   const w = document.getElementById('posW').value;
+  const rot = document.getElementById('rot').value;
   canvas.style.right = r + '%';
   canvas.style.width = w + '%';
+  // Rotation — scale up to cover gaps when rotated, centered transform
+  const scale = rot % 180 === 0 ? 1 : 1 + Math.abs(Math.sin(rot * Math.PI / 180)) * 0.6;
+  canvas.style.transform = 'rotate(' + rot + 'deg) scale(' + scale.toFixed(2) + ')';
+  canvas.style.transformOrigin = 'center center';
   document.getElementById('vPosR').textContent = r + '%';
   document.getElementById('vPosW').textContent = w + '%';
+  document.getElementById('vRot').textContent = rot + '\u00B0';
 }
 
 function rebuild() {
