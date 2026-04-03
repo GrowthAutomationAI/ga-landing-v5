@@ -431,6 +431,20 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   transform: rotate(155deg) scale(1.55);
   transform-origin: center center;
 }
+.hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, #101016 0%, #101016 12%, rgba(16,16,22,0.85) 30%, rgba(16,16,22,0.3) 55%, rgba(16,16,22,0.05) 75%, transparent 100%);
+  pointer-events: none;
+}
+.hero-fade-v {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(16,16,22,0.5) 0%, transparent 18%, transparent 82%, rgba(16,16,22,0.85) 100%);
+  pointer-events: none;
+}
 @media (max-width: 768px) {
   #vanta-hero { background-image: url('screenshots/hero-fallback-mobile.webp'); }
   #gradient-canvas { width: 180%; right: -10%; }
@@ -2168,6 +2182,8 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 <!-- ============ 3. HERO ============ -->
 <section class="hero" id="hero">
   <div id="vanta-hero"><canvas id="gradient-canvas"></canvas></div>
+  <div class="hero-fade"></div>
+  <div class="hero-fade-v"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-content editable">
@@ -3066,7 +3082,7 @@ import { WaveGradient } from '/js/wave-gradient.js';
 
   // Initialize WaveGradient with Derek's tuned settings
   var gradient = new WaveGradient(canvas, {
-    colors: ['#0e0c0e', '#1a2252', '#1e2254', '#3a3a3a'],
+    colors: ['#000000', '#232055', '#232952', '#808080'],
     speed: 1.85,
     amplitude: 1500,
     seed: 3,
