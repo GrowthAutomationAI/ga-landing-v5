@@ -154,41 +154,42 @@ body{font-family:'Inter Tight',sans-serif;background:#080810;color:#EDE9DF;overf
   <div class="ctrl-section">
     <h4>Presets</h4>
     <div class="ctrl-preset" id="presets">
-      <button onclick="applyPreset('interstella')" class="active">Interstella</button>
-      <button onclick="applyPreset('stripe')">Stripe</button>
+      <button onclick="applyPreset('interstella')">Interstella</button>
+      <button onclick="applyPreset('stripeHD')" class="active">Stripe HD</button>
+      <button onclick="applyPreset('stripeDark')">Stripe Dark</button>
+      <button onclick="applyPreset('fabric')">Fabric</button>
       <button onclick="applyPreset('midnight')">Midnight</button>
       <button onclick="applyPreset('sunset')">Sunset</button>
-      <button onclick="applyPreset('ocean')">Ocean</button>
       <button onclick="applyPreset('ember')">Ember</button>
     </div>
   </div>
 
   <div class="ctrl-section">
     <h4>Colors (4 layers)</h4>
-    <div class="ctrl-row"><label>Base</label><input type="color" id="c1" value="#665a55"><span class="val">Dark</span></div>
-    <div class="ctrl-row"><label>Layer 2</label><input type="color" id="c2" value="#213c6e"><span class="val">Blue</span></div>
-    <div class="ctrl-row"><label>Layer 3</label><input type="color" id="c3" value="#0bb534"><span class="val">Amber</span></div>
-    <div class="ctrl-row"><label>Layer 4</label><input type="color" id="c4" value="#1c4a6d"><span class="val">Teal</span></div>
+    <div class="ctrl-row"><label>Base</label><input type="color" id="c1" value="#0a0a12"><span class="val">Dark</span></div>
+    <div class="ctrl-row"><label>Layer 2</label><input type="color" id="c2" value="#6e3aff"><span class="val">Purple</span></div>
+    <div class="ctrl-row"><label>Layer 3</label><input type="color" id="c3" value="#ff6a00"><span class="val">Orange</span></div>
+    <div class="ctrl-row"><label>Layer 4</label><input type="color" id="c4" value="#ff1493"><span class="val">Pink</span></div>
   </div>
 
   <div class="ctrl-section">
     <h4>Motion</h4>
-    <div class="ctrl-row"><label>Speed</label><input type="range" id="speed" min="0.1" max="3" step="0.05" value="1.25"><span class="val" id="vSpeed">1.25</span></div>
-    <div class="ctrl-row"><label>Amplitude</label><input type="range" id="amp" min="100" max="1500" step="10" value="430"><span class="val" id="vAmp">430</span></div>
+    <div class="ctrl-row"><label>Speed</label><input type="range" id="speed" min="0.1" max="3" step="0.05" value="0.4"><span class="val" id="vSpeed">0.40</span></div>
+    <div class="ctrl-row"><label>Amplitude</label><input type="range" id="amp" min="100" max="2000" step="10" value="900"><span class="val" id="vAmp">900</span></div>
   </div>
 
   <div class="ctrl-section">
     <h4>Shape</h4>
-    <div class="ctrl-row"><label>Density X</label><input type="range" id="dx" min="0.005" max="0.15" step="0.001" value="0.035"><span class="val" id="vDx">0.035</span></div>
-    <div class="ctrl-row"><label>Density Y</label><input type="range" id="dy" min="0.005" max="0.3" step="0.001" value="0.06"><span class="val" id="vDy">0.060</span></div>
-    <div class="ctrl-row"><label>Seed</label><input type="range" id="seed" min="0" max="50" step="1" value="23"><span class="val" id="vSeed">23</span></div>
+    <div class="ctrl-row"><label>Density X</label><input type="range" id="dx" min="0.005" max="0.25" step="0.001" value="0.12"><span class="val" id="vDx">0.120</span></div>
+    <div class="ctrl-row"><label>Density Y</label><input type="range" id="dy" min="0.005" max="0.5" step="0.001" value="0.35"><span class="val" id="vDy">0.350</span></div>
+    <div class="ctrl-row"><label>Seed</label><input type="range" id="seed" min="0" max="50" step="1" value="5"><span class="val" id="vSeed">5</span></div>
   </div>
 
   <div class="ctrl-section">
     <h4>Rotation &amp; Position</h4>
-    <div class="ctrl-row"><label>Rotation</label><input type="range" id="rot" min="0" max="360" step="1" value="0"><span class="val" id="vRot">0&deg;</span></div>
-    <div class="ctrl-row"><label>Right offset</label><input type="range" id="posR" min="-50" max="20" step="1" value="0"><span class="val" id="vPosR">0%</span></div>
-    <div class="ctrl-row"><label>Width</label><input type="range" id="posW" min="50" max="150" step="1" value="90"><span class="val" id="vPosW">90%</span></div>
+    <div class="ctrl-row"><label>Rotation</label><input type="range" id="rot" min="0" max="360" step="1" value="75"><span class="val" id="vRot">75&deg;</span></div>
+    <div class="ctrl-row"><label>Right offset</label><input type="range" id="posR" min="-50" max="20" step="1" value="-5"><span class="val" id="vPosR">-5%</span></div>
+    <div class="ctrl-row"><label>Width</label><input type="range" id="posW" min="50" max="150" step="1" value="110"><span class="val" id="vPosW">110%</span></div>
   </div>
 </div>
 
@@ -201,12 +202,14 @@ const canvas = document.getElementById('gradient-canvas');
 let gradient;
 
 const presets = {
-  interstella: { c1:'#665a55', c2:'#213c6e', c3:'#0bb534', c4:'#1c4a6d', speed:1.25, amp:430, dx:0.035, dy:0.06, seed:23, rot:0, posR:0, posW:90 },
-  midnight:    { c1:'#050510', c2:'#1a2a5e', c3:'#3a2a6e', c4:'#0a1a3e', speed:0.4, amp:500, dx:0.02, dy:0.05, seed:7, rot:0, posR:-10, posW:80 },
-  sunset:      { c1:'#0a0808', c2:'#6e2a1a', c3:'#c4641a', c4:'#8e3a1a', speed:0.5, amp:700, dx:0.03, dy:0.07, seed:4, rot:0, posR:-10, posW:80 },
-  ocean:       { c1:'#060a10', c2:'#0a3a5e', c3:'#1a6a8e', c4:'#0a2a4e', speed:0.35, amp:550, dx:0.02, dy:0.06, seed:11, rot:0, posR:-10, posW:80 },
-  ember:       { c1:'#0a0606', c2:'#5e1a0a', c3:'#c47a1a', c4:'#3e1a0a', speed:0.7, amp:800, dx:0.025, dy:0.08, seed:1, rot:0, posR:-10, posW:80 },
-  stripe:      { c1:'#0a0a12', c2:'#1a2a5e', c3:'#c47a20', c4:'#162e58', speed:0.5, amp:600, dx:0.015, dy:0.04, seed:5, rot:90, posR:0, posW:100 },
+  interstella:  { c1:'#000000', c2:'#232055', c3:'#232952', c4:'#808080', speed:1.85, amp:1500, dx:0.083, dy:0.242, seed:3, rot:155, posR:0, posW:90 },
+  stripeHD:     { c1:'#0a0a12', c2:'#6e3aff', c3:'#ff6a00', c4:'#ff1493', speed:0.4, amp:900, dx:0.12, dy:0.35, seed:5, rot:75, posR:-5, posW:110 },
+  stripeDark:   { c1:'#000000', c2:'#2a1a6e', c3:'#c47a20', c4:'#6e1a5a', speed:0.45, amp:800, dx:0.10, dy:0.30, seed:8, rot:80, posR:0, posW:100 },
+  midnight:     { c1:'#050510', c2:'#1a2a5e', c3:'#3a2a6e', c4:'#0a1a3e', speed:0.4, amp:500, dx:0.02, dy:0.05, seed:7, rot:0, posR:-10, posW:80 },
+  sunset:       { c1:'#0a0808', c2:'#6e2a1a', c3:'#c4641a', c4:'#8e3a1a', speed:0.5, amp:700, dx:0.03, dy:0.07, seed:4, rot:0, posR:-10, posW:80 },
+  ocean:        { c1:'#060a10', c2:'#0a3a5e', c3:'#1a6a8e', c4:'#0a2a4e', speed:0.35, amp:550, dx:0.02, dy:0.06, seed:11, rot:0, posR:-10, posW:80 },
+  ember:        { c1:'#0a0606', c2:'#5e1a0a', c3:'#c47a1a', c4:'#3e1a0a', speed:0.7, amp:800, dx:0.025, dy:0.08, seed:1, rot:0, posR:-10, posW:80 },
+  fabric:       { c1:'#060612', c2:'#4a2a8e', c3:'#e86a20', c4:'#c41a6a', speed:0.35, amp:1200, dx:0.14, dy:0.40, seed:12, rot:70, posR:-5, posW:120 },
 };
 
 function getValues() {
