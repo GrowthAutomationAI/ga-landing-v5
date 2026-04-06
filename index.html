@@ -470,10 +470,14 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Subtle dark backdrop behind text for readability over video */
-  background: radial-gradient(ellipse at center, rgba(10,10,16,0.65) 0%, rgba(10,10,16,0.45) 60%, transparent 85%);
-  padding: 48px 60px;
-  border-radius: 24px;
+}
+/* Dark radial overlay across the full hero — darkest at center where text is, fading outward */
+.hero-text-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, rgba(8,8,14,0.75) 0%, rgba(8,8,14,0.55) 35%, rgba(8,8,14,0.30) 60%, rgba(8,8,14,0.10) 80%, transparent 100%);
+  pointer-events: none;
 }
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(32px); }
@@ -2185,6 +2189,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
     <video autoplay muted loop playsinline poster="video/hero-poster.jpg" id="heroVideo"></video>
   </div>
   <div class="hero-fade-v"></div>
+  <div class="hero-text-backdrop"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-content editable">
