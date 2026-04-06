@@ -129,7 +129,6 @@
 [data-theme="light"] .hero .hero-proof strong { color: var(--violet-l); }
 [data-theme="light"] .hero .hero-cta-subtext { color: rgba(255,255,255,0.75); }
 [data-theme="light"] #vanta-hero { opacity: 1; }
-[data-theme="light"] #gradient-canvas { opacity: 0.7; }
 /* hero light overrides moved to .hero scope above */
 [data-theme="light"] .pain-card h4 { color: var(--violet); }
 [data-theme="light"] .dex-body,
@@ -418,36 +417,26 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* Fallback background shown until WaveGradient loads, or permanently on weak devices */
-  background: url('screenshots/hero-fallback.webp') center/cover no-repeat, #101016;
+  overflow: hidden;
+  background: #101016;
 }
-#gradient-canvas {
+#vanta-hero video {
   position: absolute;
-  top: -50%; bottom: -50%;
-  right: 8%;
-  width: 150%;
-  z-index: 0;
-  pointer-events: none;
-  transform: rotate(155deg) scale(1.55);
-  transform-origin: center center;
-}
-.hero-fade {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(90deg, #101016 0%, #101016 12%, rgba(16,16,22,0.85) 30%, rgba(16,16,22,0.3) 55%, rgba(16,16,22,0.05) 75%, transparent 100%);
-  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
 }
 .hero-fade-v {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(16,16,22,0.5) 0%, transparent 18%, transparent 82%, rgba(16,16,22,0.85) 100%);
+  background: linear-gradient(180deg, rgba(16,16,22,0.3) 0%, transparent 15%, transparent 85%, rgba(16,16,22,0.9) 100%);
   pointer-events: none;
-}
-@media (max-width: 768px) {
-  #vanta-hero { background-image: url('screenshots/hero-fallback-mobile.webp'); }
-  #gradient-canvas { width: 180%; right: -10%; }
 }
 .hero-glow {
   position: absolute;
@@ -2181,8 +2170,9 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 
 <!-- ============ 3. HERO ============ -->
 <section class="hero" id="hero">
-  <div id="vanta-hero"><canvas id="gradient-canvas"></canvas></div>
-  <div class="hero-fade"></div>
+  <div id="vanta-hero">
+    <video autoplay muted loop playsinline poster="video/hero-poster.jpg" id="heroVideo"></video>
+  </div>
   <div class="hero-fade-v"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
@@ -3060,54 +3050,12 @@ hamburger.addEventListener('click', () => {
 });
 </script>
 
-<!-- WaveGradient Hero Background (Stripe-style, with adaptive fallback) -->
-<script type="module">
-import { WaveGradient } from '/js/wave-gradient.js';
-
+<!-- Hero Video Background (ShaderGradient v3) -->
+<script>
 (function() {
-  'use strict';
-  var canvas = document.getElementById('gradient-canvas');
-  if (!canvas) return;
-
-  // ---- Adaptive check: skip on weaker devices ----
-  var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 900;
-  var lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 6;
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var slowConnection = navigator.connection && (navigator.connection.saveData || navigator.connection.effectiveType === '2g' || navigator.connection.effectiveType === 'slow-2g');
-  var lowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
-
-  if (isMobile || lowMemory || prefersReduced || slowConnection || lowCores) {
-    return; // Fallback image already showing via CSS
-  }
-
-  // Initialize WaveGradient with Derek's tuned settings
-  var gradient = new WaveGradient(canvas, {
-    colors: ['#000000', '#232055', '#232952', '#808080'],
-    speed: 1.85,
-    amplitude: 1500,
-    seed: 3,
-    fps: 30,
-    density: [0.083, 0.242],
-  });
-
-  // Pause when hero is off-screen
-  var hero = document.getElementById('hero');
-
-  if (hero) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) gradient.play();
-        else gradient.pause();
-      });
-    }, { threshold: 0 });
-    obs.observe(hero);
-  }
-
-  // Pause when tab hidden
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden) gradient.pause();
-    else gradient.play();
-  });
+  var v = document.getElementById('heroVideo');
+  if (!v) return;
+  v.src = window.innerWidth > 768 ? 'video/hero-bg.mp4' : 'video/hero-bg-mobile.mp4';
 })();
 </script>
 </body>
