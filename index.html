@@ -463,7 +463,18 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   z-index: 2;
 }
 .hero-deco { display: none; }
-.hero-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Subtle dark backdrop behind text for readability over video */
+  background: radial-gradient(ellipse at center, rgba(10,10,16,0.65) 0%, rgba(10,10,16,0.45) 60%, transparent 85%);
+  padding: 48px 60px;
+  border-radius: 24px;
+}
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(32px); }
   to { opacity: 1; transform: translateY(0); }
