@@ -476,7 +476,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: radial-gradient(ellipse at center, rgba(8,8,14,0.75) 0%, rgba(8,8,14,0.55) 35%, rgba(8,8,14,0.30) 60%, rgba(8,8,14,0.10) 80%, transparent 100%);
+  background: radial-gradient(ellipse at center, rgba(8,8,14,0.85) 0%, rgba(8,8,14,0.65) 35%, rgba(8,8,14,0.40) 60%, rgba(8,8,14,0.15) 80%, transparent 100%);
   pointer-events: none;
 }
 @keyframes hero-in {
@@ -2186,7 +2186,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 <!-- ============ 3. HERO ============ -->
 <section class="hero" id="hero">
   <div id="vanta-hero">
-    <video autoplay muted loop playsinline poster="video/hero-poster.jpg" id="heroVideo"></video>
+    <video autoplay muted loop playsinline preload="auto" poster="video/hero-poster.jpg" id="heroVideo"></video>
   </div>
   <div class="hero-fade-v"></div>
   <div class="hero-text-backdrop"></div>
@@ -3071,7 +3071,39 @@ hamburger.addEventListener('click', () => {
 (function() {
   var v = document.getElementById('heroVideo');
   if (!v) return;
+
+  // Hide video until it's ready to play smoothly (poster shows in the meantime)
+  v.style.opacity = '0';
+  v.style.transition = 'opacity 0.8s ease';
+
+  // Set source based on screen size
   v.src = window.innerWidth > 768 ? 'video/hero-bg.mp4' : 'video/hero-bg-mobile.mp4';
+
+  // Wait until enough is buffered, then fade in smoothly
+  v.addEventListener('canplaythrough', function() {
+    v.style.opacity = '1';
+  }, { once: true });
+
+  // Fallback: if canplaythrough doesn't fire in 3s, show anyway
+  setTimeout(function() { v.style.opacity = '1'; }, 3000);
+
+  // Pause video when hero scrolls out of view (saves CPU/GPU/battery)
+  var hero = document.getElementById('hero');
+  if (hero) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { v.play().catch(function(){}); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0 });
+    obs.observe(hero);
+  }
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) v.pause();
+    else if (v.getBoundingClientRect().top < window.innerHeight) v.play().catch(function(){});
+  });
 })();
 </script>
 </body>
