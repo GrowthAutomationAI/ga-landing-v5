@@ -2117,7 +2117,14 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   .nav-hamburger { display: block; }
   .pain-grid { grid-template-columns: 1fr; }
   .case-grid, .battle-grid { grid-template-columns: 1fr 1fr; }
-  .hero { padding: 60px 24px 60px; }
+  .hero { padding: 80px 24px 80px; }
+  .hero h1 { margin-bottom: 30px; }
+  .hero-sub { margin-bottom: 40px; }
+  .hero-ctas { margin-bottom: 30px; }
+  .hero-cta-subtext { margin-bottom: 8px; }
+  .hero-proof { margin-top: 20px; }
+  .hero-badge { margin-bottom: 36px; }
+  .nav-hamburger { position: static; }
   .section { padding: 64px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .btn-ghost.hide-mobile, .btn-violet-sm.hide-mobile { display: none; }
@@ -2135,7 +2142,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
   .stats-row { grid-template-columns: 1fr 1fr; }
   .stat-item::after { display: none; }
   .hero-ctas { flex-direction: column; align-items: center; }
-  .hero-proof { flex-direction: column; gap: 8px; }
+  .hero-proof { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px; font-size: 14px; }
   .platform-tabs { gap: 4px; }
   .platform-tab { padding: 8px 14px; font-size: 11px; }
   .hiw-card { flex: 0 0 260px; }
@@ -2175,11 +2182,11 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       </li>
     </ul>
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.open('https://app.growthautomation.ai','_blank')">Login</button>
       <button class="btn-violet-sm hide-mobile" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
+      <button class="nav-hamburger" id="navHamburger">&#9776;</button>
     </div>
-    <button class="nav-hamburger" id="navHamburger">&#9776;</button>
   </div>
 </nav>
 
