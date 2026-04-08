@@ -147,6 +147,27 @@ img { max-width: 100%; display: block; }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a.active { color: var(--cream); }
 .nav-links a.active::after { width: 100%; }
+/* Theme toggle button */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--violet);
+  background: rgba(139,127,199,0.08);
+  transform: rotate(20deg);
+}
 .nav-actions { display: flex; align-items: center; gap: 12px; }
 .btn-ghost {
   padding: 9px 20px;
@@ -719,6 +740,9 @@ img { max-width: 100%; display: block; }
 </style>
 </head>
 <body>
+<script>
+(function(){var t=localStorage.getItem('ga-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+</script>
 
 <!-- ============ ANNOUNCEMENT BAR ============ -->
 <div class="announce-bar" id="announceBar">
@@ -745,6 +769,7 @@ img { max-width: 100%; display: block; }
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.open('https://app.growthautomation.ai','_blank')">Login</button>
       <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
     </div>
@@ -1351,6 +1376,22 @@ hamburger.addEventListener('click', () => {
     navLinks.style.borderBottom = '1px solid var(--border)';
   }
 });
+
+/* Theme toggle */
+var themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'light' ? null : 'light';
+    if (next) {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('ga-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('ga-theme');
+    }
+  });
+}
 </script>
 </body>
 </html>

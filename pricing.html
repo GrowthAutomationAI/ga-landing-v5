@@ -119,6 +119,27 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 }
 .nav-links a:hover::after,
 .nav-links a.active::after { width: 100%; }
+/* Theme toggle button */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--violet);
+  background: rgba(139,127,199,0.08);
+  transform: rotate(20deg);
+}
 .nav-actions { display: flex; align-items: center; gap: 12px; }
 .btn-ghost {
   padding: 9px 20px;
@@ -1228,6 +1249,9 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
 </style>
 </head>
 <body>
+<script>
+(function(){var t=localStorage.getItem('ga-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+</script>
 
 <div class="announce-bar" id="announceBar">
   Offering free strategy proposals for Q2: <a href="https://app.growthautomation.ai/onboard/public" target="_blank" rel="noopener">Run the Interactive Demo &rarr;</a>
@@ -1253,6 +1277,7 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9790;</button>
       <button class="btn-ghost hide-mobile" onclick="window.open('https://app.growthautomation.ai','_blank')">Login</button>
       <button class="btn-violet-sm" style="padding:10px 20px;" onclick="window.open('https://calendly.com/mikeborman/growth-automation-lead-gen-client-call','_blank')">Book a Strategy Call</button>
     </div>
@@ -1425,12 +1450,10 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <!-- TARGETING -->
         <tr class="category-row"><td colspan="6">Targeting</td></tr>
         <tr><td>AI-Driven Audience Targeting</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>Base Intent Enrichment (Firmographic + Technographic)</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>Advanced Intent Signals (Website Visitors, Hiring, Funding, G2)</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>Clay Enrichment</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>2B+ Contacts Database</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>Automated Intent Signals (Base)</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>Custom Automated Intent Signals</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>500M+ B2B Contacts Database</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Base Contact/Company Enrichments</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Base Automated Intent Signals (Firmographic + Technographic)</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>Advanced Custom Intent Signals (Website Visitors, Hiring, Funding, G2)</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>Sub 5-Min Personalized Outreach (Email + LinkedIn)</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
 
         <!-- CONTENT -->
@@ -1458,13 +1481,12 @@ h1, h2, h3, h4, h5, h6, .display, .nav-logo, .btn-amber, .btn-ghost, .btn-white,
         <tr><td>AI Personalized Auto-Reply</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>Sub 5-Min Response Automation + Intelligent Qualification</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>Lead Status, Stage Tracking, Meeting Booking Tools</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr class="section-row"><td colspan="6">LinkedIn Outreach Engine</td></tr>
+        <tr class="category-row"><td colspan="6">LinkedIn Outreach Engine</td></tr>
         <tr><td>5-Channel Hybrid Outreach (Connections + InMails + Open to Work + Groups + Premium)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>700+ Weekly Prospect Reach (vs ~200 standard tools)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>Dedicated Per-Account Infrastructure (Mobile Proxies + Unique Fingerprints)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>AI-Personalized LinkedIn Messaging</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
         <tr><td>Account Warm-Up + Safety Protocols</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
-        <tr><td>Cross-Channel Contact Linking (Email + LinkedIn)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td class="highlight-col"><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -1973,6 +1995,22 @@ if (hamburger && navLinks) {
     navLinks.style.gap = open ? '' : '24px';
     navLinks.style.padding = open ? '' : '24px';
     navLinks.style.borderBottom = open ? '' : '1px solid var(--border)';
+  });
+}
+
+/* Theme toggle */
+var themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'light' ? null : 'light';
+    if (next) {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('ga-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('ga-theme');
+    }
   });
 }
 </script>
