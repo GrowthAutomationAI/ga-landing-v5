@@ -791,6 +791,45 @@ h1, h2, h3, h4, h5, h6, .nav-logo, .btn-amber, .btn-ghost, .section-label, .foot
 }
 .announce-close:hover { color: var(--cream); }
 .announce-bar.hidden { display: none; }
+
+/* ============ LIGHT THEME ============ */
+[data-theme="light"] {
+  --bg: #FAFAFA;
+  --bg2: #ECEDF3;
+  --bg3: #D5D6E6;
+  --card: #FFFFFF;
+  --card2: #F7F7F9;
+  --cream: #1A1A2E;
+  --muted: rgba(26,26,46,0.55);
+  --border: rgba(139,127,199,0.15);
+  --border2: rgba(139,127,199,0.25);
+}
+[data-theme="light"] body { color: var(--cream); }
+[data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3,
+[data-theme="light"] .section-heading, [data-theme="light"] .nav-logo { color: #1A1A2E; }
+[data-theme="light"] .btn-amber { color: #fff; }
+[data-theme="light"] .btn-violet-sm { color: #fff; }
+[data-theme="light"] .btn-ghost { color: #1A1A2E; border-color: rgba(139,127,199,0.3); }
+[data-theme="light"] .btn-ghost:hover { background: rgba(139,127,199,0.08); }
+[data-theme="light"] .nav.scrolled { background: rgba(255,255,255,0.92); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+[data-theme="light"] .nav { background: rgba(255,255,255,0.85); }
+[data-theme="light"] .nav-links a { color: rgba(26,26,46,0.6); }
+[data-theme="light"] .nav-links a:hover { color: #1A1A2E; }
+[data-theme="light"] body::after { opacity: 0.012; }
+[data-theme="light"] .announce-bar { color: #fff; }
+[data-theme="light"] .announce-bar a { color: #F4B94D; }
+[data-theme="light"] .section-label { color: var(--violet); }
+[data-theme="light"] .footer { background: #E6E6EC; }
+[data-theme="light"] .footer-brand, [data-theme="light"] .footer-col h4 { color: #1A1A2E; }
+[data-theme="light"] .accent { color: var(--amber); }
+[data-theme="light"] .gold { color: var(--amber); }
+[data-theme="light"] .section-sub { color: rgba(26,26,46,0.6); }
+[data-theme="light"] .pip { background: rgba(139,127,199,0.2); }
+[data-theme="light"] .pip.active { background: var(--violet); }
+/* Contact-specific light overrides */
+[data-theme="light"] .contact-hero { background: var(--bg2); }
+[data-theme="light"] .contact-card { background: #fff; border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .contact-info { color: rgba(26,26,46,0.7); }
 </style>
 </head>
 <body>
