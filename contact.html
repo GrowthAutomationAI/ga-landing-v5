@@ -960,8 +960,8 @@ h1, h2, h3, h4, h5, h6, .nav-logo, .btn-amber, .btn-ghost, .section-label, .foot
     <!-- RIGHT: Contact Form -->
     <div class="contact-form-card reveal" style="transition-delay: 0.15s;">
       <h3 class="contact-form-title">Send Us a Message</h3>
-      <p class="contact-form-sub">Fill out the form and we&rsquo;ll get back to you within 24 hours.</p>
-      <form id="contactForm" onsubmit="return false;">
+      <p class="contact-form-sub">Fill out the form and we&rsquo;ll get back to you within 24 hours. You can also email us directly at <a href="mailto:info@growthautomation.ai" style="color:var(--amber);text-decoration:none;">info@growthautomation.ai</a>.</p>
+      <form id="contactForm">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your Name</label>
@@ -1115,6 +1115,61 @@ if (themeToggle) {
     }
   });
 }
+
+/* ============ CONTACT FORM HANDLER ============ */
+(function() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message &rarr;';
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim() || 'Inquiry from Growth Automation website';
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !message) return;
+
+    // Build mailto URL with prefilled fields
+    const mailtoSubject = encodeURIComponent(subject);
+    const mailtoBody = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n\n' +
+      '---\n\n' +
+      message + '\n\n' +
+      '---\nSent from growthautomation.ai contact form'
+    );
+    const mailtoUrl = 'mailto:info@growthautomation.ai?subject=' + mailtoSubject + '&body=' + mailtoBody;
+
+    // Open mailto in new tab (browser handles this gracefully)
+    window.location.href = mailtoUrl;
+
+    // Show success confirmation
+    if (submitBtn) {
+      submitBtn.innerHTML = '&#10003; Opening your email app...';
+      submitBtn.disabled = true;
+      submitBtn.style.background = 'rgba(34, 197, 94, 0.2)';
+      submitBtn.style.color = '#4ade80';
+      submitBtn.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+    }
+
+    // Reset form and button after 4 seconds
+    setTimeout(function() {
+      form.reset();
+      if (submitBtn) {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        submitBtn.style.background = '';
+        submitBtn.style.color = '';
+        submitBtn.style.borderColor = '';
+      }
+    }, 4000);
+  });
+})();
 </script>
 
 </body>

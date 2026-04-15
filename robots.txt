@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /apppreview/
+Disallow: /api/
+Disallow: /_data/
+Disallow: /web/
+
+Sitemap: https://growthautomation.ai/sitemap.xml
