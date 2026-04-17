@@ -32,7 +32,8 @@
     { "source": "/vs/:competitor*", "destination": "/comparisons", "permanent": true },
     { "source": "/compare", "destination": "/comparisons", "permanent": true },
     { "source": "/lead-cost", "destination": "/lead-costs", "permanent": true },
-    { "source": "/lead-generation-cost", "destination": "/lead-costs", "permanent": true }
+    { "source": "/lead-generation-cost", "destination": "/lead-costs", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true }
   ],
   "headers": [
     {
